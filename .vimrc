@@ -7,6 +7,7 @@ function! Plugin()
 	NeoBundle 'nanotech/jellybeans.vim'
 	NeoBundle 'justmao945/vim-clang'
 	NeoBundle 'thinca/vim-quickrun'
+	NeoBundle 'kien/ctrlp.vim'
 endfunction
 
 """"""""""""""""""""""""""""""
