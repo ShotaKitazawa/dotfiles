@@ -1,12 +1,3 @@
-"""""""""""""""""""""""""""""
-" First setting
-"""""""""""""""""""""""""""""
-set nocompatible
-set backspace=indent,eol,start
-set undofile
-"""""""""""""""""""""""""""""
-
-
 """"""""""""""""""""""""""""""
 " Plugin's setting
 """"""""""""""""""""""""""""""
@@ -36,6 +27,14 @@ filetype plugin indent on
 NeoBundleCheck
 """"""""""""""""""""""""""""""
 
+
+"""""""""""""""""""""""""""""
+" Other setting
+"""""""""""""""""""""""""""""
+set nocompatible
+set backspace=indent,eol,start
+set undofile
 syntax on
 set background=dark
 colorscheme jellybeans
+"""""""""""""""""""""""""""""
