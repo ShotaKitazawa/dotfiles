@@ -19,8 +19,8 @@ function! Plugin()
 	            \ }
 	NeoBundle 'justmao945/vim-clang'
 	NeoBundle 'Shougo/neoinclude.vim'
+	NeoBundle 'deton/jasegment.vim'
 endfunction
-
 """"""""""""""""""""""""""""""
 if has('vim_starting')
   set nocompatible               " Be iMproved
@@ -38,19 +38,6 @@ filetype plugin indent on
 
 NeoBundleCheck
 """"""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""
-" Other setting
-"""""""""""""""""""""""""""""
-set nocompatible
-set backspace=indent,eol,start
-set undofile
-syntax on
-set background=dark
-colorscheme jellybeans
-"""""""""""""""""""""""""""""
-
 
 """""""""""""""""""""""""""""
 " http://qiita.com/MoriKen/items/24d1dde0c40e59a61edf
@@ -93,4 +80,18 @@ endif
 
 let g:clang_c_options = '-std=c11'
 let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
+"""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""
+" Other setting
+"""""""""""""""""""""""""""""
+set nocompatible
+set backspace=indent,eol,start
+set undofile
+syntax on
+set background=dark
+set encoding=utf-8
+set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+colorscheme jellybeans
+"""""""""""""""""""""""""""""
 
