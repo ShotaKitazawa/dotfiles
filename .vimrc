@@ -20,6 +20,8 @@ function! Plugin()
 	NeoBundle 'justmao945/vim-clang'
 	NeoBundle 'Shougo/neoinclude.vim'
 	NeoBundle 'deton/jasegment.vim'
+	NeoBundle 'kana/vim-operator-user'
+	NeoBundle 'rhysd/vim-clang-format'
 endfunction
 """"""""""""""""""""""""""""""
 if has('vim_starting')
@@ -93,5 +95,6 @@ set background=dark
 set encoding=utf-8
 set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
 colorscheme jellybeans
+map ,x <Plug>(operator-clang-format)
 """""""""""""""""""""""""""""
 
