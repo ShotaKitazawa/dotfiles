@@ -106,9 +106,6 @@ inoremap <C-e> <Esc>$a
 inoremap <C-a> <Esc>^i
 noremap <C-e> <Esc>$
 noremap <C-a> <Esc>^
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap [<Enter> []<Left><CR><ESC><S-o>
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
 noremap PP "0p
 noremap x "_x
 """""""""""""""""""""""""""""
