@@ -90,11 +90,16 @@ let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
 set nocompatible
 set backspace=indent,eol,start
 set undofile
+set clipboard+=unnamed
 syntax on
 set background=dark
 set encoding=utf-8
 set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
 colorscheme jellybeans
 map ,x <Plug>(operator-clang-format)
+inoremap <C-e> <Esc>$a
+inoremap <C-a> <Esc>^i
+noremap <C-e> <Esc>$a
+noremap <C-a> <Esc>^i
 """""""""""""""""""""""""""""
 
