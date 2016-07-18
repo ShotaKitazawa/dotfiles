@@ -95,11 +95,19 @@ syntax on
 set background=dark
 set encoding=utf-8
 set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+set hlsearch
+set ruler
+set title
+set incsearch
 colorscheme jellybeans
 map ,x <Plug>(operator-clang-format)
 inoremap <C-e> <Esc>$a
 inoremap <C-a> <Esc>^i
-noremap <C-e> <Esc>$a
-noremap <C-a> <Esc>^i
+noremap <C-e> <Esc>$
+noremap <C-a> <Esc>^
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap [<Enter> []<Left><CR><ESC><S-o>
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
+noremap PP "0p
+noremap x "_x
 """""""""""""""""""""""""""""
-
