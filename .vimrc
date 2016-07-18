@@ -19,6 +19,7 @@ function! Plugin()
 	            \ }
 	NeoBundle 'justmao945/vim-clang'
 	NeoBundle 'Shougo/neoinclude.vim'
+	"
 	NeoBundle 'deton/jasegment.vim'
 	NeoBundle 'kana/vim-operator-user'
 	NeoBundle 'rhysd/vim-clang-format'
