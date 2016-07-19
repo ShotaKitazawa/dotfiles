@@ -23,6 +23,8 @@ function! Plugin()
 	NeoBundle 'deton/jasegment.vim'
 	NeoBundle 'kana/vim-operator-user'
 	NeoBundle 'rhysd/vim-clang-format'
+	NeoBundle 'Shougo/unite.vim'
+	NeoBundle 'kana/vim-submode'
 endfunction
 """"""""""""""""""""""""""""""
 if has('vim_starting')
@@ -88,11 +90,13 @@ let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
 """""""""""""""""""""""""""""
 " Other setting
 """""""""""""""""""""""""""""
+syntax on
+colorscheme jellybeans
+
 set nocompatible
 set backspace=indent,eol,start
 set undofile
 set clipboard+=unnamed
-syntax on
 set background=dark
 set encoding=utf-8
 set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
@@ -100,7 +104,7 @@ set hlsearch
 set ruler
 set title
 set incsearch
-colorscheme jellybeans
+
 map ,x <Plug>(operator-clang-format)
 inoremap <C-e> <Esc>$a
 inoremap <C-a> <Esc>^i
@@ -108,4 +112,41 @@ noremap <C-e> <Esc>$
 noremap <C-a> <Esc>^
 noremap PP "0p
 noremap x "_x
+
+" http://nanasi.jp/articles/howto/file/expand.html
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+nnoremap sn gt
+nnoremap sp gT
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+nnoremap sw <C-w>w
+nnoremap so <C-w>_<C-w>|
+nnoremap sO <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+nnoremap st :<C-u>tabnew<CR>
+nnoremap sT :<C-u>Unite tab<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+	call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+	call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+"
 """""""""""""""""""""""""""""
