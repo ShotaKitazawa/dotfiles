@@ -11,6 +11,10 @@ fi
 ln -s ~/dotfiles/.vim ~/
 brew install lua -y
 brew reinstall vim --with-lua -y
+cd ~/dotfiles/
+curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
+sh ./install.sh
+rm -rf install.sh
 
 brew install pyenv
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc

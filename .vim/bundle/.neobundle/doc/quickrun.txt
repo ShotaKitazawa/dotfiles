@@ -1,6 +1,6 @@
 *quickrun.txt*	Run a command and show its result quickly.
 
-Version: 0.6.0
+Version: 0.7.0
 Author: thinca <thinca+vim@gmail.com>
 English documentation by:
   * ujihisa <ujihisa at gmail com>
@@ -173,15 +173,6 @@ quickrun#sweep_sessions()			*quickrun#sweep_sessions()*
 
 quickrun#is_running()				*quickrun#is_running()*
 	Checks any session is running.  Returns non-zero when running.
-
-
-The following functions are deprecated.  These will be removed at next
-version.
-quickrun#register_module({kind}, {name}, {module})
-quickrun#register_runner({name}, {runner})
-quickrun#register_outputter({name}, {outputter})
-quickrun#register_hook({name}, {hook})
-quickrun#get_module({kind} [, {name}])
 
 
 ------------------------------------------------------------------------------
@@ -460,17 +451,6 @@ default.  NOTE: Everything except for "system" can be unstable.
   runner/vimproc/read_timeout		Default: 100
 	The time to read at one time. (milliseconds)
 
-- "runner/process_manager"	*quickrun-module-runner/process_manager*
-  (DEPRECATED) Same as |quickrun-module-runner/concurrent_process| it runs
-  process at background and reuses it. The difference between this and
-  concurrent_process is the lower layer library what they are using.
-
-  Option ~
-  runner/process_manager/load			Default: "load %s"
-  runner/process_manager/prompt			Default: ">>> "
-  Refer the ones at concurrent_process. They have compatibility so that you
-  can toggle which one to use just by changing these names.
-
 - "runner/concurrent_process"	*quickrun-module-runner/concurrent_process*
   {Requirement: |vimproc|}
   Runs by |vimproc| and |Vital.ConcurrentProcess| at background, and reuses
@@ -515,6 +495,17 @@ default.  NOTE: Everything except for "system" can be unstable.
   Runs by |python| thread asynchronously.
   WARNING: This is absolutely unstable.
   WARNING: Don't use this on X11.  Vim crashes.
+
+- "runner/job"				*quickrun-module-runner/job*
+  {Experimental}
+  {Requirement: |+job|}
+  Runs via |job| feature.
+  Option ~
+  runner/job/interval		Default: 0
+	job feature checks about every 10 seconds for jobs that ended
+	(|job-exit_cb|).
+	When this value is not 0, this checks the end of job every specified
+	time in milliseconds by |timer|.
 
 - "runner/vimscript"			*quickrun-module-runner/vimscript*
   Runs commands as Vim commands.
@@ -598,7 +589,7 @@ available by default.
   outputter/loclist/open_cmd		Default: "lopen"
 	The command to open |location-list-window|.
 	The window is closed automatically when the result is empty.
-	You shouldn't use "cwindow".  Some features don't work well.
+	You shouldn't use "lwindow".  Some features don't work well.
   outputter/loclist/into		Default: 0
 	Moves cursor to the |location-list-window| if this isn't 0.
 
