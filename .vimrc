@@ -112,6 +112,8 @@ noremap <C-e> <Esc>$
 noremap <C-a> <Esc>^
 noremap PP "0p
 noremap x "_x
+noremap <ESC><ESC> :noh<CR>
+nnoremap <space>. :<c-u>new ~/.vimrc<CR>
 
 " http://nanasi.jp/articles/howto/file/expand.html
 nnoremap s <Nop>
