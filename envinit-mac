@@ -1,0 +1,27 @@
+#!/bin/sh
+# Author: Kitazawa
+# On the premise that  Xcode Homebrew is already installed.
+
+sudo echo ""
+if [ $? != 0 ]
+then
+	exit 1
+fi
+
+ln -s ~/dotfiles/.vim ~/
+brew install lua -y
+brew reinstall vim --with-lua -y
+
+brew install pyenv
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+tmp=`pyenv install --list | grep -G "^  [0-9][0-9|\.]*[0-9]$" |sort |tail -1`
+pyenv install $tmp
+pyenv global $tmp
+pyenv rehash
+sudo easy_install pip
+sudo pip install pep8 pyflakes
+sudo pip install pep8 pytest pytest-pep8
+
+exit 0

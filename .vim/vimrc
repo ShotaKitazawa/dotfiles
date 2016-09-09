@@ -2,12 +2,17 @@
 " Plugin's setting
 """"""""""""""""""""""""""""""
 function! Plugin()
+	" General {
+	NeoBundle 'Shougo/unite.vim'
+	NeoBundle 'kana/vim-operator-user'
+	NeoBundle 'kana/vim-submode'
 	NeoBundle 'scrooloose/nerdtree'
+	NeoBundle 'deton/jasegment.vim'
+	"" Color {
 	NeoBundle 'w0ng/vim-hybrid'
 	NeoBundle 'nanotech/jellybeans.vim'
-	NeoBundle 'thinca/vim-quickrun'
-	NeoBundle 'kien/ctrlp.vim'
-	" http://qiita.com/MoriKen/items/24d1dde0c40e59a61edf
+	"" }
+	"" http://qiita.com/MoriKen/items/24d1dde0c40e59a61edf {
 	NeoBundle 'Shougo/neocomplete.vim'
 	NeoBundle 'Shougo/vimproc.vim', {
 	            \ 'build' : {
@@ -19,12 +24,15 @@ function! Plugin()
 	            \ }
 	NeoBundle 'justmao945/vim-clang'
 	NeoBundle 'Shougo/neoinclude.vim'
-	"
-	NeoBundle 'deton/jasegment.vim'
-	NeoBundle 'kana/vim-operator-user'
+	"" }
+	" }
+	" C++ {
+	NeoBundle 'thinca/vim-quickrun'
 	NeoBundle 'rhysd/vim-clang-format'
-	NeoBundle 'Shougo/unite.vim'
-	NeoBundle 'kana/vim-submode'
+	" }
+	" Python {
+	NeoBundle 'davidhalter/jedi-vim'
+	" }
 endfunction
 """"""""""""""""""""""""""""""
 if has('vim_starting')
@@ -114,6 +122,7 @@ noremap PP "0p
 noremap x "_x
 noremap <ESC><ESC> :noh<CR>
 nnoremap <space>. :<c-u>new ~/.vimrc<CR>
+inoremap jj <Esc>
 
 " http://nanasi.jp/articles/howto/file/expand.html
 nnoremap s <Nop>
@@ -151,4 +160,7 @@ call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 "
+
+autocmd BufRead,BufNewFile *.py setfiletype python.vim
+autocmd BufRead,BufNewFile *.cpp setfiletype cp.vim
 """""""""""""""""""""""""""""
