@@ -8,7 +8,11 @@ then
 	exit 1
 fi
 
-ln -s ~/dotfiles/.vim ~/
+mkdir ~/.vim
+for i in $(ls ~/dotfiles/.vim/ | grep -v bundle)
+do
+	ln -s ~/dotfiles/.vim/$i ~/.vim/
+done
 brew install lua -y
 brew reinstall vim --with-lua -y
 cd ~/dotfiles/
