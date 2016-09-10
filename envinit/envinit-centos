@@ -1,6 +1,5 @@
 #!/bin/sh
 # Author: Kitazawa
-# On the premise that  Xcode Homebrew is already installed.
 
 sudo echo ""
 if [ $? != 0 ]
@@ -8,29 +7,35 @@ then
 	exit 1
 fi
 
+yum install gcc gcc-c++ make git openssl-devel　bzip2-devel zlib-devel readline-devel sqlite-devel bzip2 sqlite -y
+
 mkdir ~/.vim
 if [ $? != 0 ]; then exit 1; fi
 for i in $(ls ~/dotfiles/.vim/ | grep -v bundle)
 do
 	ln -s ~/dotfiles/.vim/$i ~/.vim/
 done
-brew install lua -y
-brew reinstall vim --with-lua -y
+# TODO: vim +lua
 curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > ~/.vim/install.sh
 sh ~/.vim/install.sh
 rm -rf ~/.vim/install.sh
 
-brew install pyenv
+cd ~/
+git clone git://github.com/yyuu/pyenv.git ~/.pyenv
 echo '' >> ~/.bashrc
-echo '# pyenv' >> ~/.bashrc
+echo '#pyenv' >> ~/.bashrc
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-tmp=`pyenv install --list | grep -G "^  [0-9][0-9|\.]*[0-9]$" |sort |tail -1`
+source ~/.bashrc
+tmp=`pyenv install --list | grep -G "^ *[0-9][0-9|\.]*[0-9]$" |sort |tail -1`
 pyenv install $tmp
 pyenv global $tmp
 pyenv rehash
-sudo easy_install pip
+yum install epel-release -y
+yum install python-pip -y
+if [ $? != 0 ]; then yum-epel install python-pip -y; fi
+pip install pip --upgrade
 sudo pip install pep8 pyflakes
 sudo pip install pep8 pytest pytest-pep8
 
