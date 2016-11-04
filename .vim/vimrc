@@ -11,6 +11,7 @@ function! Plugin()
 	"" Color {
 	NeoBundle 'w0ng/vim-hybrid'
 	NeoBundle 'nanotech/jellybeans.vim'
+	NeoBundle 'ConradIrwin/vim-bracketed-paste'
 	"" }
 	"" http://qiita.com/MoriKen/items/24d1dde0c40e59a61edf {
 "	NeoBundle 'Shougo/neocomplete.vim'
