@@ -1,0 +1,45 @@
+#!/bin/sh
+# Author: Kitazawa
+# On the premise that  Xcode Homebrew is already installed.
+
+sudo echo ""
+if [ $? != 0 ]
+then
+	exit 1
+fi
+
+sudo apt-get install git gcc make openssl libssl-dev libbz2-dev libreadline-dev libsqlite3-dev -y
+
+mkdir ~/.vim
+if [ $? != 0 ]; then exit 1; fi
+for i in $(ls ~/dotfiles/.vim/ | grep -v bundle)
+do
+	ln -s ~/dotfiles/.vim/$i ~/.vim/
+done
+sudo apt-get install vim -y
+sudo aptitude install vim-gnome -y
+curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > ~/.vim/install.sh
+sh ~/.vim/install.sh
+rm -rf ~/.vim/install.sh
+
+# http://qiita.com/akito1986/items/be5dcd1a502aaf22010b
+cd /usr/local/
+sudo git clone git://github.com/yyuu/pyenv.git ./pyenv
+sudo mkdir -p ./pyenv/versions ./pyenv/shims
+cd /usr/local/pyenv/plugins/
+sudo git clone git://github.com/yyuu/pyenv-virtualenv.git
+echo '' >> ~/.bashrc
+echo '# pyenv' >> ~/.bashrc
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+tmp=`pyenv install --list | grep -G "^  [0-9][0-9|\.]*[0-9]$" |sort |tail -1`
+pyenv install $tmp
+pyenv global $tmp
+pyenv rehash
+
+sudo apt-get install python-pip
+sudo pip install pep8 pyflakes
+sudo pip install pep8 pytest pytest-pep8
+
+exit 0
