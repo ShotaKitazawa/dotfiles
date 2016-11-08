@@ -112,6 +112,7 @@ set hlsearch
 set ruler
 set title
 set incsearch
+set wildmenu wildmode=list:full
 
 map ,x <Plug>(operator-clang-format)
 inoremap <C-e> <Esc>$a
@@ -123,6 +124,7 @@ noremap x "_x
 noremap <ESC><ESC> :noh<CR>
 nnoremap <space>. :<c-u>new ~/.vimrc<CR>
 inoremap jj <Esc>
+nnoremap :tree :NERDTreeToggle
 
 " http://nanasi.jp/articles/howto/file/expand.html
 nnoremap s <Nop>
