@@ -12,19 +12,6 @@ function! Plugin()
 	NeoBundle 'w0ng/vim-hybrid'
 	NeoBundle 'nanotech/jellybeans.vim'
 	"" }
-	"" http://qiita.com/MoriKen/items/24d1dde0c40e59a61edf {
-	NeoBundle 'Shougo/neocomplete.vim'
-	NeoBundle 'Shougo/vimproc.vim', {
-	            \ 'build' : {
-	            \ 'windows' : 'make -f make_mingw32.mak',
-	            \ 'cygwin' : 'make -f make_cygwin.mak',
-	            \ 'mac' : 'make -f make_mac.mak',
-	            \ 'unix' : 'make -f make_unix.mak',
-	            \ },
-	            \ }
-	NeoBundle 'justmao945/vim-clang'
-	NeoBundle 'Shougo/neoinclude.vim'
-	"" }
 	" }
 	" C++ {
 	NeoBundle 'thinca/vim-quickrun'
@@ -107,13 +94,14 @@ set undofile
 set clipboard+=unnamed
 set background=dark
 set encoding=utf-8
-set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+"set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
 set hlsearch
 set ruler
 set title
 set incsearch
 
 map ,x <Plug>(operator-clang-format)
+noremap <C-z> <C-a>
 inoremap <C-e> <Esc>$a
 inoremap <C-a> <Esc>^i
 noremap <C-e> <Esc>$
