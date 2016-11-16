@@ -118,6 +118,7 @@ set tabstop=4
 set shiftwidth=4
 
 map ,x <Plug>(operator-clang-format)
+noremap <C-z> <C-a>
 inoremap <C-e> <Esc>$a
 inoremap <C-a> <Esc>^i
 noremap <C-e> <Esc>$
