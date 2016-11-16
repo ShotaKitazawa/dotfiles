@@ -114,6 +114,8 @@ set ruler
 set title
 set incsearch
 set wildmenu wildmode=list:full
+set tabstop=4
+set shiftwidth=4
 
 map ,x <Plug>(operator-clang-format)
 inoremap <C-e> <Esc>$a
