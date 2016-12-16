@@ -1,6 +1,6 @@
 #!/bin/sh
 # Author: Kitazawa
-# On the premise that  Xcode Homebrew is already installed.
+# On the premise that "Xcode", "Homebrew" are already installed.
 
 sudo echo ""
 if [ $? != 0 ]
