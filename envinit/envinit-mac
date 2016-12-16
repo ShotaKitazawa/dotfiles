@@ -16,6 +16,7 @@ do
 done
 brew install lua -y
 brew reinstall vim --with-lua -y
+brew install clang-format
 curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > ~/.vim/install.sh
 sh ~/.vim/install.sh
 rm -rf ~/.vim/install.sh
