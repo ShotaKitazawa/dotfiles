@@ -1,8 +1,16 @@
-export LANG=ja_JP.UTF-8
+alias vi=vim
+#export LANG=ja_JP.UTF-8
 export STUID=15k0112
 export EDITOR=vim
-
-alias ll='ls -l'
-
 bind '"\C-f": forward-word'
 bind '"\C-b": backward-word'
+ulimit -c unlimited
+
+if [ "$(uname)" == 'Darwin' ]; then
+	OS='Mac'
+	alias ll='ls -lG'
+	export PATH=$PATH:/Applications/MacVim.app/Contents/MacOS/
+elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+	OS='Linux'
+	alias ll='ls -l --color'
+fi

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Author: Kitazawa
 # On the premise that "Xcode", "Homebrew" are already installed.
 
@@ -8,18 +8,15 @@ then
 	exit 1
 fi
 
-mkdir ~/.vim
-if [ $? != 0 ]; then exit 1; fi
-for i in $(ls ~/dotfiles/.vim/ | grep -v bundle)
-do
-	ln -s ~/dotfiles/.vim/$i ~/.vim/
-done
 brew install lua -y
 brew reinstall vim --with-lua -y
+<<<<<<< HEAD
 brew install clang-format
 curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > ~/.vim/install.sh
 sh ~/.vim/install.sh
 rm -rf ~/.vim/install.sh
+=======
+>>>>>>> origin/master
 
 brew install pyenv
 echo '' >> ~/.bashrc
