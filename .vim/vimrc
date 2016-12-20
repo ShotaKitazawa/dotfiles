@@ -53,6 +53,7 @@ filetype plugin indent on
 NeoBundleCheck
 """"""""""""""""""""""""""""""
 
+
 """""""""""""""""""""""""""""
 " http://qiita.com/MoriKen/items/24d1dde0c40e59a61edf
 """""""""""""""""""""""""""""
@@ -96,11 +97,50 @@ NeoBundleCheck
 "let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
 """""""""""""""""""""""""""""
 
+
+"""""""""""""""""""""""""""""
+" http://qiita.com/m_mysht/items/56e5d5a17d07a64d8b65
+"""""""""""""""""""""""""""""
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap ( ()<LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
+
+function! DeleteParenthesesAdjoin()
+    let pos = col(".") - 1  " カーソルの位置．1からカウント
+    let str = getline(".")  " カーソル行の文字列
+    let parentLList = ["(", "[", "{", "\'", "\""]
+    let parentRList = [")", "]", "}", "\'", "\""]
+    let cnt = 0
+
+    let output = ""
+
+    " カーソルが行末の場合
+    if pos == strlen(str)
+        return "\b"
+    endif
+    for c in parentLList
+        " カーソルの左右が同種の括弧
+        if str[pos-1] == c && str[pos] == parentRList[cnt]
+            call cursor(line("."), pos + 2)
+            let output = "\b"
+            break
+        endif
+        let cnt += 1
+    endfor
+    return output."\b"
+endfunction
+" BackSpaceに割り当て
+inoremap <silent> <BS> <C-R>=DeleteParenthesesAdjoin()<CR>
+"""""""""""""""""""""""""""""
+
+
 """""""""""""""""""""""""""""
 " Other setting
 """""""""""""""""""""""""""""
 syntax on
-colorscheme jellybeans
+colorscheme hybrid
 
 set nocompatible
 set backspace=indent,eol,start
@@ -168,9 +208,18 @@ call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 "
 
+if has("autocmd")
+  " Highlight TODO, FIXME, NOTE, etc.
+  if v:version > 701
+    autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
+    autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
+  endif
+endif
+
 autocmd BufRead,BufNewFile *.py setfiletype python.vim
 autocmd BufRead,BufNewFile *.cpp setfiletype cp.vim
 """""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""
 " MacVim setting
@@ -188,3 +237,4 @@ if has('gui_macvim')
 	set mouse=a
 	set ttymouse=xterm2
 endif
+"""""""""""""""""""""""""""""
