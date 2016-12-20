@@ -10,17 +10,8 @@ fi
 
 sudo apt-get install git gcc make openssl libssl-dev libbz2-dev libreadline-dev libsqlite3-dev -y
 
-mkdir ~/.vim
-if [ $? != 0 ]; then exit 1; fi
-for i in $(ls ~/dotfiles/.vim/ | grep -v bundle)
-do
-	ln -s ~/dotfiles/.vim/$i ~/.vim/
-done
 sudo apt-get install vim -y
 sudo aptitude install vim-gnome -y
-curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > ~/.vim/install.sh
-sh ~/.vim/install.sh
-rm -rf ~/.vim/install.sh
 
 # http://qiita.com/akito1986/items/be5dcd1a502aaf22010b
 cd /usr/local/
