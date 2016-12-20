@@ -9,6 +9,7 @@ ulimit -c unlimited
 if [ "$(uname)" == 'Darwin' ]; then
 	OS='Mac'
 	alias ll='ls -lG'
+	alias cdc="cd ~/Dropbox/c++/"
 	export PATH=$PATH:/Applications/MacVim.app/Contents/MacOS/
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
 	OS='Linux'
