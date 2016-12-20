@@ -10,6 +10,13 @@ fi
 
 brew install lua -y
 brew reinstall vim --with-lua -y
+<<<<<<< HEAD
+brew install clang-format
+curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > ~/.vim/install.sh
+sh ~/.vim/install.sh
+rm -rf ~/.vim/install.sh
+=======
+>>>>>>> origin/master
 
 brew install pyenv
 echo '' >> ~/.bashrc
