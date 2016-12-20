@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Author: Kitazawa
 
 sudo echo ""
@@ -7,9 +7,27 @@ then
 	exit 1
 fi
 
-yum install gcc gcc-c++ make git openssl-devel　bzip2-devel zlib-devel readline-devel sqlite-devel bzip2 sqlite -y
+sudo yum install gcc gcc-c++ make git openssl-devel　bzip2-devel zlib-devel readline-devel sqlite-devel bzip2 sqlite -y
 
-# TODO: vim +lua
+if [ $(which vim) == 0 ]; then sudo yum remove -y vim; fi
+sudo yum install -y lua-devel perl-ExtUtils-Embed
+mkdir ~/install_tmp
+cd ~/install_tmp
+wget ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
+tar xvf vim-7.4.tar.bz2
+cd vim74
+./configure \
+ --enable-multibyte \
+ --with-features=huge \
+ --enable-luainterp \
+ --enable-perlinterp \
+ --enable-pythoninterp \
+ --with-python-config-dir=/usr/lib64/python2.6/config \
+ --enable-rubyinterp \
+ --with-ruby-command=/usr/bin/ruby \
+make
+make install
+rm -rf ~/install_tmp
 
 cd ~/
 git clone git://github.com/yyuu/pyenv.git ~/.pyenv

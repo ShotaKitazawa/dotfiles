@@ -1,0 +1,79 @@
+#!/usr/bin/env sh
+
+# macOS
+# On the premise that "Xcode", "Homebrew" are already installed.
+## sudo xcode-select --install
+## /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if [ "$(uname)" == 'Darwin' ]; then
+
+	# Base install
+	brew install tmux
+	# vim + lua
+	brew install lua
+	brew reinstall vim --with-lua
+	brew install clang-format
+	# pyenv
+	brew install pyenv
+	echo '' >> ~/.bashrc
+	echo '# pyenv' >> ~/.bashrc
+	echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+	echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+	echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+	tmp=`pyenv install --list | grep -G "^  [0-9][0-9|\.]*[0-9]$" |sort |tail -1`
+	pyenv install $tmp
+	pyenv global $tmp
+	pyenv rehash
+	sudo easy_install pip
+	sudo pip install pep8 pyflakes
+	sudo pip install pep8 pytest pytest-pep8
+
+	exit 0
+
+# CentOS
+elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+if [ -f /etc/centos-release ]; then
+	# Base install
+	sudo yum install gcc gcc-c++ make git openssl-devel　bzip2-devel zlib-devel readline-devel sqlite-devel bzip2 sqlite tmux -y
+	# vim + lua
+	#TODO: ./configure --enable-perlinterp
+	sudo yum install -y lua-devel perl-ExtUtils-Embed
+	mkdir ~/install_tmp
+	cd ~/install_tmp
+	wget ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
+	tar xvf vim-7.4.tar.bz2
+	cd vim74
+	./configure  --enable-multibyte  --with-features=huge  --enable-luainterp --enable-pythoninterp  --with-python-config-dir=/usr/lib64/python2.6/config  --enable-rubyinterp  --with-ruby-command=/usr/bin/ruby 
+	make
+	make install
+	rm -rf ~/install_tmp
+	# pyenv
+	cd ~/
+	git clone git://github.com/yyuu/pyenv.git ~/.pyenv
+	echo '' >> ~/.bashrc
+	echo '#pyenv' >> ~/.bashrc
+	echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+	echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+	echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+	source ~/.bashrc
+	tmp=`pyenv install --list | grep -G "^ *[0-9][0-9|\.]*[0-9]$" |sort |tail -1`
+	pyenv install $tmp
+	pyenv global $tmp
+	pyenv rehash
+	yum install epel-release -y
+	yum install python-pip -y
+	if [ $? != 0 ]; then yum-epel install python-pip -y; fi
+	pip install pip --upgrade
+	sudo pip install pep8 pyflakes
+	sudo pip install pep8 pytest pytest-pep8
+
+	exit 0
+
+# Ubuntu
+elif [ -f /etc/lsb-release ]; then
+	echo ubuntu
+	exit 0
+fi
+
+# Other (Error)
+else echo "Not Support This OS."; exit 1
+fi
