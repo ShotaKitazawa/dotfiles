@@ -1,4 +1,4 @@
-#!/bin/env sh
+#!/usr/bin/env sh
 # Author: Kitazawa
 # On the premise that "Xcode", "Homebrew" are already installed.
 
