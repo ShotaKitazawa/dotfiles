@@ -4,6 +4,7 @@ export STUID=15k0112
 export EDITOR=vim
 bind '"\C-f": forward-word'
 bind '"\C-b": backward-word'
+ulimit -c unlimited
 
 if [ "$(uname)" == 'Darwin' ]; then
 	OS='Mac'
