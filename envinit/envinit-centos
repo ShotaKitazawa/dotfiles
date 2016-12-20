@@ -9,16 +9,7 @@ fi
 
 yum install gcc gcc-c++ make git openssl-devel　bzip2-devel zlib-devel readline-devel sqlite-devel bzip2 sqlite -y
 
-mkdir ~/.vim
-if [ $? != 0 ]; then exit 1; fi
-for i in $(ls ~/dotfiles/.vim/ | grep -v bundle)
-do
-	ln -s ~/dotfiles/.vim/$i ~/.vim/
-done
 # TODO: vim +lua
-curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > ~/.vim/install.sh
-sh ~/.vim/install.sh
-rm -rf ~/.vim/install.sh
 
 cd ~/
 git clone git://github.com/yyuu/pyenv.git ~/.pyenv
