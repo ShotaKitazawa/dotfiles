@@ -13,6 +13,7 @@ if [ "$(uname)" == 'Darwin' ]; then
 	brew reinstall vim --with-lua
 	brew install clang-format
 	# pyenv
+	if [ ! -d ~/.pvenv ]; then
 	brew install pyenv
 	echo '' >> ~/.bashrc
 	echo '# pyenv' >> ~/.bashrc
@@ -26,29 +27,41 @@ if [ "$(uname)" == 'Darwin' ]; then
 	sudo easy_install pip
 	sudo pip install pep8 pyflakes
 	sudo pip install pep8 pytest pytest-pep8
+	fi
 
 	exit 0
 
-# CentOS
+# Linux
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+
+# CentOS
 if [ -f /etc/centos-release ]; then
+
 	# Base install
-	sudo yum install gcc gcc-c++ make git openssl-devel　bzip2-devel zlib-devel readline-devel sqlite-devel bzip2 sqlite tmux -y
+	sudo yum install gcc gcc-c++ make git openssl-devel　bzip2-devel zlib-devel readline-devel sqlite-devel bzip2 sqlite tmux epel-release -y > /dev/null 2>&1
+
 	# vim + lua
 	#TODO: ./configure --enable-perlinterp
-	sudo yum install -y lua-devel perl-ExtUtils-Embed
+	which vim >> /dev/null 2>&1
+	if [ $? != 0 ]; then
+	sudo yum install -y lua-devel perl-ExtUtils-Embed > /dev/null 2>&1
 	mkdir ~/install_tmp
 	cd ~/install_tmp
-	wget ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
-	tar xvf vim-7.4.tar.bz2
+	wget ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2 > /dev/null 2>&1
+	sudo tar xvf vim-7.4.tar.bz2 > /dev/null 2>&1
 	cd vim74
-	./configure  --enable-multibyte  --with-features=huge  --enable-luainterp --enable-pythoninterp  --with-python-config-dir=/usr/lib64/python2.6/config  --enable-rubyinterp  --with-ruby-command=/usr/bin/ruby 
-	make
-	make install
-	rm -rf ~/install_tmp
+	sudo ./configure  --enable-multibyte  --with-features=huge  --enable-luainterp --enable-pythoninterp  --with-python-config-dir=/usr/lib64/python2.6/config  --enable-rubyinterp  --with-ruby-command=/usr/bin/ruby 
+	sudo make
+	sudo make install
+	sudo rm -rf ~/install_tmp
+	echo "Complete vim Environment Setup."
+
+	fi
+
 	# pyenv
-	cd ~/
-	git clone git://github.com/yyuu/pyenv.git ~/.pyenv
+	if [ ! -d ~/.pyenv ]; then
+	cd ~
+	git clone git://github.com/yyuu/pyenv.git ~/.pyenv > /dev/null 2>&1
 	echo '' >> ~/.bashrc
 	echo '#pyenv' >> ~/.bashrc
 	echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
@@ -56,15 +69,16 @@ if [ -f /etc/centos-release ]; then
 	echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 	source ~/.bashrc
 	tmp=`pyenv install --list | grep -G "^ *[0-9][0-9|\.]*[0-9]$" |sort |tail -1`
-	pyenv install $tmp
-	pyenv global $tmp
-	pyenv rehash
-	yum install epel-release -y
-	yum install python-pip -y
-	if [ $? != 0 ]; then yum-epel install python-pip -y; fi
-	pip install pip --upgrade
-	sudo pip install pep8 pyflakes
-	sudo pip install pep8 pytest pytest-pep8
+	pyenv install $tmp > /dev/null 2>&1
+	pyenv global $tmp > /dev/null 2>&1
+	pyenv rehash > /dev/null 2>&1
+	sudo yum install epel-release -y > /dev/null 2>&1
+	sudo yum --enablerepo=epel install python-pip -y > /dev/null 2>&1
+	pip install pip --upgrade > /dev/null 2>&1
+	sudo pip install pep8 pyflakes > /dev/null 2>&1
+	sudo pip install pep8 pytest pytest-pep8 > /dev/null 2>&1
+	echo "Complete python Environment Setup. (pyenv is installed)"
+	fi
 
 	exit 0
 
