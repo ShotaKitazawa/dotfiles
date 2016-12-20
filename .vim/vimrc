@@ -101,38 +101,38 @@ NeoBundleCheck
 """""""""""""""""""""""""""""
 " http://qiita.com/m_mysht/items/56e5d5a17d07a64d8b65
 """""""""""""""""""""""""""""
-inoremap { {}<LEFT>
-inoremap [ []<LEFT>
-inoremap ( ()<LEFT>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-
-function! DeleteParenthesesAdjoin()
-    let pos = col(".") - 1  " カーソルの位置．1からカウント
-    let str = getline(".")  " カーソル行の文字列
-    let parentLList = ["(", "[", "{", "\'", "\""]
-    let parentRList = [")", "]", "}", "\'", "\""]
-    let cnt = 0
-
-    let output = ""
-
-    " カーソルが行末の場合
-    if pos == strlen(str)
-        return "\b"
-    endif
-    for c in parentLList
-        " カーソルの左右が同種の括弧
-        if str[pos-1] == c && str[pos] == parentRList[cnt]
-            call cursor(line("."), pos + 2)
-            let output = "\b"
-            break
-        endif
-        let cnt += 1
-    endfor
-    return output."\b"
-endfunction
-" BackSpaceに割り当て
-inoremap <silent> <BS> <C-R>=DeleteParenthesesAdjoin()<CR>
+"inoremap { {}<LEFT>
+"inoremap [ []<LEFT>
+"inoremap ( ()<LEFT>
+"inoremap " ""<LEFT>
+"inoremap ' ''<LEFT>
+"
+"function! DeleteParenthesesAdjoin()
+"    let pos = col(".") - 1  " カーソルの位置．1からカウント
+"    let str = getline(".")  " カーソル行の文字列
+"    let parentLList = ["(", "[", "{", "\'", "\""]
+"    let parentRList = [")", "]", "}", "\'", "\""]
+"    let cnt = 0
+"
+"    let output = ""
+"
+"    " カーソルが行末の場合
+"    if pos == strlen(str)
+"        return "\b"
+"    endif
+"    for c in parentLList
+"        " カーソルの左右が同種の括弧
+"        if str[pos-1] == c && str[pos] == parentRList[cnt]
+"            call cursor(line("."), pos + 2)
+"            let output = "\b"
+"            break
+"        endif
+"        let cnt += 1
+"    endfor
+"    return output."\b"
+"endfunction
+"" BackSpaceに割り当て
+"inoremap <silent> <BS> <C-R>=DeleteParenthesesAdjoin()<CR>
 """""""""""""""""""""""""""""
 
 
@@ -199,6 +199,14 @@ nnoremap sq :<C-u>q<CR>
 nnoremap sQ :<C-u>bd<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+	call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+	call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 "
 
 if has("autocmd")
