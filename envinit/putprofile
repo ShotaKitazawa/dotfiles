@@ -1,14 +1,16 @@
 #/usr/bin/env sh
+
+# .bashrc_self
 if [ ! -f ~/.bashrc_self ]; then
 	echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
+else
+	unlink ~/.bashrc_self
+fi
 	ln -s ~/dotfiles/.bashrc_self ~/
 	source ~/.bashrc
-	echo ".bashrc_self is put for ~/"
-fi
-if [ ! -d ~/vimundo ]; then
-	mkdir ~/vimundo
-	echo "mkdir ~/vimundo"
-fi
+	echo ".bashrc_self is deploy to ~/"
+
+# vim plugin
 if [ ! -d ~/.vim ];then
 	mkdir ~/.vim
 	for i in $(ls ~/dotfiles/.vim/ | grep -v bundle)
@@ -19,5 +21,11 @@ if [ ! -d ~/.vim ];then
 	sh ~/.vim/install.sh
 	rm -rf ~/.vim/install.sh
 	echo "Complete vim plugins Setup."
+fi
+
+# vim-undofile folder
+if [ ! -d ~/vimundo ]; then
+	mkdir ~/vimundo
+	echo "mkdir ~/vimundo"
 fi
 
