@@ -6,9 +6,9 @@ if [ ! -f ~/.bashrc_self ]; then
 else
 	unlink ~/.bashrc_self
 fi
-	ln -s ~/dotfiles/.bashrc_self ~/
-	source ~/.bashrc
-	echo ".bashrc_self is deploy to ~/"
+ln -s ~/dotfiles/.bashrc_self ~/
+source ~/.bashrc
+echo ".bashrc_self is deploy to ~/"
 
 # vim plugin
 if [ ! -d ~/.vim ];then
