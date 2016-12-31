@@ -1,10 +1,24 @@
-#/usr/bin/env sh
+#!/usr/bin/env sh
+
+# .inputrc (Mac)
+if [ "$(uname)" == 'Darwin' ]; then
+if [ -L ~/.inputrc ]; then
+	unlink ~/.inputrc
+elif [ -f ~/.inputrc ]; then
+	rm ~/.inputrc
+fi
+	ln -s ~/dotfiles/.inputrc ~/
+	source ~/.inputrc
+	echo ".inputrc is deploy to ~/"
+fi
 
 # .bashrc_self
-if [ ! -f ~/.bashrc_self ]; then
-	echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
-else
+if [ -L ~/.bashrc_self ]; then
 	unlink ~/.bashrc_self
+elif [ -f ~/.bashrc_self ]; then
+	rm ~/.bashrc_self
+else
+	echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
 fi
 ln -s ~/dotfiles/.bashrc_self ~/
 source ~/.bashrc

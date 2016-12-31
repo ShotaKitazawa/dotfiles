@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+# Auther: Kitazawa
+# Execute Format
+## ./getirc 7
+
+USER=kitazawa
+DOMAIN=room.rat.cis.k.hosei.ac.jp
+FILEPATH=~/Documents/tmp/irc-$(date "+%Y%m%d").txt
+
+if [ $# == 0 ]; then
+	COMMAND="irconcat -s $(expr $(date "+%Y%m%d") - 7)"
+else
+	expr $1 + 1 >> /dev/null 2>&1 
+	if [ $? != 0 ];then
+		echo "invalid argument."
+		exit 1
+	fi
+	COMMAND="irconcat -s $(expr $(date "+%Y%m%d") - $1)"
+fi
+
+ssh $USER@$DOMAIN $COMMAND > $FILEPATH
+
+exit 0
