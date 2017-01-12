@@ -12,6 +12,15 @@ fi
 	echo ".inputrc is deploy to ~/"
 fi
 
+# .tmux.conf
+if [ -L ~/.tmux.conf ]; then
+	unlink ~/.tmux.conf
+elif [ -f ~/.tmux.conf ]; then
+	rm ~/.tmux.conf
+fi
+	ln -s ~/dotfiles/.tmux.conf ~/
+	echo ".tmux.conf is deploy to ~/"
+
 # .bashrc_self
 if [ -L ~/.bashrc_self ]; then
 	unlink ~/.bashrc_self
