@@ -29,9 +29,8 @@ elif [ -f ~/.bashrc_self ]; then
 else
 	echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
 fi
-ln -s ~/dotfiles/.bashrc_self ~/
-source ~/.bashrc
-echo ".bashrc_self is deploy to ~/"
+	ln -s ~/dotfiles/.bashrc_self ~/
+	echo ".bashrc_self is deploy to ~/"
 
 # vim plugin
 if [ ! -d ~/.vim ];then
