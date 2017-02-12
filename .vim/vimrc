@@ -8,6 +8,7 @@ function! Plugin()
 	NeoBundle 'kana/vim-submode'
 	NeoBundle 'scrooloose/nerdtree'
 	NeoBundle 'deton/jasegment.vim'
+	NeoBundle 'vim-scripts/vim-auto-save'
 	"" Color {
 	NeoBundle 'w0ng/vim-hybrid'
 	NeoBundle 'nanotech/jellybeans.vim'
@@ -141,6 +142,7 @@ NeoBundleCheck
 """""""""""""""""""""""""""""
 syntax on
 colorscheme hybrid
+let g:auto_save = 1
 
 set nocompatible
 set backspace=indent,eol,start

@@ -10,6 +10,7 @@ ulimit -c unlimited
 
 if [ "$(uname)" == 'Darwin' ]; then
 	OS='Mac'
+	alias l='ls'
 	alias ll='ls -lG'
 	alias cdc="cd ~/Dropbox/lecture/c++/"
 	export PATH=$PATH:/Applications/MacVim.app/Contents/MacOS/
