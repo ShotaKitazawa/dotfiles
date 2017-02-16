@@ -68,6 +68,9 @@ pip_autoinstall() {
 ## /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 if [ "$(uname)" == 'Darwin' ]; then
 
+	# git install
+	brew_install git
+
 	# tmux install
 	brew_install tmux
 
