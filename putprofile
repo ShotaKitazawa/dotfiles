@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# Auther: Kitazawa
 
 # .inputrc (Mac)
 if [ "$(uname)" == 'Darwin' ]; then
