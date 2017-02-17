@@ -159,6 +159,8 @@ set incsearch
 set wildmenu wildmode=list:full
 set tabstop=4
 set shiftwidth=4
+set mouse=a
+set ttymouse=xterm2
 
 map ,x <Plug>(operator-clang-format)
 noremap <C-z> <C-a>
@@ -237,7 +239,5 @@ if has('gui_macvim')
 	set antialias
 	set guifont=Monaco:h18
 	set fuoptions=maxvert,maxhorz
-	set mouse=a
-	set ttymouse=xterm2
 endif
 """""""""""""""""""""""""""""
