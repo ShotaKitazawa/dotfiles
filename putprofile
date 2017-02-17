@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 # Auther: Kitazawa
+# Dotfile overwrite.
 
 # .inputrc (Mac)
 if [ "$(uname)" == 'Darwin' ]; then
@@ -12,6 +13,15 @@ fi
 	source ~/.inputrc
 	echo ".inputrc is deploy to ~/"
 fi
+
+# .gitconfig
+if [ -L ~/.gitconfig ]; then
+	unlink ~/.gitconfig
+elif [ -f ~/.gitconfig ]; then
+	rm ~/.gitconfig
+fi
+	ln -s ~/dotfiles/.gitconfig ~/
+	echo ".gitconfig is deploy to ~/"
 
 # .tmux.conf
 if [ -L ~/.tmux.conf ]; then
