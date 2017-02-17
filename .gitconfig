@@ -2,7 +2,7 @@
 	name = ShotaKitazawa
 	email = skitazawa1121@gmail.com
 [push]
-  default = tracking
+	default = tracking
 [core]
-  excludesfile = ~/.gitignore
-  autocrlf = input
+	excludesfile = ~/.gitignore
+	autocrlf = input

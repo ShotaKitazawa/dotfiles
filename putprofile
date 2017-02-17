@@ -2,35 +2,23 @@
 # Auther: Kitazawa
 # Dotfile overwrite.
 
-# .inputrc (Mac)
-if [ "$(uname)" == 'Darwin' ]; then
-if [ -L ~/.inputrc ]; then
-	unlink ~/.inputrc
-elif [ -f ~/.inputrc ]; then
-	rm ~/.inputrc
-fi
-	ln -s ~/dotfiles/.inputrc ~/
-	source ~/.inputrc
-	echo ".inputrc is deploy to ~/"
-fi
+# function: deploy the simbolic link
+dtsl(){
+	if [ -L ~/$1 ]; then
+		echo "$1 has already deployed to ~/"
+		return 0
+	elif [ -f ~/$1 ]; then
+		rm ~/$1
+	fi
+	ln -s ~/dotfiles/$1 ~/
+	echo "$1 is deploy to ~/"
+}
 
-# .gitconfig
-if [ -L ~/.gitconfig ]; then
-	unlink ~/.gitconfig
-elif [ -f ~/.gitconfig ]; then
-	rm ~/.gitconfig
-fi
-	ln -s ~/dotfiles/.gitconfig ~/
-	echo ".gitconfig is deploy to ~/"
 
-# .tmux.conf
-if [ -L ~/.tmux.conf ]; then
-	unlink ~/.tmux.conf
-elif [ -f ~/.tmux.conf ]; then
-	rm ~/.tmux.conf
-fi
-	ln -s ~/dotfiles/.tmux.conf ~/
-	echo ".tmux.conf is deploy to ~/"
+if [ "$(uname)" == 'Darwin' ]; then dtsl .inputrc; fi
+dtsl .gitconfig
+dtsl .gitignore
+dtsl .tmux.conf
 
 # .bashrc_self
 if [ -L ~/.bashrc_self ]; then
