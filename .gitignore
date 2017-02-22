@@ -1,3 +1,5 @@
 .DS_Store
-*/__pycache__/
-*/.git/
+settings.py
+__pycache__/
+.git/
+test*.py

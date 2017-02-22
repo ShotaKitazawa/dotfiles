@@ -14,6 +14,7 @@ if [ "$(uname)" == 'Darwin' ]; then
 	alias l='ls'
 	alias ll='ls -lG'
 	alias cdc="cd ~/Dropbox/lecture/c++/"
+	alias updatedb='sudo /usr/libexec/locate.updatedb'
 	export PATH=$PATH:/Applications/MacVim.app/Contents/MacOS/
 	export PATH=/usr/local/bin:$PATH
 	export LANG=ja_JP.UTF-8
