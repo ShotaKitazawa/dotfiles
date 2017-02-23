@@ -166,8 +166,8 @@ map ,x <Plug>(operator-clang-format)
 noremap <C-z> <C-a>
 inoremap <C-e> <Esc>$a
 inoremap <C-a> <Esc>^i
-noremap <C-e> <Esc>$
-noremap <C-a> <Esc>^
+noremap <C-e> $
+noremap <C-a> ^
 noremap PP "0p
 noremap x "_x
 noremap <ESC><ESC> :noh<CR>
