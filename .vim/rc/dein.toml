@@ -11,6 +11,10 @@
 	repo = 'deton/jasegment.vim'
 	[[plugins]]
 	repo = 'vim-scripts/vim-auto-save'
+	[[plugins]]
+	repo = 'tyru/open-browser.vim'
+	[[plugins]]
+	repo = 'nathanaelkane/vim-indent-guides'
 # }
 # Color {
 	[[plugins]]
@@ -39,4 +43,14 @@
 	repo = 'mattn/emmet-vim'
 	[[plugins]]
 	repo = 'tpope/vim-surround'
+	[[plugins]]
+	repo = 'tpope/vim-surround'
+# }
+# CSS {
+	[[plugins]]
+	repo = 'hail2u/vim-css3-syntax'
+# }
+# JavaScript{
+	[[plugins]]
+	repo = 'taichouchou2/vim-javascript'
 # }
