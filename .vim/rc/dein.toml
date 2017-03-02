@@ -1,0 +1,42 @@
+# General {
+	[[plugins]]
+	repo = 'Shougo/unite.vim'
+	[[plugins]]
+	repo = 'kana/vim-operator-user'
+	[[plugins]]
+	repo = 'kana/vim-submode'
+	[[plugins]]
+	repo = 'scrooloose/nerdtree'
+	[[plugins]]
+	repo = 'deton/jasegment.vim'
+	[[plugins]]
+	repo = 'vim-scripts/vim-auto-save'
+# }
+# Color {
+	[[plugins]]
+	repo = 'w0ng/vim-hybrid'
+	[[plugins]]
+	repo = 'nanotech/jellybeans.vim'
+	[[plugins]]
+	repo = 'ConradIrwin/vim-bracketed-paste'
+	[[plugins]]
+	repo = 'tomasr/molokai'
+# }
+# C++ {
+	[[plugins]]
+	repo = 'thinca/vim-quickrun'
+	[[plugins]]
+	repo = 'rhysd/vim-clang-format'
+	[[plugins]]
+	repo = 'Shougo/neoinclude.vim'
+# }
+# Python {
+	[[plugins]]
+	repo = 'davidhalter/jedi-vim'
+# }
+# HTML {
+	[[plugins]]
+	repo = 'mattn/emmet-vim'
+	[[plugins]]
+	repo = 'tpope/vim-surround'
+# }

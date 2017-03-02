@@ -1,58 +1,105 @@
 """"""""""""""""""""""""""""""
-" Plugin's setting
+" dein.vim
 """"""""""""""""""""""""""""""
-function! Plugin()
-	" General {
-	NeoBundle 'Shougo/unite.vim'
-	NeoBundle 'kana/vim-operator-user'
-	NeoBundle 'kana/vim-submode'
-	NeoBundle 'scrooloose/nerdtree'
-	NeoBundle 'deton/jasegment.vim'
-	NeoBundle 'vim-scripts/vim-auto-save'
-	"" Color {
-	NeoBundle 'w0ng/vim-hybrid'
-	NeoBundle 'nanotech/jellybeans.vim'
-	NeoBundle 'ConradIrwin/vim-bracketed-paste'
-	"" }
-	"" http://qiita.com/MoriKen/items/24d1dde0c40e59a61edf {
-	"NeoBundle 'Shougo/neocomplete.vim'
-	NeoBundle 'Shougo/vimproc.vim', {
-	            \ 'build' : {
-	            \ 'windows' : 'make -f make_mingw32.mak',
-	            \ 'cygwin' : 'make -f make_cygwin.mak',
-	            \ 'mac' : 'make -f make_mac.mak',
-	            \ 'unix' : 'make -f make_unix.mak',
-	            \ },
-	            \ }
-	NeoBundle 'justmao945/vim-clang'
-	"" }
-	" }
-	" C++ {
-	NeoBundle 'thinca/vim-quickrun'
-	NeoBundle 'rhysd/vim-clang-format'
-	NeoBundle 'Shougo/neoinclude.vim'
-	" }
-	" Python {
-	NeoBundle 'davidhalter/jedi-vim'
-	" }
-endfunction
+" http://qiita.com/delphinus/items/00ff2c0ba972c6e41542
 """"""""""""""""""""""""""""""
-if has('vim_starting')
-  set nocompatible               " Be iMproved
+" vimrc に以下のように追記
 
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+" プラグインが実際にインストールされるディレクトリ
+let s:dein_dir = expand('~/.cache/dein')
+" dein.vim 本体
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" dein.vim がなければ github から落としてくる
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+" 設定開始
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-call Plugin()
+  " プラグインリストを収めた TOML ファイル
+  " 予め TOML ファイル（後述）を用意しておく
+  let g:rc_dir    = expand('~/.vim/rc')
+  let s:toml      = g:rc_dir . '/dein.toml'
+  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
-call neobundle#end()
+  " TOML を読み込み、キャッシュしておく
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-filetype plugin indent on
+  " 設定終了
+  call dein#end()
+  call dein#save_state()
+endif
 
-NeoBundleCheck
+" もし、未インストールものものがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
 """"""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""
+" color
+"""""""""""""""""""""""""""""
+colorscheme hybrid
+"colorscheme jellybeans
+"colorscheme molokai
+"""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""
+" scrooloose/nerdtree
+"""""""""""""""""""""""""""""
+nnoremap :tree :NERDTreeToggle
+"""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""
+" kana/vim-submode
+"""""""""""""""""""""""""""""
+" http://nanasi.jp/articles/howto/file/expand.html
+"""""""""""""""""""""""""""""
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+nnoremap sn gt
+nnoremap sp gT
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+nnoremap sw <C-w>w
+nnoremap so <C-w>_<C-w>|
+nnoremap sO <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+nnoremap st :<C-u>tabnew<CR>
+nnoremap sT :<C-u>Unite tab<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+	call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+	call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+"""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""
@@ -100,48 +147,9 @@ NeoBundleCheck
 
 
 """""""""""""""""""""""""""""
-" http://qiita.com/m_mysht/items/56e5d5a17d07a64d8b65
+" Other setting (not plugin)
 """""""""""""""""""""""""""""
-"inoremap { {}<LEFT>
-"inoremap [ []<LEFT>
-"inoremap ( ()<LEFT>
-"inoremap " ""<LEFT>
-"inoremap ' ''<LEFT>
-"
-"function! DeleteParenthesesAdjoin()
-"    let pos = col(".") - 1  " カーソルの位置．1からカウント
-"    let str = getline(".")  " カーソル行の文字列
-"    let parentLList = ["(", "[", "{", "\'", "\""]
-"    let parentRList = [")", "]", "}", "\'", "\""]
-"    let cnt = 0
-"
-"    let output = ""
-"
-"    " カーソルが行末の場合
-"    if pos == strlen(str)
-"        return "\b"
-"    endif
-"    for c in parentLList
-"        " カーソルの左右が同種の括弧
-"        if str[pos-1] == c && str[pos] == parentRList[cnt]
-"            call cursor(line("."), pos + 2)
-"            let output = "\b"
-"            break
-"        endif
-"        let cnt += 1
-"    endfor
-"    return output."\b"
-"endfunction
-"" BackSpaceに割り当て
-"inoremap <silent> <BS> <C-R>=DeleteParenthesesAdjoin()<CR>
-"""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""
-" Other setting
-"""""""""""""""""""""""""""""
-syntax on
-colorscheme hybrid
+syntax enable
 let g:auto_save = 1
 
 set nocompatible
@@ -151,7 +159,6 @@ set undodir=~/vimundo/
 set clipboard+=unnamed
 set background=dark
 set encoding=utf-8
-"set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
 set hlsearch
 set ruler
 set title
@@ -161,68 +168,25 @@ set tabstop=4
 set shiftwidth=4
 set mouse=a
 set ttymouse=xterm2
-
-map ,x <Plug>(operator-clang-format)
 noremap <C-z> <C-a>
 inoremap <C-e> <Esc>$a
 inoremap <C-a> <Esc>^i
-noremap <C-e> <Esc>$
-noremap <C-a> <Esc>^
+noremap <C-e> $
+noremap <C-a> ^
 noremap PP "0p
 noremap x "_x
 noremap <ESC><ESC> :noh<CR>
 nnoremap <space>. :<c-u>new ~/.vimrc<CR>
 inoremap jj <Esc>
-nnoremap :tree :NERDTreeToggle
 noremap <C-z> <C-a>
 
-" http://nanasi.jp/articles/howto/file/expand.html
-nnoremap s <Nop>
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-nnoremap sh <C-w>h
-nnoremap sJ <C-w>J
-nnoremap sK <C-w>K
-nnoremap sL <C-w>L
-nnoremap sH <C-w>H
-nnoremap sn gt
-nnoremap sp gT
-nnoremap sr <C-w>r
-nnoremap s= <C-w>=
-nnoremap sw <C-w>w
-nnoremap so <C-w>_<C-w>|
-nnoremap sO <C-w>=
-nnoremap sN :<C-u>bn<CR>
-nnoremap sP :<C-u>bp<CR>
-nnoremap st :<C-u>tabnew<CR>
-nnoremap sT :<C-u>Unite tab<CR>
-nnoremap ss :<C-u>sp<CR>
-nnoremap sv :<C-u>vs<CR>
-nnoremap sq :<C-u>q<CR>
-nnoremap sQ :<C-u>bd<CR>
-nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
-nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
-call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-	call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-	call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
-call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
-call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-call submode#map('bufmove', 'n', '', '<', '<C-w><')
-call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-call submode#map('bufmove', 'n', '', '-', '<C-w>-')
-"
-
-if has("autocmd")
-  " Highlight TODO, FIXME, NOTE, etc.
-  if v:version > 701
-    autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
-    autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
-  endif
-endif
-
+autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
+autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
 autocmd BufRead,BufNewFile *.py setfiletype python.vim
 autocmd BufRead,BufNewFile *.cpp setfiletype cp.vim
+autocmd BufRead,BufNewFile *.html setfiletype html.vim
+autocmd BufRead,BufNewFile *.htm setfiletype html.vim
+
 """""""""""""""""""""""""""""
 
 

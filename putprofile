@@ -1,16 +1,17 @@
 #!/usr/bin/env sh
 # Auther: Kitazawa
-# Dotfile overwrite.
+
+# !! DOTFILE OVERWRITE !!
 
 # function: deploy the simbolic link
 dtsl(){
 	if [ -L ~/$1 ]; then
 		echo "$1 has already deployed to ~/"
 		return 0
-	elif [ -f ~/$1 ]; then
-		rm ~/$1
+	elif [ -e ~/$1 ]; then
+		rm ~/$1 -rf
 	fi
-	ln -s ~/dotfiles/$1 ~/
+	ln -s ~/dotfiles/$1 ~/$1
 	echo "$1 is deploy to ~/"
 }
 
@@ -19,6 +20,7 @@ if [ "$(uname)" == 'Darwin' ]; then dtsl .inputrc; fi
 dtsl .gitconfig
 dtsl .gitignore
 dtsl .tmux.conf
+dtsl .vim
 
 # .bashrc_self
 if [ -L ~/.bashrc_self ]; then
@@ -32,17 +34,15 @@ fi
 	echo ".bashrc_self is deploy to ~/"
 
 # vim plugin
-if [ ! -d ~/.vim ];then
-	mkdir ~/.vim
-	for i in $(ls ~/dotfiles/.vim/ | grep -v bundle)
-	do
-		ln -s ~/dotfiles/.vim/$i ~/.vim/
-	done
-	curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > ~/.vim/install.sh
-	sh ~/.vim/install.sh
-	rm -rf ~/.vim/install.sh
-	echo "Complete vim plugins Setup."
-fi
+#if [ ! -d ~/.vim ];then
+#	mkdir ~/.vim
+#	for i in $(ls ~/dotfiles/.vim/)
+#	do
+#		dtsl .vim/${i}
+#	done
+#else
+#	echo "~/.vim has already existed."
+#fi
 
 # vim-undofile folder
 if [ ! -d ~/vimundo ]; then
