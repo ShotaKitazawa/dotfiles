@@ -17,7 +17,7 @@ deploylink(){
 }
 
 
-if [ "$(uname)" == 'Darwin' ]; then dtsl .inputrc; fi
+if [ "$(uname)" == 'Darwin' ]; then deploylink .inputrc; fi
 deploylink .gitconfig
 deploylink .gitignore
 deploylink .tmux.conf
@@ -25,7 +25,11 @@ deploylink .vim
 deploylink .bashrc_self
 
 # let .bashrc read .bashrc_self
-echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
+
+grep .bashrc_self ~/.bashrc > /dev/null 2>&1
+if [ $? != 0 ]; then
+	echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
+fi
 
 # vim-undofile folder
 if [ ! -d ~/vimundo ]; then
