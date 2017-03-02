@@ -52,5 +52,5 @@
 # }
 # JavaScript{
 	[[plugins]]
-	repo = 'taichouchou2/vim-javascript'
+	repo = 'pangloss/vim-javascript'
 # }
