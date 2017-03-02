@@ -3,46 +3,29 @@
 
 # !! DOTFILE OVERWRITE !!
 
-# function: deploy the simbolic link
-dtsl(){
+path=`dirname $0`
+
+deploylink(){
 	if [ -L ~/$1 ]; then
 		echo "$1 has already deployed to ~/"
 		return 0
 	elif [ -e ~/$1 ]; then
 		rm ~/$1 -rf
 	fi
-	ln -s ~/dotfiles/$1 ~/$1
+	ln -s $path/$1 ~/$1
 	echo "$1 is deploy to ~/"
 }
 
 
 if [ "$(uname)" == 'Darwin' ]; then dtsl .inputrc; fi
-dtsl .gitconfig
-dtsl .gitignore
-dtsl .tmux.conf
-dtsl .vim
+deploylink .gitconfig
+deploylink .gitignore
+deploylink .tmux.conf
+deploylink .vim
+deploylink .bashrc_self
 
-# .bashrc_self
-if [ -L ~/.bashrc_self ]; then
-	unlink ~/.bashrc_self
-elif [ -f ~/.bashrc_self ]; then
-	rm ~/.bashrc_self
-else
-	echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
-fi
-	ln -s ~/dotfiles/.bashrc_self ~/
-	echo ".bashrc_self is deploy to ~/"
-
-# vim plugin
-#if [ ! -d ~/.vim ];then
-#	mkdir ~/.vim
-#	for i in $(ls ~/dotfiles/.vim/)
-#	do
-#		dtsl .vim/${i}
-#	done
-#else
-#	echo "~/.vim has already existed."
-#fi
+# let .bashrc read .bashrc_self
+echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
 
 # vim-undofile folder
 if [ ! -d ~/vimundo ]; then
