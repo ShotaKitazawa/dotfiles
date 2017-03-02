@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+# Auther: Kitazawa
+
+# !! DOTFILE OVERWRITE !!
+
+path=`dirname $0`
+
+deploylink(){
+	if [ -L ~/$1 ]; then
+		echo "$1 has already deployed to ~/"
+		return 0
+	elif [ -e ~/$1 ]; then
+		rm ~/$1 -rf
+	fi
+	ln -s $path/$1 ~/$1
+	echo "$1 is deploy to ~/"
+}
+
+
+if [ "$(uname)" == 'Darwin' ]; then deploylink .inputrc; fi
+deploylink .gitconfig
+deploylink .gitignore
+deploylink .tmux.conf
+deploylink .vim
+deploylink .bashrc_self
+
+# let .bashrc read .bashrc_self
+
+grep .bashrc_self ~/.bashrc > /dev/null 2>&1
+if [ $? != 0 ]; then
+	echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
+fi
+
+# vim-undofile folder
+if [ ! -d ~/vimundo ]; then
+	mkdir ~/vimundo
+	echo "mkdir ~/vimundo"
+fi
+

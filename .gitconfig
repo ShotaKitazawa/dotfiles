@@ -1,0 +1,8 @@
+[user]
+	name = ShotaKitazawa
+	email = skitazawa1121@gmail.com
+[push]
+	default = tracking
+[core]
+	excludesfile = ~/.gitignore
+	autocrlf = input
