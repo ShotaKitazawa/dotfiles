@@ -3,7 +3,7 @@
 
 # !! DOTFILE OVERWRITE !!
 
-path=`dirname $0`
+path=$(cd $(dirname $0) && pwd)
 
 deploylink(){
 	if [ -L ~/$1 ]; then
