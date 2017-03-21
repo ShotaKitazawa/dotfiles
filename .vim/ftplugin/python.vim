@@ -1,5 +1,6 @@
 nmap <F5> :!python3 %
 nmap <F6> :!py.test --pep8 %
+set autoindent
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://myenigma.hatenablog.com/entry/2015/12/28/091342
