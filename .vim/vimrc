@@ -142,7 +142,7 @@ noremap <C-a> ^
 noremap PP "0p
 noremap x "_x
 noremap <ESC><ESC> :noh<CR>
-nnoremap <space>. :<c-u>new ~/.vimrc<CR>
+nnoremap <space>. :<c-u>new ~/.vim/vimrc<CR>
 inoremap jj <Esc>
 noremap <C-z> <C-a>
 noremap <C-h> <C-y>
