@@ -134,6 +134,10 @@ set tabstop=4
 set shiftwidth=4
 set mouse=a
 set ttymouse=xterm2
+set autoindent
+set shiftwidth=2
+set tabstop=2
+
 noremap <C-z> <C-a>
 inoremap <C-e> <Esc>$a
 inoremap <C-a> <Esc>^i
@@ -142,20 +146,21 @@ noremap <C-a> ^
 noremap PP "0p
 noremap x "_x
 noremap <ESC><ESC> :noh<CR>
-nnoremap <space>. :<c-u>new ~/.vimrc<CR>
+nnoremap <space>. :<c-u>new ~/.vim/vimrc<CR>
 inoremap jj <Esc>
 noremap <C-z> <C-a>
+noremap <C-h> <C-y>
+noremap <C-l> <C-e>
 
 autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
 autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
 autocmd BufRead,BufNewFile *.py setfiletype python.vim
-autocmd BufRead,BufNewFile *.cpp setfiletype cp.vim
-autocmd BufRead,BufNewFile *.c setfiletype cp.vim
-autocmd BufRead,BufNewFile *.cc setfiletype cp.vim
-autocmd BufRead,BufNewFile *.h setfiletype cp.vim
+autocmd BufRead,BufNewFile *.cpp setfiletype cpp.vim
+autocmd BufRead,BufNewFile *.c setfiletype cpp.vim
+autocmd BufRead,BufNewFile *.cc setfiletype cpp.vim
+autocmd BufRead,BufNewFile *.h setfiletype cpp.vim
 autocmd BufRead,BufNewFile *.html setfiletype html.vim
 autocmd BufRead,BufNewFile *.htm setfiletype html.vim
-
 """""""""""""""""""""""""""""
 
 
