@@ -1,6 +1,5 @@
-nmap <F5> :!python3 %
-nmap <F6> :!py.test --pep8 %
-set autoindent
+"nmap <F5> :!python3 %
+"nmap <F6> :!py.test --pep8 %
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://myenigma.hatenablog.com/entry/2015/12/28/091342
@@ -35,4 +34,15 @@ endfunction
 
 " Shift + F でautopep自動修正
 nnoremap <S-f> :call Autopep8()<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" http://qiita.com/tekkoc/items/923d7a7cf124e63adab5
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_mode_map = {
+            \ 'mode': 'active',
+            \ 'active_filetypes': ['php', 'coffeescript', 'sh', 'vim'],
+            \ 'passive_filetypes': ['html', 'haskell', 'python']
+            \}
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""

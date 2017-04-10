@@ -117,6 +117,8 @@ nnoremap <Leader>g :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
 syntax enable
 let g:auto_save = 1
 
+set ignorecase
+set smartcase
 set nocompatible
 set backspace=indent,eol,start
 set undofile
@@ -137,6 +139,11 @@ set ttymouse=xterm2
 set autoindent
 set shiftwidth=2
 set tabstop=2
+
+set showmatch
+set matchpairs& matchpairs+=<:>
+
+cmap w!! w !sudo tee > /dev/null %
 
 noremap <C-z> <C-a>
 inoremap <C-e> <Esc>$a

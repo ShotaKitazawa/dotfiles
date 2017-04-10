@@ -37,12 +37,12 @@
 # Python {
 	[[plugins]]
 	repo = 'davidhalter/jedi-vim'
+	repo = 'kevinw/pyflakes-vim'
+	repo = 'nathanaelkane/vim-indent-guides'
 # }
 # HTML {
 	[[plugins]]
 	repo = 'mattn/emmet-vim'
-	[[plugins]]
-	repo = 'tpope/vim-surround'
 	[[plugins]]
 	repo = 'tpope/vim-surround'
 # }
