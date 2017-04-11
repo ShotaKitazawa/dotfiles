@@ -119,7 +119,7 @@ set backspace=indent,eol,start
 set undofile
 set undodir=~/vimundo/
 set clipboard+=unnamed
-set background=dark
+"set background=dark
 set encoding=utf-8
 set hlsearch
 set ruler

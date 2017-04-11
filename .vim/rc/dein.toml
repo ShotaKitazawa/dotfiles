@@ -15,6 +15,8 @@
 	repo = 'tyru/open-browser.vim'
 	[[plugins]]
 	repo = 'nathanaelkane/vim-indent-guides'
+	[[plugins]]
+	repo = 'tpope/vim-surround'
 # }
 # Color {
 	[[plugins]]
@@ -23,6 +25,8 @@
 	repo = 'nanotech/jellybeans.vim'
 	[[plugins]]
 	repo = 'ConradIrwin/vim-bracketed-paste'
+	[[plugins]]
+	repo = 'vim-scripts/tir_black'
 	[[plugins]]
 	repo = 'tomasr/molokai'
 # }
@@ -37,14 +41,14 @@
 # Python {
 	[[plugins]]
 	repo = 'davidhalter/jedi-vim'
+	[[plugins]]
 	repo = 'kevinw/pyflakes-vim'
+	[[plugins]]
 	repo = 'nathanaelkane/vim-indent-guides'
 # }
 # HTML {
 	[[plugins]]
 	repo = 'mattn/emmet-vim'
-	[[plugins]]
-	repo = 'tpope/vim-surround'
 # }
 # CSS {
 	[[plugins]]

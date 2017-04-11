@@ -52,6 +52,7 @@ endif
 
 " We need nocompatible mode in order to continue lines with backslashes.
 " Original setting will be restored.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:cpo_save = &cpo
 set cpo&vim
 
@@ -76,4 +77,12 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set autoindent
-autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+
+IndentGuidesEnable
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+hi IndentGuidesOdd  ctermbg=darkgrey
+hi IndentGuidesEven ctermbg=grey
+colorscheme jellybeans
