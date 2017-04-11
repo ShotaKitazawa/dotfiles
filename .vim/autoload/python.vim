@@ -40,40 +40,18 @@ let g:syntastic_mode_map = {
             \ 'active_filetypes': ['php', 'coffeescript', 'sh', 'vim'],
             \ 'passive_filetypes': ['html', 'haskell', 'python']
             \}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" http://hachibeechan.hateblo.jp/entry/vim-customize-for-python
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if version < 600
-  syntax clear
-elseif exists('b:current_after_syntax')
-  finish
-endif
-
-" We need nocompatible mode in order to continue lines with backslashes.
-" Original setting will be restored.
-let s:cpo_save = &cpo
-set cpo&vim
-
-syn match pythonOperator "\(+\|=\|-\|\^\|\*\)"
-syn match pythonDelimiter "\(,\|\.\|:\)"
-syn keyword pythonSpecialWord self
-
-hi link pythonSpecialWord    Special
-hi link pythonDelimiter      Special
-
-let b:current_after_syntax = 'python'
-
-let &cpo = s:cpo_save
-unlet s:cpo_save
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Other Setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! Myall()
 nmap <F5> :!python3 %<CR>
 nmap <F6> :!py.test --pep8 %<CR>
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+echo "autocmd"
 set autoindent
 autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+endfunction

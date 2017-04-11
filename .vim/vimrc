@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""
+filetype off
 " dein.vim
 """"""""""""""""""""""""""""""
 " http://qiita.com/delphinus/items/00ff2c0ba972c6e41542
@@ -44,7 +44,6 @@ endif
 """"""""""""""""""""""""""""""
 
 
-"""""""""""""""""""""""""""""
 " color
 """""""""""""""""""""""""""""
 colorscheme hybrid
@@ -53,14 +52,12 @@ colorscheme hybrid
 """""""""""""""""""""""""""""
 
 
-"""""""""""""""""""""""""""""
 " scrooloose/nerdtree
 """""""""""""""""""""""""""""
 nnoremap :tree :NERDTreeToggle
 """""""""""""""""""""""""""""
 
 
-"""""""""""""""""""""""""""""
 " kana/vim-submode
 """""""""""""""""""""""""""""
 " http://nanasi.jp/articles/howto/file/expand.html
@@ -101,7 +98,6 @@ call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 """""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""
 " tyru/open-browser.vim
 """""""""""""""""""""""""""""
 " カーソル下のURLをブラウザで開く
@@ -111,12 +107,13 @@ vmap <Leader>o <Plug>(openbrowser-open)
 nnoremap <Leader>g :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
 """""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""
 " Other setting (not plugin)
 """""""""""""""""""""""""""""
 syntax enable
 let g:auto_save = 1
 
+set ignorecase
+set smartcase
 set nocompatible
 set backspace=indent,eol,start
 set undofile
@@ -125,15 +122,23 @@ set clipboard+=unnamed
 set background=dark
 set encoding=utf-8
 set hlsearch
-
 set ruler
 set title
 set incsearch
 set wildmenu wildmode=list:full
-set tabstop=4
-set shiftwidth=4
 set mouse=a
 set ttymouse=xterm2
+set autoindent
+set shiftwidth=2
+set tabstop=2
+set showmatch
+set matchpairs& matchpairs+=<:>
+set ambiwidth=double
+
+source $VIMRUNTIME/mswin.vim
+
+cmap w!! w !sudo tee > /dev/null %
+
 noremap <C-z> <C-a>
 inoremap <C-e> <Esc>$a
 inoremap <C-a> <Esc>^i
@@ -147,21 +152,18 @@ inoremap jj <Esc>
 noremap <C-z> <C-a>
 noremap <C-h> <C-y>
 noremap <C-l> <C-e>
+" 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
+nnoremap j gj
+nnoremap k gk
+nnoremap <down> gj
+nnoremap <up> gk
+"
 
 autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
 autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
-autocmd BufRead,BufNewFile *.py setfiletype python.vim
-autocmd BufRead,BufNewFile *.cpp setfiletype cp.vim
-autocmd BufRead,BufNewFile *.c setfiletype cp.vim
-autocmd BufRead,BufNewFile *.cc setfiletype cp.vim
-autocmd BufRead,BufNewFile *.h setfiletype cp.vim
-autocmd BufRead,BufNewFile *.html setfiletype html.vim
-autocmd BufRead,BufNewFile *.htm setfiletype html.vim
-
 """""""""""""""""""""""""""""
 
 
-"""""""""""""""""""""""""""""
 " MacVim setting
 """""""""""""""""""""""""""""
 if has('gui_macvim')
@@ -176,3 +178,14 @@ if has('gui_macvim')
 	set fuoptions=maxvert,maxhorz
 endif
 """""""""""""""""""""""""""""
+
+" read other files
+"""""""""""""""""""""""""""""
+filetype plugin on
+autocmd BufRead,BufNewFile *.py setfiletype python.vim
+autocmd BufRead,BufNewFile *.cpp setfiletype cpp.vim
+autocmd BufRead,BufNewFile *.c setfiletype cpp.vim
+autocmd BufRead,BufNewFile *.cc setfiletype cpp.vim
+autocmd BufRead,BufNewFile *.h setfiletype cpp.vim
+autocmd BufRead,BufNewFile *.html setfiletype html.vim
+autocmd BufRead,BufNewFile *.htm setfiletype html.vim
