@@ -1,12 +1,10 @@
-nmap <F5> :!python3 %
-nmap <F6> :!py.test --pep8 %
-set autoindent
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://myenigma.hatenablog.com/entry/2015/12/28/091342
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autopep 
 " original http://stackoverflow.com/questions/12374200/using-uncrustify-with-vim/15513829#15513829
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! Preserve(command)
     " Save the last search.
@@ -36,3 +34,15 @@ endfunction
 " Shift + F でautopep自動修正
 nnoremap <S-f> :call Autopep8()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Other Setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <F5> :!python3 %<CR>
+nmap <F6> :!py.test --pep8 %<CR>
+"set tabstop=4
+"set softtabstop=4
+"set shiftwidth=4
+"set autoindent
+autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
