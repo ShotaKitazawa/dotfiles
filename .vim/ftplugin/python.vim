@@ -86,3 +86,5 @@ let g:indent_guides_guide_size=1
 hi IndentGuidesOdd  ctermbg=darkgrey
 hi IndentGuidesEven ctermbg=grey
 colorscheme jellybeans
+
+let g:jedi#completions_command = "<C-N>"

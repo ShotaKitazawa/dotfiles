@@ -135,7 +135,7 @@ set showmatch
 set matchpairs& matchpairs+=<:>
 set ambiwidth=double
 
-source $VIMRUNTIME/mswin.vim
+"source $VIMRUNTIME/mswin.vim
 
 cmap w!! w !sudo tee > /dev/null %
 
