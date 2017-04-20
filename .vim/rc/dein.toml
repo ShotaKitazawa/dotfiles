@@ -41,8 +41,8 @@
 # Python {
 	[[plugins]]
 	repo = 'davidhalter/jedi-vim'
-	[[plugins]]
-	repo = 'kevinw/pyflakes-vim'
+#	[[plugins]]
+#	repo = 'kevinw/pyflakes-vim'
 	[[plugins]]
 	repo = 'nathanaelkane/vim-indent-guides'
 # }
