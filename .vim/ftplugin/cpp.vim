@@ -1,5 +1,6 @@
-echo "ftplugins/cpp"
+set cindent
 map ,x <Plug>(operator-clang-format)
+
 
 """""""""""""""""""""""""""""
 " vim-clng-format

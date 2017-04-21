@@ -23,6 +23,7 @@ deploylink .gitignore
 deploylink .tmux.conf
 deploylink .vim
 deploylink .bashrc_self
+deploylink .gdbinit
 
 # let .bashrc read .bashrc_self
 
@@ -37,3 +38,24 @@ if [ ! -d ~/vimundo ]; then
 	echo "mkdir ~/vimundo"
 fi
 
+# download peda (gdb extention)
+if [ ! -d ~/.peda ]; then
+	git clone https://github.com/longld/peda ~/.peda
+	echo "download peda"
+fi
+
+# install Powerline fonts for lightline.vim
+fc-list | grep Powerline > /dev/null
+if [ $? != 0 ]; then
+	cd ~
+	git clone https://github.com/powerline/fonts.git > /dev/null 2>&1
+	if [ $? == 0 ]; then
+		cd fonts
+		./install.sh > /dev/null
+		cd ..
+		rm -rf fonts
+		echo "install Powerline fonts"
+	else
+		echo "error: failed to download Powerline fonts"
+	fi
+fi

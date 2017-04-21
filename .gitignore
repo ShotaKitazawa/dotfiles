@@ -1,8 +1,8 @@
-.DS_Store
-settings.py
-__pycache__/
 .git/
+.DS_Store
+a.out
+__pycache__/
 test*.py
+settings.py
 your_usercred.txt
 yourapp_clientcred.txt
-

@@ -17,6 +17,14 @@
 	repo = 'nathanaelkane/vim-indent-guides'
 	[[plugins]]
 	repo = 'tpope/vim-surround'
+	[[plugins]]
+	repo = 'itchyny/lightline.vim'
+	[[plugins]]
+	repo = 'vim-scripts/AnsiEsc.vim'
+	[[plugins]]
+	repo = 'bronson/vim-trailing-whitespace'
+	[[plugins]]
+	repo = 'tpope/vim-fugitive'
 # }
 # Color {
 	[[plugins]]
@@ -29,6 +37,8 @@
 	repo = 'vim-scripts/tir_black'
 	[[plugins]]
 	repo = 'tomasr/molokai'
+	[[plugins]]
+	repo = 'vim-scripts/Wombat'
 # }
 # C++ {
 	[[plugins]]
