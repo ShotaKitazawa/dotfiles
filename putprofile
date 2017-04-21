@@ -13,7 +13,7 @@ deploylink(){
 		rm ~/$1 -rf
 	fi
 	ln -s $path/$1 ~/$1
-	echo "$1 is deploy to ~/"
+	echo "$1 was deployed to ~/"
 }
 
 
@@ -41,7 +41,7 @@ fi
 # download peda (gdb extention)
 if [ ! -d ~/.peda ]; then
 	git clone https://github.com/longld/peda ~/.peda
-	echo "download peda"
+	echo "downloaded peda"
 fi
 
 # install Powerline fonts for lightline.vim
