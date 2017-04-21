@@ -184,8 +184,8 @@ endif
 filetype plugin on
 autocmd BufRead,BufNewFile *.py setfiletype python.vim
 autocmd BufRead,BufNewFile *.cpp setfiletype cpp.vim
-autocmd BufRead,BufNewFile *.c setfiletype cpp.vim
-autocmd BufRead,BufNewFile *.cc setfiletype cpp.vim
-autocmd BufRead,BufNewFile *.h setfiletype cpp.vim
+autocmd BufRead,BufNewFile *.c setfiletype c.vim
+autocmd BufRead,BufNewFile *.cc setfiletype cc.vim
+autocmd BufRead,BufNewFile *.h setfiletype h.vim
 autocmd BufRead,BufNewFile *.html setfiletype html.vim
 autocmd BufRead,BufNewFile *.htm setfiletype html.vim

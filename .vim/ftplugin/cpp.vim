@@ -1,4 +1,3 @@
-echo "ftplugins/cpp"
 map ,x <Plug>(operator-clang-format)
 
 """""""""""""""""""""""""""""
