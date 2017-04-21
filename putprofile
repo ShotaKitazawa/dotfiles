@@ -43,3 +43,11 @@ if [ ! -d ~/.peda ]; then
 	git clone https://github.com/longld/peda ~/.peda
 	echo "download peda"
 fi
+
+# install Powerline fonts for lightline.vim
+cd ~
+git clone https://github.com/powerline/fonts.git
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts
