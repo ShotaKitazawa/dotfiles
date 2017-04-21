@@ -17,6 +17,8 @@
 	repo = 'nathanaelkane/vim-indent-guides'
 	[[plugins]]
 	repo = 'tpope/vim-surround'
+	[[plugins]]
+	repo = 'itchyny/lightline.vim'
 # }
 # Color {
 	[[plugins]]
