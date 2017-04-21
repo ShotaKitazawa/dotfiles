@@ -293,11 +293,12 @@ set showcmd
 " 前回のカーソル位置の復元
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
 " irc の NOTICE にハイライト (RAT)
-function! IRCHilight()
-    syntax match RATNOTICE "^[0-9]{2}:[0-9]{2}$" display containedin=ALL
+function! IRCHighlight()
+    syntax match RATNOTICE "^[0-9]{2}:[0-9]{2}.*$" display containedin=ALL
     highlight RATNOTICE term=underline ctermbg=LightRed
 endf
-autocmd BufNew,BufRead * call IRCHilight()
+autocmd BufNew,BufRead * call IRCHighlight()
+syntax match NOTICE /^/ display
 """""""""""""""""""""""""""""
 
 " MacVim setting
@@ -314,8 +315,9 @@ if has('gui_macvim')
 	set fuoptions=maxvert,maxhorz
 	" Command-v で貼り付け
 	source $VIMRUNTIME/mswin.vim
-	" C-v でビジュアル短形 (mswin.vim のせいでこれがないと貼り付けになる)
+	" mswin.vim のせいでこれがないと意図した動作にならない
 	noremap <C-v> <C-v>
+	noremap <C-f> <C-f>
 endif
 """""""""""""""""""""""""""""
 
@@ -329,5 +331,3 @@ autocmd BufRead,BufNewFile *.cc setfiletype cc.vim
 autocmd BufRead,BufNewFile *.h setfiletype h.vim
 autocmd BufRead,BufNewFile *.html setfiletype html.vim
 autocmd BufRead,BufNewFile *.htm setfiletype html.vim
-
-
