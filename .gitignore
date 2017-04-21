@@ -3,3 +3,6 @@ settings.py
 __pycache__/
 .git/
 test*.py
+your_usercred.txt
+yourapp_clientcred.txt
+
