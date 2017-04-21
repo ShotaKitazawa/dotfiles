@@ -35,7 +35,7 @@ fi
 # vim-undofile folder
 if [ ! -d ~/vimundo ]; then
 	mkdir ~/vimundo
-	echo "mkdir ~/vimundo"
+	echo "mkdir ~/.vimundo"
 fi
 
 # download peda (gdb extention)
@@ -45,8 +45,6 @@ if [ ! -d ~/.peda ]; then
 fi
 
 # install Powerline fonts for lightline.vim
-fc-list | grep Powerline > /dev/null
-if [ $? != 0 ]; then
 	cd ~
 	git clone https://github.com/powerline/fonts.git > /dev/null 2>&1
 	if [ $? == 0 ]; then
@@ -58,4 +56,3 @@ if [ $? != 0 ]; then
 	else
 		echo "error: failed to download Powerline fonts"
 	fi
-fi
