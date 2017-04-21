@@ -50,6 +50,8 @@ colorscheme hybrid
 "colorscheme jellybeans
 "colorscheme molokai
 "colorscheme wombat
+" 行番号の色
+autocmd ColorScheme * highlight LineNr ctermfg=30
 """""""""""""""""""""""""""""
 
 " Status Line
@@ -192,6 +194,18 @@ if has('syntax')
 endif
 """"""""""""""""""""""""""""""
 
+" tpope/vim-fugitive
+""""""""""""""""""""""""""""""
+noremap G <Nop>
+noremap GG G
+noremap Gs :Gstatus<CR>
+noremap Ga :Gwrite<CR>
+noremap Gr :Gread<CR>
+noremap Gc :Gcommit<CR>
+noremap Gb :Gblame<CR>
+noremap Gd :Gdiff<CR>
+""""""""""""""""""""""""""""""
+
 " Other setting (not plugin)
 """""""""""""""""""""""""""""
 " :source $VIMRUNTIME/syntax/syntax.vim
@@ -218,7 +232,7 @@ set hlsearch
 " カーソルの位置表示を行う
 set ruler
 " 行数表示
-"set number
+set number
 " ウインドウタイトルを設定する
 set title
 " インクリメンタルサーチ
@@ -278,8 +292,13 @@ set listchars=tab:>-
 set showcmd
 " 前回のカーソル位置の復元
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
+" irc の NOTICE にハイライト (RAT)
+function! IRCHilight()
+    syntax match RATNOTICE "^[0-9]{2}:[0-9]{2}$" display containedin=ALL
+    highlight RATNOTICE term=underline ctermbg=LightRed
+endf
+autocmd BufNew,BufRead * call IRCHilight()
 """""""""""""""""""""""""""""
-
 
 " MacVim setting
 """""""""""""""""""""""""""""
