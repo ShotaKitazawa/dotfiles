@@ -45,9 +45,17 @@ if [ ! -d ~/.peda ]; then
 fi
 
 # install Powerline fonts for lightline.vim
-cd ~
-git clone https://github.com/powerline/fonts.git
-cd fonts
-./install.sh
-cd ..
-rm -rf fonts
+fc-list | grep Powerline > /dev/null
+if [ $? != 0 ]; then
+	cd ~
+	git clone https://github.com/powerline/fonts.git > /dev/null 2>&1
+	if [ $? == 0 ]; then
+		cd fonts
+		./install.sh > /dev/null
+		cd ..
+		rm -rf fonts
+		echo "install Powerline fonts"
+	else
+		echo "error: failed to download Powerline fonts"
+	fi
+fi
