@@ -292,13 +292,7 @@ set listchars=tab:>-
 set showcmd
 " 前回のカーソル位置の復元
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
-" irc の NOTICE にハイライト (RAT)
-function! IRCHighlight()
-    syntax match RATNOTICE "^[0-9]{2}:[0-9]{2}.*$" display containedin=ALL
-    highlight RATNOTICE term=underline ctermbg=LightRed
-endf
-autocmd BufNew,BufRead * call IRCHighlight()
-syntax match NOTICE /^/ display
+" TODO: irc の NOTICE にハイライト (RAT)
 """""""""""""""""""""""""""""
 
 " MacVim setting
