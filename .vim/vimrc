@@ -3,7 +3,7 @@ filetype off
 """"""""""""""""""""""""""""""
 " http://qiita.com/delphinus/items/00ff2c0ba972c6e41542
 """"""""""""""""""""""""""""""
-" vimrc に以下のように追記
+" vimrc に以下のように追記  
 
 " プラグインが実際にインストールされるディレクトリ
 let s:dein_dir = expand('~/.cache/dein')
@@ -51,12 +51,48 @@ colorscheme hybrid
 "colorscheme molokai
 """""""""""""""""""""""""""""
 
+" Status Line
+"""""""""""""""""""""""""""""
+" ファイル名表示
+set statusline=%F
+" 変更チェック表示
+set statusline+=%m
+" 読み込み専用かどうか表示
+set statusline+=%r
+" ヘルプページなら[HELP]と表示
+set statusline+=%h
+" プレビューウインドウなら[Prevew]と表示
+set statusline+=%w
+" これ以降は右寄せ表示
+set statusline+=%=
+" file encoding
+set statusline+=[ENC=%{&fileencoding}]
+" 現在行数/全行数
+set statusline+=[LOW=%l/%L]
+" ステータスラインを常に表示(0:表示しない、1:2つ以上ウィンドウがある時だけ表示)
+set laststatus=2
+" itchyny/lightline.vim
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
+"""""""""""""""""""""""""""""
 
 " scrooloose/nerdtree
 """""""""""""""""""""""""""""
 nnoremap :tree :NERDTreeToggle
 """""""""""""""""""""""""""""
-
 
 " kana/vim-submode
 """""""""""""""""""""""""""""
@@ -117,37 +153,40 @@ call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 " tyru/open-browser.vim
 """""""""""""""""""""""""""""
 " カーソル下のURLをブラウザで開く
-nmap <Leader>o <Plug>(openbrowser-open)
-vmap <Leader>o <Plug>(openbrowser-open)
+nnoremap <Leader>o <Plug>(openbrowser-open)
+vnoremap <Leader>o <Plug>(openbrowser-open)
 " ググる
 nnoremap <Leader>g :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
 """""""""""""""""""""""""""""
 
-" Status Line
+" vim-scripts/vim-auto-save
 """""""""""""""""""""""""""""
-" ファイル名表示
-set statusline=%F
-" 変更チェック表示
-set statusline+=%m
-" 読み込み専用かどうか表示
-set statusline+=%r
-" ヘルプページなら[HELP]と表示
-set statusline+=%h
-" プレビューウインドウなら[Prevew]と表示
-set statusline+=%w
-" これ以降は右寄せ表示
-set statusline+=%=
-" file encoding
-set statusline+=[ENC=%{&fileencoding}]
-" 現在行数/全行数
-set statusline+=[LOW=%l/%L]
-" ステータスラインを常に表示(0:表示しない、1:2つ以上ウィンドウがある時だけ表示)
-set laststatus=2
-" itchyny/lightline.vim
-let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
-      \ }
+" すかさずファイルを自動保存
+let g:auto_save = 1
 """""""""""""""""""""""""""""
+
+" bronson/vim-trailing-whitespace
+""""""""""""""""""""""""""""""
+noremap fw :FixWhitespace<CR>
+""""""""""""""""""""""""""""""
+
+" http://inari.hatenablog.com/entry/2014/05/05/231307
+""""""""""""""""""""""""""""""
+" 全角スペースの表示
+""""""""""""""""""""""""""""""
+function! ZenkakuSpace()
+    highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+endfunction
+
+if has('syntax')
+    augroup ZenkakuSpace
+        autocmd!
+        autocmd ColorScheme * call ZenkakuSpace()
+        autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
+    augroup END
+    call ZenkakuSpace()
+endif
+""""""""""""""""""""""""""""""
 
 " Other setting (not plugin)
 """""""""""""""""""""""""""""
@@ -157,8 +196,6 @@ syntax enable
 set nocompatible
 " UTF-8
 set encoding=utf-8
-" Normal モードに入るたびにファイルを自動保存
-let g:auto_save = 1
 " 検索時、小文字 > 大文字小文字にマッチ、大文字 > 大文字のみにマッチ
 set ignorecase
 set smartcase
@@ -174,14 +211,15 @@ set clipboard=unnamed,autoselect
 set background=dark
 " 検索結果をハイライト
 set hlsearch
-" カーソルの位置表示を行う 
+" カーソルの位置表示を行う
 set ruler
 " 行数表示
 "set number
-" ウインドウタイトルを設定する 
+" ウインドウタイトルを設定する
 set title
 " インクリメンタルサーチ
 set incsearch
+" コマンドラインモードにてTab保管を有効にする
 set wildmenu wildmode=list:full
 " マウスを使用できるようにする
 set mouse=a
@@ -196,10 +234,10 @@ set tabstop=2
 set showmatch
 set matchpairs& matchpairs+=<:>
 set matchtime=3
-" 全角記号を正しく表示 
+" 全角記号を正しく表示
 set ambiwidth=double
 " :w!! でrootユーザで :w しに行く
-cmap w!! w !sudo tee > /dev/null %
+cnoremap w!! w !sudo tee > /dev/null %
 " C-z でインクリメント
 noremap <C-z> <C-a>
 " C-a で一番前、C-e で一番後ろ
@@ -228,6 +266,14 @@ inoremap jj <ESC>
 " Syntax Highlight
 autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
 autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
+" 不可視文字を表示する
+set list
+" タブを >--- で表示
+set listchars=tab:>-
+" 入力中のコマンドを表示する
+set showcmd
+" 前回のカーソル位置の復元
+autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
 """""""""""""""""""""""""""""
 
 
@@ -246,7 +292,7 @@ if has('gui_macvim')
 	" Command-v で貼り付け
 	source $VIMRUNTIME/mswin.vim
 	" C-v でビジュアル短形 (mswin.vim のせいでこれがないと貼り付けになる)
-	nmap <C-v> <C-v>
+	noremap <C-v> <C-v>
 endif
 """""""""""""""""""""""""""""
 
@@ -255,8 +301,10 @@ endif
 filetype plugin indent on
 autocmd BufRead,BufNewFile *.py setfiletype python.vim
 autocmd BufRead,BufNewFile *.cpp setfiletype cpp.vim
-autocmd BufRead,BufNewFile *.c setfiletype cpp.vim
-autocmd BufRead,BufNewFile *.cc setfiletype cpp.vim
-autocmd BufRead,BufNewFile *.h setfiletype cpp.vim
+autocmd BufRead,BufNewFile *.c setfiletype c.vim
+autocmd BufRead,BufNewFile *.cc setfiletype cc.vim
+autocmd BufRead,BufNewFile *.h setfiletype h.vim
 autocmd BufRead,BufNewFile *.html setfiletype html.vim
 autocmd BufRead,BufNewFile *.htm setfiletype html.vim
+
+

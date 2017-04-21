@@ -24,4 +24,5 @@ if [ "$(uname)" == 'Darwin' ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
 	OS='Linux'
 	alias ll='ls -l --color'
+	alias gcc32='gcc -m32 -fno-stack-protector'
 fi
