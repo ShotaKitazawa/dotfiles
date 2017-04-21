@@ -3,7 +3,7 @@ filetype off
 """"""""""""""""""""""""""""""
 " http://qiita.com/delphinus/items/00ff2c0ba972c6e41542
 """"""""""""""""""""""""""""""
-" vimrc に以下のように追記  
+" vimrc に以下のように追記
 
 " プラグインが実際にインストールされるディレクトリ
 let s:dein_dir = expand('~/.cache/dein')
@@ -49,12 +49,15 @@ endif
 colorscheme hybrid
 "colorscheme jellybeans
 "colorscheme molokai
+"colorscheme wombat
 """""""""""""""""""""""""""""
 
 " Status Line
 """""""""""""""""""""""""""""
 " ファイル名表示
 set statusline=%F
+" Git
+set statusline+=%{fugitive#statusline()}
 " 変更チェック表示
 set statusline+=%m
 " 読み込み専用かどうか表示
@@ -76,10 +79,11 @@ let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ]
+      \             [ 'readonly', 'filename', 'modified', 'fugitive' ] ]
       \ },
       \ 'component': {
       \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
+      \   'fugitive': '%{fugitive#statusline()}',
       \ },
       \ 'component_visible_condition': {
       \   'readonly': '(&filetype!="help"&& &readonly)',
@@ -224,8 +228,8 @@ set wildmenu wildmode=list:full
 " マウスを使用できるようにする
 set mouse=a
 set ttymouse=xterm2
-" 自動インデント
-set autoindent
+" C言語用自動インデント
+set cindent
 " インデント幅 2
 set shiftwidth=2
 " タブ幅 2
