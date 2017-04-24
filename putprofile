@@ -40,7 +40,7 @@ fi
 
 # download peda (gdb extention)
 if [ ! -d ~/.peda ]; then
-	git clone https://github.com/longld/peda ~/.peda
+	git clone https://github.com/longld/peda ~/.peda > /dev/null 2>&1
 	echo "downloaded peda"
 fi
 
