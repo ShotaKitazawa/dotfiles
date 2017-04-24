@@ -242,6 +242,8 @@ set mouse=a
 set ttymouse=xterm2
 " C言語用自動インデント
 set cindent
+" TAB をスペースにする
+set expandtab
 " インデント幅 2
 set shiftwidth=2
 " タブ幅 2
