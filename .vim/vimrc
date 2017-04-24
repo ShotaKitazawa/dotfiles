@@ -196,14 +196,12 @@ endif
 
 " tpope/vim-fugitive
 """"""""""""""""""""""""""""""
-noremap G <Nop>
-noremap GG G
-noremap Gs :Gstatus<CR>
-noremap Ga :Gwrite<CR>
-noremap Gr :Gread<CR>
-noremap Gc :Gcommit<CR>
-noremap Gb :Gblame<CR>
-noremap Gd :Gdiff<CR>
+nnoremap :gs :Gstatus
+nnoremap :ga :Gwrite
+nnoremap :gr :Gread
+nnoremap :gc :Gcommit
+nnoremap :gb :Gblame
+nnoremap :gd :Gdiff
 """"""""""""""""""""""""""""""
 
 " Other setting (not plugin)
@@ -256,6 +254,8 @@ set matchtime=3
 set ambiwidth=double
 " :w!! でrootユーザで :w しに行く
 cnoremap w!! w !sudo tee > /dev/null %
+" C-c で ESC
+noremap <C-c> <ESC>
 " C-z でインクリメント
 noremap <C-z> <C-a>
 " C-a で一番前、C-e で一番後ろ
