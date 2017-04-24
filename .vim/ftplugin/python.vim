@@ -1,9 +1,8 @@
 " http://myenigma.hatenablog.com/entry/2015/12/28/091342
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" autopep 
+" autopep
 " original http://stackoverflow.com/questions/12374200/using-uncrustify-with-vim/15513829#15513829
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 function! Preserve(command)
     " Save the last search.
     let search = @/
@@ -71,8 +70,8 @@ unlet s:cpo_save
 
 " Other Setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <F5> :!python3 %<CR>
-nmap <F6> :!py.test --pep8 %<CR>
+nnoremap <F5> :!python3 %<CR>
+nnoremap <F6> :!py.test --pep8 %<CR>
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
