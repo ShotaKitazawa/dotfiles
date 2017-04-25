@@ -1,4 +1,25 @@
 filetype off
+
+" MacVim setting
+"""""""""""""""""""""""""""""
+if has('gui_macvim')
+	"colorschme macvim
+	set background=dark
+	silent! colorscheme jellybeans
+	set showtabline=2	" タブを常に表示
+	set imdisable	" IMを無効化
+	set transparency=10	" 透明度を指定
+	set antialias
+	set guifont=Monaco:h18
+	set fuoptions=maxvert,maxhorz
+	" Command-v で貼り付け
+  noremap <D-v> p
+	noremap <D-v> <D-v>
+  noremap <C-v> <C-v>
+	noremap <C-f> <C-f>
+endif
+"""""""""""""""""""""""""""""
+
 " dein.vim
 """"""""""""""""""""""""""""""
 " http://qiita.com/delphinus/items/00ff2c0ba972c6e41542
@@ -295,26 +316,6 @@ set showcmd
 " 前回のカーソル位置の復元
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
 " TODO: irc の NOTICE にハイライト (RAT)
-"""""""""""""""""""""""""""""
-
-" MacVim setting
-"""""""""""""""""""""""""""""
-if has('gui_macvim')
-	"colorschme macvim
-	set background=dark
-	silent! colorscheme jellybeans
-	set showtabline=2	" タブを常に表示
-	set imdisable	" IMを無効化
-	set transparency=10	" 透明度を指定
-	set antialias
-	set guifont=Monaco:h18
-	set fuoptions=maxvert,maxhorz
-	" Command-v で貼り付け
-	source $VIMRUNTIME/mswin.vim
-	" mswin.vim のせいでこれがないと意図した動作にならない
-	noremap <C-v> <C-v>
-	noremap <C-f> <C-f>
-endif
 """""""""""""""""""""""""""""
 
 " read other files
