@@ -10,19 +10,23 @@ bind '"\C-b": backward-word'
 ulimit -c unlimited
 
 if [ "$(uname)" == 'Darwin' ]; then
-	OS='Mac'
-	alias l='ls'
-	alias ll='ls -lG'
-	alias cdc="cd ~/Dropbox/lecture/c++/"
-	alias updatedb='sudo /usr/libexec/locate.updatedb'
-	export PATH=$PATH:/Applications/MacVim.app/Contents/MacOS/
-	export PATH=/usr/local/bin:$PATH
-	export LANG=ja_JP.UTF-8
-	export LESSCHARSET=utf-8
-	source /usr/local/etc/bash_completion.d/git-prompt.sh
-	source /usr/local/etc/bash_completion.d/git-completion.bash
+  OS='Mac'
+  alias l='ls'
+  alias ll='ls -lG'
+  alias updatedb='sudo /usr/libexec/locate.updatedb'
+  export PATH=$PATH:/Applications/MacVim.app/Contents/MacOS/
+  export PATH=/usr/local/bin:$PATH
+  export LANG=ja_JP.UTF-8
+  export LESSCHARSET=utf-8
+  source /usr/local/etc/bash_completion.d/git-prompt.sh
+  source /usr/local/etc/bash_completion.d/git-completion.bash
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
-	OS='Linux'
+  OS='Linux'
+  alias ll='ls -l --color'
+  alias gcc32='gcc -m32 -fno-stack-protector'
+elif [ "$(uname)" == 'FreeBSD' ]; then
+  OS='FreeBSD'
+  alias l='ls'
 	alias ll='ls -l --color'
-	alias gcc32='gcc -m32 -fno-stack-protector'
+	alias updatedb='sudo /usr/libexec/locate.updatedb'
 fi
