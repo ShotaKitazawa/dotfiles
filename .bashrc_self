@@ -28,5 +28,5 @@ elif [ "$(uname)" == 'FreeBSD' ]; then
   OS='FreeBSD'
   alias l='ls'
   alias ll='ls -lG'
-  alias updatedb='sudo /usr/libexec/locate.updatedb'
+  alias updatedb='/usr/libexec/locate.updatedb'
 fi
