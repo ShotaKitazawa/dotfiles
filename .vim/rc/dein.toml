@@ -2,6 +2,8 @@
 	[[plugins]]
 	repo = 'Shougo/unite.vim'
 	[[plugins]]
+  repo = 'Shougo/neosnippet'
+	[[plugins]]
 	repo = 'kana/vim-operator-user'
 	[[plugins]]
 	repo = 'kana/vim-submode'
