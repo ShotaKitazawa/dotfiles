@@ -129,7 +129,7 @@ nnoremap :tree :NERDTreeToggle
 nnoremap s <Nop>
 " s[h|j|k|l] で窓移動
 nnoremap sj <C-w>j
-nnoremap sk <C-w>k
+noremap sk <C-w>k
 nnoremap sl <C-w>l
 nnoremap sh <C-w>h
 " s[H|J|K|L] で窓移動&入れ替え
@@ -279,8 +279,8 @@ set ambiwidth=double
 cnoremap w!! w !sudo tee > /dev/null %
 " C-c で ESC
 noremap <C-c> <ESC>
-" C-z でインクリメント
-noremap <C-z> <C-a>
+" C-s でインクリメント
+noremap <C-s> <C-a>
 " C-a で一番前、C-e で一番後ろ
 inoremap <C-e> <Esc>$a
 inoremap <C-a> <Esc>^i
