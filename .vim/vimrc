@@ -193,8 +193,9 @@ let g:auto_save = 1
 """""""""""""""""""""""""""""
 
 " bronson/vim-trailing-whitespace
+" + Tab をスペース2つに変換
 """"""""""""""""""""""""""""""
-noremap fw :FixWhitespace<CR>
+noremap fw :FixWhitespace<CR>:%s/\t/  /g<CR>
 """"""""""""""""""""""""""""""
 
 " http://inari.hatenablog.com/entry/2014/05/05/231307
