@@ -12,9 +12,7 @@ if has('gui_macvim')
 	set antialias
 	set guifont=Monaco:h18
 	set fuoptions=maxvert,maxhorz
-	" Command-v で貼り付け
   noremap <D-v> p
-	noremap <D-v> <D-v>
   noremap <C-v> <C-v>
 	noremap <C-f> <C-f>
 endif
