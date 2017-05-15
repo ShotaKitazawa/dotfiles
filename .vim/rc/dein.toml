@@ -1,72 +1,72 @@
 # General {
-	[[plugins]]
-	repo = 'Shougo/unite.vim'
-	[[plugins]]
+  [[plugins]]
+  repo = 'Shougo/unite.vim'
+  [[plugins]]
   repo = 'Shougo/neosnippet'
-	[[plugins]]
-	repo = 'kana/vim-operator-user'
-	[[plugins]]
-	repo = 'kana/vim-submode'
-	[[plugins]]
-	repo = 'scrooloose/nerdtree'
-	[[plugins]]
-	repo = 'deton/jasegment.vim'
-	[[plugins]]
-	repo = 'vim-scripts/vim-auto-save'
-	[[plugins]]
-	repo = 'tyru/open-browser.vim'
-	[[plugins]]
-	repo = 'nathanaelkane/vim-indent-guides'
-	[[plugins]]
-	repo = 'tpope/vim-surround'
-	[[plugins]]
-	repo = 'itchyny/lightline.vim'
-	[[plugins]]
-	repo = 'vim-scripts/AnsiEsc.vim'
-	[[plugins]]
-	repo = 'bronson/vim-trailing-whitespace'
-	[[plugins]]
-	repo = 'tpope/vim-fugitive'
+  [[plugins]]
+  repo = 'kana/vim-operator-user'
+  [[plugins]]
+  repo = 'kana/vim-submode'
+  [[plugins]]
+  repo = 'scrooloose/nerdtree'
+  [[plugins]]
+  repo = 'deton/jasegment.vim'
+  [[plugins]]
+  repo = 'vim-scripts/vim-auto-save'
+  [[plugins]]
+  repo = 'tyru/open-browser.vim'
+  [[plugins]]
+  repo = 'nathanaelkane/vim-indent-guides'
+  [[plugins]]
+  repo = 'tpope/vim-surround'
+  [[plugins]]
+  repo = 'itchyny/lightline.vim'
+  [[plugins]]
+  repo = 'vim-scripts/AnsiEsc.vim'
+  [[plugins]]
+  repo = 'bronson/vim-trailing-whitespace'
+  [[plugins]]
+  repo = 'tpope/vim-fugitive'
 # }
 # Color {
-	[[plugins]]
-	repo = 'w0ng/vim-hybrid'
-	[[plugins]]
-	repo = 'nanotech/jellybeans.vim'
-	[[plugins]]
-	repo = 'ConradIrwin/vim-bracketed-paste'
-	[[plugins]]
-	repo = 'vim-scripts/tir_black'
-	[[plugins]]
-	repo = 'tomasr/molokai'
-	[[plugins]]
-	repo = 'vim-scripts/Wombat'
+  [[plugins]]
+  repo = 'w0ng/vim-hybrid'
+  [[plugins]]
+  repo = 'nanotech/jellybeans.vim'
+  [[plugins]]
+  repo = 'ConradIrwin/vim-bracketed-paste'
+  [[plugins]]
+  repo = 'vim-scripts/tir_black'
+  [[plugins]]
+  repo = 'tomasr/molokai'
+  [[plugins]]
+  repo = 'vim-scripts/Wombat'
 # }
 # C++ {
-	[[plugins]]
-	repo = 'thinca/vim-quickrun'
-	[[plugins]]
-	repo = 'rhysd/vim-clang-format'
-	[[plugins]]
-	repo = 'Shougo/neoinclude.vim'
+  [[plugins]]
+  repo = 'thinca/vim-quickrun'
+  [[plugins]]
+  repo = 'rhysd/vim-clang-format'
+  [[plugins]]
+  repo = 'Shougo/neoinclude.vim'
 # }
 # Python {
-	[[plugins]]
-	repo = 'davidhalter/jedi-vim'
-#	[[plugins]]
-#	repo = 'kevinw/pyflakes-vim'
-	[[plugins]]
-	repo = 'nathanaelkane/vim-indent-guides'
+  [[plugins]]
+  repo = 'davidhalter/jedi-vim'
+#  [[plugins]]
+#  repo = 'kevinw/pyflakes-vim'
+  [[plugins]]
+  repo = 'nathanaelkane/vim-indent-guides'
 # }
 # HTML {
-	[[plugins]]
-	repo = 'mattn/emmet-vim'
+  [[plugins]]
+  repo = 'mattn/emmet-vim'
 # }
 # CSS {
-	[[plugins]]
-	repo = 'hail2u/vim-css3-syntax'
+  [[plugins]]
+  repo = 'hail2u/vim-css3-syntax'
 # }
 # JavaScript{
-	[[plugins]]
-	repo = 'pangloss/vim-javascript'
+  [[plugins]]
+  repo = 'pangloss/vim-javascript'
 # }

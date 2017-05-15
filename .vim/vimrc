@@ -245,6 +245,8 @@ set undodir=~/.vimundo/
 " ヤンクしたテキストそのままクリップボードにコピー
 " vim上でハイライトして選択したテキストがクリップボードにコピー
 set clipboard=unnamed,autoselect
+" スワップファイルを作らない
+set noswapfile
 " 背景黒
 set background=dark
 " 検索結果をハイライト
@@ -278,10 +280,8 @@ set matchtime=3
 set ambiwidth=double
 " :w!! でrootユーザで :w しに行く
 cnoremap w!! w !sudo tee > /dev/null %
-" C-c で ESC
-noremap <C-c> <ESC>
-" C-s でインクリメント
-noremap <C-s> <C-a>
+" C-z でインクリメント
+noremap <C-z> <C-a>
 " C-a で一番前、C-e で一番後ろ
 inoremap <C-e> <Esc>$a
 inoremap <C-a> <Esc>^i
@@ -303,6 +303,8 @@ noremap x "_x
 noremap <ESC><ESC> :noh<CR>
 " vimrc をすぐ開く
 nnoremap <space>. :<c-u>new ~/.vim/vimrc<CR>
+" C-c で ESC
+noremap <C-c> <ESC>
 " j*2 で ESC
 inoremap jj <ESC>
 " Syntax Highlight
@@ -316,6 +318,8 @@ set listchars=tab:>-
 set showcmd
 " 前回のカーソル位置の復元
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" TODO: 一時停止 (C-z) をどこかのキーに割り当てる
 " TODO: irc の NOTICE にハイライト (RAT)
 """""""""""""""""""""""""""""
 
