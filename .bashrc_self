@@ -14,6 +14,7 @@ if [ "$(uname)" == 'Darwin' ]; then
   OS='Mac'
   alias l='ls'
   alias ll='ls -lG'
+  alias lll='ls -alG'
   alias updatedb='sudo /usr/libexec/locate.updatedb'
   export PATH=$PATH:/Applications/MacVim.app/Contents/MacOS/
   export PATH=/usr/local/bin:$PATH
@@ -23,11 +24,14 @@ if [ "$(uname)" == 'Darwin' ]; then
   source /usr/local/etc/bash_completion.d/git-completion.bash
 elif [ "$(uname)" == 'Linux' ]; then
   OS='Linux'
+  alias l='ls'
   alias ll='ls -l --color'
+  alias lll='ls -al --color'
   alias gcc32='gcc -m32 -fno-stack-protector'
 elif [ "$(uname)" == 'FreeBSD' ]; then
   OS='FreeBSD'
   alias l='ls'
   alias ll='ls -lG'
+  alias lll='ls -alG'
   alias updatedb='/usr/libexec/locate.updatedb'
 fi
