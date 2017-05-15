@@ -1,3 +1,4 @@
+PS1='\h:\W \u\$ '
 alias vi=vim
 alias ssh-keyadd="ssh-add ~/.ssh/id_rsa*"
 alias ssh-showpub="ssh-keygen -yf"
