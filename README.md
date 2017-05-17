@@ -4,3 +4,4 @@
 git clone https://github.com/ShotaKitazawa/dotfiles
 ./dotfiles/putprofile
 ```
+

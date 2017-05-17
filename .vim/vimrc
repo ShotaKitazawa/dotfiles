@@ -224,6 +224,16 @@ nnoremap :gb :Gblame
 nnoremap :gd :Gdiff
 """"""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""
+" plasticboy/vim-markdown + kannokanno/previm + tyru/open-browser.vim
+""""""""""""""""""""""""""""""
+" http://qiita.com/uedatakeshi/items/31761b87ba8ecbaf2c1e
+""""""""""""""""""""""""""""""
+au BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_open_cmd = 'open -a Firefox'
+nnoremap :md :PrevimOpen
+""""""""""""""""""""""""""""""
+
 " Other setting (not plugin)
 """""""""""""""""""""""""""""
 " :source $VIMRUNTIME/syntax/syntax.vim
