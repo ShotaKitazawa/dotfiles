@@ -22,6 +22,10 @@ if [ "$(uname)" == 'Darwin' ]; then
   export LESSCHARSET=utf-8
   source /usr/local/etc/bash_completion.d/git-prompt.sh
   source /usr/local/etc/bash_completion.d/git-completion.bash
+  if [ -f /Applications/MacVim.app/Contents/Resources/vim/vimrc ];then
+    mv /Applications/MacVim.app/Contents/Resources/vim/vimrc{,default}
+    mv /Applications/MacVim.app/Contents/Resources/vim/gvimrc{,default}
+  fi
 elif [ "$(uname)" == 'Linux' ]; then
   OS='Linux'
   alias l='ls'
