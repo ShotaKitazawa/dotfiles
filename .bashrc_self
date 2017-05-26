@@ -2,6 +2,7 @@ PS1='\h:\W \u\$ '
 alias vi=vim
 alias ssh-keyadd="ssh-add ~/.ssh/id_rsa*"
 alias ssh-showpub="ssh-keygen -yf"
+alias vitmp="vim `date +%Y%m%d-%H%M%S`.txt"
 #export LANG=ja_JP.UTF-8
 export STUID=15k0112
 export EDITOR=vim
