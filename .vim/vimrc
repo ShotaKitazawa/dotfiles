@@ -3,18 +3,18 @@ filetype off
 " MacVim setting
 """""""""""""""""""""""""""""
 if has('gui_macvim')
-	"colorschme macvim
-	set background=dark
-	silent! colorscheme jellybeans
-	set showtabline=2	" タブを常に表示
-	set imdisable	" IMを無効化
-	set transparency=10	" 透明度を指定
-	set antialias
-	set guifont=Monaco:h18
-	set fuoptions=maxvert,maxhorz
+  "colorschme macvim
+  set background=dark
+  silent! colorscheme jellybeans
+  set showtabline=2  " タブを常に表示
+  set imdisable  " IMを無効化
+  set transparency=10  " 透明度を指定
+  set antialias
+  set guifont=Monaco:h18
+  set fuoptions=maxvert,maxhorz
   noremap <D-v> p
   noremap <C-v> <C-v>
-	noremap <C-f> <C-f>
+  noremap <C-f> <C-f>
 endif
 """""""""""""""""""""""""""""
 
@@ -195,7 +195,7 @@ let g:auto_save = 1
 """"""""""""""""""""""""""""""
 noremap fw :FixWhitespace<CR>:%s/\t/  /g<CR>
 """"""""""""""""""""""""""""""
-
+"
 " http://inari.hatenablog.com/entry/2014/05/05/231307
 """"""""""""""""""""""""""""""
 " 全角スペースの表示
@@ -247,8 +247,8 @@ set ignorecase
 set smartcase
 " 行をまたいで BS 可能
 set backspace=indent,eol,start
-" undofile の作成、~/.vimundo/ 以下に保存
-set undofile
+"" undofile の作成、~/.vimundo/ 以下に保存
+"set undofile
 set undodir=~/.vimundo/
 " ヤンクしたテキストそのままクリップボードにコピー
 " vim上でハイライトして選択したテキストがクリップボードにコピー
@@ -261,7 +261,7 @@ set background=dark
 set hlsearch
 " カーソルの位置表示を行う
 set ruler
-" 行数表示
+"" 行数表示
 set number
 " ウインドウタイトルを設定する
 set title
@@ -272,7 +272,7 @@ set wildmenu wildmode=list:full
 " マウスを使用できるようにする
 set mouse=a
 set ttymouse=xterm2
-" C言語用自動インデント
+"" C言語用自動インデント
 set cindent
 " TAB をスペースにする
 set expandtab
@@ -288,8 +288,8 @@ set matchtime=3
 set ambiwidth=double
 " :w!! でrootユーザで :w しに行く
 cnoremap w!! w !sudo tee > /dev/null %
-" C-z でインクリメント
-noremap <C-z> <C-a>
+" C-w でインクリメント
+noremap <C-w> <C-a>
 " C-a で一番前、C-e で一番後ろ
 inoremap <C-e> <Esc>$a
 inoremap <C-a> <Esc>^i
@@ -297,7 +297,7 @@ noremap <C-e> $
 noremap <C-a> ^
 " C-h で一行上、C-l で一行下
 noremap <C-h> <C-y>
-noremap <C-l> <C-e>
+"noremap <C-l> <C-e>
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
 nnoremap k gk
@@ -327,7 +327,6 @@ set showcmd
 " 前回のカーソル位置の復元
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" TODO: 一時停止 (C-z) をどこかのキーに割り当てる
 " TODO: irc の NOTICE にハイライト (RAT)
 """""""""""""""""""""""""""""
 
