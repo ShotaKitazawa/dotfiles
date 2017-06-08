@@ -1,10 +1,13 @@
 .git/
 .DS_Store
+*.swp
+
 a.out
+core.*
+.gdb_history
+
 __pycache__/
 test*.py
 settings.py
 your_usercred.txt
 yourapp_clientcred.txt
-a.out
-*.swp
