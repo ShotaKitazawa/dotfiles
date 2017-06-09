@@ -5,6 +5,7 @@
 a.out
 core.*
 .gdb_history
+peda-*
 
 __pycache__/
 test*.py
