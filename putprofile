@@ -6,14 +6,14 @@
 path=$(cd $(dirname $0) && pwd)
 
 deploylink(){
-	if [ -L ~/$1 ]; then
-		echo "$1 has already deployed to ~/"
-		return 0
-	elif [ -e ~/$1 ]; then
-		rm ~/$1 -rf
-	fi
-	ln -s $path/$1 ~/$1
-	echo "$1 was deployed to ~/"
+  if [ -L ~/$1 ]; then
+    echo "$1 has already deployed to ~/"
+    return 0
+  elif [ -e ~/$1 ]; then
+    rm ~/$1 -rf
+  fi
+  ln -s $path/$1 ~/$1
+  echo "$1 was deployed to ~/"
 }
 
 
@@ -29,30 +29,30 @@ deploylink .gdbinit
 
 grep .bashrc_self ~/.bashrc > /dev/null 2>&1
 if [ $? != 0 ]; then
-	echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
+  echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
 fi
 
 # vim-undofile folder
 if [ ! -d ~/.vimundo ]; then
-	mkdir ~/.vimundo
-	echo "mkdir ~/.vimundo"
+  mkdir ~/.vimundo
+  echo "mkdir ~/.vimundo"
 fi
 
 # download peda (gdb extention)
 if [ ! -d ~/.peda ]; then
-	git clone https://github.com/longld/peda ~/.peda > /dev/null 2>&1
-	echo "downloaded peda"
+  git clone https://github.com/longld/peda ~/.peda > /dev/null 2>&1
+  echo "downloaded peda"
 fi
 
 # install Powerline fonts for lightline.vim
 cd ~
 git clone https://github.com/powerline/fonts.git > /dev/null 2>&1
 if [ $? == 0 ]; then
-	cd fonts
-	./install.sh > /dev/null
-	cd ..
-	rm -rf fonts
-	echo "install Powerline fonts"
+  cd fonts
+  ./install.sh > /dev/null
+  cd ..
+  rm -rf fonts
+  echo "install Powerline fonts"
 else
-	echo "error: failed to download Powerline fonts"
+  echo "error: failed to download Powerline fonts"
 fi
