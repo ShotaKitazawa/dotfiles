@@ -71,8 +71,8 @@
   repo = 'pangloss/vim-javascript'
 # }
 # Markdown{
-  [[plugins]]
-  repo = 'plasticboy/vim-markdown'
+#[[plugins]]
+#repo = 'plasticboy/vim-markdown'
   [[plugins]]
   repo = 'kannokanno/previm'
   [[plugins]]
