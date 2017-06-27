@@ -2,7 +2,7 @@
 .DS_Store
 *.swp
 
-a.out
+*.out
 core.*
 .gdb_history
 peda-*
