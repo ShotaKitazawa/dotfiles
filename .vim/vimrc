@@ -357,3 +357,4 @@ autocmd BufRead,BufNewFile *.cc setfiletype cc.vim
 autocmd BufRead,BufNewFile *.h setfiletype h.vim
 autocmd BufRead,BufNewFile *.html setfiletype html.vim
 autocmd BufRead,BufNewFile *.htm setfiletype html.vim
+autocmd BufRead,BufNewFile *.go setfiletype go.vim
