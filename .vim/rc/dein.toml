@@ -4,6 +4,8 @@
   [[plugins]]
   repo = 'Shougo/neosnippet'
   [[plugins]]
+  repo = 'Shougo/neocomplcache'
+  [[plugins]]
   repo = 'kana/vim-operator-user'
   [[plugins]]
   repo = 'kana/vim-submode'
@@ -53,10 +55,18 @@
 # Python {
   [[plugins]]
   repo = 'davidhalter/jedi-vim'
-#  [[plugins]]
-#  repo = 'kevinw/pyflakes-vim'
+  #[[plugins]]
+  #repo = 'kevinw/pyflakes-vim'
   [[plugins]]
   repo = 'nathanaelkane/vim-indent-guides'
+# }
+# Go {
+  #[[plugins]]
+  #repo = 'vim-jp/vim-go-extra'
+  [[plugins]]
+    repo = 'fatih/vim-go'
+  [[plugins]]
+    repo = 'scrooloose/syntastic'
 # }
 # HTML {
   [[plugins]]
@@ -71,8 +81,8 @@
   repo = 'pangloss/vim-javascript'
 # }
 # Markdown{
-#[[plugins]]
-#repo = 'plasticboy/vim-markdown'
+  #[[plugins]]
+  #repo = 'plasticboy/vim-markdown'
   [[plugins]]
   repo = 'kannokanno/previm'
   [[plugins]]
