@@ -2,9 +2,11 @@
   [[plugins]]
   repo = 'Shougo/unite.vim'
   [[plugins]]
+  repo = 'Shougo/neocomplete'
+  [[plugins]]
   repo = 'Shougo/neosnippet'
   [[plugins]]
-  repo = 'Shougo/neocomplete'
+  repo = 'Shougo/neosnippet-snippets'
   [[plugins]]
   repo = 'kana/vim-operator-user'
   [[plugins]]
@@ -29,14 +31,22 @@
   repo = 'bronson/vim-trailing-whitespace'
   [[plugins]]
   repo = 'tpope/vim-fugitive'
+  [[plugins]]
+  repo = 'ctrlpvim/ctrlp.vim'
+  [[plugins]]
+  repo = 'tacahiroy/ctrlp-funky'
+  [[plugins]]
+  repo = 'suy/vim-ctrlp-commandline'
+  [[plugins]]
+  repo = 'rking/ag.vim'
+  [[plugins]]
+  repo = 'ConradIrwin/vim-bracketed-paste'
 # }
 # Color {
   [[plugins]]
   repo = 'w0ng/vim-hybrid'
   [[plugins]]
   repo = 'nanotech/jellybeans.vim'
-  [[plugins]]
-  repo = 'ConradIrwin/vim-bracketed-paste'
   [[plugins]]
   repo = 'vim-scripts/tir_black'
   [[plugins]]
@@ -85,6 +95,4 @@
   #repo = 'plasticboy/vim-markdown'
   [[plugins]]
   repo = 'kannokanno/previm'
-  [[plugins]]
-  repo = 'tyru/open-browser.vim'
 # }
