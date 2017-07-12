@@ -4,7 +4,7 @@
   [[plugins]]
   repo = 'Shougo/neosnippet'
   [[plugins]]
-  repo = 'Shougo/neocomplcache'
+  repo = 'Shougo/neocomplete'
   [[plugins]]
   repo = 'kana/vim-operator-user'
   [[plugins]]

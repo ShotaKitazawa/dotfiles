@@ -26,11 +26,3 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 """""""""""""""""""""""""""""
-
-" neocomplcache
-"""""""""""""""""""""""""""""
-if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
-"""""""""""""""""""""""""""""
