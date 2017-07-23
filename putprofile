@@ -17,7 +17,7 @@ deploylink(){
 }
 
 
-if [ "$(uname)" == 'Darwin' ]; then deploylink .inputrc; fi
+if [ "$(uname)" = 'Darwin' ]; then deploylink .inputrc; fi
 deploylink .gitconfig
 deploylink .gitignore
 deploylink .tmux.conf
@@ -48,7 +48,7 @@ fi
 # install Powerline fonts for lightline.vim
 cd ~
 git clone https://github.com/powerline/fonts.git > /dev/null 2>&1
-if [ $? == 0 ]; then
+if [ $? = 0 ]; then
   cd fonts
   ./install.sh > /dev/null
   cd ..
