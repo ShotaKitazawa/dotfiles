@@ -24,6 +24,7 @@ deploylink .tmux.conf
 deploylink .vim
 deploylink .bashrc_self
 deploylink .gdbinit
+deploylink .config
 
 # let .bashrc read .bashrc_self
 
