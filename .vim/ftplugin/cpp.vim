@@ -1,5 +1,6 @@
 set cindent
 map ,x <Plug>(operator-clang-format)
+let g:auto_save = 0
 
 """""""""""""""""""""""""""""
 " vim-clng-format
