@@ -136,6 +136,11 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 """""""""""""""""""""""""""""
 
+" Shougo/neosnippet.vim
+"""""""""""""""""""""""""""""
+let g:neosnippet#snippets_directory='~/.cache/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets'
+"""""""""""""""""""""""""""""
+
 " Color
 """""""""""""""""""""""""""""
 colorscheme hybrid
