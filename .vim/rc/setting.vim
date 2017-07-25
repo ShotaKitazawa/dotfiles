@@ -111,22 +111,24 @@ nnoremap <space>. :<c-u>new ~/.vim/vimrc<CR>
 noremap <C-c> <ESC>
 " j*2 で ESC
 inoremap jj <ESC>
-" Syntax Highlight
-autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
-autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
 " 不可視文字を表示する
 set list
 " タブを >--- で表示
 set listchars=tab:>-
 " 入力中のコマンドを表示する
 set showcmd
-" 前回のカーソル位置の復元
-autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
 " number,mouse=a --> nonumber,mouse=
 nnoremap fm :set nonumber<CR>:set mouse=<CR>
 " number,mouse=a <-- nonumber,mouse=
 nnoremap ff :set number<CR>:set mouse=a<CR>
+" :tmp > :Template
+nnoremap :tmp :Template
 
+" 前回のカーソル位置の復元
+autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
+" Syntax Highlight
+autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
+autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
 
 " TODO: irc の NOTICE にハイライト (RAT)
 """""""""""""""""""""""""""""

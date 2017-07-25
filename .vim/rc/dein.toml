@@ -1,10 +1,12 @@
 # 補完
-  [[plugins]]
-  repo = 'Shougo/neosnippet'
-  [[plugins]]
-  repo = 'Shougo/neosnippet-snippets'
+  #[[plugins]]
+  #repo = 'Shougo/neosnippet'
+  #[[plugins]]
+  #repo = 'Shougo/neosnippet-snippets'
   [[plugins]]
   repo = 'Shougo/context_filetype.vim'
+  [[plugins]]
+  repo = 'mattn/sonictemplate-vim'
 # 窓移動系
   [[plugins]]
   repo = 'kana/vim-operator-user'

@@ -216,3 +216,10 @@ if executable('ag') " agが使える環境の場合
   let g:ctrlp_user_command='ag %s -i --hidden -g ""' " 「ag」の検索設定
 endif
 """""""""""""""""""""""""""""
+
+" mattn/sonictemplate-vim
+"""""""""""""""""""""""""""""
+let g:sonictemplate_vim_template_dir = [
+      \ '~/.cache/sonictemplate'
+      \]
+"""""""""""""""""""""""""""""

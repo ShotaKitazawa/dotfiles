@@ -7,6 +7,7 @@ source ~/.vim/rc/setting.vim
 
 " neovim setting
 if has('nvim')
+  tnoremap <silent> <ESC> <C-\><C-n>
 endif
 
 " macvim setting
