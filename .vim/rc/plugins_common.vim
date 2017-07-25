@@ -39,6 +39,19 @@ if dein#check_install()
 endif
 """"""""""""""""""""""""""""""
 
+" Shougo/neosnippet
+"""""""""""""""""""""""""""""
+imap <silent>L     <Plug>(neosnippet_jump_or_expand)
+smap <silent>L     <Plug>(neosnippet_jump_or_expand)
+xmap <silent>L     <Plug>(neosnippet_expand_target)
+
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#enable_completed_snippet = 1
+let g:neosnippet#expand_word_boundary = 1
+
+let g:neosnippet#snippets_directory = '~/.vim/snippets'
+"""""""""""""""""""""""""""""
+
 " Shougo/deoplete.vim
 """""""""""""""""""""""""""""
 " https://github.com/Shougo/shougo-s-github/blob/master/vim/rc/plugins/deoplete.rc.vim
@@ -283,5 +296,3 @@ if executable('ag') " agが使える環境の場合
   let g:ctrlp_user_command='ag %s -i --hidden -g ""' " 「ag」の検索設定
 endif
 """""""""""""""""""""""""""""
-
-

@@ -1,7 +1,7 @@
 filetype off
 
 " common setting
-runtime! rc/plugins.vim
+runtime! rc/plugins_common.vim
 runtime! rc/color.vim
 runtime! rc/setting.vim
 

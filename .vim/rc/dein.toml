@@ -1,10 +1,10 @@
 # 補完
-#[[plugins]]
-#repo = 'Shougo/neocomplete'
   [[plugins]]
   repo = 'Shougo/neosnippet'
   [[plugins]]
   repo = 'Shougo/neosnippet-snippets'
+  [[plugins]]
+  repo = 'Shougo/context_filetype.vim'
 # 窓移動系
   [[plugins]]
   repo = 'kana/vim-operator-user'
@@ -15,6 +15,8 @@
   repo = 'Shougo/unite.vim'
   [[plugins]]
   repo = 'scrooloose/nerdtree'
+  [[plugins]]
+  repo = 'scrooloose/syntastic'
   [[plugins]]
   repo = 'ctrlpvim/ctrlp.vim'
   [[plugins]]
@@ -55,6 +57,8 @@
   repo = 'vim-scripts/AnsiEsc.vim'
 # Color
   [[plugins]]
+  repo = 'joshdick/onedark.vim'
+  [[plugins]]
   repo = 'w0ng/vim-hybrid'
   [[plugins]]
   repo = 'nanotech/jellybeans.vim'
@@ -64,36 +68,3 @@
   repo = 'tomasr/molokai'
   [[plugins]]
   repo = 'vim-scripts/Wombat'
-# C++
-  [[plugins]]
-  repo = 'thinca/vim-quickrun'
-  [[plugins]]
-  repo = 'rhysd/vim-clang-format'
-  [[plugins]]
-  repo = 'Shougo/neoinclude.vim'
-# Python
-  [[plugins]]
-  repo = 'davidhalter/jedi-vim'
-  #[[plugins]]
-  #repo = 'kevinw/pyflakes-vim'
-# Go
-  #[[plugins]]
-  #repo = 'vim-jp/vim-go-extra'
-  [[plugins]]
-    repo = 'fatih/vim-go'
-  [[plugins]]
-    repo = 'scrooloose/syntastic'
-# HTML
-  [[plugins]]
-  repo = 'mattn/emmet-vim'
-# CSS
-  [[plugins]]
-  repo = 'hail2u/vim-css3-syntax'
-# JavaScript
-  [[plugins]]
-  repo = 'pangloss/vim-javascript'
-# Markdown
-  #[[plugins]]
-  #repo = 'plasticboy/vim-markdown'
-  [[plugins]]
-  repo = 'kannokanno/previm'
