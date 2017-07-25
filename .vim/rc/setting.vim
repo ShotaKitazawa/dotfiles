@@ -38,6 +38,8 @@ augroup END
 syntax enable
 " vi 互換の動作を無効
 set nocompatible
+" クリップボードを共有する
+set clipboard+=unnamedplus
 " UTF-8
 set encoding=utf-8
 " 検索時、小文字 > 大文字小文字にマッチ、大文字 > 大文字のみにマッチ
@@ -120,7 +122,15 @@ set listchars=tab:>-
 set showcmd
 " 前回のカーソル位置の復元
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
+" number,mouse=a --> nonumber,mouse=
+nnoremap fm :set nonumber<CR>:set mouse=<CR>
+" number,mouse=a <-- nonumber,mouse=
+nnoremap ff :set number<CR>:set mouse=a<CR>
+
 
 " TODO: irc の NOTICE にハイライト (RAT)
 """""""""""""""""""""""""""""
 
+if has('number')
+  echo "test"
+endif

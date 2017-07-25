@@ -1,9 +1,9 @@
 filetype off
 
 " common setting
-runtime! rc/plugins_common.vim
-runtime! rc/color.vim
-runtime! rc/setting.vim
+source ~/.vim/rc/plugins_common.vim
+source ~/.vim/rc/color.vim
+source ~/.vim/rc/setting.vim
 
 " neovim setting
 if has('nvim')
