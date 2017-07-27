@@ -41,9 +41,9 @@ endif
 
 " Shougo/neosnippet
 """""""""""""""""""""""""""""
-imap <silent>L     <Plug>(neosnippet_jump_or_expand)
-smap <silent>L     <Plug>(neosnippet_jump_or_expand)
-xmap <silent>L     <Plug>(neosnippet_expand_target)
+"imap <silent>L     <Plug>(neosnippet_jump_or_expand)
+"smap <silent>L     <Plug>(neosnippet_jump_or_expand)
+"xmap <silent>L     <Plug>(neosnippet_expand_target)
 
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#enable_completed_snippet = 1
