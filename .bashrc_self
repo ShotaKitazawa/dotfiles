@@ -1,5 +1,5 @@
 PS1='\h:\W \u\$ '
-which nvim > /dev/null
+which nvim > /dev/null 2>&1
 if [ $? == 0 ]; then alias vi=nvim; alias vim=nvim; fi
 alias ssh-keyadd="ssh-add ~/.ssh/id_rsa*"
 alias ssh-showpub="ssh-keygen -yf"
