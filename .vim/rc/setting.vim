@@ -47,7 +47,7 @@ set ignorecase
 set smartcase
 " 行をまたいで BS 可能
 set backspace=indent,eol,start
-"" undofile の作成、~/.vimundo/ 以下に保存
+" undofile の作成、~/.vimundo/ 以下に保存
 set undofile
 set undodir=~/.vimundo/
 " スワップファイルを作らない
