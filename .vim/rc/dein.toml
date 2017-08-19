@@ -45,6 +45,9 @@
 # 貼り付け時ペーストモードに
   [[plugins]]
   repo = 'ConradIrwin/vim-bracketed-paste'
+# ssh 先も p でクリップボード共有
+  [[plugins]]
+  repo = 'haya14busa/vim-poweryank'
 # 日本語の w, b, e 移動補助
   [[plugins]]
   repo = 'deton/jasegment.vim'

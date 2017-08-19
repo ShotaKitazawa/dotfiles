@@ -223,3 +223,8 @@ let g:sonictemplate_vim_template_dir = [
       \ '~/.cache/sonictemplate'
       \]
 """""""""""""""""""""""""""""
+
+" haya14busa/vim-poweryank
+"""""""""""""""""""""""""""""
+"map <Leader>y <Plug>(operator-poweryank-osc52)
+"""""""""""""""""""""""""""""
