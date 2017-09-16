@@ -72,6 +72,8 @@ set mouse=a
 set cindent
 " TAB をスペースにする
 set expandtab
+" タブを常に表示
+set showtabline=2
 " インデント幅 2
 set shiftwidth=2
 " タブ幅 2

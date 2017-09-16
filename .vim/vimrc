@@ -12,13 +12,14 @@ endif
 
 " macvim setting
 if has('gui_macvim')
-  set background=dark
+  "au GUIEnter * set fullscreen
   silent! colorscheme jellybeans
-  set showtabline=2  " タブを常に表示
+  set background=dark
+  set number
   set imdisable  " IMを無効化
+  set guifont=Monaco:h18
   set transparency=10  " 透明度を指定
   set antialias
-  set guifont=Monaco:h18
   set fuoptions=maxvert,maxhorz
   noremap <D-v> p
   noremap <C-v> <C-v>

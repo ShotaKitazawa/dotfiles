@@ -1,10 +1,12 @@
 [user]
-	name = ShotaKitazawa
-	email = skitazawa1121@gmail.com
+  name = ShotaKitazawa
+  email = skitazawa1121@gmail.com
 [push]
-	default = tracking
+  default = tracking
 [core]
-	excludesfile = ~/.gitignore
-	autocrlf = input
+  excludesfile = ~/.gitignore
+  autocrlf = input
 [http]
-	sslVerify = false
+  sslVerify = false
+[alias]
+  graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
