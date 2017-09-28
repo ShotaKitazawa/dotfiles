@@ -16,22 +16,6 @@ if has('syntax')
 endif
 """"""""""""""""""""""""""""""
 
-" http://d.hatena.ne.jp/rdera/20081022/1224682665
-""""""""""""""""""""""""""""""
-" バイナリ編集(xxd)モード（vim -b での起動、もしくは *.bin ファイルを開くと発動します）
-""""""""""""""""""""""""""""""
-augroup BinaryXXD
-  autocmd!
-  autocmd BufReadPre  *.bin let &binary =1
-  "autocmd BufReadPre  *.sys let &binary =1
-  autocmd BufReadPost * if &binary | silent %!xxd -g 1
-  autocmd BufReadPost * set ft=xxd | endif
-  autocmd BufWritePre * if &binary | %!xxd -r | endif
-  autocmd BufWritePost * if &binary | silent %!xxd -g 1
-  autocmd BufWritePost * set nomod | endif
-augroup END
-""""""""""""""""""""""""""""""
-
 " Other setting (not plugin)
 """""""""""""""""""""""""""""
 " :source $VIMRUNTIME/syntax/syntax.vim
@@ -97,10 +81,6 @@ noremap <C-a> ^
 noremap <C-l> <C-y>
 noremap <C-h> <C-e>
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
-nnoremap j gj
-nnoremap k gk
-nnoremap <down> gj
-nnoremap <up> gk
 " PP で Visual モードでペーストする時連続コピペ可能
 noremap PP "0p
 " x でも字を消した時クリップボードに保存しない
@@ -119,18 +99,9 @@ set list
 set listchars=tab:>-
 " 入力中のコマンドを表示する
 set showcmd
-" number,mouse=a --> nonumber,mouse=
-nnoremap fm :set nonumber<CR>:set mouse=<CR>
-" number,mouse=a <-- nonumber,mouse=
-nnoremap ff :set number<CR>:set mouse=a<CR>
-" :tmp > :Template
-nnoremap :tmp :Template
 
 " 前回のカーソル位置の復元
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
 " Syntax Highlight
 autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
 autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
-
-" TODO: irc の NOTICE にハイライト (RAT)
-"""""""""""""""""""""""""""""

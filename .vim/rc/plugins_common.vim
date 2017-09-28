@@ -226,5 +226,5 @@ let g:sonictemplate_vim_template_dir = [
 
 " haya14busa/vim-poweryank
 """""""""""""""""""""""""""""
-"map <Leader>y <Plug>(operator-poweryank-osc52)
+map <Leader>y <Plug>(operator-poweryank-osc52)
 """""""""""""""""""""""""""""
