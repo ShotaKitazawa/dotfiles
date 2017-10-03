@@ -1,0 +1,40 @@
+2017-09-29 11:19:46 INFO logger.py:126 Log level: INFO
+2017-09-29 11:19:46 INFO main.py:252 GNS3 GUI version 2.0.3
+2017-09-29 11:19:46 INFO main.py:253 Copyright (c) 2007-2017 GNS3 Technologies Inc.
+2017-09-29 11:19:46 INFO main.py:255 Application started with /Applications/GNS3.app/Contents/MacOS/gns3
+2017-09-29 11:19:46 INFO local_config.py:405 Section GraphicsView has missing default values. Adding keys  Saving configuration
+2017-09-29 11:19:46 INFO local_config.py:299 Configuration save to /Users/admin/.config/GNS3/gns3_gui.conf
+2017-09-29 11:19:47 INFO http_client.py:312 Connection to http://127.0.0.1:3080
+2017-09-29 11:19:47 INFO local_config.py:405 Section VPCS has missing default values. Adding keys  Saving configuration
+2017-09-29 11:19:47 INFO local_config.py:299 Configuration save to /Users/admin/.config/GNS3/gns3_gui.conf
+2017-09-29 11:19:47 INFO local_config.py:405 Section Dynamips has missing default values. Adding keys  Saving configuration
+2017-09-29 11:19:47 INFO local_config.py:299 Configuration save to /Users/admin/.config/GNS3/gns3_gui.conf
+2017-09-29 11:19:47 INFO local_config.py:405 Section IOU has missing default values. Adding keys  Saving configuration
+2017-09-29 11:19:47 INFO local_config.py:299 Configuration save to /Users/admin/.config/GNS3/gns3_gui.conf
+2017-09-29 11:19:47 INFO local_config.py:405 Section Qemu has missing default values. Adding keys  Saving configuration
+2017-09-29 11:19:47 INFO local_config.py:299 Configuration save to /Users/admin/.config/GNS3/gns3_gui.conf
+2017-09-29 11:19:47 INFO local_config.py:405 Section VirtualBox has missing default values. Adding keys  Saving configuration
+2017-09-29 11:19:47 INFO local_config.py:299 Configuration save to /Users/admin/.config/GNS3/gns3_gui.conf
+2017-09-29 11:19:47 INFO local_config.py:405 Section VMware has missing default values. Adding keys  Saving configuration
+2017-09-29 11:19:47 INFO local_config.py:299 Configuration save to /Users/admin/.config/GNS3/gns3_gui.conf
+2017-09-29 11:19:47 INFO local_config.py:405 Section Docker has missing default values. Adding keys  Saving configuration
+2017-09-29 11:19:47 INFO local_config.py:299 Configuration save to /Users/admin/.config/GNS3/gns3_gui.conf
+2017-09-29 11:20:28 INFO sudo.py:54 Execute as admin: osascript -e do shell script "chown root:admin /Applications/GNS3.app/Contents/Resources/ubridge && chmod 4750 /Applications/GNS3.app/Contents/Resources/ubridge" with administrator privileges
+2017-09-29 11:20:40 INFO local_server.py:470 Starting local server process with "/Applications/GNS3.app/Contents/MacOS/gns3server" --local --log="/Users/admin/.config/GNS3/gns3_server.log" --pid="/Users/admin/.config/GNS3/gns3_server.pid"
+2017-09-29 11:20:40 INFO local_server.py:483 Local server process has started (PID=98158)
+2017-09-29 11:20:41 INFO http_client.py:312 Connection to http://127.0.0.1:3080
+2017-09-29 11:20:41 INFO http_client.py:312 Connection to http://127.0.0.1:3080
+2017-09-29 11:20:41 INFO local_config.py:423 Section MainWindow has changed. Saving configuration
+2017-09-29 11:20:41 INFO local_config.py:299 Configuration save to /Users/admin/.config/GNS3/gns3_gui.conf
+2017-09-29 11:20:56 INFO local_config.py:405 Section PacketCapture has missing default values. Adding keys  Saving configuration
+2017-09-29 11:20:56 INFO local_config.py:299 Configuration save to /Users/admin/.config/GNS3/gns3_gui.conf
+2017-09-29 11:23:42 CRITICAL __init__.py:230 Sorry, this is not a valid IOS image!
+2017-09-29 11:23:46 CRITICAL __init__.py:230 Sorry, this is not a valid IOS image!
+2017-09-29 19:05:57 WARNING __init__.py:219 You have unsaved preferences in IOS routers.
+
+Continue without saving?
+2017-09-29 19:05:58 INFO local_config.py:423 Section MainWindow has changed. Saving configuration
+2017-09-29 19:05:58 INFO local_config.py:299 Configuration save to /Users/admin/.config/GNS3/gns3_gui.conf
+2017-09-29 19:06:01 INFO local_config.py:423 Section MainWindow has changed. Saving configuration
+2017-09-29 19:06:01 INFO local_config.py:299 Configuration save to /Users/admin/.config/GNS3/gns3_gui.conf
+2017-09-29 19:06:01 INFO local_server.py:542 Stopping local server (PID=98158)
