@@ -21,7 +21,8 @@ if [ "$(uname)" == 'Darwin' ]; then
   alias updatedb='sudo /usr/libexec/locate.updatedb'
   # Slideshare can't display Japanese font. (created from Keynote)
   alias pdfconv="LANG=C LC_ALL=C sed -i '' s'|/Registry (Adobe) /Ordering (Japan1) /Supplement [0-9]|/Registry(Adobe) /Ordering(Identity) /Supplement 0|g'"
-  alias vls="/Applications/VLC.app/Contents/MacOS/VLC"
+  alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
+  alias wma2mp3='if [ ! -d mp3 ];then mkdir mp3; fi; for i in *; do vlc -I dummy --sout "#transcode{acodec=mp3,ab=128,channels=2,samplerate=44100}:std{access=file,mux=raw,dst=\"mp3/${i}.mp3\"}" "${i}" vlc://quit; done'
   export PATH=$PATH:~/bin
   export PATH=/usr/local/bin:$PATH
   export PATH=$PATH:/Applications/MacVim.app/Contents/MacOS/
