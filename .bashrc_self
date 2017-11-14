@@ -1,9 +1,6 @@
 # PS1
 #PS1='\h:\W \u\$ '
-git_branch() {
-  echo $(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p")
-}
-export PS1='\h:\W \u [$(git_branch)\[\033[0m\]] \n$ '
+export PS1='\u@\H: \W$(BRANCH=$(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p"); if [ "$BRANCH" != "" ]; then if [ "$BRANCH" = "master" ]; then echo "\[\e[31m\][$BRANCH]"; else echo "\[\e[33m\][$BRANCH]"; fi; fi)\[\e[0m\]\n\$ '
 
 # vim
 which nvim > /dev/null 2>&1
