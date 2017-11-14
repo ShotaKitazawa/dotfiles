@@ -25,6 +25,7 @@ deploylink .vim
 deploylink .bashrc_self
 deploylink .gdbinit
 deploylink .config
+deploylink .vrapperrc
 
 # let .bashrc read .bashrc_self
 
