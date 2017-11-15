@@ -1,7 +1,7 @@
 # PS1
 #PS1='\h:\W \u\$ '
 # cannot use "sh"
-export PS1='[\e[0m\]$(if [ "$(whoami)" = "root" ]; then echo "\[\e[0;31m\]"; fi)\u\[\e[0;0m\]@\H: \w]$(BRANCH=$(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p"); if [ "$BRANCH" != "" ]; then if [ "$BRANCH" = "master" ]; then echo " \[\e[0;31m\]<$BRANCH>"; else echo "\[\e[0;33m\] <$BRANCH>"; fi; fi)\[\e[0m\] \[\e[0;32m\]now->\t\[\e[0m\]\n\[\e[0;36m\]>\[\e[0;35m\]>\[\e[0;32m\]>\[\e[0m\] '
+export PS1='\[\e[32m\][$(if [ "$(whoami)" = "root" ]; then echo "\[\e[31m\]"; else echo "\[\e[33m\]"; fi)\u\[\e[32m\]@\H: \w]$(BRANCH=$(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p"); if [ "$BRANCH" != "" ]; then if [ "$BRANCH" = "master" ]; then echo " \[\e[31m\]<$BRANCH>"; else echo "\[\e[33m\] <$BRANCH>"; fi; fi)\[\e[0m\] \[\e[32m\]now->\t\[\e[0m\]\n\[\e[36m\]>\[\e[35m\]>\[\e[32m\]>\[\e[0m\] '
 
 # vim
 which nvim > /dev/null 2>&1
