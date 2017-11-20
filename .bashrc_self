@@ -19,6 +19,9 @@ alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
 export STUID=15k0112
 export EDITOR=vim
 export PYTHONPATH="~/.twitter:$PYTHONPATH"
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:~/bin
 bind '"\C-f": forward-word'
 bind '"\C-b": backward-word'
 ulimit -c unlimited
@@ -35,7 +38,6 @@ if [ "$(uname)" == 'Darwin' ]; then
   alias pdfconv="LANG=C LC_ALL=C sed -i '' s'|/Registry (Adobe) /Ordering (Japan1) /Supplement [0-9]|/Registry(Adobe) /Ordering(Identity) /Supplement 0|g'"
   alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
   alias wma2mp3='if [ ! -d mp3 ];then mkdir mp3; fi; for i in *; do vlc -I dummy --sout "#transcode{acodec=mp3,ab=128,channels=2,samplerate=44100}:std{access=file,mux=raw,dst=\"mp3/${i}.mp3\"}" "${i}" vlc://quit; done'
-  export PATH=$PATH:~/bin
   export PATH=/usr/local/bin:$PATH
   export LANG=ja_JP.UTF-8
   export LESSCHARSET=utf-8
