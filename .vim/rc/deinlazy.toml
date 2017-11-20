@@ -11,18 +11,22 @@
   repo = 'Shougo/neoinclude.vim'
   on_ft = ['c', 'cpp']
 
+#  [[plugins]]
+#  repo = 'zchee/deoplete-clang'
+#  on_ft = ['c', 'cpp']
+
 # Python
   [[plugins]]
   repo = 'davidhalter/jedi-vim'
   on_ft = 'python'
 
-  #[[plugins]]
-  #repo = 'kevinw/pyflakes-vim'
+#  [[plugins]]
+#  repo = 'kevinw/pyflakes-vim'
 
 # Go
-  #[[plugins]]
-  #repo = 'vim-jp/vim-go-extra'
-  #on_ft = 'go'
+#  [[plugins]]
+#  repo = 'vim-jp/vim-go-extra'
+#  on_ft = 'go'
 
   [[plugins]]
   repo = 'fatih/vim-go'
@@ -48,9 +52,9 @@
   on_ft = 'javascript'
 
 # Markdown
-  #[[plugins]]
-  #repo = 'plasticboy/vim-markdown'
-  #on_ft = 'markdown'
+#  [[plugins]]
+#  repo = 'plasticboy/vim-markdown'
+#  on_ft = 'markdown'
 
   [[plugins]]
   repo = 'kannokanno/previm'
