@@ -70,3 +70,8 @@ elif [ "$(uname)" == 'FreeBSD' ]; then
   alias lll='ls -alG'
   alias updatedb='/usr/libexec/locate.updatedb'
 fi
+
+# for tmux
+get_load_average_tmux(){
+  echo "(#[fg=yellow]$(uptime | awk '{print $(NF-2)}')#[default]) "
+}
