@@ -6,7 +6,7 @@ export PS1='$(BRANCH=$(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)
 
 # vim
 which nvim > /dev/null 2>&1
-if [ $? = 0 ]; then alias vi=nvim; alias vim=nvim; fi
+if [ $? = 0 ]; then alias vim=nvim; fi
 
 # alias
 alias rm="rm -i"
