@@ -32,6 +32,73 @@ augroup BinaryXXD
 augroup END
 """"""""""""""""""""""""""""""
 
+" Status Line
+"""""""""""""""""""""""""""""
+" ファイル名表示
+set statusline=%F
+" Git
+set statusline+=%{fugitive#statusline()}
+" 変更チェック表示
+set statusline+=%m
+" 読み込み専用かどうか表示
+set statusline+=%r
+" ヘルプページなら[HELP]と表示
+set statusline+=%h
+" プレビューウインドウなら[Prevew]と表示
+set statusline+=%w
+" これ以降は右寄せ表示
+set statusline+=%=
+" file encoding
+set statusline+=[ENC=%{&fileencoding}]
+" 現在行数/全行数
+set statusline+=[LOW=%l/%L]
+" ステータスラインを常に表示(0:表示しない、1:2つ以上ウィンドウがある時だけ表示)
+set laststatus=2
+"""""""""""""""""""""""""""""
+
+
+" 窓関係
+"""""""""""""""""""""""""""""
+" http://nanasi.jp/articles/howto/file/expand.html
+"""""""""""""""""""""""""""""
+" s キーを無効化
+nnoremap s <Nop>
+" s[h|j|k|l] で窓移動
+nnoremap sj <C-w>j
+noremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+" s[H|J|K|L] で窓移動&入れ替え
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+" s[n|p] でタブ移動
+nnoremap sn gt
+nnoremap sp gT
+"
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+" 次窓へ移動
+nnoremap sw <C-w>w
+" 自窓を縦に最大拡張
+nnoremap so <C-w>_<C-w>|
+" 各窓を均等にする
+nnoremap sO <C-w>=
+" 新タブ作成
+nnoremap st :<C-u>tabnew<CR>
+" 縦に新窓作成
+nnoremap ss :<C-u>sp<CR>
+" 横に新窓作成
+nnoremap sv :<C-u>vs<CR>
+" 1窓終了
+nnoremap sq :<C-u>q<CR>
+" 全窓終了
+nnoremap sQ :<C-u>bd<CR>
+
+
 " Other setting (not plugin)
 """""""""""""""""""""""""""""
 " :source $VIMRUNTIME/syntax/syntax.vim
@@ -111,8 +178,6 @@ noremap <ESC><ESC> :noh<CR>
 nnoremap <space>. :<c-u>new ~/.vim/vimrc<CR>
 " C-c で ESC
 noremap <C-c> <ESC>
-" j*2 で ESC
-inoremap jj <ESC>
 " 不可視文字を表示する
 set list
 " タブを >--- で表示

@@ -10,3 +10,8 @@
   sslVerify = false
 [alias]
   graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+[color]
+  branch = always
+  diff = always
+  status = always
+  interactive = always

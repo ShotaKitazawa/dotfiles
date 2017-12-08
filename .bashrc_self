@@ -1,18 +1,33 @@
-PS1='\h:\W \u\$ '
-which nvim > /dev/null 2>&1; if [ $? = 0 ]; then alias vi=nvim; alias vim=nvim; fi
+# PS1
+#PS1='\h:\W \u\$ '
+# cannot use "sh"
+#export PS1='\[\e[32m\][$(if [ "$(whoami)" = "root" ]; then echo "\[\e[31m\]"; else echo "\[\e[33m\]"; fi)\u\[\e[32m\]@\H: \w]$(BRANCH=$(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p"); if [ "$BRANCH" != "" ]; then if [ "$BRANCH" = "master" ]; then echo " \[\e[31m\]<$BRANCH>"; else echo "\[\e[33m\] <$BRANCH>"; fi; fi)\[\e[0m\] \[\e[32m\]now->\t\[\e[0m\]\n\[\e[36m\]>\[\e[35m\]>\[\e[32m\]>\[\e[0m\] '
+export PS1='$(BRANCH=$(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p"); if [ "$BRANCH" != "" ]; then if [ "$BRANCH" = "master" ]; then echo "\[\e[32m\]<\[\e[31m\]$BRANCH\[\e[32m\]>"; else echo "\[\e[32m\]<\[\e[33m\]$BRANCH\[\e[32m\]>"; fi; fi)\[\e[32m\][$(if [ "$(whoami)" = "root" ]; then echo "\[\e[31m\]"; fi)\u\[\e[32m\]@\h: \W]\[\e[0m\]\$ '
+
+# vim
+which nvim > /dev/null 2>&1
+if [ $? = 0 ]; then alias vim=nvim; fi
+
+# alias
 alias rm="rm -i"
 alias cp="cp -i"
 alias ssh-keyadd="ssh-add ~/.ssh/id_rsa*"
 alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
-#export LANG=ja_JP.UTF-8
+
+# environment variable
 export STUID=15k0112
 export EDITOR=vim
 export PYTHONPATH="~/.twitter:$PYTHONPATH"
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:~/bin
 bind '"\C-f": forward-word'
 bind '"\C-b": backward-word'
 ulimit -c unlimited
+if [ "$SHELL" = "/bin/bash" ];then stty stop undef; fi
 
+# for each OS
 if [ "$(uname)" == 'Darwin' ]; then
   OS='Mac'
   alias l='ls'
@@ -21,13 +36,20 @@ if [ "$(uname)" == 'Darwin' ]; then
   alias updatedb='sudo /usr/libexec/locate.updatedb'
   # Slideshare can't display Japanese font. (created from Keynote)
   alias pdfconv="LANG=C LC_ALL=C sed -i '' s'|/Registry (Adobe) /Ordering (Japan1) /Supplement [0-9]|/Registry(Adobe) /Ordering(Identity) /Supplement 0|g'"
-  export PATH=$PATH:~/bin
+  alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
+  alias wma2mp3='if [ ! -d mp3 ];then mkdir mp3; fi; for i in *; do vlc -I dummy --sout "#transcode{acodec=mp3,ab=128,channels=2,samplerate=44100}:std{access=file,mux=raw,dst=\"mp3/${i}.mp3\"}" "${i}" vlc://quit; done'
   export PATH=/usr/local/bin:$PATH
-  export PATH=$PATH:/Applications/MacVim.app/Contents/MacOS/
   export LANG=ja_JP.UTF-8
   export LESSCHARSET=utf-8
-  source /usr/local/etc/bash_completion.d/git-prompt.sh
-  source /usr/local/etc/bash_completion.d/git-completion.bash
+  if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
+    . /usr/local/etc/bash_completion.d/git-prompt.sh
+  fi
+  if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ];then
+    . /usr/local/etc/bash_completion.d/git-completion.bash
+  fi
+  if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+  fi
   if [ -f /Applications/MacVim.app/Contents/Resources/vim/vimrc ];then
     mv /Applications/MacVim.app/Contents/Resources/vim/vimrc{,.default}
   fi
@@ -48,3 +70,8 @@ elif [ "$(uname)" == 'FreeBSD' ]; then
   alias lll='ls -alG'
   alias updatedb='/usr/libexec/locate.updatedb'
 fi
+
+# for tmux
+get_load_average_tmux(){
+  echo "(#[fg=yellow]$(uptime | awk '{print $(NF-2)}')#[default]) "
+}
