@@ -1,9 +1,11 @@
 " Color
 """""""""""""""""""""""""""""
-colorscheme hybrid
-"colorscheme jellybeans
 "colorscheme molokai
 "colorscheme wombat
+if !has('kaoriya') && !has('win32unix')
+  colorscheme hybrid
+  "colorscheme jellybeans
+endif
 " 行番号の色
 autocmd ColorScheme * highlight LineNr ctermfg=30
 """""""""""""""""""""""""""""

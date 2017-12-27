@@ -36,8 +36,6 @@ augroup END
 """""""""""""""""""""""""""""
 " ファイル名表示
 set statusline=%F
-" Git
-set statusline+=%{fugitive#statusline()}
 " 変更チェック表示
 set statusline+=%m
 " 読み込み専用かどうか表示

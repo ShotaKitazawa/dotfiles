@@ -171,3 +171,8 @@ let g:sonictemplate_vim_template_dir = [
 """""""""""""""""""""""""""""
 map <Leader>y <Plug>(operator-poweryank-osc52)
 """""""""""""""""""""""""""""
+
+" Status Line
+"""""""""""""""""""""""""""""
+" Git
+set statusline+=%{fugitive#statusline()}
