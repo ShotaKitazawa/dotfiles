@@ -2,7 +2,9 @@ set nocompatible
 filetype off
 
 " common setting
-source ~/.vim/rc/plugins_common.vim
+if !has('kaoriya') && !has('win32unix')
+  source ~/.vim/rc/plugins_common.vim
+endif
 source ~/.vim/rc/color.vim
 source ~/.vim/rc/setting.vim
 
