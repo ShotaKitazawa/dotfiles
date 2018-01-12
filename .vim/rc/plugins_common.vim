@@ -129,6 +129,12 @@ nnoremap :gb :Gblame
 nnoremap :gd :Gdiff
 """"""""""""""""""""""""""""""
 
+" hotwatermorning/auto-git-diff
+"""""""""""""""""""""""""""""
+let g:auto_git_diff_disable_auto_update = 1
+nmap <Leader>gd <Plug>(auto_git_diff_manual_update)
+"""""""""""""""""""""""""""""
+
 """"""""""""""""""""""""""""""
 " plasticboy/vim-markdown + kannokanno/previm + tyru/open-browser.vim
 """"""""""""""""""""""""""""""
