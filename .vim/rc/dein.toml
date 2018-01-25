@@ -42,6 +42,8 @@
 # Git
   [[plugins]]
   repo = 'tpope/vim-fugitive'
+  [[plugins]]
+  repo = 'hotwatermorning/auto-git-diff'
 # 貼り付け時ペーストモードに
   [[plugins]]
   repo = 'ConradIrwin/vim-bracketed-paste'
