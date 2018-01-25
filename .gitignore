@@ -8,7 +8,3 @@ core.*
 peda-*
 
 __pycache__/
-test*.py
-settings.py
-your_usercred.txt
-yourapp_clientcred.txt
