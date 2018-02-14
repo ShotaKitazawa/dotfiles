@@ -14,7 +14,8 @@ if has('nvim')
 endif
 
 " macvim setting
-if has('gui_macvim')
+"if has('gui_macvim')
+if has('macvim')
   "au GUIEnter * set fullscreen
   silent! colorscheme jellybeans
   set background=dark
