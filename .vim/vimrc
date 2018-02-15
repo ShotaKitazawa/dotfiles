@@ -14,17 +14,16 @@ if has('nvim')
 endif
 
 " macvim setting
-"if has('gui_macvim')
-if has('macvim')
+if has('macvim') || has('gui_macvim')
   "au GUIEnter * set fullscreen
   silent! colorscheme jellybeans
   set background=dark
+  set fuoptions=maxvert,maxhorz
   set number
   set imdisable  " IMを無効化
   set guifont=Monaco:h18
   set transparency=10  " 透明度を指定
   set antialias
-  set fuoptions=maxvert,maxhorz
   noremap <D-v> p
   noremap <C-v> <C-v>
   noremap <C-f> <C-f>
