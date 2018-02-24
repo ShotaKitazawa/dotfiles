@@ -1,5 +1,7 @@
-set nocompatible
-filetype off
+if has('mac')
+  set nocompatible
+  filetype off
+endif
 
 " common setting
 if !has('kaoriya') && !has('win32unix')
