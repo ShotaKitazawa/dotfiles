@@ -97,7 +97,7 @@ nnoremap sq :<C-u>q<CR>
 nnoremap sQ :<C-u>bd<CR>
 
 
-" Other setting (not plugin)
+" Other setting
 """""""""""""""""""""""""""""
 " :source $VIMRUNTIME/syntax/syntax.vim
 syntax enable
@@ -149,6 +149,16 @@ set matchpairs& matchpairs+=<:>
 set matchtime=3
 " 全角記号を正しく表示
 set ambiwidth=double
+" スクリーンベル無効化
+set t_vb=
+set novisualbell
+" カーソル下の単語を * で検索
+vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
+" 検索後にジャンプした際に検索単語を画面中央に持ってくる
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
 " :w!! でrootユーザで :w しに行く
 cnoremap w!! w !sudo tee > /dev/null %
 " C-w でインクリメント
@@ -178,8 +188,8 @@ nnoremap <space>. :<c-u>new ~/.vim/vimrc<CR>
 noremap <C-c> <ESC>
 " 不可視文字を表示する
 set list
-" タブを >--- で表示
-set listchars=tab:>-
+" 不可視文字の編集
+set listchars=tab:>-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 " 入力中のコマンドを表示する
 set showcmd
 " number,mouse=a --> nonumber,mouse=
