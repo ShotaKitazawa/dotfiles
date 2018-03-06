@@ -20,8 +20,11 @@
   repo = 'davidhalter/jedi-vim'
   on_ft = 'python'
 
-#  [[plugins]]
-#  repo = 'kevinw/pyflakes-vim'
+  [[plugins]]
+  repo = 'kevinw/pyflakes-vim'
+
+  [[plugins]]
+  repo = 'nvie/vim-flake8'
 
 # Go
 #  [[plugins]]

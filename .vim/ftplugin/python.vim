@@ -30,6 +30,7 @@ endfunction
 
 " Shift + F でautopep自動修正
 nnoremap <S-f> :call Autopep8()<CR>
+"nnoremap <S-f> :call Flake8()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " http://qiita.com/tekkoc/items/923d7a7cf124e63adab5
@@ -72,6 +73,8 @@ unlet s:cpo_save
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <F5> :!python3 %<CR>
 nnoremap <F6> :!py.test --pep8 %<CR>
+let mapleader = "\<Space>"
+let g:auto_save = 0
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -87,3 +90,5 @@ hi IndentGuidesOdd  ctermbg=black
 hi IndentGuidesEven ctermbg=black
 
 let g:jedi#completions_command = "<C-n>"
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+
