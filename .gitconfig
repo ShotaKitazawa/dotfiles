@@ -7,7 +7,7 @@
   excludesfile = ~/.gitignore
   autocrlf = input
 [http]
-  sslVerify = false
+  sslVerify = true
 [alias]
   graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
 [color]
