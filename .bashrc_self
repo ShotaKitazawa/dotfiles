@@ -1,7 +1,7 @@
 # PS1
 #PS1='\h:\W \u\$ '
 # cannot use "sh"
-#export PS1='\[\e[32m\][$(if [ "$(whoami)" = "root" ]; then echo "\[\e[31m\]"; else echo "\[\e[33m\]"; fi)\u\[\e[32m\]@\H: \w]$(BRANCH=$(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p"); if [ "$BRANCH" != "" ]; then if [ "$BRANCH" = "master" ]; then echo " \[\e[31m\]<$BRANCH>"; else echo "\[\e[33m\] <$BRANCH>"; fi; fi)\[\e[0m\] \[\e[32m\]now->\t\[\e[0m\]\n\[\e[36m\]>\[\e[35m\]>\[\e[32m\]>\[\e[0m\] '
+
 export PS1='$(BRANCH=$(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p"); if [ "$BRANCH" != "" ]; then if [ "$BRANCH" = "master" ]; then echo "\[\e[32m\]<\[\e[31m\]$BRANCH\[\e[32m\]>"; else echo "\[\e[32m\]<\[\e[33m\]$BRANCH\[\e[32m\]>"; fi; fi)\[\e[32m\][$(if [ "$(whoami)" = "root" ]; then echo "\[\e[31m\]"; fi)\u\[\e[32m\]@\h: \W]\[\e[0m\]\$ '
 
 # vim
@@ -28,7 +28,7 @@ ulimit -c unlimited
 if [ "$SHELL" = "/bin/bash" ];then stty stop undef; fi
 
 # for each OS
-if [ "$(uname)" == 'Darwin' ]; then
+if [ "$(uname)" = 'Darwin' ]; then
   OS='Mac'
   alias l='ls'
   alias ll='ls -lG'
@@ -56,14 +56,17 @@ if [ "$(uname)" == 'Darwin' ]; then
   if [ -f /Applications/MacVim.app/Contents/Resources/vim/gvimrc ];then
     mv /Applications/MacVim.app/Contents/Resources/vim/gvimrc{,.default}
   fi
-elif [ "$(uname)" == 'Linux' ]; then
+elif [ "$(uname)" = 'Linux' ]; then
   OS='Linux'
   alias l='ls'
   alias ll='ls -l --color'
   alias lll='ls -al --color'
   alias gcc32='gcc -m32 -fno-stack-protector'
   alias swapsearch='grep VmSwap /proc/*/status | sort -k 2 -r | head'
-elif [ "$(uname)" == 'FreeBSD' ]; then
+  if [ "$(which cmd.exe > /dev/null 2>&1; echo $?)" = 0 ]; then
+    alias open="cmd.exe /c start"
+  fi
+elif [ "$(uname)" = 'FreeBSD' ]; then
   OS='FreeBSD'
   alias l='ls'
   alias ll='ls -lG'

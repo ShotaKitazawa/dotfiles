@@ -182,3 +182,4 @@ map <Leader>y <Plug>(operator-poweryank-osc52)
 """""""""""""""""""""""""""""
 " Git
 set statusline+=%{fugitive#statusline()}
+

@@ -1,9 +1,5 @@
 # C++
   [[plugins]]
-  repo = 'thinca/vim-quickrun'
-  on_ft = ['c', 'cpp']
-
-  [[plugins]]
   repo = 'rhysd/vim-clang-format'
   on_ft = ['c', 'cpp']
 
@@ -62,3 +58,8 @@
   [[plugins]]
   repo = 'kannokanno/previm'
   on_ft = 'markdown'
+
+# LaTeX
+  [[plugins]]
+  repo = 'lervag/vimtex'
+  on_ft = ['tex', 'latex']
