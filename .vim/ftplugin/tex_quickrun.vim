@@ -1,7 +1,7 @@
 let g:quickrun_config = {
 \   'tex': {
 \       'command': 'latexmk',
-\       'exec': ['%c -gg -pdfdvi %s', 'xdg-open %s:r.pdf'],
+\       'exec': '%c -gg -pdfdvi %s',
 \       'outputter/buffer/split': '5'
 \   },
 \}
