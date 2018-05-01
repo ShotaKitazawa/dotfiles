@@ -59,6 +59,14 @@
 # vim からブラウザを開く
   [[plugins]]
   repo = 'tyru/open-browser.vim'
+# QuickRun
+  [[plugins]]
+  repo = 'thinca/vim-quickrun'
+  [[plugins]]
+  repo = 'osyo-manga/shabadou.vim'
+# vimproc
+  [[plugins]]
+  repo = 'Shougo/vimproc'
 # ?
   [[plugins]]
   repo = 'vim-scripts/AnsiEsc.vim'

@@ -193,9 +193,9 @@ set listchars=tab:>-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 " 入力中のコマンドを表示する
 set showcmd
 " number,mouse=a --> nonumber,mouse=
-nnoremap fm :set nonumber<CR>:set mouse=<CR>
+nnoremap fm :set nonumber<CR>:set mouse=<CR>:set listchars=<CR>
 " number,mouse=a <-- nonumber,mouse=
-nnoremap ff :set number<CR>:set mouse=a<CR>
+nnoremap ff :set number<CR>:set mouse=a<CR>:set listchars=tab:>-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲<CR>
 " :tmp > :Template
 nnoremap :tmp :Template
 

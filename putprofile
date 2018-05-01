@@ -26,6 +26,7 @@ deploylink .bashrc_self
 deploylink .gdbinit
 deploylink .config
 deploylink .vrapperrc
+deploylink .latexmkrc
 
 # let .bashrc read .bashrc_self
 
