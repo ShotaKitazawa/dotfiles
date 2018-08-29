@@ -7,6 +7,6 @@ let g:quickrun_config = {
 \}
 
 " QuickRun and view compile result quickly (but don't preview pdf file)
-nnoremap <silent><F5> :QuickRun<Space>tex<CR>:!open<Space>$(echo<Space>'%'<Space>\|<Space>sed<Space>-e<Space>'s/\.tex/.pdf/g')<CR><CR>
+nnoremap <silent><F5> :w<CR>:QuickRun<Space>tex<CR>:!open<Space>$(echo<Space>'%'<Space>\|<Space>sed<Space>-e<Space>'s/\.tex/.pdf/g')<CR><CR>
 
 "autocmd BufWritePost,FileWritePost *.tex QuickRun tex

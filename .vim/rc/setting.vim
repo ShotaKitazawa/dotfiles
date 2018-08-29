@@ -63,7 +63,7 @@ set laststatus=2
 nnoremap s <Nop>
 " s[h|j|k|l] で窓移動
 nnoremap sj <C-w>j
-noremap sk <C-w>k
+nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 nnoremap sh <C-w>h
 " s[H|J|K|L] で窓移動&入れ替え
