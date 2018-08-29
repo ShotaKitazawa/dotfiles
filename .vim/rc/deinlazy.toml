@@ -63,3 +63,8 @@
   [[plugins]]
   repo = 'lervag/vimtex'
   on_ft = ['tex', 'latex']
+
+# HCL
+  [[plugins]]
+  repo = 'hashicorp/terraform'
+  on_ft = ['tf']
