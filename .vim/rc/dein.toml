@@ -7,14 +7,14 @@
   repo = 'Shougo/context_filetype.vim'
   [[plugins]]
   repo = 'mattn/sonictemplate-vim'
+#  [[plugins]]
+#  repo = 'ervandew/supertab'
 # 窓移動系
   [[plugins]]
   repo = 'kana/vim-operator-user'
   [[plugins]]
   repo = 'kana/vim-submode'
 # ファイル探索系
-  [[plugins]]
-  repo = 'Shougo/unite.vim'
   [[plugins]]
   repo = 'scrooloose/nerdtree'
   [[plugins]]

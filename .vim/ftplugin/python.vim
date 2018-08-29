@@ -1,7 +1,4 @@
-" http://myenigma.hatenablog.com/entry/2015/12/28/091342
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" autopep
-" original http://stackoverflow.com/questions/12374200/using-uncrustify-with-vim/15513829#15513829
+" Autopep8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! Preserve(command)
     " Save the last search.
@@ -24,22 +21,9 @@ function! Preserve(command)
 endfunction
 
 function! Autopep8()
-    "--ignote=E501: $B0l9T$ND9$5$NJd@5$rL5;k(B"
+    "--ignote=E501: $B0l9T$ND9$5$NJd@5$rL5;k(B"
     call Preserve(':silent %!autopep8 --ignore=E501 -')
 endfunction
-
-" Shift + F $B$G(Bautopep$B<+F0=$@5(B
-nnoremap <S-f> :call Autopep8()<CR>
-"nnoremap <S-f> :call Flake8()<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" http://qiita.com/tekkoc/items/923d7a7cf124e63adab5
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_mode_map = {
-            \ 'mode': 'active',
-            \ 'active_filetypes': ['php', 'coffeescript', 'sh', 'vim'],
-            \ 'passive_filetypes': ['html', 'haskell', 'python']
-            \}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " http://hachibeechan.hateblo.jp/entry/vim-customize-for-python
@@ -50,9 +34,6 @@ elseif exists('b:current_after_syntax')
   finish
 endif
 
-" We need nocompatible mode in order to continue lines with backslashes.
-" Original setting will be restored.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let s:cpo_save = &cpo
 set cpo&vim
 
@@ -69,10 +50,55 @@ let &cpo = s:cpo_save
 unlet s:cpo_save
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" jedi
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set completeopt-=preview
+let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#force_py_version=3
+let g:jedi#completions_command = "<C-n>"
+setlocal omnifunc=jedi#completions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" supertab
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:SuperTabDefaultCompletionType = "<c-n>"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:syntastic_python_checkers = ['python', 'flake8', 'mypy']
+let g:syntastic_python_checkers = ['python', 'flake8']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_flake8_args = "--ignore=E501"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" vim-flake8
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"autocmd BufWritePost *.py call Flake8()
+autocmd FileType python map <buffer> tt :call Autopep8()<CR>:call Flake8()<CR> " キーバインド変更
+let g:flake8_ignore = 'E501'
+let g:flake8_show_quickfix=0
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" indent guides
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+IndentGuidesEnable
+let g:indent_guides_auto_colors=0
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=black
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Other Setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <F5> :!python3 %<CR>
-nnoremap <F6> :!py.test --pep8 %<CR>
 let mapleader = "\<Space>"
 let g:auto_save = 0
 set tabstop=4
@@ -80,15 +106,3 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-
-IndentGuidesEnable
-let g:indent_guides_auto_colors=0
-let g:indent_guides_start_level=2
-let g:indent_guides_guide_size=1
-"colorscheme jellybeans
-hi IndentGuidesOdd  ctermbg=black
-hi IndentGuidesEven ctermbg=black
-
-let g:jedi#completions_command = "<C-n>"
-let g:syntastic_python_checkers = ['pyflakes', 'pep8']
-
