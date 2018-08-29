@@ -2,7 +2,7 @@ set noexpandtab
 set tabstop=4
 set shiftwidth=4
 nnoremap :im :GoImport
-nnoremap fw :GoFmt<CR>:GoImports<CR>
+nnoremap tt :GoFmt<CR>:GoImports<CR>
 let g:auto_save = 0
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
