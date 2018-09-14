@@ -116,7 +116,7 @@ let g:auto_save = 1
 " bronson/vim-trailing-whitespace
 " + Tab をスペース2つに変換
 """"""""""""""""""""""""""""""
-noremap tw :FixWhitespace<CR>:%s/\t/  /g<CR>
+noremap tw :FixWhitespace<CR>:%s/\t/    /g<CR>
 """"""""""""""""""""""""""""""
 
 " tpope/vim-fugitive
