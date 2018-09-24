@@ -9,6 +9,7 @@
 
   [[plugins]]
   repo = 'Shougo/denite.nvim'
+  source ~/.vim/rc/plugins_nvim/denite.rc.vim
 
   [[plugins]]
   repo = 'tweekmonster/deoplete-clang2'
