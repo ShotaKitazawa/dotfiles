@@ -171,8 +171,8 @@ inoremap <C-a> <Esc>^i
 noremap <C-e> $
 noremap <C-a> ^
 " C-h で一行下、C-l で一行上
-noremap <C-l> <C-y>
-noremap <C-h> <C-e>
+noremap <C-k> <C-y>
+noremap <C-j> <C-e>
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
 nnoremap k gk
