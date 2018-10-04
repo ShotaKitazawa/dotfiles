@@ -98,6 +98,7 @@ hi IndentGuidesEven ctermbg=black
 
 " Other Setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let $PATH = "~/.pyenv/shims:".$PATH
 nnoremap <F5> :!python3 %<CR>
 let mapleader = "\<Space>"
 let g:auto_save = 0

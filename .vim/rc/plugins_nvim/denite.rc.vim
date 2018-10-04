@@ -13,4 +13,7 @@ call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
 call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
 call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
 
-nnoremap <C-p> :<C-u>Denite file_rec<CR>
+" カーソル以下の単語をgrep
+nnoremap <silent> ;cg :<C-u>DeniteCursorWord grep -buffer-name=search line<CR><C-R><C-W><CR>
+" 普通にgrep
+nnoremap <silent> ;g :<C-u>Denite -buffer-name=search -mode=normal grep<CR>
