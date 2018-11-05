@@ -27,7 +27,8 @@ ulimit -c unlimited
 if [ "$SHELL" = "/bin/bash" ];then stty stop undef; fi
 
 # for each OS
-if [ "$(uname)" = 'Darwin' ]; then
+if [ "$(uname)" = 'Darwin' ]
+then # macOS
   OS='Mac'
   alias l='ls'
   alias ll='ls -lG'
@@ -55,7 +56,20 @@ if [ "$(uname)" = 'Darwin' ]; then
   if [ -f /Applications/MacVim.app/Contents/Resources/vim/gvimrc ];then
     mv /Applications/MacVim.app/Contents/Resources/vim/gvimrc{,.default}
   fi
-elif [ "$(uname)" = 'Linux' ]; then
+
+elif [[ "$(uname -r)" =~ "^.*Microsoft$" ]]
+then # Windows Subsystem for Linux
+  OS='Linux'
+  SSH_AGENT_FILE=$HOME/.ssh-agent
+  test -f $SSH_AGENT_FILE && source $SSH_AGENT_FILE
+  if ! ssh-add -l > /dev/null 2>&1; then
+    ssh-agent > $SSH_AGENT_FILE
+    source $SSH_AGENT_FILE
+    ssh-add $HOME/.ssh/id_rsa # この位置にOpenSSHの秘密鍵があると仮定
+  fi
+
+elif [ "$(uname)" = 'Linux' ]
+then # Linux
   OS='Linux'
   alias l='ls'
   alias ll='ls -l --color'
@@ -65,7 +79,9 @@ elif [ "$(uname)" = 'Linux' ]; then
   if [ "$(which cmd.exe > /dev/null 2>&1; echo $?)" = 0 ]; then
     alias open="cmd.exe /c start"
   fi
-elif [ "$(uname)" = 'FreeBSD' ]; then
+
+elif [ "$(uname)" = 'FreeBSD' ]
+then # FreeBSD
   OS='FreeBSD'
   alias l='ls'
   alias ll='ls -lG'
