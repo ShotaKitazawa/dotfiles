@@ -65,7 +65,6 @@ then # Windows Subsystem for Linux
   if ! ssh-add -l > /dev/null 2>&1; then
     ssh-agent > $SSH_AGENT_FILE
     source $SSH_AGENT_FILE
-    ssh-add $HOME/.ssh/id_rsa # この位置にOpenSSHの秘密鍵があると仮定
   fi
 
 elif [ "$(uname)" = 'Linux' ]
