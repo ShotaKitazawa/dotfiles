@@ -83,3 +83,6 @@
   repo = 'tomasr/molokai'
   [[plugins]]
   repo = 'vim-scripts/Wombat'
+# メモ書き
+  [[plugins]]
+  repo = 'glidenote/memolist.vim'
