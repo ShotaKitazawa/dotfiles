@@ -27,7 +27,7 @@ ulimit -c unlimited
 if [ "$SHELL" = "/bin/bash" ];then stty stop undef; fi
 
 # for each OS
-if [ "$(uname)" = 'Darwin' ]
+if [[ "$(uname)" = 'Darwin' ]]
 then # macOS
   OS='Mac'
   alias l='ls'
@@ -57,17 +57,17 @@ then # macOS
     mv /Applications/MacVim.app/Contents/Resources/vim/gvimrc{,.default}
   fi
 
-elif [[ "$(uname -r)" =~ "^.*Microsoft$" ]]
+elif [[ "$(uname -r)" =~ ^.*-Microsoft$ ]]
 then # Windows Subsystem for Linux
   OS='Linux'
   SSH_AGENT_FILE=$HOME/.ssh-agent
-  test -f $SSH_AGENT_FILE && source $SSH_AGENT_FILE
-  if ! ssh-add -l > /dev/null 2>&1; then
+  test -f $SSH_AGENT_FILE && source $SSH_AGENT_FILE > /dev/null
+  if [ $(ssh-add -l > /dev/null 2>&1; echo $?) = 2 ]; then
     ssh-agent > $SSH_AGENT_FILE
-    source $SSH_AGENT_FILE
+    source $SSH_AGENT_FILE > /dev/null
   fi
 
-elif [ "$(uname)" = 'Linux' ]
+elif [[ "$(uname)" = 'Linux' ]]
 then # Linux
   OS='Linux'
   alias l='ls'
@@ -79,7 +79,7 @@ then # Linux
     alias open="cmd.exe /c start"
   fi
 
-elif [ "$(uname)" = 'FreeBSD' ]
+elif [[ "$(uname)" = 'FreeBSD' ]]
 then # FreeBSD
   OS='FreeBSD'
   alias l='ls'
