@@ -22,11 +22,13 @@ if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
   " TOML を読み込み、キャッシュしておく
-  call dein#load_toml('~/.vim/rc/dein.toml', {'lazy': 0})
-  call dein#load_toml('~/.vim/rc/deinlazy.toml', {'lazy' : 1})
-  if has('nvim')
-    call dein#load_toml('~/.vim/rc/deineo.toml', {})
-  endif
+  let s:toml_dir  = $HOME . '/.vim/rc'
+  call dein#load_toml(s:toml_dir . '/dein.toml',      {'lazy': 0})
+  call dein#load_toml(s:toml_dir . '/deinlazy.toml',  {'lazy': 1})
+
+  "if has('nvim')
+  "  call dein#load_toml('~/.vim/rc/deineo.toml', {'lazy': 0})
+  "endif
 
   " 設定終了
   call dein#end()
@@ -145,27 +147,6 @@ let g:previm_open_cmd = 'open -a Firefox'
 nnoremap :md :PrevimOpen
 """"""""""""""""""""""""""""""
 
-"" ctrlpvim/ctrlp.vim
-"""""""""""""""""""""""""""""""
-"" http://qiita.com/ahiruman5/items/4f3c845500c172a02935
-"""""""""""""""""""""""""""""""
-"let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウインドウの設定. 「下部に表示, 大きさ20行で固定, 検索結果100件」
-"let g:ctrlp_show_hidden = 1 " .(ドット)から始まるファイルも検索対象にする
-"let g:ctrlp_types = ['fil'] "ファイル検索のみ使用
-"let g:ctrlp_extensions = ['funky', 'commandline'] " CtrlPの拡張として「funky」と「commandline」を使用
-"
-"" CtrlPCommandLineの有効化
-"command! CtrlPCommandLine call ctrlp#init(ctrlp#commandline#id())
-"
-"" CtrlPFunkyの有効化
-"let g:ctrlp_funky_matchtype = 'path'
-"
-"if executable('ag') " agが使える環境の場合
-"  let g:ctrlp_use_caching=0 " CtrlPのキャッシュを使わない
-"  let g:ctrlp_user_command='ag %s -i --hidden -g ""' " 「ag」の検索設定
-"endif
-""""""""""""""""""""""""""""""
-
 " mattn/sonictemplate-vim
 """""""""""""""""""""""""""""
 let g:sonictemplate_vim_template_dir = [
@@ -202,3 +183,109 @@ let g:quickrun_config = {
 \       "runner/vimproc/updatetime" : 40,
 \   }
 \}
+
+"""""""""""""""""""""""""""""
+" setting for nvim
+"""""""""""""""""""""""""""""
+if has('nvim')
+
+" Shougo/denite.nvim
+"""""""""""""""""""""""""""""
+    call denite#custom#var('file_rec', 'command', ['ag', '--follow', '-g', ''])
+    call denite#custom#var('grep', 'command', ['ag'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'pattern_opt', [])
+    call denite#custom#var('grep', 'default_opts', ['--follow'])
+    call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
+    call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
+    call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
+    call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
+    call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
+
+nnoremap <silent> <C-p> :<C-u>Denite file:. -buffer-name=search-buffer<CR><C-R><C-W>
+" カーソル以下の単語をgrep
+nnoremap <silent> ;cg :<C-u>Denite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+" 普通にgrep
+nnoremap <silent> ;g  :<C-u>Denite grep:. -buffer-name=search-buffer<CR>
+
+" Shougo/deoplete.vim
+"""""""""""""""""""""""""""""
+" https://github.com/Shougo/shougo-s-github/blob/master/vim/rc/plugins/deoplete.rc.vim
+"
+" <TAB>: completion.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#manual_complete()
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+" <S-TAB>: completion back.
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+
+" inoremap <expr><C-g> deoplete#undo_completion()
+" <C-l>: redraw candidates
+inoremap <expr><C-g>       deoplete#refresh()
+inoremap <silent><expr><C-l>       deoplete#complete_common_string()
+
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#cancel_popup() . "\<CR>"
+endfunction
+
+inoremap <expr> '  pumvisible() ? deoplete#close_popup() : "'"
+
+" call deoplete#custom#source('_', 'matchers', ['matcher_head'])
+"call deoplete#custom#source('ghc', 'sorters', ['sorter_word'])
+" call deoplete#custom#source('buffer', 'mark', '')
+" call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+" call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
+" call deoplete#custom#source('buffer', 'mark', '*')
+
+" Use auto delimiter
+" call deoplete#custom#source('_', 'converters',
+"       \ ['converter_auto_paren',
+"       \  'converter_auto_delimiter', 'remove_overlap'])
+"call deoplete#custom#source('_', 'converters', [
+"      \ 'converter_remove_paren',
+"      \ 'converter_remove_overlap',
+"      \ 'converter_truncate_abbr',
+"      \ 'converter_truncate_menu',
+"      \ 'converter_auto_delimiter',
+"      \ ])
+"
+" call deoplete#custom#source('buffer', 'min_pattern_length', 9999)
+"call deoplete#custom#source('clang', 'input_pattern', '\.\w*|\.->\w*|\w+::\w*')
+"call deoplete#custom#source('clang', 'max_pattern_length', -1)
+
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'
+" let g:deoplete#keyword_patterns.tex = '\\?[a-zA-Z_]\w*'
+let g:deoplete#keyword_patterns.tex = '[^\w|\s][a-zA-Z_]\w*'
+
+let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns.python = ''
+let g:deoplete#omni#functions = {}
+
+" inoremap <silent><expr> <C-t> deoplete#manual_complete('file')
+
+let g:deoplete#enable_refresh_always = 0
+let g:deoplete#enable_camel_case = 1
+" let g:deoplete#auto_complete_delay = 50
+" let g:deoplete#auto_complete_start_length = 3
+
+let g:deoplete#skip_chars = ['(', ')']
+
+" let g:deoplete#enable_profile = 1
+" call deoplete#enable_logging('DEBUG', 'deoplete.log')
+" call deoplete#custom#source('clang', 'debug_enabled', 1)
+"""""""""""""""""""""""""""""
+
+endif

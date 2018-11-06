@@ -5,7 +5,7 @@ endif
 
 " common setting
 if !has('kaoriya') && !has('win32unix')
-  source ~/.vim/rc/plugins_common.vim
+  source ~/.vim/rc/plugins_setting.vim
 endif
 source ~/.vim/rc/color.vim
 source ~/.vim/rc/setting.vim
