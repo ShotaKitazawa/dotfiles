@@ -60,6 +60,12 @@ then # macOS
 elif [[ "$(uname -r)" =~ ^.*-Microsoft$ ]]
 then # Windows Subsystem for Linux
   OS='Linux'
+  alias l='ls'
+  alias ll='ls -l --color'
+  alias lll='ls -al --color'
+  alias swapsearch='grep VmSwap /proc/*/status | sort -k 2 -r | head'
+  alias open="cmd.exe /c start"
+
   SSH_AGENT_FILE=$HOME/.ssh-agent
   test -f $SSH_AGENT_FILE && source $SSH_AGENT_FILE > /dev/null
   if [ $(ssh-add -l > /dev/null 2>&1; echo $?) = 2 ]; then
@@ -75,9 +81,6 @@ then # Linux
   alias lll='ls -al --color'
   alias gcc32='gcc -m32 -fno-stack-protector'
   alias swapsearch='grep VmSwap /proc/*/status | sort -k 2 -r | head'
-  if [ "$(which cmd.exe > /dev/null 2>&1; echo $?)" = 0 ]; then
-    alias open="cmd.exe /c start"
-  fi
 
 elif [[ "$(uname)" = 'FreeBSD' ]]
 then # FreeBSD
