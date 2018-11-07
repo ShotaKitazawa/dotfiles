@@ -188,6 +188,8 @@ noremap <ESC><ESC> :noh<CR>
 nnoremap <space>. :<c-u>new ~/.vim/vimrc<CR>
 " C-c で ESC
 noremap <C-c> <ESC>
+" insert mode時フルパス入力
+inoremap <C-r>path <C-R>=expand('%:p')<CR>
 " 不可視文字を表示する
 set list
 " 不可視文字の編集

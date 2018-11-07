@@ -187,6 +187,11 @@ let g:quickrun_config = {
 \   }
 \}
 
+
+" glidenote/memolist.vim
+"""""""""""""""""""""""""""""
+let g:memolist_memo_suffix = "md"
+
 """""""""""""""""""""""""""""
 " setting for nvim
 """""""""""""""""""""""""""""
