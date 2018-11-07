@@ -212,9 +212,10 @@ if has('nvim')
 
 nnoremap <silent> <C-p> :<C-u>Denite file:. -buffer-name=search-buffer<CR><C-R><C-W>
 " カーソル以下の単語をgrep
-nnoremap <silent> ;cg :<C-u>Denite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+nnoremap <silent> ;cg :<C-u>DeniteCursorWord grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 " 普通にgrep
 nnoremap <silent> ;g  :<C-u>Denite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> ;y  :<C-u>Denite neoyank<CR>
 
 " Shougo/deoplete.vim
 """""""""""""""""""""""""""""

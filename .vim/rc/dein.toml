@@ -1,10 +1,15 @@
-# 補完
+# snippet
   [[plugins]]
   repo = 'Shougo/neosnippet'
+# snippet
   [[plugins]]
   repo = 'Shougo/neosnippet-snippets'
+# コンテキストによって filetype 自動切り替え
   [[plugins]]
   repo = 'Shougo/context_filetype.vim'
+  [[plugins]]
+  repo = 'Shougo/neoyank.vim'
+# template 呼び出し
   [[plugins]]
   repo = 'mattn/sonictemplate-vim'
 #  [[plugins]]
@@ -78,9 +83,6 @@
 # メモ書き
   [[plugins]]
   repo = 'glidenote/memolist.vim'
-# カーソル位置によってfiletype切り替え
-  [[plugins]]
-  repo = 'osyo-manga/vim-precious'
 
 # neovim
   [[plugins]]
