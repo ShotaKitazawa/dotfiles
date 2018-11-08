@@ -154,6 +154,8 @@ set t_vb=
 set novisualbell
 " 対象のファイル以上の ctags ファイルを探す
 set tags=./.tags;
+" タグジャンプを複数選択に
+nnoremap <C-]> g<C-]>
 " カーソル下の単語を * で検索
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
 " 検索後にジャンプした際に検索単語を画面中央に持ってくる
