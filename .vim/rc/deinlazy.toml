@@ -13,10 +13,6 @@
   on_ft = 'python'
 
   [[plugins]]
-  repo = 'ervandew/supertab'
-  on_ft = 'python'
-
-  [[plugins]]
   repo = 'nvie/vim-flake8'
   on_ft = 'python'
 
