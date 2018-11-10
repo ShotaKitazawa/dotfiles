@@ -17,6 +17,13 @@ if &runtimepath !~# '/dein.vim'
   execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
+"" もしvimが7.4以前ならばdeinのバージョンを下げる
+if v:version <= 704
+  if empty(glob(s:dein_dir . '/cache_vim74'))
+    execute '!cd' s:dein_repo_dir . '; git checkout 1.0 > /dev/null 2>&1; touch' s:dein_dir . '/cache_vim74'
+  endif
+endif
+
 " 設定開始
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
@@ -25,10 +32,6 @@ if dein#load_state(s:dein_dir)
   let s:toml_dir  = $HOME . '/.vim/rc'
   call dein#load_toml(s:toml_dir . '/dein.toml',      {'lazy': 0})
   call dein#load_toml(s:toml_dir . '/deinlazy.toml',  {'lazy': 1})
-
-  "if has('nvim')
-  "  call dein#load_toml('~/.vim/rc/deineo.toml', {'lazy': 0})
-  "endif
 
   " 設定終了
   call dein#end()
@@ -184,6 +187,11 @@ let g:quickrun_config = {
 \   }
 \}
 
+
+" glidenote/memolist.vim
+"""""""""""""""""""""""""""""
+let g:memolist_memo_suffix = "md"
+
 """""""""""""""""""""""""""""
 " setting for nvim
 """""""""""""""""""""""""""""
@@ -204,9 +212,10 @@ if has('nvim')
 
 nnoremap <silent> <C-p> :<C-u>Denite file:. -buffer-name=search-buffer<CR><C-R><C-W>
 " カーソル以下の単語をgrep
-nnoremap <silent> ;cg :<C-u>Denite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+nnoremap <silent> ;cg :<C-u>DeniteCursorWord grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 " 普通にgrep
 nnoremap <silent> ;g  :<C-u>Denite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> ;y  :<C-u>Denite neoyank<CR>
 
 " Shougo/deoplete.vim
 """""""""""""""""""""""""""""
