@@ -191,6 +191,9 @@ let g:quickrun_config = {
 " glidenote/memolist.vim
 """""""""""""""""""""""""""""
 let g:memolist_memo_suffix = "md"
+if isdirectory($HOME . "/GoogleDrive")
+  let g:memolist_path = $HOME . "/GoogleDrive/Memo"
+endif
 
 """""""""""""""""""""""""""""
 " setting for nvim
