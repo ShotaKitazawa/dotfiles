@@ -1,9 +1,21 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # Auther: Kitazawa
 
 # !! DOTFILE OVERWRITE !!
 
 path=$(cd $(dirname $0) && pwd)
+
+switch_env(){
+  if [[ "$(uname)" = 'Darwin' ]]; then
+    echo $2
+  elif [[ "$(uname -r)" =~ ^.*-Microsoft$ ]]; then
+    echo $3
+  elif [[ "$(uname)" = 'Linux' ]]; then
+    echo $1
+  elif [[ "$(uname)" = 'FreeBSD' ]]; then
+    echo $4
+  fi
+}
 
 deploylink(){
   if [ -L ~/$1 ]; then
@@ -29,7 +41,6 @@ deploylink .vrapperrc
 deploylink .latexmkrc
 
 # let .bashrc read .bashrc_self
-
 grep .bashrc_self ~/.bashrc > /dev/null 2>&1
 if [ $? != 0 ]; then
   echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
@@ -41,6 +52,11 @@ if [ ! -d ~/.vimundo ]; then
   echo "mkdir ~/.vimundo"
 fi
 
+# link memo.conf for environment
+cd ~/.config/memo
+if [ -L config.toml ]; then unlink config.toml; fi
+ln -s $(switch_env config-linux.toml config-mac.toml config-linux.toml) config.toml
+
 # download peda (gdb extention)
 if [ ! -d ~/.peda ]; then
   git clone https://github.com/longld/peda ~/.peda > /dev/null 2>&1
@@ -49,15 +65,18 @@ fi
 
 # install Powerline fonts for lightline.vim
 cd ~
-git clone https://github.com/powerline/fonts.git > /dev/null 2>&1
-if [ $? = 0 ]; then
-  cd fonts
-  ./install.sh > /dev/null
-  cd ..
-  rm -rf fonts
-  echo "install Powerline fonts"
-else
-  echo "error: failed to download Powerline fonts"
+if [ ! -d ~/.fonts ]; then
+  git clone https://github.com/powerline/fonts.git ~/.fonts > /dev/null 2>&1
+  if [ $? = 0 ]; then
+    cd .fonts
+    if ./install.sh > /dev/null; then
+      echo "install Powerline fonts"
+    else
+      echo "error: failed to download Powerline fonts"
+    fi
+  else
+    echo "error: failed to download Powerline fonts"
+  fi
 fi
 
 # deploy systemd service file (for Linux)

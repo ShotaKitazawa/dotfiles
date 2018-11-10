@@ -1,4 +1,4 @@
-memodir = "/root/memo/"
+memodir = "/root/GoogleDrive/Memo/"
 editor = "nvim"
 column = 20
 selectcmd = "peco"

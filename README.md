@@ -28,3 +28,10 @@ brew cask install mactex
 brew install ghostscript
 brew install imagemagick
 ```
+
+# Requirement
+
+* NeoVim
+* mattn/memo
+    * peco
+    * GoogleDrive ($HOME/GoogleDrive)
