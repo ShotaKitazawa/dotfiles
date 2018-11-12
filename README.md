@@ -35,3 +35,4 @@ brew install imagemagick
 * mattn/memo
     * peco
     * GoogleDrive ($HOME/GoogleDrive)
+        * for Linux: https://github.com/harababurel/gcsf
