@@ -17,15 +17,25 @@ switch_env(){
   fi
 }
 
-deploylink(){
-  if [ -L ~/$1 ]; then
-    echo "$1 has already deployed to ~/"
-    return 0
-  elif [ -e ~/$1 ]; then
-    rm ~/$1 -rf
+remove_file_or_check_link(){
+  if [ -L $1 ]; then
+    echo "$1 has already deployed"
+    return 1
+  elif [ -e $1 ]; then
+    rm $1 -rf
   fi
+  return 0
+}
+
+link_to_home(){
   ln -s $path/$1 ~/$1
   echo "$1 was deployed to ~/"
+}
+
+deploylink(){
+  if remove_file_or_check_link ~/$1;then
+    link_to_home $1
+  fi
 }
 
 
@@ -54,8 +64,9 @@ fi
 
 # link memo.conf for environment
 cd ~/.config/memo
-if [ -L config.toml ]; then unlink config.toml; fi
-ln -s $(switch_env config-linux.toml config-mac.toml config-linux.toml) config.toml
+if remove_file_or_check_link $(pwd)/config.toml; then
+  ln -s $(switch_env config-linux.toml config-mac.toml config-linux.toml) config.toml
+fi
 
 # download peda (gdb extention)
 if [ ! -d ~/.peda ]; then
