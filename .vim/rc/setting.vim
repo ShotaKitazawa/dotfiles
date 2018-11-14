@@ -202,14 +202,22 @@ set showcmd
 nnoremap tn :set nonumber<CR>:set mouse=<CR>:set listchars=<CR>
 " number,mouse=a <-- nonumber,mouse=
 nnoremap ty :set number<CR>:set mouse=a<CR>:set listchars=tab:>-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲<CR>
+" ファイルパス表示
+nnoremap <C-g> 1<C-g>
 " :tmp > :Template
 nnoremap :tmp :Template
+
 
 " 前回のカーソル位置の復元
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
 " Syntax Highlight
 autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
 autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
+
+" ウィンドウ移動時ファイルパス表示
+augroup EchoFilePath
+  autocmd WinEnter * execute "normal! 1\<C-g>"
+augroup END
 
 " TODO: irc の NOTICE にハイライト (RAT)
 """""""""""""""""""""""""""""
