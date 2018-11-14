@@ -1,0 +1,92 @@
+#!/bin/bash
+
+alias l='ls'
+alias ll='ls -lG'
+alias lll='ls -alG'
+alias updatedb='sudo /usr/libexec/locate.updatedb'
+# Slideshare can't display Japanese font. (created from Keynote)
+alias pdfconv="LANG=C LC_ALL=C sed -i '' s'|/Registry (Adobe) /Ordering (Japan1) /Supplement [0-9]|/Registry(Adobe) /Ordering(Identity) /Supplement 0|g'"
+alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
+alias wma2mp3='if [ ! -d mp3 ];then mkdir mp3; fi; for i in *; do vlc -I dummy --sout "#transcode{acodec=mp3,ab=128,channels=2,samplerate=44100}:std{access=file,mux=raw,dst=\"mp3/${i}.mp3\"}" "${i}" vlc://quit; done'
+export PATH=/usr/local/bin:$PATH
+export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
+if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
+  . /usr/local/etc/bash_completion.d/git-prompt.sh
+fi
+if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ];then
+  . /usr/local/etc/bash_completion.d/git-completion.bash
+fi
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
+fi
+if [ -f /Applications/MacVim.app/Contents/Resources/vim/vimrc ];then
+  mv /Applications/MacVim.app/Contents/Resources/vim/vimrc{,.default}
+fi
+if [ -f /Applications/MacVim.app/Contents/Resources/vim/gvimrc ];then
+  mv /Applications/MacVim.app/Contents/Resources/vim/gvimrc{,.default}
+fi
+
+function get_load_average_tmux(){
+  echo "(#[fg=yellow]$(uptime | awk '{print $(NF-2)}')#[default]) "
+}
+
+function get_volume_tmux(){
+  if sound_info=$(osascript -e 'get volume settings') ; then
+    if [ "$(echo $sound_info | awk '{print $8}')" = "muted:false" ]; then
+      sound_volume=$(expr $(echo $sound_info | awk '{print $2}' | sed "s/[^0-9]//g") / 6 )
+      str=""
+      for i in $(seq 0 $(($sound_volume - 1))); do
+        str="${str}■"
+      done
+      for i in $(seq 0 $(($sound_volume - 1))); do
+        str="${str} "
+      done
+      sound="#[bold][$str]#[default] "
+    else
+      sound="#[bold][      mute      ]#[default] "
+    fi
+    echo $sound
+  fi
+}
+
+function get_ssid_tmux(){
+  airport_path="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
+
+  if air_info=($(eval "$airport_path" -I | grep -E "^ *(agrCtlRSSI|state|SSID):" | awk '{print $2}')) ; then
+
+    rssi=${air_info[0]}
+    state=${air_info[1]}
+    ssid=${air_info[2]}
+
+    case "$state" in
+      "running" )
+        signals=(▁ ▂ ▄ ▆ █)
+        signal=""
+        rssi_=$(expr 5 - ${rssi} / -20)
+        for ((i=0; i < $rssi_; i++ )); do
+          signal="${signal}${signals[$i]}"
+        done
+        airport_=" #[underscore]${ssid}#[default] | ${signal} "
+      ;;
+      "init"    ) airport_="#[fg=yellow] ... " ;;
+      *         ) airport_="#[fg=red] ✘  " ;;
+    esac
+    echo "#[bold]|#[default]${airport_}#[fg=colour014]|#[default] "
+  fi
+}
+
+function get_battery_tmux(){
+  if battery_info=$(/usr/bin/pmset -g ps | awk '{ if (NR == 2) print $2 " " $3 }' | sed -e "s/;//g" -e "s/%//") ; then
+    battery_quantity=$(echo $battery_info | awk '{print $1}')
+    if [[ ! $battery_info =~ "discharging" ]]; then
+      battery="#[bg=cyan,fg=black] ⚡ $battery_quantity% #[default]"
+    elif (( $battery_quantity < 16 )); then
+      battery="#[bg=red,fg=white] $battery_quantity% #[default]"
+    else
+      battery="#[bg=cyan,fg=black] $battery_quantity% #[default]"
+    fi
+    echo $battery
+  fi
+}
+
