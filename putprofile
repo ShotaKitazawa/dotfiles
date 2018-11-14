@@ -18,27 +18,27 @@ switch_env(){
 }
 
 deploylink(){
-  if [ -L ~/$1 ]; then
-    echo "$1 has already deployed to ~/"
+  if [ -L $2/$1 ]; then
+    echo "$1 has already deployed to $2/"
     return 0
-  elif [ -e ~/$1 ]; then
-    rm ~/$1 -rf
+  elif [ -e $2/$1 ]; then
+    rm $2/$1 -rf
   fi
-  ln -s $path/$1 ~/$1
-  echo "$1 was deployed to ~/"
+  ln -s $path/$1 $2/$1
+  echo "$1 was deployed to $2/"
 }
 
 
 if [ "$(uname)" = 'Darwin' ]; then deploylink .inputrc; fi
-deploylink .gitconfig
-deploylink .gitignore
-deploylink .tmux.conf
-deploylink .vim
-deploylink .bashrc_self
-deploylink .gdbinit
-deploylink .config
-deploylink .vrapperrc
-deploylink .latexmkrc
+deploylink .gitconfig $HOME
+deploylink .gitignore $HOME
+deploylink .tmux.conf $HOME
+deploylink .vim $HOME
+deploylink .bashrc_self $HOME
+deploylink .gdbinit $HOME
+deploylink .config $HOME
+deploylink .vrapperrc $HOME
+deploylink .latexmkrc $HOME
 
 # let .bashrc read .bashrc_self
 grep .bashrc_self ~/.bashrc > /dev/null 2>&1
@@ -79,5 +79,17 @@ if [ ! -d ~/.fonts ]; then
   fi
 fi
 
-# deploy systemd service file (for Linux)
-if 
+if [ "$(whoami)" = "root" ]; then
+
+  # deploy systemd service file (for Linux)
+  if [ "$(switch_env linux)" = "linux" ]; then
+    pre_path=$path
+    path=$path/.services
+    for service in $(ls $pre_path/.services/); do
+      deploylink $service /etc/systemd/system
+    done
+    systemctl daemon-reload
+    path=$pre_path
+  fi
+
+fi
