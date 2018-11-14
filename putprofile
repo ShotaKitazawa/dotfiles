@@ -27,28 +27,38 @@ remove_file_or_check_link(){
   return 0
 }
 
-link_to_home(){
-  ln -s $path/$1 ~/$1
-  echo "$1 was deployed to ~/"
-}
-
 deploylink(){
-  if remove_file_or_check_link ~/$1;then
-    link_to_home $1
+  if [ ! -e $path/$1 ];then
+    echo "$path/$1 not exists"
+    return
+  fi
+  if remove_file_or_check_link $2/$1;then
+    ln -s $path/$1 $2/$(basename $1)
+    echo "$(basename $1) was deployed to $2/"
   fi
 }
 
+# check tmux version
+cd $path
+if which tmux > /dev/null 2>&1; then
+  if [ $(echo "$(tmux -V | awk '{print $2}') >= 2.4" | bc) == 1]; then
+    deploylink .tmux-2.4/.tmux.conf $HOME
+  else
+    deploylink .tmux-before2.4/.tmux.conf $HOME
+  fi
+fi
+
 # deploy dotfiles' symbolic link to $HOME
-deploylink .inputrc
-deploylink .gitconfig
-deploylink .gitignore
-deploylink .tmux.conf
-deploylink .vim
-deploylink .bashrc_self
-deploylink .gdbinit
-deploylink .config
-deploylink .vrapperrc
-deploylink .latexmkrc
+deploylink .inputrc $HOME
+deploylink .gitconfig $HOME
+deploylink .gitignore $HOME
+deploylink .tmux.conf $HOME
+deploylink .vim $HOME
+deploylink .bashrc_self $HOME
+deploylink .gdbinit $HOME
+deploylink .config $HOME
+deploylink .vrapperrc $HOME
+deploylink .latexmkrc $HOME
 
 # let .bashrc read .bashrc_self
 if ! grep .bashrc_self ~/.bashrc > /dev/null 2>&1; then
@@ -62,10 +72,7 @@ if [ ! -d ~/.vimundo ]; then
 fi
 
 # link memo.conf for environment
-cd ~/.config/memo
-if remove_file_or_check_link $(pwd)/config.toml; then
-  ln -s $(switch_env config-linux.toml config-mac.toml config-linux.toml) config.toml
-fi
+deploylink .config/memo/$(switch_env linux mac linux)/config.toml $path/.config/memo/
 
 # download peda (gdb extention)
 if [ ! -d ~/.peda ]; then
@@ -95,10 +102,7 @@ if [ "$(whoami)" = "root" ]; then
   # deploy systemd service file (for Linux)
   if [ "$(switch_env linux)" = "linux" ]; then
     for service in $(ls $path/.services/); do
-      if remove_file_or_check_link /etc/systemd/system/$service; then
-        ln -s $path/.services/$service /etc/systemd/system/
-        systemctl disable $service > /dev/null 2>&1; systemctl enable $path/.services/$service
-      fi
+      deploylink $path/.services/$service /etc/systemd/system/$service
     done
     systemctl daemon-reload
   fi

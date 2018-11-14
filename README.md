@@ -1,11 +1,43 @@
-# 使用方法
+# Usage
 
+* download
 ```bash
-git clone https://github.com/ShotaKitazawa/dotfiles
+git clone https://github.com/ShotaKitazawa/dotfiles $HOME/dotfiles
+```
+
+* check tmux version & link to .tmux.conf
+```bash
+cd $HOME/dotfiles
+ln -s tmux-before2.4/.tmux.conf .
+```
+
+* deploy
+```bash
 ./dotfiles/putprofile
 ```
 
-# neovim セットアップ (macOS)
+# Requirement
+
+* https://github.com/ShotaKitazawa/playbook-devenv
+
+* NeoVim
+    * python3
+        * `pip install neovim`
+* Vim Plugin
+    * python3
+        * `pip install
+* mattn/memo
+    * peco
+    * GoogleDrive ($HOME/GoogleDrive)
+        * for Linux: https://github.com/harababurel/gcsf
+* tmux
+    * shared clipboard
+        * mac: `brew install reattach-to-user-namespace`
+        * wsl: download from https://github.com/equalsraf/win32yank/releases & deploy to $PATh
+        * redhat: `yum install xsel`
+        * debian: `apt install xsel`
+
+# Memo
 
 ```
 brew update
@@ -29,10 +61,3 @@ brew install ghostscript
 brew install imagemagick
 ```
 
-# Requirement
-
-* NeoVim
-* mattn/memo
-    * peco
-    * GoogleDrive ($HOME/GoogleDrive)
-        * for Linux: https://github.com/harababurel/gcsf

@@ -26,10 +26,16 @@ bind '"\C-b": backward-word'
 ulimit -c unlimited
 if [ "$SHELL" = "/bin/bash" ];then stty stop undef; fi
 
+function ssh(){
+  local window_name=$(tmux display -p '#{window_name}')
+  command ssh $@
+  tmux rename-window $window_name
+}
+
 # for each OS
 if [[ "$(uname)" = 'Darwin' ]]
 then # macOS
-  OS='Mac'
+  export OS='Mac'
   alias l='ls'
   alias ll='ls -lG'
   alias lll='ls -alG'
@@ -59,7 +65,7 @@ then # macOS
 
 elif [[ "$(uname -r)" =~ ^.*-Microsoft$ ]]
 then # Windows Subsystem for Linux
-  OS='Linux'
+  export OS='WSL'
   alias l='ls'
   alias ll='ls -l --color'
   alias lll='ls -al --color'
@@ -75,7 +81,7 @@ then # Windows Subsystem for Linux
 
 elif [[ "$(uname)" = 'Linux' ]]
 then # Linux
-  OS='Linux'
+  export OS='Linux'
   alias l='ls'
   alias ll='ls -l --color'
   alias lll='ls -al --color'
@@ -84,7 +90,7 @@ then # Linux
 
 elif [[ "$(uname)" = 'FreeBSD' ]]
 then # FreeBSD
-  OS='FreeBSD'
+  export OS='FreeBSD'
   alias l='ls'
   alias ll='ls -lG'
   alias lll='ls -alG'
