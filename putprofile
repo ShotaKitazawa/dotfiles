@@ -32,19 +32,18 @@ deploylink(){
     echo "$path/$1 not exists"
     return
   fi
-  if remove_file_or_check_link $2/$1;then
+  if remove_file_or_check_link $2/$(basename $1);then
     ln -s $path/$1 $2/$(basename $1)
     echo "$(basename $1) was deployed to $2/"
   fi
 }
 
 # check tmux version
-cd $path
 if which tmux > /dev/null 2>&1; then
-  if [ $(echo "$(tmux -V | awk '{print $2}') >= 2.4" | bc) == 1]; then
-    deploylink .tmux-2.4/.tmux.conf $HOME
+  if [ $(echo "$(tmux -V | awk '{print $2}') >= 2.4" | bc) == 1 ]; then
+    deploylink tmux-2.4/.tmux.conf $HOME
   else
-    deploylink .tmux-before2.4/.tmux.conf $HOME
+    deploylink tmux-before2.4/.tmux.conf $HOME
   fi
 fi
 
@@ -60,6 +59,9 @@ deploylink .config $HOME
 deploylink .vrapperrc $HOME
 deploylink .latexmkrc $HOME
 
+# link config on environment
+deploylink .config/memo/$(switch_env linux mac linux)/config.toml $path/.config/memo
+
 # let .bashrc read .bashrc_self
 if ! grep .bashrc_self ~/.bashrc > /dev/null 2>&1; then
   echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
@@ -71,9 +73,6 @@ if [ ! -d ~/.vimundo ]; then
   echo "mkdir ~/.vimundo"
 fi
 
-# link memo.conf for environment
-deploylink .config/memo/$(switch_env linux mac linux)/config.toml $path/.config/memo/
-
 # download peda (gdb extention)
 if [ ! -d ~/.peda ]; then
   git clone https://github.com/longld/peda ~/.peda > /dev/null 2>&1
@@ -81,12 +80,10 @@ if [ ! -d ~/.peda ]; then
 fi
 
 # install Powerline fonts for lightline.vim
-cd ~
 if [ ! -d ~/.fonts ]; then
   git clone https://github.com/powerline/fonts.git ~/.fonts > /dev/null 2>&1
   if [ $? = 0 ]; then
-    cd .fonts
-    if ./install.sh > /dev/null; then
+    if ~/.fonts/install.sh > /dev/null; then
       echo "install Powerline fonts"
     else
       echo "error: failed to download Powerline fonts"
@@ -103,6 +100,7 @@ if [ "$(whoami)" = "root" ]; then
   if [ "$(switch_env linux)" = "linux" ]; then
     for service in $(ls $path/.services/); do
       deploylink $path/.services/$service /etc/systemd/system/$service
+      systemctl enable $path/.services/$service
     done
     systemctl daemon-reload
   fi
