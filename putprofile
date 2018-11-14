@@ -17,32 +17,41 @@ switch_env(){
   fi
 }
 
-deploylink(){
-  if [ -L $2/$1 ]; then
-    echo "$1 has already deployed to $2/"
-    return 0
-  elif [ -e $2/$1 ]; then
-    rm $2/$1 -rf
+remove_file_or_check_link(){
+  if [ -L $1 ]; then
+    echo "$1 has already deployed"
+    return 1
+  elif [ -e $1 ]; then
+    rm $1 -rf
   fi
-  ln -s $path/$1 $2/$1
-  echo "$1 was deployed to $2/"
+  return 0
 }
 
+link_to_home(){
+  ln -s $path/$1 ~/$1
+  echo "$1 was deployed to ~/"
+}
 
-if [ "$(uname)" = 'Darwin' ]; then deploylink .inputrc; fi
-deploylink .gitconfig $HOME
-deploylink .gitignore $HOME
-deploylink .tmux.conf $HOME
-deploylink .vim $HOME
-deploylink .bashrc_self $HOME
-deploylink .gdbinit $HOME
-deploylink .config $HOME
-deploylink .vrapperrc $HOME
-deploylink .latexmkrc $HOME
+deploylink(){
+  if remove_file_or_check_link ~/$1;then
+    link_to_home $1
+  fi
+}
+
+# deploy dotfiles' symbolic link to $HOME
+deploylink .inputrc
+deploylink .gitconfig
+deploylink .gitignore
+deploylink .tmux.conf
+deploylink .vim
+deploylink .bashrc_self
+deploylink .gdbinit
+deploylink .config
+deploylink .vrapperrc
+deploylink .latexmkrc
 
 # let .bashrc read .bashrc_self
-grep .bashrc_self ~/.bashrc > /dev/null 2>&1
-if [ $? != 0 ]; then
+if ! grep .bashrc_self ~/.bashrc > /dev/null 2>&1; then
   echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
 fi
 
@@ -54,8 +63,9 @@ fi
 
 # link memo.conf for environment
 cd ~/.config/memo
-if [ -L config.toml ]; then unlink config.toml; fi
-ln -s $(switch_env config-linux.toml config-mac.toml config-linux.toml) config.toml
+if remove_file_or_check_link $(pwd)/config.toml; then
+  ln -s $(switch_env config-linux.toml config-mac.toml config-linux.toml) config.toml
+fi
 
 # download peda (gdb extention)
 if [ ! -d ~/.peda ]; then
@@ -79,17 +89,18 @@ if [ ! -d ~/.fonts ]; then
   fi
 fi
 
+# Only root user
 if [ "$(whoami)" = "root" ]; then
 
   # deploy systemd service file (for Linux)
   if [ "$(switch_env linux)" = "linux" ]; then
-    pre_path=$path
-    path=$path/.services
-    for service in $(ls $pre_path/.services/); do
-      deploylink $service /etc/systemd/system
+    for service in $(ls $path/.services/); do
+      if remove_file_or_check_link /etc/systemd/system/$service; then
+        ln -s $path/.services/$service /etc/systemd/system/
+        systemctl disable $service > /dev/null 2>&1; systemctl enable $path/.services/$service
+      fi
     done
     systemctl daemon-reload
-    path=$pre_path
   fi
 
 fi
