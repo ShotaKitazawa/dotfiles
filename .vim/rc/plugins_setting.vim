@@ -202,18 +202,18 @@ if has('nvim')
 
 " Shougo/denite.nvim
 """""""""""""""""""""""""""""
-    call denite#custom#var('file_rec', 'command', ['ag', '--follow', '-g', ''])
-    call denite#custom#var('grep', 'command', ['ag'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'default_opts', ['--follow'])
-    call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
-    call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
-    call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
-    call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
-    call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
+call denite#custom#var('file_rec', 'command', ['ag', '--follow', '-g', ''])
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'default_opts', ['--follow'])
+call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
+call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
+call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
+call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
+call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
 
-nnoremap <silent> <C-p> :<C-u>Denite file:. -buffer-name=search-buffer<CR><C-R><C-W>
+nnoremap <silent> <C-p> :<C-u>Denite file_rec:. -buffer-name=search-buffer<CR><C-R><C-W>
 " カーソル以下の単語をgrep
 nnoremap <silent> ;cg :<C-u>DeniteCursorWord grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 " 普通にgrep
