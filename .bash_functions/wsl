@@ -12,3 +12,4 @@ if [ $(ssh-add -l > /dev/null 2>&1; echo $?) = 2 ]; then
   ssh-agent > $SSH_AGENT_FILE
   source $SSH_AGENT_FILE > /dev/null
 fi
+export DISPLAY=localhost:0.0

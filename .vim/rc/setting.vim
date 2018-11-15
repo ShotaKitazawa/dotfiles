@@ -178,6 +178,8 @@ noremap <C-j> <C-e>
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
 nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 nnoremap <down> gj
 nnoremap <up> gk
 " PP で Visual モードでペーストする時連続コピペ可能
