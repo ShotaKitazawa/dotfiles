@@ -15,15 +15,10 @@ alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
 
 # environment variable
-export STUID=15k0112
-export EDITOR=vim
-export PYTHONPATH="~/.twitter:$PYTHONPATH"
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:~/bin
 bind '"\C-f": forward-word'
 bind '"\C-b": backward-word'
-ulimit -c unlimited
+export EDITOR=vim
+export PATH=$PATH:~/bin
 if [ "$SHELL" = "/bin/bash" ];then stty stop undef; fi
 
 function ssh(){
@@ -56,8 +51,3 @@ then # FreeBSD
   alias lll='ls -alG'
   alias updatedb='/usr/libexec/locate.updatedb'
 fi
-
-# for tmux
-get_load_average_tmux(){
-  echo "(#[fg=yellow]$(uptime | awk '{print $(NF-2)}')#[default]) "
-}
