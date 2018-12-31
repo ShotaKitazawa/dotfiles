@@ -85,8 +85,10 @@ nnoremap sw <C-w>w
 nnoremap so <C-w>_<C-w>|
 " 各窓を均等にする
 nnoremap sO <C-w>=
+" 現在の窓をタブ化
+nnoremap st :<C-u>tab split<CR>
 " 新タブ作成
-nnoremap st :<C-u>tabnew<CR>
+nnoremap sT :<C-u>tabnew<CR>
 " 縦に新窓作成
 nnoremap ss :<C-u>sp<CR>
 " 横に新窓作成
@@ -200,15 +202,14 @@ set list
 set listchars=tab:>-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 " 入力中のコマンドを表示する
 set showcmd
-" number,mouse=a --> nonumber,mouse=
+" number,mouse=a -> nonumber,mouse=
 nnoremap tn :set nonumber<CR>:set mouse=<CR>:set listchars=<CR>
-" number,mouse=a <-- nonumber,mouse=
+" number,mouse=a <- nonumber,mouse=
 nnoremap ty :set number<CR>:set mouse=a<CR>:set listchars=tab:>-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲<CR>
 " ファイルパス表示
 nnoremap <C-g> 1<C-g>
 " :tmp > :Template
 nnoremap :tmp :Template
-
 
 " 前回のカーソル位置の復元
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif

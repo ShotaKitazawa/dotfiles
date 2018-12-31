@@ -146,7 +146,7 @@ nmap <Leader>gd <Plug>(auto_git_diff_manual_update)
 " http://qiita.com/uedatakeshi/items/31761b87ba8ecbaf2c1e
 """"""""""""""""""""""""""""""
 au BufRead,BufNewFile *.md set filetype=markdown
-let g:previm_open_cmd = 'open -a Firefox'
+let g:previm_open_cmd = ''
 nnoremap :md :PrevimOpen
 """"""""""""""""""""""""""""""
 
