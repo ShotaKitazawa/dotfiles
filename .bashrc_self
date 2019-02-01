@@ -22,9 +22,13 @@ export PATH=$PATH:~/bin
 if [ "$SHELL" = "/bin/bash" ];then stty stop undef; fi
 
 function ssh(){
-  local window_name=$(tmux display -p '#{window_name}')
-  command ssh $@
-  tmux rename-window $window_name
+  if which tmux > /dev/null 2>&1; then
+    local window_name=$(tmux display -p '#{window_name}')
+    command ssh $@
+    tmux rename-window $window_name
+  else
+    command ssh $@
+  fi
 }
 
 # for each OS
