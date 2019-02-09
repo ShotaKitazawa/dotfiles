@@ -146,7 +146,7 @@ nmap <Leader>gd <Plug>(auto_git_diff_manual_update)
 " http://qiita.com/uedatakeshi/items/31761b87ba8ecbaf2c1e
 """"""""""""""""""""""""""""""
 au BufRead,BufNewFile *.md set filetype=markdown
-let g:previm_open_cmd = 'open -a Firefox'
+let g:previm_open_cmd = ''
 nnoremap :md :PrevimOpen
 """"""""""""""""""""""""""""""
 
@@ -206,7 +206,7 @@ call denite#custom#var('file_rec', 'command', ['ag', '--follow', '-g', ''])
 call denite#custom#var('grep', 'command', ['ag'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'default_opts', ['--follow'])
+call denite#custom#var('grep', 'default_opts', ['--follow', '-u'])
 call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
 call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
 call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
