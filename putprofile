@@ -40,6 +40,16 @@ deploylink(){
   fi
 }
 
+q_deploylink(){
+  echo -n "deploy $(basename $1)? [y/n]: "; read input
+  if [[ "$input" = "yes" || "$input" = "y" ]]; then
+    return deploylink $@
+  else
+    return -1
+  fi
+}
+
+
 # check tmux version
 if which tmux > /dev/null 2>&1; then
   if [ $(echo "$(tmux -V | awk '{print $2}') >= 2.4" | bc) == 1 ]; then
@@ -101,7 +111,7 @@ if [ "$(whoami)" = "root" ]; then
   # deploy systemd service file (for Linux)
   if [ "$(switch_env linux)" = "linux" ]; then
     for service in $(ls $path/.services/); do
-      if deploylink .services/$service /etc/systemd/system; then
+      if q_deploylink .services/$service /etc/systemd/system; then
         systemctl enable $path/.services/$service
       fi
     done
