@@ -45,7 +45,7 @@ q_deploylink(){
   if [[ "$input" = "yes" || "$input" = "y" ]]; then
     return deploylink $@
   else
-    return -1
+    return 1
   fi
 }
 
