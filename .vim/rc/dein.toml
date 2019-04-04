@@ -96,13 +96,13 @@
   [[plugins]]
   repo = 'Shougo/denite.nvim'
   if = 'has("nvim")'
-  [[plugins]]
-  repo = 'tweekmonster/deoplete-clang2'
-  if = 'has("nvim")'
-  on_ft = ['c', 'cpp']
-  hook_source = '''
-    autocmd FileType c,cpp let b:clang2_orig_maps = {}
-  '''
+#  [[plugins]]
+#  repo = 'tweekmonster/deoplete-clang2'
+#  if = 'has("nvim")'
+#  on_ft = ['c', 'cpp']
+#  hook_source = '''
+#    autocmd FileType c,cpp let b:clang2_orig_maps = {}
+#  '''
   [[plugins]]
   repo = 'zchee/deoplete-jedi'
   if = 'has("nvim")'

@@ -301,3 +301,8 @@ let g:deoplete#skip_chars = ['(', ')']
 """""""""""""""""""""""""""""
 
 endif
+
+" fatih/vim-go
+"""""""""""""""""""""""""""""
+let g:go_version_warning = 0
+"""""""""""""""""""""""""""""
