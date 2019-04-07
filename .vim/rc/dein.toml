@@ -108,3 +108,7 @@
   if = 'has("nvim")'
   on_ft = 'python'
 
+# Vue
+  [[plugins]]
+  repo = 'posva/vim-vue'
+
