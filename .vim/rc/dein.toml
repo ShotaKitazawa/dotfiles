@@ -1,9 +1,9 @@
-# snippet
-  [[plugins]]
-  repo = 'Shougo/neosnippet'
-# snippet
-  [[plugins]]
-  repo = 'Shougo/neosnippet-snippets'
+## snippet
+#  [[plugins]]
+#  repo = 'Shougo/neosnippet'
+## snippet
+#  [[plugins]]
+#  repo = 'Shougo/neosnippet-snippets'
 # コンテキストによって filetype 自動切り替え
   [[plugins]]
   repo = 'Shougo/context_filetype.vim'
@@ -96,18 +96,6 @@
   [[plugins]]
   repo = 'Shougo/denite.nvim'
   if = 'has("nvim")'
-#  [[plugins]]
-#  repo = 'tweekmonster/deoplete-clang2'
-#  if = 'has("nvim")'
-#  on_ft = ['c', 'cpp']
-#  hook_source = '''
-#    autocmd FileType c,cpp let b:clang2_orig_maps = {}
-#  '''
-  [[plugins]]
-  repo = 'zchee/deoplete-jedi'
-  if = 'has("nvim")'
-  on_ft = 'python'
-
 # Vue
   [[plugins]]
   repo = 'posva/vim-vue'

@@ -66,3 +66,25 @@
   [[plugins]]
   repo = 'hashicorp/terraform'
   on_ft = ['tf']
+
+# neovim
+#  [[plugins]]
+#  repo = 'tweekmonster/deoplete-clang2'
+#  if = 'has("nvim")'
+#  on_ft = ['c', 'cpp']
+#  hook_source = '''
+#    autocmd FileType c,cpp let b:clang2_orig_maps = {}
+#  '''
+  [[plugins]]
+  repo = 'zchee/deoplete-jedi'
+  if = 'has("nvim")'
+  on_ft = 'python3'
+
+  [[plugins]]
+  repo = 'fatih/vim-go'
+  on_ft = 'go'
+
+  [[plugins]]
+  repo = 'zchee/deoplete-go'
+  on_ft = 'go'
+
