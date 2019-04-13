@@ -3,6 +3,8 @@ set tabstop=4
 set shiftwidth=4
 nnoremap :im :GoImport
 nnoremap tt :GoFmt<CR>:GoImports<CR>
+nnoremap tr :GoRename<CR>
+nnoremap ta :GoAddTags<CR>
 let g:auto_save = 0
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
@@ -21,7 +23,7 @@ let g:syntastic_go_checkers = ['go', 'golint']
 " fatih/vim-go
 """""""""""""""""""""""""""""
 let g:go_addtags_transform = "snakecase"
-let g:go_auto_sameids = 1
+let g:go_auto_sameids = 0
 let g:go_auto_type_info = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
@@ -29,7 +31,7 @@ let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_operators= 1
-let g:go_highlight_spellcheck = 1
+ret g:go_highlight_spellcheck = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_template_autocreate = 0
