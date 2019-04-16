@@ -24,7 +24,7 @@ let g:syntastic_go_checkers = ['go', 'golint']
 """""""""""""""""""""""""""""
 let g:go_addtags_transform = "snakecase"
 let g:go_auto_sameids = 0
-let g:go_auto_type_info = 1
+"let g:go_auto_type_info = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
@@ -39,7 +39,7 @@ let g:go_template_autocreate = 0
 
 " deoplete-plugins/deoplete-go
 """""""""""""""""""""""""""""
-g:deoplete#sources#go#gocode_binary = .globpath($GOPATH, "bin/gocode")
-let g:deoplete#sources#go#package_dot = 1
+"g:deoplete#sources#go#gocode_binary = .globpath($GOPATH, "bin/gocode")
+"let g:deoplete#sources#go#package_dot = 1
 """""""""""""""""""""""""""""
 
