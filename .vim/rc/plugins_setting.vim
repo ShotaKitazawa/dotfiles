@@ -119,8 +119,8 @@ let g:auto_save = 1
 """""""""""""""""""""""""""""
 
 " bronson/vim-trailing-whitespace
-" + Tab をスペース2つに変換
 """"""""""""""""""""""""""""""
+" 全角スペースやTabをスペース2つに変換
 noremap tw :FixWhitespace<CR>:%s/\t/    /g<CR>
 """"""""""""""""""""""""""""""
 
@@ -140,7 +140,6 @@ let g:auto_git_diff_disable_auto_update = 1
 nmap <Leader>gd <Plug>(auto_git_diff_manual_update)
 """""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""""
 " plasticboy/vim-markdown + kannokanno/previm + tyru/open-browser.vim
 """"""""""""""""""""""""""""""
 " http://qiita.com/uedatakeshi/items/31761b87ba8ecbaf2c1e
@@ -166,6 +165,7 @@ map <Leader>y <Plug>(operator-poweryank-osc52)
 """""""""""""""""""""""""""""
 " Git
 set statusline+=%{fugitive#statusline()}
+"""""""""""""""""""""""""""""
 
 " thinca/vim-quickrun
 """""""""""""""""""""""""""""
@@ -186,6 +186,7 @@ let g:quickrun_config = {
 \       "runner/vimproc/updatetime" : 40,
 \   }
 \}
+"""""""""""""""""""""""""""""
 
 
 " glidenote/memolist.vim
@@ -194,6 +195,8 @@ let g:memolist_memo_suffix = "md"
 if isdirectory($HOME . "/GoogleDrive")
   let g:memolist_path = $HOME . "/GoogleDrive/Memo"
 endif
+""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""
 " setting for nvim
@@ -219,90 +222,46 @@ nnoremap <silent> ;cg :<C-u>DeniteCursorWord grep:. -buffer-name=search-buffer<C
 " 普通にgrep
 nnoremap <silent> ;g  :<C-u>Denite grep:. -buffer-name=search-buffer<CR>
 nnoremap <silent> ;y  :<C-u>Denite neoyank<CR>
-
-" Shougo/deoplete.vim
 """""""""""""""""""""""""""""
-" https://github.com/Shougo/shougo-s-github/blob/master/vim/rc/plugins/deoplete.rc.vim
-"
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 0
+let g:deoplete#auto_complete_start_length = 1
+let g:deoplete#enable_camel_case = 0
+let g:deoplete#enable_ignore_case = 0
+let g:deoplete#enable_refresh_always = 0
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#file#enable_buffer_path = 1
+let g:deoplete#max_list = 10000
 " <TAB>: completion.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ deoplete#manual_complete()
-function! s:check_back_space() abort "{{{
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ deoplete#manual_complete()
+function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-
+endfunction
 " <S-TAB>: completion back.
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
-
-" inoremap <expr><C-g> deoplete#undo_completion()
-" <C-l>: redraw candidates
 inoremap <expr><C-g>       deoplete#refresh()
+inoremap <expr><C-e>       deoplete#cancel_popup()
 inoremap <silent><expr><C-l>       deoplete#complete_common_string()
-
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function() abort
-  return deoplete#cancel_popup() . "\<CR>"
+  return pumvisible() ? deoplete#close_popup()."\<CR>" : "\<CR>"
 endfunction
+"""""""""""""""""""""""""""""
 
-inoremap <expr> '  pumvisible() ? deoplete#close_popup() : "'"
+" Shougo/deoplete.nvim
+"""""""""""""""""""""""""""""
 
-" call deoplete#custom#source('_', 'matchers', ['matcher_head'])
-"call deoplete#custom#source('ghc', 'sorters', ['sorter_word'])
-" call deoplete#custom#source('buffer', 'mark', '')
-" call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-" call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
-" call deoplete#custom#source('buffer', 'mark', '*')
-
-" Use auto delimiter
-" call deoplete#custom#source('_', 'converters',
-"       \ ['converter_auto_paren',
-"       \  'converter_auto_delimiter', 'remove_overlap'])
-"call deoplete#custom#source('_', 'converters', [
-"      \ 'converter_remove_paren',
-"      \ 'converter_remove_overlap',
-"      \ 'converter_truncate_abbr',
-"      \ 'converter_truncate_menu',
-"      \ 'converter_auto_delimiter',
-"      \ ])
-"
-" call deoplete#custom#source('buffer', 'min_pattern_length', 9999)
-"call deoplete#custom#source('clang', 'input_pattern', '\.\w*|\.->\w*|\w+::\w*')
-"call deoplete#custom#source('clang', 'max_pattern_length', -1)
-
-let g:deoplete#keyword_patterns = {}
-let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'
-" let g:deoplete#keyword_patterns.tex = '\\?[a-zA-Z_]\w*'
-let g:deoplete#keyword_patterns.tex = '[^\w|\s][a-zA-Z_]\w*'
-
-let g:deoplete#omni#input_patterns = {}
-let g:deoplete#omni#input_patterns.python = ''
-let g:deoplete#omni#functions = {}
-
-" inoremap <silent><expr> <C-t> deoplete#manual_complete('file')
-
-let g:deoplete#enable_refresh_always = 0
-let g:deoplete#enable_camel_case = 1
-" let g:deoplete#auto_complete_delay = 50
-" let g:deoplete#auto_complete_start_length = 3
-
-let g:deoplete#skip_chars = ['(', ')']
-
-" let g:deoplete#enable_profile = 1
-" call deoplete#enable_logging('DEBUG', 'deoplete.log')
-" call deoplete#custom#source('clang', 'debug_enabled', 1)
+" prabirshrestha/vim-lsp
+"""""""""""""""""""""""""""""
+" https://mattn.kaoriya.net/software/lang/go/20181217000056.htm
+"""""""""""""""""""""""""""""
+let g:lsp_async_completion = 1
 """""""""""""""""""""""""""""
 
 endif
-
-" fatih/vim-go
-"""""""""""""""""""""""""""""
-let g:go_version_warning = 0
 """""""""""""""""""""""""""""

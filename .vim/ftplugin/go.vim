@@ -35,11 +35,21 @@ ret g:go_highlight_spellcheck = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_template_autocreate = 0
+let g:go_def_mode='gopls'
 """""""""""""""""""""""""""""
 
-" deoplete-plugins/deoplete-go
+" golsp
 """""""""""""""""""""""""""""
-"g:deoplete#sources#go#gocode_binary = .globpath($GOPATH, "bin/gocode")
-"let g:deoplete#sources#go#package_dot = 1
+augroup LspGo
+  au!
+  autocmd User lsp_setup call lsp#register_server({
+      \ 'name': 'go-lang',
+      \ 'cmd': {server_info->['gopls']},
+      \ 'whitelist': ['go'],
+      \ })
+  autocmd FileType go setlocal omnifunc=lsp#complete
+  "autocmd FileType go nmap <buffer> gd <plug>(lsp-definition)
+  "autocmd FileType go nmap <buffer> ,n <plug>(lsp-next-error)
+  "autocmd FileType go nmap <buffer> ,p <plug>(lsp-previous-error)
+augroup END
 """""""""""""""""""""""""""""
-

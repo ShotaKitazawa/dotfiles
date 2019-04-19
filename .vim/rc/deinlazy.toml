@@ -29,9 +29,9 @@
   repo = 'fatih/vim-go'
   on_ft = 'go'
 
-  [[plugins]]
-  repo = 'zchee/deoplete-go'
-  on_ft = 'go'
+#  [[plugins]]
+#  repo = 'zchee/deoplete-go'
+#  on_ft = 'go'
 
 # HTML
   [[plugins]]
@@ -79,12 +79,4 @@
   repo = 'zchee/deoplete-jedi'
   if = 'has("nvim")'
   on_ft = 'python3'
-
-  [[plugins]]
-  repo = 'fatih/vim-go'
-  on_ft = 'go'
-
-  [[plugins]]
-  repo = 'zchee/deoplete-go'
-  on_ft = 'go'
 
