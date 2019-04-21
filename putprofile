@@ -85,10 +85,22 @@ if [ ! -d ~/.vimundo ]; then
   echo "mkdir ~/.vimundo"
 fi
 
-# download peda (gdb extention)
+# install pyenv
+if [ ! -d ~/.pyenv ]; then
+  git clone https://github.com/pyenv/pyenv ~/.pyenv > /dev/null 2>&1
+  echo "install pyenv"
+fi
+
+# install goenv
+if [ ! -d ~/.goenv ]; then
+  git clone https://github.com/syndbg/goenv ~/.goenv > /dev/null 2>&1
+  echo "install goenv"
+fi
+
+# install peda (gdb extension)
 if [ ! -d ~/.peda ]; then
   git clone https://github.com/longld/peda ~/.peda > /dev/null 2>&1
-  echo "downloaded peda"
+  echo "install peda (gdb extension)"
 fi
 
 # install Powerline fonts for lightline.vim

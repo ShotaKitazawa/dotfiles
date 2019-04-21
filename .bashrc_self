@@ -55,3 +55,18 @@ then # FreeBSD
   alias lll='ls -alG'
   alias updatedb='/usr/libexec/locate.updatedb'
 fi
+
+# setting for XXenv
+if [ -d ~/.pyenv ]; then
+  export PYENV_ROOT=$HOME/.pyenv
+  export PATH=$PYENV_ROOT/bin:$PATH
+  eval "$(pyenv init -)"
+fi
+
+if [ -d ~/.goenv ]; then
+  export GOENV_ROOT=$HOME/.goenv
+  export PATH=$GOENV_ROOT/bin:$PATH
+  eval "$(goenv init -)"
+  # TODO
+  export GOPATH=$HOME/go/$(goenv global)
+fi
