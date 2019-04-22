@@ -90,8 +90,6 @@
   if = 'has("nvim")'
   depends = 'context_filetype.vim'
   on_i = 1
-  hook_source = '''
-  '''
   [[plugins]]
   repo = 'Shougo/denite.nvim'
   if = 'has("nvim")'

@@ -49,7 +49,6 @@ q_deploylink(){
   fi
 }
 
-
 # check tmux version
 if which tmux > /dev/null 2>&1; then
   if [ $(echo "$(tmux -V | awk '{print $2}') >= 2.4" | bc) == 1 ]; then
@@ -74,48 +73,17 @@ deploylink .latexmkrc $HOME
 # link config on environment
 deploylink .config/memo/$(switch_env linux mac linux)/config.toml $path/.config/memo
 
-# let .bashrc read .bashrc_self
-if ! grep .bashrc_self ~/.bashrc > /dev/null 2>&1; then
-  echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
-fi
-
 # vim-undofile folder
 if [ ! -d ~/.vimundo ]; then
   mkdir ~/.vimundo
   echo "mkdir ~/.vimundo"
 fi
 
-# install pyenv
-if [ ! -d ~/.pyenv ]; then
-  git clone https://github.com/pyenv/pyenv ~/.pyenv > /dev/null 2>&1
-  echo "install pyenv"
+# let .bashrc read .bashrc_self
+if ! grep .bashrc_self ~/.bashrc > /dev/null 2>&1; then
+  echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
 fi
-
-# install goenv
-if [ ! -d ~/.goenv ]; then
-  git clone https://github.com/syndbg/goenv ~/.goenv > /dev/null 2>&1
-  echo "install goenv"
-fi
-
-# install peda (gdb extension)
-if [ ! -d ~/.peda ]; then
-  git clone https://github.com/longld/peda ~/.peda > /dev/null 2>&1
-  echo "install peda (gdb extension)"
-fi
-
-# install Powerline fonts for lightline.vim
-if [ ! -d ~/.fonts ]; then
-  git clone https://github.com/powerline/fonts.git ~/.fonts > /dev/null 2>&1
-  if [ $? = 0 ]; then
-    if ~/.fonts/install.sh > /dev/null; then
-      echo "install Powerline fonts"
-    else
-      echo "error: failed to download Powerline fonts"
-    fi
-  else
-    echo "error: failed to download Powerline fonts"
-  fi
-fi
+. ~/.bashrc
 
 # Only root user
 if [ "$(whoami)" = "root" ]; then
