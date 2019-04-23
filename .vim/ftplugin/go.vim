@@ -1,11 +1,12 @@
 set noexpandtab
 set tabstop=4
 set shiftwidth=4
-nnoremap :im :GoImport
+let g:auto_save = 0
+let mapleader = "\<Space>"
 nnoremap tt :GoImports<CR>
 nnoremap tr :GoRename<CR>
 nnoremap ta :GoAddTags<CR>
-let g:auto_save = 0
+nnoremap <Leader>d :GoDef<CR>
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 
@@ -38,7 +39,7 @@ let g:go_template_autocreate = 0
 "let g:go_def_mode='gopls'
 """""""""""""""""""""""""""""
 
-"" golsp
+" golsp
 """""""""""""""""""""""""""""
 augroup LspGo
   au!

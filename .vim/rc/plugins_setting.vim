@@ -260,9 +260,9 @@ endfunction
 """""""""""""""""""""""""""""
 " https://mattn.kaoriya.net/software/lang/go/20181217000056.htm
 """""""""""""""""""""""""""""
-"let g:lsp_async_completion = 1
-"let g:lsp_diagnostics_enabled = 0
-"let g:lsp_signs_enabled = 0
+let g:lsp_async_completion = 1
+let g:lsp_diagnostics_enabled = 0
+let g:lsp_signs_enabled = 0
 """""""""""""""""""""""""""""
 
 endif

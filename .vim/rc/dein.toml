@@ -88,7 +88,6 @@
   [[plugins]]
   repo = 'Shougo/deoplete.nvim'
   if = 'has("nvim")'
-  depends = 'context_filetype.vim'
   on_i = 1
   [[plugins]]
   repo = 'lighttiger2505/deoplete-vim-lsp'
