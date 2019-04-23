@@ -70,6 +70,7 @@ if [ -d ~/.goenv ]; then
   eval "$(goenv init -)"
   # TODO
   export GOPATH=$HOME/go/$(goenv global)
+  export PATH=$GOPATH/bin:$PATH
 fi
 
 if pip --version >/dev/null 2>&1; then
