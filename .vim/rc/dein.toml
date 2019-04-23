@@ -91,6 +91,9 @@
   depends = 'context_filetype.vim'
   on_i = 1
   [[plugins]]
+  repo = 'lighttiger2505/deoplete-vim-lsp'
+  on_i = 1
+  [[plugins]]
   repo = 'Shougo/denite.nvim'
   if = 'has("nvim")'
 # Vue
@@ -101,9 +104,4 @@
   repo = 'prabirshrestha/async.vim'
   [[plugins]]
   repo = 'prabirshrestha/vim-lsp'
-  [[plugins]]
-  repo = 'prabirshrestha/asyncomplete.vim'
-  [[plugins]]
-  repo = 'prabirshrestha/asyncomplete-lsp.vim'
-  [[plugins]]
-  repo = 'natebosch/vim-lsc'
+

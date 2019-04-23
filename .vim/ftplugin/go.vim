@@ -2,7 +2,7 @@ set noexpandtab
 set tabstop=4
 set shiftwidth=4
 nnoremap :im :GoImport
-nnoremap tt :GoFmt<CR>:GoImports<CR>
+nnoremap tt :GoImports<CR>
 nnoremap tr :GoRename<CR>
 nnoremap ta :GoAddTags<CR>
 let g:auto_save = 0
@@ -35,10 +35,10 @@ ret g:go_highlight_spellcheck = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_template_autocreate = 0
-let g:go_def_mode='gopls'
+"let g:go_def_mode='gopls'
 """""""""""""""""""""""""""""
 
-" golsp
+"" golsp
 """""""""""""""""""""""""""""
 augroup LspGo
   au!
