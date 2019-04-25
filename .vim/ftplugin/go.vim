@@ -7,6 +7,8 @@ nnoremap tt :GoImports<CR>
 nnoremap tr :GoRename<CR>
 nnoremap ta :GoAddTags<CR>
 nnoremap <Leader>d :GoDef<CR>
+nnoremap <Leader>s :split<CR>:GoDef<CR><CR>
+nnoremap <Leader>v :vsplit<CR>:GoDef<CR><CR>
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 
@@ -26,6 +28,7 @@ let g:syntastic_go_checkers = ['go', 'golint']
 let g:go_addtags_transform = "snakecase"
 let g:go_auto_sameids = 0
 "let g:go_auto_type_info = 1
+let g:go_auto_type_info = 0
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
