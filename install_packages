@@ -1,7 +1,7 @@
 #!/bin/bash
 
-LOGGER_INFO=/dev/null
-LOGGER_ERROR=/dev/null
+LOGGER_STDOUT='/dev/null'
+LOGGER_STDERR='@2'
 
 switch_env(){
   if [[ "$(uname)" = 'Darwin' ]]; then
@@ -18,80 +18,90 @@ switch_env(){
 # create $HOME/bin
 if [ ! -e $HOME/bin ]; then mkdir $HOME/bin; fi
 
-# install yq
+echo "# install yq"
 YQ_VERSION=2.3.0
-curl -0L https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_$(switch_env linux darwin linux)_amd64 > $HOME/bin/yq 2> $LOGGER_INFO
+curl -0L https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_$(switch_env linux darwin linux)_amd64 > $HOME/bin/yq 2> $LOGGER_STDERR
 chmod 0755 $HOME/bin/yq
-echo "install yq"
+echo "installed"
 
-# install peco
+echo "# install peco"
 PECO_VERSION=v0.5.3
-curl https://github.com/peco/peco/releases/download/${PECO_VERSION}/peco_$(switch_env linux darwin linux)_amd64.zip > $HOME/bin/peco 2> $LOGGER_INFO
+curl -0L https://github.com/peco/peco/releases/download/${PECO_VERSION}/peco_$(switch_env linux darwin linux)_amd64.zip > $HOME/bin/peco 2> $LOGGER_STDERR
 chmod 0755 $HOME/bin/peco
-echo "install peco"
+echo "installed"
 
-# install pyenv
+echo "# install pyenv"
 if [ ! -d ~/.pyenv ]; then
-  git clone https://github.com/pyenv/pyenv ~/.pyenv 2> $LOGGER_INFO
+  git clone https://github.com/pyenv/pyenv ~/.pyenv 2> $LOGGER_STDERR
   export PYENV_ROOT=$HOME/.pyenv
   export PATH=$PYENV_ROOT/bin:$PATH
   eval "$(pyenv init -)"
-  echo "install pyenv"
+  echo "installed"
+else
+  echo "pass"
 fi
 
-# install python packages
-if pyenv install -s $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.version) > /dev/null 2>&1; then
+# TODO: pyenv install -s が動かない > 手動インストールで対応
+echo "# install python packages"
+if pyenv install -s $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.version) > $LOGGER_STDOUT 2> $LOGGER_STDERR; then
   pyenv global $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.version)
   for i in $(seq 0 $(( $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.packages | wc -l | awk '{print $1}') - 1 ))); do
     echo "pip install -U $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.packages[$i])"
-    pip install -U $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.packages[$i]) > $LOGGER_INFO 2> $LOGGER_ERROR
+    pip install -U $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.packages[$i]) > $LOGGER_STDOUT 2> $LOGGER_STDERR
   done
 fi
 
-# install goenv
+echo "# install goenv"
 if [ ! -d ~/.goenv ]; then
-  git clone https://github.com/syndbg/goenv ~/.goenv 2> $LOGGER_INFO
-  echo "install goenv"
+  git clone https://github.com/syndbg/goenv ~/.goenv 2> $LOGGER_STDERR
+  echo "installed"
+else
+  echo "pass"
 fi
 
-# install golang packages
-if goenv install -s $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.version) > /dev/null 2>&1; then
+# TODO: goenv install -s が動かない > 手動インストールで対応
+echo "# install golang packages"
+if goenv install -s $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.version) > $LOGGER_STDOUT 2> $LOGGER_STDERR; then
   goenv global $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.version)
   for i in $(seq 0 $(( $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.packages | wc -l | awk '{print $1}') - 1 ))); do
     echo "go get -u $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.packages[$i])"
-    go get -u $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.packages[$i]) > $LOGGER_INFO 2> $LOGGER_ERROR
+    go get -u $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.packages[$i]) > $LOGGER_STDOUT 2> $LOGGER_STDERR
   done
 fi
 
-# install peda (gdb extension)
+echo "# install peda (gdb extension)"
 if [ ! -d ~/.peda ]; then
-  git clone https://github.com/longld/peda ~/.peda 2> $LOGGER_INFO
-  echo "install peda (gdb extension)"
+  git clone https://github.com/longld/peda ~/.peda 2> $LOGGER_STDERR
+  echo "installed"
+else
+  echo "pass"
 fi
 
-# install Powerline fonts for lightline.vim
+echo "# install Powerline fonts for lightline.vim"
 if [ ! -d ~/.fonts ]; then
-  if git clone https://github.com/powerline/fonts.git ~/.fonts 2> $LOGGER_INFO; then
+  if git clone https://github.com/powerline/fonts.git ~/.fonts 2> $LOGGER_STDERR; then
     if ~/.fonts/install.sh > /dev/null; then
-      echo "install Powerline fonts"
+      echo "installed"
     else
       echo "error: failed to download Powerline fonts"
     fi
   else
     echo "error: failed to download Powerline fonts"
   fi
+else
+  echo "pass"
 fi
 
-# for each OS
+echo "# for each OS"
 if [[ "$(uname)" = 'Darwin' ]]; then
-  if brew -v > $LOGGER_INFO 2>&1; then
+  if brew -v > $LOGGER_STDOUT 2> $LOGGER_STDERR; then
     for i in $(seq 0 $(( $(cat $HOME/dotfiles/requirements/os.yml | yq r - mac.brew | wc -l | awk '{print $1}') - 1 ))); do
       echo "brew install $(cat $HOME/dotfiles/requirements/os.yml | yq r - mac.brew[$i])"
-      brew install $(cat $HOME/dotfiles/requirements/os.yml | yq r - mac.brew[$i]) > $LOGGER_INFO 2> $LOGGER_ERROR
+      brew install $(cat $HOME/dotfiles/requirements/os.yml | yq r - mac.brew[$i]) > $LOGGER_STDOUT 2> $LOGGER_STDERR
     done
     for i in $(seq 0 $(( $(cat $HOME/dotfiles/requirements/os.yml | yq r - mac.cask | wc -l | awk '{print $1}') - 1 ))); do
       echo "brew cask install $(cat $HOME/dotfiles/requirements/os.yml | yq r - mac.cask[$i])"
-      brew cask install $(cat $HOME/dotfiles/requirements/os.yml | yq r - mac.cask[$i]) > $LOGGER_INFO 2> $LOGGER_ERROR
+      brew cask install $(cat $HOME/dotfiles/requirements/os.yml | yq r - mac.cask[$i]) > $LOGGER_STDOUT 2> $LOGGER_STDERR
     done
   fi
 elif [[ "$(uname -r)" =~ ^.*-Microsoft$ ]]; then

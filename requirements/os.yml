@@ -1,8 +1,11 @@
 mac:
   brew:
-    - cask
-    - wget
+    - bash-completion
     - git
+    - tmux
+    - wget
+    - cask
+    - kubernetes-cli
   cask:
     - alfred
     - google-chrome
@@ -10,5 +13,6 @@ mac:
     - google-japanese-ime
     - iterm2
     - karabiner-elements
+    - kindle
     - macvim
     - slack
