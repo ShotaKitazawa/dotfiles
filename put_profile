@@ -80,10 +80,11 @@ if [ ! -d ~/.vimundo ]; then
 fi
 
 # let .bashrc read .bashrc_self
+grep .bashrc_self ~/.bash_profile 
 if ! grep .bashrc_self ~/.bash_profile > /dev/null 2>&1; then
   echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bash_profile
 fi
-. ~/.bashrc
+. ~/.bash_profile
 
 # Only root user
 if [ "$(whoami)" = "root" ]; then

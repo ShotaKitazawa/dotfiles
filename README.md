@@ -10,6 +10,11 @@ git clone https://github.com/ShotaKitazawa/dotfiles $HOME/dotfiles
 ./dotfiles/put_profile
 ```
 
+* source bashrc
+```bash
+. ~/.bashrc_self
+```
+
 * install softwares
 ```bash
 ./dotfiles/install_packages
