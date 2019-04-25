@@ -12,19 +12,18 @@ switch_env(){
   fi
 }
 
-
 # create $HOME/bin
 if [ ! -e $HOME/bin ]; then mkdir $HOME/bin; fi
 
 # install yq
 YQ_VERSION=2.3.0
-wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_$(switch_env linux darwin linux)_amd64 -O $HOME/bin/yq > /dev/null 2>&1
+curl -0L https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_$(switch_env linux darwin linux)_amd64 > $HOME/bin/yq 2> /dev/null
 chmod 0755 $HOME/bin/yq
 echo "install yq"
 
 # install peco
 PECO_VERSION=v0.5.3
-https://github.com/peco/peco/releases/download/${PECO_VERSION}/peco_$(switch_env linux darwin linux)_amd64.zip -O $HOME/bin/peco > /dev/null 2>&1
+curl https://github.com/peco/peco/releases/download/${PECO_VERSION}/peco_$(switch_env linux darwin linux)_amd64.zip > $HOME/bin/peco 2> /dev/null
 chmod 0755 $HOME/bin/peco
 echo "install peco"
 
@@ -38,11 +37,11 @@ if [ ! -d ~/.pyenv ]; then
 fi
 
 # install python packages
-if pyenv install -s $(cat $HOME/dotfiles/requirements.yml | yq r - python.version) > /dev/null 2>&1; then
-  pyenv global $(cat $HOME/dotfiles/requirements.yml | yq r - python.version)
-  for i in $(seq 0 $(( $(cat $HOME/dotfiles/requirements.yml | yq r - python.packages | wc -l | awk '{print $1}') - 1 ))); do
-    echo "pip install -U $(cat $HOME/dotfiles/requirements.yml | yq r - python.packages[$i])"
-    pip install -U $(cat $HOME/dotfiles/requirements.yml | yq r - python.packages[$i]) > /dev/null 2>&1
+if pyenv install -s $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.version) > /dev/null 2>&1; then
+  pyenv global $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.version)
+  for i in $(seq 0 $(( $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.packages | wc -l | awk '{print $1}') - 1 ))); do
+    echo "pip install -U $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.packages[$i])"
+    pip install -U $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.packages[$i]) > /dev/null 2>&1
   done
 fi
 
@@ -53,11 +52,11 @@ if [ ! -d ~/.goenv ]; then
 fi
 
 # install golang packages
-if goenv install -s $(cat $HOME/dotfiles/requirements.yml | yq r - go.version) > /dev/null 2>&1; then
-  goenv global $(cat $HOME/dotfiles/requirements.yml | yq r - go.version)
-  for i in $(seq 0 $(( $(cat $HOME/dotfiles/requirements.yml | yq r - go.packages | wc -l | awk '{print $1}') - 1 ))); do
-    echo "go get -u $(cat $HOME/dotfiles/requirements.yml | yq r - go.packages[$i])"
-    go get -u $(cat $HOME/dotfiles/requirements.yml | yq r - go.packages[$i]) > /dev/null 2>&1
+if goenv install -s $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.version) > /dev/null 2>&1; then
+  goenv global $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.version)
+  for i in $(seq 0 $(( $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.packages | wc -l | awk '{print $1}') - 1 ))); do
+    echo "go get -u $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.packages[$i])"
+    go get -u $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.packages[$i]) > /dev/null 2>&1
   done
 fi
 

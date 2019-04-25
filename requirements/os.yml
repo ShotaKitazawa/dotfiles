@@ -1,0 +1,11 @@
+mac:
+  brew_packages:
+    - cask
+    - wget
+    - git
+  cask_packages:
+    - alfred
+    - google-chrome
+    - iterm2
+    - karabiner-elements
+    - macvim
