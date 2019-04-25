@@ -80,8 +80,8 @@ if [ ! -d ~/.vimundo ]; then
 fi
 
 # let .bashrc read .bashrc_self
-if ! grep .bashrc_self ~/.bashrc > /dev/null 2>&1; then
-  echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bashrc
+if ! grep .bashrc_self ~/.bash_profile > /dev/null 2>&1; then
+  echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bash_profile
 fi
 . ~/.bashrc
 
