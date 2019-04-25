@@ -4,8 +4,14 @@ mac:
     - git
     - tmux
     - wget
-    - cask
+    - tree
+    - mysql-client
+    - terraform
+    - neovim
+    - clang-format
     - kubernetes-cli
+    - cask
+    - mas
   cask:
     - alfred
     - google-chrome
@@ -16,3 +22,6 @@ mac:
     - kindle
     - macvim
     - slack
+    - skim
+    - google-backup-and-sync
+
