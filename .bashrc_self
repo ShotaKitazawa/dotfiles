@@ -73,6 +73,7 @@ if [ -d ~/.goenv ]; then
   export PATH=$GOPATH/bin:$PATH
 fi
 
+# pip completion
 if pip --version >/dev/null 2>&1; then
   _pip_completion()
   {
@@ -82,3 +83,6 @@ if pip --version >/dev/null 2>&1; then
   }
   complete -o default -F _pip_completion pip
 fi
+
+# kubectl completion
+if kubectl --version > /dev/null 2>&1; then . <(kubectl completion bash); fi
