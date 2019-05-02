@@ -85,4 +85,4 @@ if pip --version >/dev/null 2>&1; then
 fi
 
 # kubectl completion
-if kubectl --version > /dev/null 2>&1; then . <(kubectl completion bash); fi
+if kubectl version > /dev/null 2>&1; then . <(kubectl completion bash); fi
