@@ -24,4 +24,4 @@ mac:
     - slack
     - skim
     - google-backup-and-sync
-
+    - wireshark
