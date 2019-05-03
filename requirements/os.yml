@@ -1,27 +1,34 @@
 mac:
   brew:
-    - bash-completion
-    - git
-    - tmux
-    - wget
-    - tree
-    - mysql-client
-    - terraform
-    - neovim
-    - clang-format
-    - kubernetes-cli
-    - cask
-    - mas
+    - "bash-completion"
+    - "git"
+    - "tmux"
+    - "wget"
+    - "tree"
+    - "mysql-client"
+    - "terraform"
+    - "neovim"
+    - "clang-format"
+    - "kubernetes-cli"
+    - "cask"
+    - "mas"
   cask:
-    - alfred
-    - google-chrome
-    - google-cloud-sdk
-    - google-japanese-ime
-    - iterm2
-    - karabiner-elements
-    - kindle
-    - macvim
-    - slack
-    - skim
-    - google-backup-and-sync
-    - wireshark
+    - "alfred"
+    - "google-chrome"
+    - "google-cloud-sdk"
+    - "google-japanese-ime"
+    - "iterm2"
+    - "karabiner-elements"
+    - "kindle"
+    - "macvim"
+    - "slack"
+    - "skim"
+    - "google-backup-and-sync"
+    - "wireshark"
+redhat:
+  yum:
+    - "@base"
+    - "epel-release"
+    - "git"
+  yum-epel:
+    - "neovim"

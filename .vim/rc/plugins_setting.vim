@@ -42,7 +42,9 @@ endif
 if dein#check_install()
   call dein#install()
 endif
+
 """"""""""""""""""""""""""""""
+let g:python3_host_prog=$HOME.'/.pyenv/shims/python3'
 
 " Shougo/neosnippet
 """""""""""""""""""""""""""""
