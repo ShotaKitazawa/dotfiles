@@ -5,6 +5,7 @@ mac:
     - "tmux"
     - "wget"
     - "tree"
+    - "watch"
     - "mysql-client"
     - "terraform"
     - "neovim"
