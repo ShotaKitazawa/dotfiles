@@ -145,9 +145,12 @@ nmap <Leader>gd <Plug>(auto_git_diff_manual_update)
 " plasticboy/vim-markdown + kannokanno/previm + tyru/open-browser.vim
 """"""""""""""""""""""""""""""
 " http://qiita.com/uedatakeshi/items/31761b87ba8ecbaf2c1e
+" https://blog.wadackel.me/2017/previmg-github-style/
 """"""""""""""""""""""""""""""
 au BufRead,BufNewFile *.md set filetype=markdown
 let g:previm_open_cmd = ''
+let g:previm_disable_default_css = 1
+let g:previm_custom_css_path = '~/.config/previm/markdown.css'
 nnoremap :md :PrevimOpen
 """"""""""""""""""""""""""""""
 
