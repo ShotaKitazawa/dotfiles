@@ -2,27 +2,34 @@
   [[plugins]]
   repo = 'rhysd/vim-clang-format'
   on_ft = ['c', 'cpp']
-
   [[plugins]]
   repo = 'Shougo/neoinclude.vim'
   on_ft = ['c', 'cpp']
+#  [[plugins]]
+#  repo = 'tweekmonster/deoplete-clang2'
+#  if = 'has("nvim")'
+#  on_ft = ['c', 'cpp']
+#  hook_source = '''
+#    autocmd FileType c,cpp let b:clang2_orig_maps = {}
+#  '''
 
 # Python
   [[plugins]]
   repo = 'davidhalter/jedi-vim'
   on_ft = 'python'
-
   [[plugins]]
   repo = 'nvie/vim-flake8'
   on_ft = 'python'
-
   [[plugins]]
   repo = 'nvie/vim-flake8'
   on_ft = 'python'
-
   [[plugins]]
   repo = 'Vimjas/vim-python-pep8-indent'
   on_ft = 'python'
+  [[plugins]]
+  repo = 'zchee/deoplete-jedi'
+  if = 'has("nvim")'
+  on_ft = 'python3'
 
 # Go
   [[plugins]]
@@ -33,10 +40,6 @@
     let g:go_def_mapping_enabled = 0
     let g:go_doc_keywordprg_enabled = 0
   '''
-
-#  [[plugins]]
-#  repo = 'zchee/deoplete-go'
-#  on_ft = 'go'
 
 # HTML
   [[plugins]]
@@ -54,13 +57,12 @@
   on_ft = 'javascript'
 
 # Markdown
-#  [[plugins]]
-#  repo = 'plasticboy/vim-markdown'
-#  on_ft = 'markdown'
-
   [[plugins]]
   repo = 'kannokanno/previm'
   on_ft = 'markdown'
+#  [[plugins]]
+#  repo = 'plasticboy/vim-markdown'
+#  on_ft = 'markdown'
 
 # LaTeX
   [[plugins]]
@@ -72,16 +74,7 @@
   repo = 'hashicorp/terraform'
   on_ft = ['tf']
 
-# neovim
-#  [[plugins]]
-#  repo = 'tweekmonster/deoplete-clang2'
-#  if = 'has("nvim")'
-#  on_ft = ['c', 'cpp']
-#  hook_source = '''
-#    autocmd FileType c,cpp let b:clang2_orig_maps = {}
-#  '''
+# Dockerfile
   [[plugins]]
-  repo = 'zchee/deoplete-jedi'
-  if = 'has("nvim")'
-  on_ft = 'python3'
-
+  repo = 'ekalinin/Dockerfile.vim'
+  on_ft = ['dockerfile']

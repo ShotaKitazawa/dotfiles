@@ -15,6 +15,9 @@ mac:
     - "mas"
   cask:
     - "alfred"
+    - "coccinellida"
+    - "discord"
+    - "google-backup-and-sync"
     - "google-chrome"
     - "google-cloud-sdk"
     - "google-japanese-ime"
@@ -24,8 +27,12 @@ mac:
     - "macvim"
     - "slack"
     - "skim"
-    - "google-backup-and-sync"
+    - "skitch"
+    - "the-unarchiver"
+    - "thunderbird "
+    - "vnc-viewer"
     - "wireshark"
+    - "homebrew/cask-versions/microsoft-remote-desktop-beta"
 redhat:
   yum:
     - "@base"
