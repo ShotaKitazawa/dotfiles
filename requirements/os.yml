@@ -6,6 +6,7 @@ mac:
     - "wget"
     - "tree"
     - "watch"
+    - "htop"
     - "mysql-client"
     - "terraform"
     - "neovim"
