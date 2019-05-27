@@ -81,7 +81,7 @@ let g:lightline = {
 
 " scrooloose/nerdtree
 """""""""""""""""""""""""""""
-nnoremap :tree :NERDTreeToggle
+nnoremap tr :<C-u>NERDTreeToggle<CR>
 """""""""""""""""""""""""""""
 
 " kana/vim-submode
@@ -89,10 +89,9 @@ nnoremap :tree :NERDTreeToggle
 " http://nanasi.jp/articles/howto/file/expand.html
 """""""""""""""""""""""""""""
 " 新Unite tab作成
-nnoremap sT :<C-u>Unite tab<CR>
-"
-nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
-nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+"nnoremap sT :<C-u>Denite tab<CR>
+"snoremap sb :<C-u>Denite buffer_tab -buffer-name=file<CR>
+"nnoremap sB :<C-u>Denite buffer -buffer-name=file<CR>
 " s[<|>] で窓を左右拡張
 " s[+|-] で窓を上下拡張
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
@@ -151,7 +150,8 @@ au BufRead,BufNewFile *.md set filetype=markdown
 let g:previm_open_cmd = ''
 let g:previm_disable_default_css = 1
 let g:previm_custom_css_path = '~/.config/previm/markdown.css'
-nnoremap :md :PrevimOpen
+"nnoremap :md :PrevimOpen
+nnoremap md :PrevimOpen<CR>
 """"""""""""""""""""""""""""""
 
 " mattn/sonictemplate-vim
