@@ -8,6 +8,7 @@ mac:
     - "watch"
     - "htop"
     - "mysql-client"
+    - "the_silver_searcher"
     - "terraform"
     - "neovim"
     - "clang-format"

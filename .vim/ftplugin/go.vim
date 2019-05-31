@@ -3,12 +3,6 @@ set tabstop=4
 set shiftwidth=4
 let g:auto_save = 0
 let mapleader = "\<Space>"
-nnoremap tt :GoImports<CR>
-nnoremap tr :GoRename<CR>
-nnoremap ta :GoAddTags<CR>
-nnoremap <Leader>d :GoDef<CR>
-nnoremap <Leader>s :split<CR>:GoDef<CR><CR>
-nnoremap <Leader>v :vsplit<CR>:GoDef<CR><CR>
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 
@@ -40,20 +34,29 @@ let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_template_autocreate = 0
 "let g:go_def_mode='gopls'
+
+nnoremap tt :GoImports<CR>
+nnoremap tr :GoRename<CR>
+nnoremap ta :GoAddTags<CR>
+nnoremap <Leader>d :GoDef<CR>
+nnoremap <Leader>s :split<CR>:GoDef<CR><CR>
+nnoremap <Leader>v :vsplit<CR>:GoDef<CR><CR>
+nnoremap <C-O> :GoDefPop<CR>
 """""""""""""""""""""""""""""
 
-" golsp
-"""""""""""""""""""""""""""""
-augroup LspGo
-  au!
-  autocmd User lsp_setup call lsp#register_server({
-      \ 'name': 'go-lang',
-      \ 'cmd': {server_info->['gopls']},
-      \ 'whitelist': ['go'],
-      \ })
-  autocmd FileType go setlocal omnifunc=lsp#complete
-  "autocmd FileType go nmap <buffer> gd <plug>(lsp-definition)
-  "autocmd FileType go nmap <buffer> ,n <plug>(lsp-next-error)
-  "autocmd FileType go nmap <buffer> ,p <plug>(lsp-previous-error)
-augroup END
-"""""""""""""""""""""""""""""
+"" golsp
+""""""""""""""""""""""""""""""
+"augroup LspGo
+"  au!
+"  autocmd User lsp_setup call lsp#register_server({
+"      \ 'name': 'go-lang',
+"      \ 'cmd': {server_info->['gopls']},
+"      \ 'whitelist': ['go'],
+"      \ })
+"  autocmd FileType go setlocal omnifunc=lsp#complete
+"  autocmd FileType go nmap <buffer> gd <plug>(lsp-definition)
+"  "autocmd FileType go nmap <buffer> <C-]> <plug>(lsp-definition)
+"  "autocmd FileType go nmap <buffer> ,n <plug>(lsp-next-error)
+"  "autocmd FileType go nmap <buffer> ,p <plug>(lsp-previous-error)
+"augroup END
+""""""""""""""""""""""""""""""

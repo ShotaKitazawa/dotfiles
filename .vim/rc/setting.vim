@@ -76,7 +76,6 @@ nnoremap sn gt
 nnoremap sp gT
 "
 nnoremap sr <C-w>r
-nnoremap s= <C-w>=
 nnoremap sN :<C-u>bn<CR>
 nnoremap sP :<C-u>bp<CR>
 " 次窓へ移動
@@ -85,6 +84,7 @@ nnoremap sw <C-w>w
 nnoremap so <C-w>_<C-w>|
 " 各窓を均等にする
 nnoremap sO <C-w>=
+nnoremap s= <C-w>=
 " 現在の窓をタブ化
 nnoremap st :<C-u>tab split<CR>
 " 新タブ作成
@@ -135,7 +135,7 @@ set incsearch
 set wildmenu wildmode=list:full
 " マウスを使用できるようにする
 set mouse=a
-"" C言語用自動インデント
+" C言語用自動インデント
 set cindent
 " TAB をスペースにする
 set expandtab
@@ -193,7 +193,8 @@ noremap <ESC><ESC> :noh<CR>
 " vimrc をすぐ開く
 nnoremap <space>. :<c-u>new ~/.vim/vimrc<CR>
 " C-c で ESC
-noremap <C-c> <ESC>
+nnoremap <C-c> <Nop>
+nnoremap <C-c> <ESC>
 " insert mode時フルパス入力
 inoremap <C-r>path <C-R>=expand('%:p')<CR>
 " 不可視文字を表示する
