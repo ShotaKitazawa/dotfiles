@@ -151,7 +151,7 @@ let g:previm_open_cmd = ''
 let g:previm_disable_default_css = 1
 let g:previm_custom_css_path = '~/.config/previm/markdown.css'
 "nnoremap :md :PrevimOpen
-nnoremap md :PrevimOpen<CR>
+nnoremap sm :PrevimOpen<CR>
 """"""""""""""""""""""""""""""
 
 " mattn/sonictemplate-vim
