@@ -15,6 +15,7 @@ mac:
     - "neovim"
     - "clang-format"
     - "kubernetes-cli"
+    - "kubectx"
     - "cask"
     - "mas"
   cask:

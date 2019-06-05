@@ -26,8 +26,12 @@ echo "-> installed" | tee $LOGGER_STDOUT
 
 echo "> install peco" | tee $LOGGER_STDOUT
 PECO_VERSION=v0.5.3
-curl -0L https://github.com/peco/peco/releases/download/${PECO_VERSION}/peco_$(switch_env linux darwin linux)_amd64.zip > $HOME/bin/peco 2> $LOGGER_STDERR
-chmod 0755 $HOME/bin/peco
+curl -0L https://github.com/peco/peco/releases/download/${PECO_VERSION}/peco_$(switch_env linux darwin linux)_amd64.zip > /tmp/peco.zip 2> $LOGGER_STDERR
+cd /tmp
+  unzip /tmp/peco.zip
+  mv /tmp/peco_$(switch_env linux darwin linux)_amd64/peco $HOME/bin/peco
+  chmod 0755 $HOME/bin/peco
+cd -
 echo "-> installed" | tee $LOGGER_STDOUT
 
 echo "> install pyenv" | tee $LOGGER_STDOUT
