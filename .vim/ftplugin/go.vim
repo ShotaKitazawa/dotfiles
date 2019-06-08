@@ -36,12 +36,12 @@ let g:go_template_autocreate = 0
 "let g:go_def_mode='gopls'
 
 nnoremap tt :GoImports<CR>
-nnoremap tr :GoRename<CR>
+nnoremap t<C-]> :GoRename<CR>
 nnoremap ta :GoAddTags<CR>
 nnoremap <Leader>d :GoDef<CR>
 nnoremap <Leader>s :split<CR>:GoDef<CR><CR>
 nnoremap <Leader>v :vsplit<CR>:GoDef<CR><CR>
-nnoremap <C-O> :GoDefPop<CR>
+"nnoremap <C-O> :GoDefPop<CR>
 """""""""""""""""""""""""""""
 
 "" golsp
