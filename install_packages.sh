@@ -18,17 +18,34 @@ switch_env(){
 # create $HOME/bin
 if [ ! -e $HOME/bin ]; then mkdir $HOME/bin; fi
 
+
+echo "> install kubectl-get_all" | tee $LOGGER_STDOUT
+cat <<'_EOF_' > $HOME/bin/kubectl-get_all
+#!/usr/bin/env bash
+set -e -o pipefail; [[ -n "$DEBUG" ]] && set -x
+exec kubectl get "$(kubectl api-resources --namespaced=true --verbs=list --output=name | tr "\n" "," | sed -e 's/,$//')" "$@"
+_EOF_
+chmod 0755 $HOME/bin/kubectl-get_all
+echo "-> installed" | tee $LOGGER_STDOUT
+
+
 echo "> install yq" | tee $LOGGER_STDOUT
 YQ_VERSION=2.3.0
 curl -0L https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_$(switch_env linux darwin linux)_amd64 > $HOME/bin/yq 2> $LOGGER_STDERR
 chmod 0755 $HOME/bin/yq
 echo "-> installed" | tee $LOGGER_STDOUT
 
+
 echo "> install peco" | tee $LOGGER_STDOUT
 PECO_VERSION=v0.5.3
-curl -0L https://github.com/peco/peco/releases/download/${PECO_VERSION}/peco_$(switch_env linux darwin linux)_amd64.zip > $HOME/bin/peco 2> $LOGGER_STDERR
-chmod 0755 $HOME/bin/peco
+curl -0L https://github.com/peco/peco/releases/download/${PECO_VERSION}/peco_$(switch_env linux darwin linux)_amd64.zip > /tmp/peco.zip 2> $LOGGER_STDERR
+cd /tmp
+  unzip /tmp/peco.zip
+  mv /tmp/peco_$(switch_env linux darwin linux)_amd64/peco $HOME/bin/peco
+  chmod 0755 $HOME/bin/peco
+cd -
 echo "-> installed" | tee $LOGGER_STDOUT
+
 
 echo "> install pyenv" | tee $LOGGER_STDOUT
 if [ ! -d ~/.pyenv ]; then
@@ -41,6 +58,7 @@ else
   echo "-> pass" | tee $LOGGER_STDOUT
 fi
 
+
 # TODO: pyenv install -s が動かない > 手動インストールで対応
 echo "> install python packages" | tee $LOGGER_STDOUT
 if pyenv install -s $(cat $HOME/dotfiles/requirements/language.yml | yq r - python.version) > $LOGGER_STDOUT 2> $LOGGER_STDERR; then
@@ -51,6 +69,7 @@ if pyenv install -s $(cat $HOME/dotfiles/requirements/language.yml | yq r - pyth
   done
 fi
 
+
 echo "> install goenv" | tee $LOGGER_STDOUT
 if [ ! -d ~/.goenv ]; then
   git clone https://github.com/syndbg/goenv ~/.goenv 2> $LOGGER_STDERR
@@ -58,6 +77,7 @@ if [ ! -d ~/.goenv ]; then
 else
   echo "-> pass" | tee $LOGGER_STDOUT
 fi
+
 
 # TODO: goenv install -s が動かない > 手動インストールで対応
 echo "> install golang packages" | tee $LOGGER_STDOUT
@@ -67,6 +87,7 @@ if goenv install -s $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.v
     echo "-> go get -u $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.packages[$i])" | tee $LOGGER_STDOUT
     go get -u $(cat $HOME/dotfiles/requirements/language.yml | yq r - go.packages[$i]) > $LOGGER_STDOUT 2> $LOGGER_STDERR
   done
+
 fi
 
 echo "> install peda (gdb extension)" | tee $LOGGER_STDOUT
@@ -76,6 +97,7 @@ if [ ! -d ~/.peda ]; then
 else
   echo "-> pass" | tee $LOGGER_STDOUT
 fi
+
 
 echo "> install Powerline fonts for lightline.vim" | tee $LOGGER_STDOUT
 if [ ! -d ~/.fonts ]; then
@@ -91,6 +113,7 @@ if [ ! -d ~/.fonts ]; then
 else
   echo "-> pass" | tee $LOGGER_STDOUT
 fi
+
 
 echo "> for each OS"
 if [[ "$(uname)" = 'Darwin' ]]; then

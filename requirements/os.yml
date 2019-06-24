@@ -8,6 +8,7 @@ mac:
     - "rename"
     - "watch"
     - "tig"
+    - "jq"
     - "htop"
     - "mysql-client"
     - "the_silver_searcher"
@@ -15,6 +16,7 @@ mac:
     - "neovim"
     - "clang-format"
     - "kubernetes-cli"
+    - "kubectx"
     - "cask"
     - "mas"
   cask:
@@ -31,6 +33,7 @@ mac:
     - "kindle"
     - "macvim"
     - "nextcloud"
+    - "osxfuse"
     - "slack"
     - "skim"
     - "skitch"
