@@ -11,19 +11,28 @@ alias wma2mp3='if [ ! -d mp3 ];then mkdir mp3; fi; for i in *; do vlc -I dummy -
 export PATH=/usr/local/bin:$PATH
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
-if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
-  . /usr/local/etc/bash_completion.d/git-prompt.sh
-fi
-if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ];then
-  . /usr/local/etc/bash_completion.d/git-completion.bash
-fi
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+
+if [ -f /Applications/MacVim.app/Contents/Resources/vim/gvimrc ];then
+  mv /Applications/MacVim.app/Contents/Resources/vim/gvimrc{,.default}
 fi
 if [ -f /Applications/MacVim.app/Contents/Resources/vim/vimrc ];then
   mv /Applications/MacVim.app/Contents/Resources/vim/vimrc{,.default}
 fi
-if [ -f /Applications/MacVim.app/Contents/Resources/vim/gvimrc ];then
-  mv /Applications/MacVim.app/Contents/Resources/vim/gvimrc{,.default}
-fi
 
+# for bash
+if [ "$SHELL" = "/bin/bash" ];then
+  if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
+    . /usr/local/etc/bash_completion.d/git-prompt.sh
+  fi
+  if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ];then
+    . /usr/local/etc/bash_completion.d/git-completion.bash
+  fi
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
+
+# for zsh
+elif [ "$SHELL" = "/bin/bash" ];then
+  fpath=(/path/to/homebrew/share/zsh-completions $fpath)
+  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+fi

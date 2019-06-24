@@ -1,0 +1,128 @@
+function ssh(){
+  if ps x | grep -v grep | grep $PPID | grep tmux > /dev/null 2>&1; then
+    local window_name=$(tmux display -p '#{window_name}')
+    command ssh $@
+    tmux rename-window $window_name
+  else
+    command ssh $@
+  fi
+}
+
+function parse_yaml () {
+   local s='[[:space:]]*' w='[a-zA-Z0-9_]*' fs=$(echo @|tr @ '\034')
+   sed -ne "s|^\($s\)\($w\)$s:$s\"\(.*\)\"$s\$|\1$fs\2$fs\3|p" \
+        -e "s|^\($s\)\($w\)$s:$s\(.*\)$s\$|\1$fs\2$fs\3|p"  $1 |
+   awk -F$fs '{
+      indent = length($1)/2;
+      vname[indent] = $2;
+      for (i in vname) {if (i > indent) {delete vname[i]}}
+      if (length($3) > 0) {
+         vn=""; for (i=0; i<indent; i++) {vn=(vn)(vname[i])("_")}
+         printf("%s%s=\"%s\"\n", vn, $2, $3);
+      }
+   }'
+   return 0
+}
+
+
+function current_shell (){
+  ps aux | grep -v grep | grep $$ | awk -F" " '{print $NF}' | sed -e 's|^-||g'
+}
+# env
+export EDITOR=vim
+export PATH=$PATH:$HOME/bin
+
+# vim
+if which nvim > /dev/null 2>&1; then alias vim=nvim; fi
+
+# alias
+alias rm="rm -i"
+alias cp="cp -i"
+alias ssh-keyadd="ssh-add ~/.ssh/id_rsa*"
+alias ssh-showpub="ssh-keygen -yf"
+alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
+
+# setting for XXenv
+if [ -d ~/.pyenv ]; then
+  export PYENV_ROOT=$HOME/.pyenv
+  export PATH=$PYENV_ROOT/bin:$PATH
+  eval "$(pyenv init -)"
+fi
+
+if [ -d ~/.goenv ]; then
+  export GOENV_ROOT=$HOME/.goenv
+  export PATH=$GOENV_ROOT/bin:$PATH
+  eval "$(goenv init -)"
+  # TODO
+  export GOPATH=$HOME/go/$(goenv global)
+  export PATH=$GOPATH/bin:$PATH
+fi
+
+
+if [ "$(current_shell)" = "bash" ]; then # bash
+  export PS1='$(BRANCH=$(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p"); if [ "$BRANCH" != "" ]; then if [ "$BRANCH" = "master" ]; then echo "\[\e[32m\]<\[\e[31m\]$BRANCH\[\e[32m\]>"; else echo "\[\e[32m\]<\[\e[33m\]$BRANCH\[\e[32m\]>"; fi; fi)\[\e[32m\][$(if [ "$(whoami)" = "root" ]; then echo "\[\e[31m\]"; fi)\u\[\e[32m\]@\h: \W]\[\e[0m\]\$ '
+  bind '"\C-f": forward-word'
+  bind '"\C-b": backward-word'
+  stty stop undef
+
+  # pip completion
+  if pip --version >/dev/null 2>&1; then
+    _pip_completion()
+    {
+        COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
+                       COMP_CWORD=$COMP_CWORD \
+                       PIP_AUTO_COMPLETE=1 $1 ) )
+    }
+    complete -o default -F _pip_completion pip
+  fi
+
+elif [ "$(current_shell)" = "zsh" ]; then # zsh
+  # TODO
+  echo -n
+  # 補完機能有効にする
+  autoload -U compinit
+  compinit -u
+  # 補完候補に色つける
+  autoload -U colors
+  colors
+  zstyle ':completion:*' list-colors "${LS_COLORS}"
+  # 単語の入力途中でもTab補完を有効化
+  setopt complete_in_word
+  # 補完候補をハイライト
+  zstyle ':completion:*:default' menu select=1
+  # キャッシュの利用による補完の高速化
+  zstyle ':completion::complete:*' use-cache true
+  # 大文字、小文字を区別せず補完する
+  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+  # 補完リストの表示間隔を狭くする
+  setopt list_packed
+  # コマンドの打ち間違いを指摘してくれる
+  setopt correct
+  SPROMPT="correct: $RED%R$DEFAULT -> $GREEN%r$DEFAULT ? [Yes/No/Abort/Edit] => "
+fi
+
+# for each OS
+if [[ "$(uname)" = 'Darwin' ]]
+then # macOS
+  export OS='Mac'
+  . $HOME/.shell/mac
+
+elif [[ "$(uname -r)" =~ ^.*-Microsoft$ ]]
+then # Windows Subsystem for Linux
+  export OS='WSL'
+  . $HOME/.shell/wsl
+
+elif [[ "$(uname)" = 'Linux' ]]
+then # Linux
+  export OS='Linux'
+  . $HOME/.shell/linux
+
+elif [[ "$(uname)" = 'FreeBSD' ]]
+then # FreeBSD
+  export OS='FreeBSD'
+  alias l='ls'
+  alias ll='ls -lG'
+  alias lll='ls -alG'
+  alias updatedb='/usr/libexec/locate.updatedb'
+fi
+
