@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+
+if kubectl help > /dev/null 2>&1; then
+  . <(kubectl completion zsh)
+  alias k=kubectl
+  complete -o default -F __start_kubectl k
+fi

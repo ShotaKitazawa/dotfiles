@@ -57,23 +57,12 @@ if [ -d ~/.goenv ]; then
 fi
 
 current_shell=$(ps aux | grep -v grep | grep $$ | awk -F" " '{print $NF}' | sed -e 's|^-||g')
-if [ "${current_shell}" = "bash" ]; then # bash
-  export PS1='$(BRANCH=$(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p"); if [ "$BRANCH" != "" ]; then if [ "$BRANCH" = "master" ]; then echo "\[\e[32m\]<\[\e[31m\]$BRANCH\[\e[32m\]>"; else echo "\[\e[32m\]<\[\e[33m\]$BRANCH\[\e[32m\]>"; fi; fi)\[\e[32m\][$(if [ "$(whoami)" = "root" ]; then echo "\[\e[31m\]"; fi)\u\[\e[32m\]@\h: \W]\[\e[0m\]\$ '
-  bind '"\C-f": forward-word'
-  bind '"\C-b": backward-word'
-  stty stop undef
-  # pip completion
-  if pip --version >/dev/null 2>&1; then
-    _pip_completion()
-    {
-        COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
-                       COMP_CWORD=$COMP_CWORD \
-                       PIP_AUTO_COMPLETE=1 $1 ) )
-    }
-    complete -o default -F _pip_completion pip
-  fi
-elif [ "${current_shell}" = "zsh" ]; then # zsh
+if [ "${current_shell}" = "bash" ]; then
+  . ~/.shell/bash/setting
+  . ~/.shell/bash/completion
+elif [ "${current_shell}" = "zsh" ]; then
   . ~/.shell/zsh/setting
+  . ~/.shell/zsh/completion
   . ~/.shell/zsh/zplug
 fi
 
