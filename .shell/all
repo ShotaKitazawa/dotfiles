@@ -24,7 +24,6 @@ function parse_yaml () {
    return 0
 }
 
-
 function current_shell (){
   ps aux | grep -v grep | grep $$ | awk -F" " '{print $NF}' | sed -e 's|^-||g'
 }

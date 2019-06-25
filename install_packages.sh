@@ -98,8 +98,7 @@ else
   echo "-> pass" | tee $LOGGER_STDOUT
 fi
 
-
-echo "> install Powerline fonts for lightline.vim" | tee $LOGGER_STDOUT
+echo "> install Powerline fonts" | tee $LOGGER_STDOUT
 if [ ! -d ~/.fonts ]; then
   if git clone https://github.com/powerline/fonts.git ~/.fonts 2> $LOGGER_STDERR; then
     if ~/.fonts/install.sh > /dev/null; then
@@ -114,6 +113,9 @@ else
   echo "-> pass" | tee $LOGGER_STDOUT
 fi
 
+echo "> install Monaco Powerline fonts" | tee $LOGGER_STDOUT
+wget https://gist.github.com/baopham/1838072/raw/2c0e00770826e651d1e355962e751325edb0f1ee/Monaco%20for%20Powerline.otf -O $(switch_env $HOME/.local/share/fonts $HOME/Library/Fonts $HOME/.local/share/fonts)
+echo "-> installed" | tee $LOGGER_STDOUT
 
 echo "> for each OS"
 if [[ "$(uname)" = 'Darwin' ]]; then

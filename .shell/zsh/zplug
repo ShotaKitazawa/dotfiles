@@ -1,33 +1,58 @@
-# zplugが無ければgitからclone
+###########################################################
+# Pre configuration
+
+export ZPLUG_HOME=$HOME/.zplug
 if [[ ! -d ~/.zplug ]];then
-  git clone https://github.com/zplug/zplug ~/.zplug
+  git clone https://github.com/zplug/zplug $ZPLUG_HOME
 fi
+source $ZPLUG_HOME/init.zsh
+zplug clear
 
-# zplugを使う
-source ~/.zplug/init.zsh
+###########################################################
+# Packages
+
 zplug "zplug/zplug", hook-build:'zplug --self-manage'
-
-# Theme
-zplug "yous/lime"
-# 構文のハイライト(https://github.com/zsh-users/zsh-syntax-highlighting)
+#zplug "yous/lime"
 zplug "zsh-users/zsh-syntax-highlighting"
-# history関係
 zplug "zsh-users/zsh-history-substring-search"
-# タイプ補完
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "chrissicool/zsh-256color"
-# 非同期処理
 zplug "mafredri/zsh-async"
 
+###########################################################
+# Theme
 
-# インストールしてないプラグインはインストール
+zplug "b-ryan/powerline-shell"
+
+function powerline_precmd() {
+    PS1="$(powerline-shell --shell zsh $?)"
+}
+
+function install_powerline_precmd() {
+  for s in ${precmd_functions[@]}; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" ]; then
+    install_powerline_precmd
+fi
+
+###########################################################
+# Install packages that have not been installed yet
+
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
         echo; zplug install
     fi
 fi
-
-# コマンドをリンクして、PATH に追加し、プラグインは読み込む
 zplug load
+
+###########################################################
+# Post configuration
+
