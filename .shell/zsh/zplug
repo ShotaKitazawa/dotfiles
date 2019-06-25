@@ -12,13 +12,12 @@ zplug clear
 # Packages
 
 zplug "zplug/zplug", hook-build:'zplug --self-manage'
-#zplug "yous/lime"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
-zplug "chrissicool/zsh-256color"
-zplug "mafredri/zsh-async"
+#zplug "chrissicool/zsh-256color"
+#zplug "mafredri/zsh-async"
 
 ###########################################################
 # Theme

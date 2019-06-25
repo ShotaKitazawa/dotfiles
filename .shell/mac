@@ -20,7 +20,7 @@ if [ -f /Applications/MacVim.app/Contents/Resources/vim/vimrc ];then
 fi
 
 # for bash
-if [ "$(current_shell)" = "bash" ];then
+if [ "${current_shell}" = "bash" ];then
   if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
     . /usr/local/etc/bash_completion.d/git-prompt.sh
   fi
@@ -32,7 +32,7 @@ if [ "$(current_shell)" = "bash" ];then
   fi
 
 # for zsh
-elif [ "$(current_shell)" = "zsh" ];then
+elif [ "${current_shell}" = "zsh" ];then
   fpath=($(brew --prefix)/share/zsh-completions $fpath)
   fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 fi

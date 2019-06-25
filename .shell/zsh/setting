@@ -1,3 +1,5 @@
+bindkey -e
+
 # 補完機能有効にする
 autoload -U compinit
 compinit -u
@@ -26,3 +28,6 @@ setopt correct
 SPROMPT="correct: $RED%R$DEFAULT -> $GREEN%r$DEFAULT ? [Yes/No/Abort/Edit] => "
 # cd 省略可能
 setopt auto_cd
+
+setopt share_history
+

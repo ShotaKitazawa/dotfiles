@@ -28,7 +28,7 @@ mac:
     - "google-chrome"
     - "google-cloud-sdk"
     - "google-japanese-ime"
-    - "iterm2"
+    - "iterm2-beta"
     - "karabiner-elements"
     - "kindle"
     - "macvim"
