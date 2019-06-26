@@ -65,8 +65,6 @@ deploylink .gitignore $HOME
 deploylink .tmux.conf $HOME
 deploylink .vim $HOME
 deploylink .shell $HOME
-deploylink .bashrc_self $HOME
-deploylink .zshrc_self $HOME
 deploylink .gdbinit $HOME
 deploylink .config $HOME
 deploylink .vrapperrc $HOME

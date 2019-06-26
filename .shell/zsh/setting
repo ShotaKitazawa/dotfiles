@@ -31,7 +31,7 @@ bindkey -M menuselect 'l' vi-forward-char
 # キャッシュの利用による補完の高速化
 zstyle ':completion::complete:*' use-cache true
 # 大文字、小文字を区別せず補完する
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # 補完リストの表示間隔を狭くする
 setopt list_packed
 # コマンドの打ち間違いを指摘してくれる
