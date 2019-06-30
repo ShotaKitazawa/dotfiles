@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+###########################################################
+# Pre configuration
+#
+ZPLUGIN_HOME=$HOME/.zplugin
+if [[ ! -d $ZPLUGIN_HOME ]];then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+fi
+source "$ZPLUGIN_HOME/bin/zplugin.zsh"
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+
+###########################################################
+# Packages
+
+zplugin load "zsh-users/zsh-syntax-highlighting"
+zplugin load "zsh-users/zsh-history-substring-search"
+zplugin load "zsh-users/zsh-autosuggestions"
+zplugin load "zsh-users/zsh-completions"
+#zplug "chrissicool/zsh-256color"
+#zplug "mafredri/zsh-async"
+

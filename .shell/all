@@ -30,9 +30,6 @@ function parse_yaml () {
 export EDITOR=vim
 export PATH=$PATH:$HOME/bin
 
-# vim
-if which nvim > /dev/null 2>&1; then alias vim=nvim; fi
-
 # alias
 alias rm="rm -i"
 alias cp="cp -i"
@@ -40,17 +37,20 @@ alias ssh-keyadd="ssh-add ~/.ssh/id_rsa*"
 alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
 
+# vim -> nvim
+if which nvim > /dev/null 2>&1; then alias vim=nvim; fi
+
 # setting for XXenv
 if [ -d ~/.pyenv ]; then
   export PYENV_ROOT=$HOME/.pyenv
   export PATH=$PYENV_ROOT/bin:$PATH
-  eval "$(pyenv init -)"
+  eval "$(pyenv init - --no-rehash)"
 fi
 
 if [ -d ~/.goenv ]; then
   export GOENV_ROOT=$HOME/.goenv
   export PATH=$GOENV_ROOT/bin:$PATH
-  eval "$(goenv init -)"
+  eval "$(goenv init - --no-rehash)"
   # TODO
   export GOPATH=$HOME/go/$(goenv global)
   export PATH=$GOPATH/bin:$PATH
@@ -64,7 +64,7 @@ if [ "${current_shell}" = "bash" ]; then
 elif [ "${current_shell}" = "zsh" ]; then
   . ~/.shell/zsh/setting
   . ~/.shell/zsh/completion
-  . ~/.shell/zsh/zplug
+  . ~/.shell/zsh/zplugin
 fi
 
 # for each OS

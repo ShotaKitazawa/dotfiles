@@ -11,7 +11,6 @@ function _pip_completion {
 compctl -K _pip_completion pip
 
 if kubectl help > /dev/null 2>&1; then
-  . <(kubectl completion zsh)
   alias k=kubectl
   complete -o default -F __start_kubectl k
 fi

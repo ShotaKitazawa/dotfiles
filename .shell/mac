@@ -13,10 +13,10 @@ export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 
 if [ -f /Applications/MacVim.app/Contents/Resources/vim/gvimrc ];then
-  mv /Applications/MacVim.app/Contents/Resources/vim/gvimrc{,.default}
+  mv -f /Applications/MacVim.app/Contents/Resources/vim/gvimrc{,.default}
 fi
 if [ -f /Applications/MacVim.app/Contents/Resources/vim/vimrc ];then
-  mv /Applications/MacVim.app/Contents/Resources/vim/vimrc{,.default}
+  mv -f /Applications/MacVim.app/Contents/Resources/vim/vimrc{,.default}
 fi
 
 # for bash
@@ -32,7 +32,7 @@ if [ "${current_shell}" = "bash" ];then
   fi
 
 # for zsh
-elif [ "${current_shell}" = "zsh" ];then
-  fpath=($(brew --prefix)/share/zsh-completions $fpath)
-  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+#elif [ "${current_shell}" = "zsh" ];then
+#  fpath=($(brew --prefix)/share/zsh-completions $fpath)
+#  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 fi

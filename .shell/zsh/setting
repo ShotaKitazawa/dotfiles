@@ -12,9 +12,9 @@ PS1="[%n@%m: %c]%# "
 ###########################################################
 # Completion
 
-# 補完機能有効にする
-autoload -U compinit
-compinit -u
+## 補完機能有効にする
+#autoload -U compinit
+#compinit -u
 # 補完候補に色つける
 autoload -U colors
 colors
@@ -31,8 +31,6 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 # キャッシュの利用による補完の高速化
 zstyle ':completion::complete:*' use-cache true
-# 大文字、小文字を区別せず補完する
-#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # 補完リストの表示間隔を狭くする
 setopt list_packed
 # コマンドの打ち間違いを指摘してくれる
@@ -53,14 +51,14 @@ setopt HIST_IGNORE_ALL_DUPS # 履歴中の重複行をファイル記録前に�
 setopt HIST_FIND_NO_DUPS    # 履歴検索中、(連続してなくとも)重複を飛ばす
 setopt HIST_NO_STORE        # histroyコマンドは記録しない
 # http://mollifier.hatenablog.com/entry/20090728/p1
-zshaddhistory() {
-    local line=${1%%$'\n'} #コマンドライン全体から改行を除去したもの
-    local cmd=${line%% *}  # １つ目のコマンド
-    # 以下の条件をすべて満たすものだけをヒストリに追加する
-    [[ ${#line} -ge 5
-        && ${cmd} != (l|l[sal])
-        && ${cmd} != (cd)
-        && ${cmd} != (m|man)
-        && ${cmd} != (r[mr])
-    ]]
-}
+#zshaddhistory() {
+#    local line=${1%%$'\n'} #コマンドライン全体から改行を除去したもの
+#    local cmd=${line%% *}  # １つ目のコマンド
+#    # 以下の条件をすべて満たすものだけをヒストリに追加する
+#    [[ ${#line} -ge 5
+#        && ${cmd} != (l|l[sal])
+#        && ${cmd} != (cd)
+#        && ${cmd} != (m|man)
+#        && ${cmd} != (r[mr])
+#    ]]
+#}
