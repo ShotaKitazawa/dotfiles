@@ -56,7 +56,8 @@ if [ -d ~/.goenv ]; then
   export PATH=$GOPATH/bin:$PATH
 fi
 
-current_shell=$(ps aux | grep -v grep | grep $$ | awk -F" " '{print $NF}' | sed -e 's|^-||g')
+# TODO
+current_shell=$(ps aux | grep -v grep | grep " $$ " | awk -F" " '{print $NF}' | sed -e 's|^-||g')
 if [ "${current_shell}" = "bash" ]; then
   . ~/.shell/bash/setting
   . ~/.shell/bash/completion

@@ -7,6 +7,7 @@ bindkey -e
 setopt auto_cd
 bindkey "\C-f" forward-word
 bindkey "\C-b" backward-word
+PS1="[%n@%m: %c]%# "
 
 ###########################################################
 # Completion

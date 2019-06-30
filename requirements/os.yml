@@ -1,5 +1,6 @@
 mac:
   brew:
+    - "ansible"
     - "bash-completion"
     - "git"
     - "tmux"
@@ -12,6 +13,7 @@ mac:
     - "htop"
     - "mysql-client"
     - "the_silver_searcher"
+    - "iproute2mac"
     - "terraform"
     - "neovim"
     - "clang-format"
