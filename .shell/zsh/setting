@@ -3,21 +3,36 @@
 # Common setting
 
 bindkey -e
-# cd 省略可能
-setopt auto_cd
 bindkey "\C-f" forward-word
 bindkey "\C-b" backward-word
-PS1="[%n@%m: %c]%# "
+setopt auto_cd
+autoload -U colors
+colors
+
+
+###########################################################
+# Prompt
+
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git svn
+zstyle ':vcs_info:*' formats '<%{'${fg[red]}'%}%b%{'$reset_color'%}>'
+
+setopt prompt_subst
+precmd () {
+  LANG=en_US.UTF-8 vcs_info
+  if [ $UID -eq 0 ]; then
+    PROMPT="${vcs_info_msg_0_}[%F{red}%n%F{green}@%m: %c]%%%{$reset_color%} "
+  else
+    PROMPT="${vcs_info_msg_0_}[%F{green}%n%F{green}@%m: %c]%%%{$reset_color%} "
+  fi
+}
 
 ###########################################################
 # Completion
 
 ## 補完機能有効にする
-#autoload -U compinit
-#compinit -u
-# 補完候補に色つける
-autoload -U colors
-colors
+autoload -U compinit
+compinit -u
 zstyle ':completion:*' list-colors "${LS_COLORS}"
 # 単語の入力途中でもTab補完を有効化
 setopt complete_in_word

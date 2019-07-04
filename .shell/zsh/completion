@@ -12,5 +12,7 @@ compctl -K _pip_completion pip
 
 if kubectl help > /dev/null 2>&1; then
   alias k=kubectl
-  complete -o default -F __start_kubectl k
+  #autoload -U complete
+  #complete -o default -F __start_kubectl k
+  #complete -o default -o nospace -F __start_kubectl k
 fi
