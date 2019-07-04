@@ -15,15 +15,16 @@ colors
 
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
-zstyle ':vcs_info:*' formats '<%{'${fg[red]}'%}%b%{'$reset_color'%}>'
+#zstyle ':vcs_info:*' formats '<%{'${fg[red]}'%}%b%{'$reset_color'%}>'
+zstyle ':vcs_info:*' formats '%F{green}<%F{red}%b%F{green}>'
 
 setopt prompt_subst
 precmd () {
   LANG=en_US.UTF-8 vcs_info
   if [ $UID -eq 0 ]; then
-    PROMPT="${vcs_info_msg_0_}[%F{red}%n%F{green}@%m: %c]%%%{$reset_color%} "
+    PROMPT="${vcs_info_msg_0_}%F{green}[%F{red}%n%F{green}@%m: %c]%%%{$reset_color%} "
   else
-    PROMPT="${vcs_info_msg_0_}[%F{green}%n%F{green}@%m: %c]%%%{$reset_color%} "
+    PROMPT="${vcs_info_msg_0_}%F{green}[%n@%m: %c]%{$reset_color%}%% "
   fi
 }
 
