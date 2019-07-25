@@ -26,6 +26,7 @@ mac:
     - "coccinellida"
     - "discord"
     - "disk-inventory-x"
+    - "firefox"
     - "google-backup-and-sync"
     - "google-chrome"
     - "google-cloud-sdk"
