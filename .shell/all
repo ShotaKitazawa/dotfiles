@@ -38,6 +38,15 @@ alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
 if [[ -x $(which colordiff) ]]; then alias diff='colordiff'; fi
 if [[ -x $(which nvim) ]]; then alias vim='nvim'; fi
+if [[ -x $(which diff-so-fancy) ]]; then
+  function difff (){
+    diff -u $1 $2 | diff-so-fancy |less -R
+  }
+  function git-difff (){
+    git diff --histogram $1 | diff-so-fancy | less -R
+  }
+
+fi
 
 # setting for XXenv
 if [ -d ~/.pyenv ]; then
