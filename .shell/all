@@ -43,7 +43,7 @@ if [[ -x $(which diff-so-fancy) ]]; then
     diff -u $1 $2 | diff-so-fancy |less -R
   }
   function git-difff (){
-    git diff --histogram $1 | diff-so-fancy | less -R
+    git diff --histogram $@ | diff-so-fancy | less -R
   }
 
 fi
