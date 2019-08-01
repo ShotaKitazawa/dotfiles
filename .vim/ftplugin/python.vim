@@ -81,7 +81,8 @@ let g:syntastic_python_flake8_args = "--ignore=E501"
 " vim-flake8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "autocmd BufWritePost *.py call Flake8()
-autocmd FileType python map <buffer> tt :call Autopep8()<CR>:call Flake8()<CR> " キーバインド変更
+"autocmd FileType python map <buffer> tt :call Autopep8()<CR>:call Flake8()<CR>
+nnoremap tt :call<Space>Autopep8()<CR>:call<Space>Flake8()<CR>
 let g:flake8_ignore = 'E501'
 let g:flake8_show_quickfix=0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""

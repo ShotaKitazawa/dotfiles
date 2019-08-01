@@ -84,6 +84,13 @@
   [[plugins]]
   repo = 'glidenote/memolist.vim'
 
+# Jenkinsfile
+  [[plugins]]
+  repo = 'martinda/Jenkinsfile-vim-syntax'
+  hook_add = '''
+  au BufNewFile,BufRead Jenkinsfile setf groovy
+  '''
+
 # neovim
   [[plugins]]
   repo = 'Shougo/deoplete.nvim'
