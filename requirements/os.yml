@@ -26,6 +26,7 @@ mac:
     - "coccinellida"
     - "discord"
     - "disk-inventory-x"
+    - "firefox"
     - "google-backup-and-sync"
     - "google-chrome"
     - "google-cloud-sdk"
@@ -45,6 +46,11 @@ mac:
     - "vlc"
     - "wireshark"
     - "homebrew/cask-versions/microsoft-remote-desktop-beta"
+  mas:
+    # Line
+    - 539883307
+    # Todoist
+    - 585829637
 redhat:
   yum:
     - "@base"

@@ -36,9 +36,17 @@ alias cp="cp -i"
 alias ssh-keyadd="ssh-add ~/.ssh/id_rsa*"
 alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
+if [[ -x $(which colordiff) ]]; then alias diff='colordiff'; fi
+if [[ -x $(which nvim) ]]; then alias vim='nvim'; fi
+if [[ -x $(which diff-so-fancy) ]]; then
+  function difff (){
+    diff -u $1 $2 | diff-so-fancy |less -R
+  }
+  function git-difff (){
+    git diff --histogram $@ | diff-so-fancy | less -R
+  }
 
-# vim -> nvim
-if which nvim > /dev/null 2>&1; then alias vim=nvim; fi
+fi
 
 # setting for XXenv
 if [ -d ~/.pyenv ]; then
