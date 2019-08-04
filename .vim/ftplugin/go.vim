@@ -10,8 +10,11 @@ autocmd FileType go :match goErr /\<err\>/
 """""""""""""""""""""""""""""
 " scrooloose/syntastic
 """""""""""""""""""""""""""""
-let g:syntastic_mode_map = { 'mode': 'passive',
+let g:syntastic_mode_map = {
+    \ 'mode': 'active',
     \ 'active_filetypes': ['go'] }
+"TODO: go vet 打てない
+"let g:syntastic_go_checkers = ['go', 'golint', 'go vet']
 let g:syntastic_go_checkers = ['go', 'golint']
 """""""""""""""""""""""""""""
 
@@ -60,3 +63,7 @@ nnoremap <Leader>v :vsplit<CR>:GoDef<CR><CR>
 "  "autocmd FileType go nmap <buffer> ,p <plug>(lsp-previous-error)
 "augroup END
 """"""""""""""""""""""""""""""
+
+" https://budougumi0617.github.io/2018/10/22/deug-gocode-and-vim-go-auto-completion/
+""""""""""""""""""""""""""""""
+let g:go_gocode_propose_source = 0
