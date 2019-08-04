@@ -43,6 +43,8 @@ if dein#check_install()
   call dein#install()
 endif
 
+" call dein#recache_runtimepath()
+
 """"""""""""""""""""""""""""""
 let g:python3_host_prog=$HOME.'/.pyenv/shims/python3'
 
