@@ -8,8 +8,8 @@ bindkey "\C-b" backward-word
 setopt auto_cd
 autoload -U colors
 colors
-WORDCHARS='_'
-
+#WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
+WORDCHARS='_-|'
 
 ###########################################################
 # Prompt
