@@ -8,6 +8,8 @@ mac:
     - "tree"
     - "rename"
     - "watch"
+    - "zsh"
+    - "ctags"
     - "tig"
     - "jq"
     - "htop"

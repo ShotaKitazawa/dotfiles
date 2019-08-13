@@ -9,10 +9,3 @@ function _pip_completion {
              PIP_AUTO_COMPLETE=1 $words[1] ) )
 }
 compctl -K _pip_completion pip
-
-if kubectl help > /dev/null 2>&1; then
-  alias k=kubectl
-  #autoload -U complete
-  #complete -o default -F __start_kubectl k
-  #complete -o default -o nospace -F __start_kubectl k
-fi

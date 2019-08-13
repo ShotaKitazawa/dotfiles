@@ -33,11 +33,13 @@ export PATH=$PATH:$HOME/bin
 # alias
 alias rm="rm -i"
 alias cp="cp -i"
+alias g="git"
 alias ssh-keyadd="ssh-add ~/.ssh/id_rsa*"
 alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
 if [[ -x $(which colordiff) ]]; then alias diff='colordiff'; fi
 if [[ -x $(which nvim) ]]; then alias vim='nvim'; fi
+if [[ -x $(which kubectl) ]]; then alias k='kubectl';fi
 if [[ -x $(which diff-so-fancy) ]]; then
   function difff (){
     diff -u $1 $2 | diff-so-fancy |less -R
@@ -45,7 +47,6 @@ if [[ -x $(which diff-so-fancy) ]]; then
   function git-difff (){
     git diff --histogram $@ | diff-so-fancy | less -R
   }
-
 fi
 
 # setting for XXenv
@@ -59,12 +60,12 @@ if [ -d ~/.goenv ]; then
   export GOENV_ROOT=$HOME/.goenv
   export PATH=$GOENV_ROOT/bin:$PATH
   eval "$(goenv init - --no-rehash)"
-  # TODO
+  # TODO: シェルを開いた後に `goenv global XXX` しても GOPATH が変更されない
   export GOPATH=$HOME/go/$(goenv global)
   export PATH=$GOPATH/bin:$PATH
 fi
 
-# TODO
+# TODO: shell の PID 以外がgrepで引っ掛かる場合バグる
 current_shell=$(ps aux | grep -v grep | grep " $$ " | awk -F" " '{print $NF}' | sed -e 's|^-||g')
 if [ "${current_shell}" = "bash" ]; then
   . ~/.shell/bash/setting
