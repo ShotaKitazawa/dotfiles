@@ -33,11 +33,11 @@ ret g:go_highlight_spellcheck = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_template_autocreate = 0
-"let g:go_def_mode='gopls'
 
 nnoremap tt :GoImports<CR>
-nnoremap t<C-]> :GoRename<CR>
+nnoremap tn :GoRename<CR>
 nnoremap ta :GoAddTags<CR>
+nnoremap t<C-]> :GoRename<CR>
 nnoremap <Leader>d :GoDef<CR>
 nnoremap <Leader>s :split<CR>:GoDef<CR><CR>
 nnoremap <Leader>v :vsplit<CR>:GoDef<CR><CR>

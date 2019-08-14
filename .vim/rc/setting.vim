@@ -205,10 +205,10 @@ set list
 set listchars=tab:>-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 " 入力中のコマンドを表示する
 set showcmd
-" number,mouse=a -> nonumber,mouse=
-nnoremap tn :set nonumber<CR>:set mouse=<CR>:set listchars=<CR>
-" number,mouse=a <- nonumber,mouse=
-nnoremap ty :set number<CR>:set mouse=a<CR>:set listchars=tab:>-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲<CR>
+"" number,mouse=a -> nonumber,mouse=
+"nnoremap tn :set nonumber<CR>:set mouse=<CR>:set listchars=<CR>
+"" number,mouse=a <- nonumber,mouse=
+"nnoremap ty :set number<CR>:set mouse=a<CR>:set listchars=tab:>-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲<CR>
 " ファイルパス表示
 nnoremap <C-g> 1<C-g>
 " :tmp > :Template
