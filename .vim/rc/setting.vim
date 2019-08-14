@@ -156,6 +156,8 @@ set t_vb=
 set novisualbell
 " 対象のファイル以上の ctags ファイルを探す
 set tags=./.tags;
+" Leader キーを Space に
+let mapleader = "\<Space>"
 " タグジャンプを複数選択に
 nnoremap <C-]> g<C-]>
 " カーソル下の単語を * で検索

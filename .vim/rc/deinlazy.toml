@@ -21,15 +21,15 @@
   repo = 'nvie/vim-flake8'
   on_ft = 'python'
   [[plugins]]
-  repo = 'nvie/vim-flake8'
-  on_ft = 'python'
-  [[plugins]]
   repo = 'Vimjas/vim-python-pep8-indent'
   on_ft = 'python'
   [[plugins]]
   repo = 'zchee/deoplete-jedi'
   if = 'has("nvim")'
   on_ft = 'python3'
+  hook_add = '''
+    let g:deoplete#sources#jedi#python_path = $HOME . '/.pyenv/shims/python3'
+  '''
 
 # Go
   [[plugins]]
@@ -37,8 +37,17 @@
   on_ft = 'go'
   hook_add = '''
     let g:go_fmt_command = "goimports"
-    let g:go_def_mapping_enabled = 0
-    let g:go_doc_keywordprg_enabled = 0
+    let g:go_def_mapping_enabled = 1
+    let g:go_doc_keywordprg_enabled = 1
+    let g:go_metalinter_autosave = 0
+  '''
+  [[plugins]]
+  repo = 'zchee/deoplete-go'
+  build = 'make'
+  on_ft = 'go'
+  depends = ['deoplete.nvim']
+  hook_source = '''
+      let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
   '''
 
 # HTML

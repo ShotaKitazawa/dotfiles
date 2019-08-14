@@ -25,6 +25,7 @@ mac:
     - "mas"
   cask:
     - "alfred"
+    - "bettertouchtool"
     - "coccinellida"
     - "discord"
     - "disk-inventory-x"
@@ -51,8 +52,8 @@ mac:
   mas:
     # Line
     - 539883307
-    # Todoist
-    - 585829637
+    # BetterSnapTool
+    - 540348655
 redhat:
   yum:
     - "@base"

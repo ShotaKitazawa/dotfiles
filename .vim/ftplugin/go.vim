@@ -2,7 +2,6 @@ set noexpandtab
 set tabstop=4
 set shiftwidth=4
 let g:auto_save = 0
-let mapleader = "\<Space>"
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 
