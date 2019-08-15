@@ -37,7 +37,7 @@ let g:go_template_autocreate = 0
 nnoremap tt :GoImports<CR>
 nnoremap tn :GoRename<CR>
 nnoremap ta :GoAddTags<CR>
-nnoremap t<C-]> :GoRename<CR>
+nnoremap t<C-]> :GoImplements<CR>
 nnoremap <Leader>d :GoDef<CR>
 nnoremap <Leader>s :split<CR>:GoDef<CR><CR>
 nnoremap <Leader>v :vsplit<CR>:GoDef<CR><CR>

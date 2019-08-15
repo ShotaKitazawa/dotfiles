@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd $(dirname $0) && pwd
+
 LOGGER_STDOUT='/dev/null'
 LOGGER_STDERR='/dev/null'
 

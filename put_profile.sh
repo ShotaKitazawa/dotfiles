@@ -2,7 +2,7 @@
 
 # !! DOTFILE OVERWRITE !!
 
-path=$(cd $(dirname $0) && pwd)
+pathto=$(cd $(dirname $0) && pwd)
 
 switch_env(){
   if [[ "$(uname)" = 'Darwin' ]]; then
@@ -27,12 +27,12 @@ remove_file_or_check_link(){
 }
 
 deploylink(){
-  if [ ! -e $path/$1 ];then
-    echo "$path/$1 not exists"
+  if [ ! -e $pathto/$1 ];then
+    echo "$pathto/$1 not exists"
     return 1
   fi
   if remove_file_or_check_link $2/$(basename $1);then
-    ln -s $path/$1 $2/$(basename $1)
+    ln -s $pathto/$1 $2/$(basename $1)
     echo "$(basename $1) was deployed to $2/"
     return 0
   else
@@ -71,7 +71,7 @@ deploylink .vrapperrc $HOME
 deploylink .latexmkrc $HOME
 
 # link config on environment
-deploylink .config/memo/$(switch_env linux mac linux)/config.toml $path/.config/memo
+deploylink .config/memo/$(switch_env linux mac linux)/config.toml $pathto/.config/memo
 
 # vim-undofile folder
 if [ ! -d ~/.vimundo ]; then
@@ -91,9 +91,9 @@ if [ "$(whoami)" = "root" ]; then
 
   # deploy systemd service file (for Linux)
   if [ "$(switch_env linux)" = "linux" ]; then
-    for service in $(ls $path/.services/); do
+    for service in $(ls $pathto/.services/); do
       if q_deploylink .services/$service /etc/systemd/system; then
-        systemctl enable $path/.services/$service
+        systemctl enable $pathto/.services/$service
       fi
     done
     systemctl daemon-reload
