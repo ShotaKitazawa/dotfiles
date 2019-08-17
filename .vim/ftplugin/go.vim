@@ -12,7 +12,7 @@ autocmd FileType go :match goErr /\<err\>/
 let g:syntastic_mode_map = {
     \ 'mode': 'active',
     \ 'active_filetypes': ['go'] }
-let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+let g:syntastic_go_checkers = ['go', 'golint']
 """""""""""""""""""""""""""""
 
 " http://qiita.com/koara-local/items/6c886eccfb459159c431
