@@ -4,7 +4,10 @@ python:
     - neovim
     - jedi
     - flake8
+    - flake8-import-order
     - autopep8
+    - black
+    - isort
 go:
   version: 1.12.3
   packages:

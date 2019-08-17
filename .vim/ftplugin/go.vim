@@ -5,16 +5,6 @@ let g:auto_save = 0
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 
-" http://qiita.com/izumin5210/items/1f3c312edd7f0075b09c
-"""""""""""""""""""""""""""""
-" scrooloose/syntastic
-"""""""""""""""""""""""""""""
-let g:syntastic_mode_map = {
-    \ 'mode': 'active',
-    \ 'active_filetypes': ['go'] }
-let g:syntastic_go_checkers = ['go', 'golint']
-"""""""""""""""""""""""""""""
-
 " http://qiita.com/koara-local/items/6c886eccfb459159c431
 """""""""""""""""""""""""""""
 " fatih/vim-go

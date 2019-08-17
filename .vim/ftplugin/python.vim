@@ -1,31 +1,3 @@
-" Autopep8
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! Preserve(command)
-    " Save the last search.
-    let search = @/
-    " Save the current cursor position.
-    let cursor_position = getpos('.')
-    " Save the current window position.
-    normal! H
-    let window_position = getpos('.')
-    call setpos('.', cursor_position)
-    " Execute the command.
-    execute a:command
-    " Restore the last search.
-    let @/ = search
-    " Restore the previous window position.
-    call setpos('.', window_position)
-    normal! zt
-    " Restore the previous cursor position.
-    call setpos('.', cursor_position)
-endfunction
-
-function! Autopep8()
-    "--ignote=E501: $B0l9T$ND9$5$NJd@5$rL5;k(B"
-    call Preserve(':silent %!autopep8 --ignore=E501 -')
-endfunction
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " http://hachibeechan.hateblo.jp/entry/vim-customize-for-python
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if version < 600
@@ -64,26 +36,39 @@ setlocal omnifunc=jedi#completions
 let g:SuperTabDefaultCompletionType = "<c-n>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" syntastic
+" ale
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:syntastic_python_checkers = ['python', 'flake8', 'mypy']
-let g:syntastic_python_checkers = ['python', 'flake8']
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_flake8_args = "--ignore=E501"
+" https://qiita.com/lighttiger2505/items/9a36c5b4035dd469134c
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" flake8をLinterとして登録
+let g:ale_linters = {
+    \ 'python': ['flake8'],
+    \ }
 
-" vim-flake8
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"autocmd FileType python map <buffer> tt :call Autopep8()<CR>:call Flake8()<CR>
-nnoremap tt :call<Space>Autopep8()<CR>:call<Space>Flake8()<CR>
-let g:flake8_ignore = 'E501'
-let g:flake8_show_quickfix=0
+" 各ツールをFixerとして登録
+let g:ale_fixers = {
+    \ 'python': ['autopep8', 'black', 'isort'],
+    \ }
+
+" 各ツールの実行オプションを変更してPythonパスを固定
+let g:ale_python_flake8_executable = g:python3_host_prog
+let g:ale_python_flake8_options = '-m flake8'
+let g:ale_python_autopep8_executable = g:python3_host_prog
+let g:ale_python_autopep8_options = '-m autopep8'
+let g:ale_python_isort_executable = g:python3_host_prog
+let g:ale_python_isort_options = '-m isort'
+let g:ale_python_black_executable = g:python3_host_prog
+let g:ale_python_black_options = '-m black'
+
+" ついでにFixを実行するマッピングしとく
+nmap <silent> <Leader>x <Plug>(ale_fix)
+nmap tt <Plug>(ale_fix)
+" ファイル保存時に自動的にFixするオプションもあるのでお好みで
+let g:ale_fix_on_save = 0
+" TODO: E501の自動改行が効かないので無視する
+let g:ale_python_flake8_args = '--ignore=E501'
+let g:ale_python_flake8_executable = 'flake8'
+let g:ale_python_flake8_options = '--ignore=E501'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " indent guides
