@@ -54,10 +54,10 @@ function ssh(){
   fi
 }
 ## use fzf-tmux instead of fzf
-#if ps x | grep -v grep | grep $PPID | grep tmux > /dev/null 2>&1; then
-#  export FZF_TMUX=1
-#  export FZF_TMUX_HEIGHT=10
-#fi
+if ps x | grep -v grep | grep $PPID | grep tmux > /dev/null 2>&1; then
+  export FZF_TMUX=1
+  export FZF_TMUX_HEIGHT=10
+fi
 
 # for fzf
 ## fbr - checkout git branch
