@@ -14,6 +14,7 @@ mac:
     - "jq"
     - "htop"
     - "mysql-client"
+    - "nkf"
     - "the_silver_searcher"
     - "iproute2mac"
     - "terraform"
@@ -53,7 +54,9 @@ mac:
     # Line
     - 539883307
     # BetterSnapTool
-    - 540348655
+    - 417375580
+    # Helium
+    - 1018899653
 redhat:
   yum:
     - "@base"
