@@ -58,8 +58,8 @@ SPROMPT="correct: $RED%R$DEFAULT -> $GREEN%r$DEFAULT ? [Yes/No/Abort/Edit] => "
 # History
 
 HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt hist_ignore_dups     # 前と重複する行は記録しない
 setopt share_history        # 同時に起動したzshの間でヒストリを共有する
 setopt hist_reduce_blanks   # 余分なスペースを削除してヒストリに保存する
@@ -79,3 +79,32 @@ setopt HIST_NO_STORE        # histroyコマンドは記録しない
 #        && ${cmd} != (r[mr])
 #    ]]
 #}
+
+###########################################################
+# Ctrl + R : History with peco
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+###########################################################
+# Ctrl + G : ghq with peco
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
+
+function peco-ghq-look () {
+    local ghq_roots="$(git config --path --get-all ghq.root)"
+    local selected_dir=$(ghq list --full-path | \
+        xargs -I{} ls -dl --time-style=+%s {}/.git | sed 's/.*\([0-9]\{10\}\)/\1/' | sort -nr | \
+        sed "s,.*\(${ghq_roots/$'\n'/\|}\)/,," | \
+        sed 's/\/.git//' | \
+        peco --prompt="cd-ghq >" --query "$LBUFFER")
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd $(ghq list --full-path | grep --color=never -E "/$selected_dir$")"
+        zle accept-line
+    fi
+}
+
+zle -N peco-ghq-look
+bindkey '^G' peco-ghq-look

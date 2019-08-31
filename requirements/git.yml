@@ -1,0 +1,27 @@
+# TODO
+- name: kubectl-get_all
+  type: text
+  contents: |
+    #!/usr/bin/env bash
+    set -e -o pipefail; [[ -n "$DEBUG" ]] && set -x
+    exec kubectl get "$(kubectl api-resources --namespaced=true --verbs=list --output=name | tr "\n" "," | sed -e 's/,$//')" "$@"
+- name: peco
+  version: v0.5.3
+  type: zip
+- name: pyenv
+  version: v1.2.13
+  type: clone
+  path: $HOME
+- name: goenv
+  version: v1.23.3
+  type: clone
+  path: $HOME
+- name: peda
+  version: master
+  type: clone
+  path: $HOME
+- name: powerline_font
+  version: master
+  type: clone
+  path: $HOME
+  option: "~/.fonts/install.sh "

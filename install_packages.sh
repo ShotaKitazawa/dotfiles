@@ -22,6 +22,13 @@ source ./requirements/git.sh
 # create $HOME/bin
 if [ ! -e $HOME/bin ]; then mkdir $HOME/bin; fi
 
+# install required application: yq
+YQ_VERSION=2.3.0
+echo "> install yq" | tee $LOGGER_STDOUT
+curl -0L https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_$(switch_env linux darwin linux)_amd64 > $HOME/bin/yq 2> $LOGGER_STDERR
+chmod 0755 $HOME/bin/yq
+echo "-> installed" | tee $LOGGER_STDOUT
+
 
 echo "> install kubectl-get_all" | tee $LOGGER_STDOUT
 cat <<'_EOF_' > $HOME/bin/kubectl-get_all
@@ -30,12 +37,6 @@ set -e -o pipefail; [[ -n "$DEBUG" ]] && set -x
 exec kubectl get "$(kubectl api-resources --namespaced=true --verbs=list --output=name | tr "\n" "," | sed -e 's/,$//')" "$@"
 _EOF_
 chmod 0755 $HOME/bin/kubectl-get_all
-echo "-> installed" | tee $LOGGER_STDOUT
-
-
-echo "> install yq" | tee $LOGGER_STDOUT
-curl -0L https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_$(switch_env linux darwin linux)_amd64 > $HOME/bin/yq 2> $LOGGER_STDERR
-chmod 0755 $HOME/bin/yq
 echo "-> installed" | tee $LOGGER_STDOUT
 
 

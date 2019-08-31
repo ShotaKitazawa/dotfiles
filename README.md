@@ -15,7 +15,8 @@ git clone https://github.com/ShotaKitazawa/dotfiles $HOME/dotfiles
 . ~/.bashrc_self
 ```
 
-* install softwares
+* install applications
+    * requirements: yq
 ```bash
 ./dotfiles/install_packages
 ```
