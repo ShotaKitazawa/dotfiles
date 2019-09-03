@@ -81,16 +81,6 @@ setopt HIST_NO_STORE        # histroyコマンドは記録しない
 #}
 
 ###########################################################
-# Ctrl + R : History with peco
-function peco-history-selection() {
-    BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
-zle -N peco-select-history
-bindkey '^r' peco-select-history
-
-###########################################################
 # Ctrl + G : ghq with peco
 function peco-ghq-look () {
     local ghq_roots="$(git config --path --get-all ghq.root)"
@@ -110,8 +100,8 @@ bindkey '^G' peco-ghq-look
 
 
 ###########################################################
-# fzf tools
-
+# fzf setup
+FZF_DEFAULT_OPTS="--height 20% --reverse --border"
 # fbr - checkout git branch
 fbr() {
   local branches branch
@@ -119,7 +109,6 @@ fbr() {
   branch=$(echo "$branches" | fzf +m) &&
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
-
 # fbrm - checkout git branch (including remote branches)
 fbrm() {
   local branches branch
@@ -128,7 +117,6 @@ fbrm() {
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
-
 # fshow - git commit browser
 fshow() {
   git log --graph --color=always \
@@ -140,7 +128,6 @@ fshow() {
                 {}
 FZF-EOF"
 }
-
 # fd - cd to selected directory
 fd() {
   local dir
