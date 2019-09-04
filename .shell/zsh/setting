@@ -105,8 +105,8 @@ FZF_DEFAULT_OPTS="--height 20% --reverse --border"
 # fbr - checkout git branch
 fbr() {
   local branches branch
-  branches=$(git branch -vv) &&
-  branch=$(echo "$branches" | fzf +m) &&
+    branches=$(git branch -vv) &&
+  branch=$(echo "$branches" | fzf --ansi +m) &&
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 # fbrm - checkout git branch (including remote branches)
@@ -114,7 +114,7 @@ fbrm() {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+           fzf -d $(( 2 + $(wc -l <<< "$branches") )) --ansi +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 # fshow - git commit browser
