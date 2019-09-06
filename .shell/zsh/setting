@@ -100,7 +100,7 @@ setopt HIST_NO_STORE        # histroyコマンドは記録しない
 
 ###########################################################
 # fzf setup
-export FZF_DEFAULT_OPTS="--height 20% --reverse --border --ansi"
+export FZF_DEFAULT_OPTS="--height 30% --reverse --border --ansi"
 # fbr - checkout git branch
 fbr() {
   local branches branch
