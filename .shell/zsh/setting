@@ -80,33 +80,32 @@ setopt HIST_NO_STORE        # histroyコマンドは記録しない
 #    ]]
 #}
 
-###########################################################
-# Ctrl + G : ghq with peco
-function peco-ghq-look () {
-    local ghq_roots="$(git config --path --get-all ghq.root)"
-    local selected_dir=$(ghq list --full-path | \
-        xargs -I{} ls -dl --time-style=+%s {}/.git | sed 's/.*\([0-9]\{10\}\)/\1/' | sort -nr | \
-        sed "s,.*\(${ghq_roots/$'\n'/\|}\)/,," | \
-        sed 's/\/.git//' | \
-        peco --prompt="cd-ghq >" --query "$LBUFFER")
-    if [ -n "$selected_dir" ]; then
-        BUFFER="cd $(ghq list --full-path | grep --color=never -E "/$selected_dir$")"
-        zle accept-line
-    fi
-}
-
-zle -N peco-ghq-look
-bindkey '^G' peco-ghq-look
-
+############################################################
+## Ctrl + G : ghq with peco
+#function peco-ghq-look () {
+#    local ghq_roots="$(git config --path --get-all ghq.root)"
+#    local selected_dir=$(ghq list --full-path | \
+#        xargs -I{} ls -dl --time-style=+%s {}/.git | sed 's/.*\([0-9]\{10\}\)/\1/' | sort -nr | \
+#        sed "s,.*\(${ghq_roots/$'\n'/\|}\)/,," | \
+#        sed 's/\/.git//' | \
+#        peco --prompt="cd-ghq >" --query "$LBUFFER")
+#    if [ -n "$selected_dir" ]; then
+#        BUFFER="cd $(ghq list --full-path | grep --color=never -E "/$selected_dir$")"
+#        zle accept-line
+#    fi
+#}
+#
+#zle -N peco-ghq-look
+#bindkey '^G' peco-ghq-look
 
 ###########################################################
 # fzf setup
-FZF_DEFAULT_OPTS="--height 20% --reverse --border"
+export FZF_DEFAULT_OPTS="--height 20% --reverse --border --ansi"
 # fbr - checkout git branch
 fbr() {
   local branches branch
     branches=$(git branch -vv) &&
-  branch=$(echo "$branches" | fzf --ansi +m) &&
+    branch=$(echo "$branches" | fzf +m) &&
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 # fbrm - checkout git branch (including remote branches)
@@ -114,14 +113,14 @@ fbrm() {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
-           fzf -d $(( 2 + $(wc -l <<< "$branches") )) --ansi +m) &&
+  fzf -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 # fshow - git commit browser
 fshow() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+  fzf --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
       --bind "ctrl-m:execute:
                 (grep -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
@@ -132,6 +131,6 @@ FZF-EOF"
 fd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
+      -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
