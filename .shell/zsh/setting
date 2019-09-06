@@ -67,36 +67,24 @@ setopt HIST_IGNORE_SPACE    # 行頭がスペースのコマンドは記録し�
 setopt HIST_IGNORE_ALL_DUPS # 履歴中の重複行をファイル記録前に無くす
 setopt HIST_FIND_NO_DUPS    # 履歴検索中、(連続してなくとも)重複を飛ばす
 setopt HIST_NO_STORE        # histroyコマンドは記録しない
-# http://mollifier.hatenablog.com/entry/20090728/p1
-#zshaddhistory() {
-#    local line=${1%%$'\n'} #コマンドライン全体から改行を除去したもの
-#    local cmd=${line%% *}  # １つ目のコマンド
-#    # 以下の条件をすべて満たすものだけをヒストリに追加する
-#    [[ ${#line} -ge 5
-#        && ${cmd} != (l|l[sal])
-#        && ${cmd} != (cd)
-#        && ${cmd} != (m|man)
-#        && ${cmd} != (r[mr])
-#    ]]
-#}
 
-############################################################
-## Ctrl + G : ghq with peco
-#function peco-ghq-look () {
-#    local ghq_roots="$(git config --path --get-all ghq.root)"
-#    local selected_dir=$(ghq list --full-path | \
-#        xargs -I{} ls -dl --time-style=+%s {}/.git | sed 's/.*\([0-9]\{10\}\)/\1/' | sort -nr | \
-#        sed "s,.*\(${ghq_roots/$'\n'/\|}\)/,," | \
-#        sed 's/\/.git//' | \
-#        peco --prompt="cd-ghq >" --query "$LBUFFER")
-#    if [ -n "$selected_dir" ]; then
-#        BUFFER="cd $(ghq list --full-path | grep --color=never -E "/$selected_dir$")"
-#        zle accept-line
-#    fi
-#}
-#
-#zle -N peco-ghq-look
-#bindkey '^G' peco-ghq-look
+###########################################################
+# Ctrl + G : ghq with peco
+function peco-ghq-look () {
+    local ghq_roots="$(git config --path --get-all ghq.root)"
+    local selected_dir=$(ghq list --full-path | \
+        xargs -I{} ls -dl --time-style=+%s {}/.git | sed 's/.*\([0-9]\{10\}\)/\1/' | sort -nr | \
+        sed "s,.*\(${ghq_roots/$'\n'/\|}\)/,," | \
+        sed 's/\/.git//' | \
+        peco --prompt="cd-ghq >" --query "$LBUFFER")
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd $(ghq list --full-path | grep --color=never -E "/$selected_dir$")"
+        zle accept-line
+    fi
+}
+
+zle -N peco-ghq-look
+bindkey '^G' peco-ghq-look
 
 ###########################################################
 # fzf setup
