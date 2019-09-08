@@ -158,6 +158,9 @@ set novisualbell
 set tags=./.tags;
 " Leader キーを Space に
 let mapleader = "\<Space>"
+" Ctrl-Cをescapeに
+nnoremap <C-c> <Nop>
+nnoremap <C-c> <Esc>
 " タグジャンプを複数選択に
 nnoremap <C-]> g<C-]>
 " カーソル下の単語を * で検索
