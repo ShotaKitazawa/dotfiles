@@ -32,6 +32,7 @@ mac:
     - "discord"
     - "disk-inventory-x"
     - "firefox"
+    - "fork"
     - "google-backup-and-sync"
     - "google-chrome"
     - "google-cloud-sdk"
