@@ -8,6 +8,7 @@ mac:
     - "tree"
     - "rename"
     - "watch"
+    - "telnet"
     - "zsh"
     - "ctags"
     - "tig"
