@@ -89,5 +89,5 @@ repo = 'ekalinin/Dockerfile.vim'
 on_ft = ['dockerfile']
 
 # Jinja2
-repo = 'lepture/vim-jinja'
+repo = 'Glench/Vim-Jinja2-Syntax'
 on_ft = ['jinja']
