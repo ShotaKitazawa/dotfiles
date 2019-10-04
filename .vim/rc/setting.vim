@@ -228,5 +228,5 @@ augroup EchoFilePath
   autocmd WinEnter * execute "normal! 1\<C-g>"
 augroup END
 
-" TODO: irc の NOTICE にハイライト (RAT)
-"""""""""""""""""""""""""""""
+" Jinja2
+autocmd BufNewFile,BufRead *.jinja2,*.jinja setf jinja
