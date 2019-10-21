@@ -13,6 +13,7 @@ mac:
     - "ctags"
     - "tig"
     - "jq"
+    - "jsonnet"
     - "htop"
     - "mysql-client"
     - "nkf"
@@ -51,6 +52,7 @@ mac:
     - "vlc"
     - "wireshark"
     - "homebrew/cask-versions/microsoft-remote-desktop-beta"
+    - "homebrew/cask-drivers/fitbit-connect"
   mas:
     # Line
     - 539883307
