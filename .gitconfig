@@ -5,7 +5,7 @@
   default = tracking
 [core]
   excludesfile = ~/.gitignore
-	autoCRLF = false
+  autoCRLF = false
 [http]
   sslVerify = true
 [alias]

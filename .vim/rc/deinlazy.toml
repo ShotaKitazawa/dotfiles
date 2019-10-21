@@ -90,4 +90,14 @@ on_ft = ['dockerfile']
 
 # Jinja2
 repo = 'Glench/Vim-Jinja2-Syntax'
+hook_source = '''
+  au BufNewFile,BufRead *.jinja,*.jinja2 setf jinja
+'''
 on_ft = ['jinja']
+
+# Jsonnet
+repo = 'google/vim-jsonnet'
+hook_source = '''
+  au BufNewFile,BufRead *.jsonnet setf jsonnet
+'''
+on_ft = ['jsonnet']
