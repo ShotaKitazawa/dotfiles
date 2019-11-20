@@ -17,6 +17,7 @@ mac:
     - "htop"
     - "mysql-client"
     - "nkf"
+    - "pv"
     - "the_silver_searcher"
     - "iproute2mac"
     - "terraform"

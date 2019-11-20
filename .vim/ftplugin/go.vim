@@ -9,6 +9,8 @@ autocmd FileType go :match goErr /\<err\>/
 """""""""""""""""""""""""""""
 " fatih/vim-go
 """""""""""""""""""""""""""""
+"let g:go_def_mode = 'godef'
+"let g:go_guru_scope = ["..."]
 let g:go_addtags_transform = "snakecase"
 let g:go_auto_sameids = 0
 "let g:go_auto_type_info = 1
@@ -54,3 +56,4 @@ nnoremap <Leader>v :vsplit<CR>:GoDef<CR><CR>
 " https://budougumi0617.github.io/2018/10/22/deug-gocode-and-vim-go-auto-completion/
 """"""""""""""""""""""""""""""
 let g:go_gocode_propose_source = 0
+
