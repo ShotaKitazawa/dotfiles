@@ -33,7 +33,7 @@ nnoremap t<C-]> :GoImplements<CR>
 nnoremap <Leader>d :GoDef<CR>
 nnoremap <Leader>s :split<CR>:GoDef<CR><CR>
 nnoremap <Leader>v :vsplit<CR>:GoDef<CR><CR>
-nnoremap <C-O> :GoDefPop<CR>
+nnoremap <C-t> :GoDefPop<CR>
 """""""""""""""""""""""""""""
 
 "" golsp
