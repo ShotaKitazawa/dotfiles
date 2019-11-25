@@ -48,6 +48,10 @@ hook_add = '''
   let g:NERDTreeMapOpenSplit='<C-j>'
   let g:NERDTreeMapOpenVSplit='<C-l>'
 '''
+[[plugins]]
+repo = 'jistr/vim-nerdtree-tabs'
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
 
 # Syntax Check
 [[plugins]]

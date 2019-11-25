@@ -29,7 +29,12 @@ alias ssh-keyadd="ssh-add ~/.ssh/id_rsa*"
 alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
 if [[ -x $(which colordiff) ]]; then alias diff='colordiff'; fi
-if [[ -x $(which nvim) ]]; then alias vim='nvim'; fi
+if [[ -x $(which nvim) ]]; then
+  alias vim='nvim'
+  function vimide (){
+    nvim -u ~/.vim/ide.vim $@
+  }
+fi
 if [[ -x $(which kubectl) ]]; then alias k='kubectl';fi
 if [[ -x $(which diff-so-fancy) ]]; then
   function difff (){

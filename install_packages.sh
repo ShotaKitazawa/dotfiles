@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -xue -o pipefail
+
 cd $(dirname $0) && pwd
 
 LOGGER_STDOUT='/dev/null'

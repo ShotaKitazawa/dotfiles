@@ -9,8 +9,8 @@ autocmd FileType go :match goErr /\<err\>/
 """""""""""""""""""""""""""""
 " fatih/vim-go
 """""""""""""""""""""""""""""
-"let g:go_def_mode = 'godef'
-"let g:go_guru_scope = ["..."]
+let g:go_def_mode = 'gopls'
+let g:go_guru_scope = ["..."]
 let g:go_addtags_transform = "snakecase"
 let g:go_auto_sameids = 0
 "let g:go_auto_type_info = 1
@@ -33,7 +33,7 @@ nnoremap t<C-]> :GoImplements<CR>
 nnoremap <Leader>d :GoDef<CR>
 nnoremap <Leader>s :split<CR>:GoDef<CR><CR>
 nnoremap <Leader>v :vsplit<CR>:GoDef<CR><CR>
-"nnoremap <C-O> :GoDefPop<CR>
+nnoremap <C-O> :GoDefPop<CR>
 """""""""""""""""""""""""""""
 
 "" golsp
@@ -57,3 +57,8 @@ nnoremap <Leader>v :vsplit<CR>:GoDef<CR><CR>
 """"""""""""""""""""""""""""""
 let g:go_gocode_propose_source = 0
 
+" ale
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_linters = {
+\   'go': ['govet'],
+\}

@@ -101,3 +101,10 @@ hook_source = '''
   au BufNewFile,BufRead *.jsonnet setf jsonnet
 '''
 on_ft = ['jsonnet']
+
+# Rego
+repo = 'tsandall/vim-rego'
+hook_source = '''
+  au BufNewFile,BufRead *.rego setf rego
+'''
+on_ft = ['rego']
