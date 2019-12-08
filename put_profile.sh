@@ -51,7 +51,7 @@ q_deploylink(){
 
 # check tmux version
 if which tmux > /dev/null 2>&1; then
-  if [ $(echo "$(tmux -V | awk '{print $2}') >= 2.4" | bc) == 1 ]; then
+  if [[ $(echo "$(tmux -V | awk '{print $2}') >= 2.4" | bc) -eq 1 ]]; then
     deploylink tmux-2.4/.tmux.conf $HOME
   else
     deploylink tmux-before2.4/.tmux.conf $HOME
@@ -79,12 +79,15 @@ if [ ! -d ~/.vimundo ]; then
   echo "mkdir ~/.vimundo"
 fi
 
-# let .bashrc read .bashrc_self
-grep .bashrc_self ~/.bash_profile 
-if ! grep .bashrc_self ~/.bash_profile > /dev/null 2>&1; then
-  echo "if [ -f ~/.bashrc_self ]; then source ~/.bashrc_self; fi" >> ~/.bash_profile
+# let .bashrc read .shell/all
+if ! grep .shell/all ~/.bashrc > /dev/null 2>&1; then
+  echo "if [ -f ~/.shell/all ]; then . ~/.shell; fi" >> ~/.bashrc
 fi
-. ~/.bash_profile
+
+# let .zshrc read .shell/all
+if ! grep .shell/all ~/.zshrc > /dev/null 2>&1; then
+  echo "if [ -f ~/.shell/all ]; then . ~/.shell/all; fi" >> ~/.zshrc
+fi
 
 # Only root user
 if [ "$(whoami)" = "root" ]; then

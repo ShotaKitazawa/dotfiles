@@ -8,7 +8,7 @@ set noequalalways
 au VimEnter * split
 au VimEnter * wincmd k
 au VimEnter * resize 8
-au VimEnter * terminal bash
+au VimEnter * terminal
 
 " NERDTree
 let NERDTreeMapOpenInTab='<C-o>'
