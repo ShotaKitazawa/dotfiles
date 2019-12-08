@@ -19,7 +19,8 @@ function parse_yaml () {
 
 # env
 export EDITOR=vim
-export PATH=$PATH:$HOME/bin
+export PATH=$HOME/bin:$PATH
+export GOPATH=$HOME/go
 
 # alias
 alias rm="rm -i"
@@ -57,28 +58,17 @@ function ssh(){
   fi
 }
 
-# setting for XXenv
-if [ -d ~/.pyenv ]; then
-  export PYENV_ROOT=$HOME/.pyenv
-  export PATH=$PYENV_ROOT/bin:$PATH
-  eval "$(pyenv init - --no-rehash)"
-fi
+# setting for asdf
+. $HOME/.asdf/asdf.sh
 
-if [ -d ~/.goenv ]; then
-  export GOENV_ROOT=$HOME/.goenv
-  export PATH=$GOENV_ROOT/bin:$PATH
-  eval "$(goenv init - --no-rehash)"
-  # TODO: シェルを開いた後に `goenv global XXX` しても GOPATH が変更されない
-  export GOPATH=$HOME/go/$(goenv global)
-  export PATH=$GOPATH/bin:$PATH
-fi
-
-# TODO: shell の PID 以外がgrepで引っ掛かる場合バグる
-current_shell=$(ps aux | grep -v grep | grep " $$ " | awk -F" " '{print $NF}' | sed -e 's|^-||g')
-if [ "${current_shell}" = "bash" ]; then
+# for each Shell
+if [[ "${SHELL}" =~ "bash" ]]
+then  # bash
   . ~/.shell/bash/setting
   . ~/.shell/bash/completion
-elif [ "${current_shell}" = "zsh" ]; then
+
+elif [[ "${SHELL}" =~ "zsh" ]]
+then  # zsh
   . ~/.shell/zsh/setting
   . ~/.shell/zsh/completion
   . ~/.shell/zsh/zplugin
@@ -86,22 +76,22 @@ fi
 
 # for each OS
 if [[ "$(uname)" = 'Darwin' ]]
-then # macOS
+then  # macOS
   export OS='Mac'
   . $HOME/.shell/mac
 
 elif [[ "$(uname -r)" =~ ^.*-Microsoft$ ]]
-then # Windows Subsystem for Linux
+then  # Windows Subsystem for Linux
   export OS='WSL'
   . $HOME/.shell/wsl
 
 elif [[ "$(uname)" = 'Linux' ]]
-then # Linux
+then  # Linux
   export OS='Linux'
   . $HOME/.shell/linux
 
 elif [[ "$(uname)" = 'FreeBSD' ]]
-then # FreeBSD
+then  # FreeBSD
   export OS='FreeBSD'
   alias l='ls'
   alias ll='ls -lG'

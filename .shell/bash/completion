@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+completions=(
+"$HOME/.asdf/completions/asdf.bash"
+"/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+)
+for _file in ${completions[@]}; do
+  if [ -e $_file ]; then
+    . $_file
+  fi
+done
+
 if pip --version >/dev/null 2>&1; then
   _pip_completion()
   {
@@ -15,3 +25,4 @@ if kubectl help > /dev/null 2>&1; then
   alias k=kubectl
   complete -o default -F __start_kubectl k
 fi
+
