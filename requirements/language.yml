@@ -15,5 +15,4 @@ go:
     - golang.org/x/tools/cmd/...
     - github.com/go-delve/delve/cmd/dlv
     - github.com/alecthomas/gometalinter
-    - github.com/github/hub
     - github.com/mattn/memo
