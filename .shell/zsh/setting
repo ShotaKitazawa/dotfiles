@@ -126,15 +126,19 @@ fd() {
 ###########################################################
 # ghq + fzf on tmux (https://www.matsub.net/posts/2017/12/01/ghq-fzf-on-tmux)
 function dev() {
-    moveto=$(ghq root)/$(ghq list | fzf)
+  ghq_dir=$(ghq list | fzf)
+  if [ $? -eq 0 ]; then
+    moveto=$(ghq root)/$ghq_dir
     cd $moveto
 
     # rename session if in tmux
     if [[ ! -z ${TMUX} ]]
     then
-        repo_name=${moveto##*/}
-        #tmux rename-session ${repo_name//./-}
+      repo_name=${moveto##*/}
+      tmux rename-session ${repo_name//./-}
+      tmux rename-window ${repo_name//./-}
     fi
+  fi
 }
 zle -N dev
 bindkey '^G' dev
