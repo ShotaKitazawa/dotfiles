@@ -133,7 +133,7 @@ function dev() {
     if [[ ! -z ${TMUX} ]]
     then
         repo_name=${moveto##*/}
-        tmux rename-session ${repo_name//./-}
+        #tmux rename-session ${repo_name//./-}
     fi
 }
 zle -N dev
