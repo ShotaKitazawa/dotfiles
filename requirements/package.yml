@@ -41,6 +41,7 @@ mac:
     - "wget"
     - "zsh"
   cask:
+
     - "alfred"
     - "bettertouchtool"
     - "coccinellida"
@@ -51,22 +52,22 @@ mac:
     - "google-chrome"
     - "google-cloud-sdk"
     - "google-japanese-ime"
+    - "homebrew/cask-drivers/fitbit-connect"
+    - "homebrew/cask-versions/microsoft-remote-desktop-beta"
     - "iterm2-beta"
     - "karabiner-elements"
     - "kindle"
     - "nextcloud"
     - "osxfuse"
-    - "slack"
     - "skim"
     - "skitch"
+    - "slack"
     - "the-unarchiver"
     - "thunderbird"
     - "visual-studio-code"
     - "vlc"
     - "vnc-viewer"
     - "wireshark"
-    - "homebrew/cask-versions/microsoft-remote-desktop-beta"
-    - "homebrew/cask-drivers/fitbit-connect"
   mas:
     # Line
     - 539883307
