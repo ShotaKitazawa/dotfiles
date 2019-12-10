@@ -18,8 +18,7 @@ switch_env(){
 
 remove_file_or_check_link(){
   if [ -L $1 ]; then
-    echo "$1 has already deployed"
-    return 1
+    unlink $1
   elif [ -e $1 ]; then
     rm $1 -rf
   fi
