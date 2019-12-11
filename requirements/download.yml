@@ -22,3 +22,8 @@
   version: master
   path: $HOME/.fonts
   option: "~/.fonts/install.sh"
+- name: git-foresta
+  type: curl
+  mode: "0755"
+  url: https://github.com/takaaki-kasai/git-foresta/raw/master/git-foresta
+  path: $HOME/bin/git-foresta

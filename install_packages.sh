@@ -40,15 +40,20 @@ for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
   case $(yq r $_file [$i].type) in
     "text")
       yq r $_file "[$i].contents" > $(eval echo $(yq r $_file [$i].path))
-      chmod $(yq r $_file "[$i].mode") $(eval echo $(yq r $_file [$i].path))
       ;;
     "clone")
       git clone $(yq r $_file "[$i].url") -b $(yq r $_file "[$i].version") $(eval echo $(yq r $_file "[$i].path")) > $LOGGER_STDOUT 2> $LOGGER_STDERR
-      if [ "$(yq r $_file "[$i].option")" != "null" ]; then
-        eval $(yq r $_file "[$i].option") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-      fi
+      ;;
+    "curl")
+      curl -sL $(yq r $_file "[$i].url") -o $(eval echo $(yq r $_file "[$i].path"))
       ;;
   esac
+  if [ "$(yq r $_file "[$i].mode")" != "null" ]; then
+    chmod $(yq r $_file "[$i].mode") $(eval echo $(yq r $_file [$i].path))
+  fi
+  if [ "$(yq r $_file "[$i].option")" != "null" ]; then
+    eval $(yq r $_file "[$i].option") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  fi
 done
 
 _echo '### asdf.yml ###'
