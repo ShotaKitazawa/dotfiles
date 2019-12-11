@@ -19,8 +19,12 @@ endif
 
 "" もしvimが7.4以前ならばdeinのバージョンを下げる
 if v:version <= 704
-  if empty(glob(s:dein_dir . '/cache_vim74'))
-    execute '!cd' s:dein_repo_dir . '; git checkout 1.0 > /dev/null 2>&1; touch' s:dein_dir . '/cache_vim74'
+  if empty(glob(s:dein_dir . '/.using_vim74'))
+    execute '!cd' s:dein_repo_dir . '; git checkout 1.0 > /dev/null 2>&1; touch' s:dein_dir . '/.using_vim74'
+  endif
+else
+  if empty(glob(s:dein_dir . '/.using_vim8'))
+    execute '!cd' s:dein_repo_dir . '; git checkout 2.0 > /dev/null 2>&1; touch' s:dein_dir . '/.using_vim8'
   endif
 endif
 
