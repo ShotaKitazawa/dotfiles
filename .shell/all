@@ -48,9 +48,12 @@ fi
 
 # for tmux
 ## when execute ssh, reflect tmux window_name in connection name
-function ssh(){
-  if ps x | grep -v grep | grep $PPID | grep tmux > /dev/null 2>&1; then
+function ssh() {
+  if [[ -n $(printenv TMUX) ]]
+  then
     local window_name=$(tmux display -p '#{window_name}')
+    tmux rename-window -- "$@[-1]" # zsh specified
+    # tmux rename-window -- "${!#}" # for bash
     command ssh $@
     tmux rename-window $window_name
   else
