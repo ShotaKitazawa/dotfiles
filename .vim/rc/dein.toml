@@ -187,3 +187,8 @@ if = 'has("nvim")'
 repo = 'Shougo/neoyank.vim'
 depends = ['Shougo/denite.nvim']
 
+#[[plugins]]
+#repo = 'glacambre/firenvim'
+#hook_add = '''
+#  call firenvim#install(0)
+#'''
