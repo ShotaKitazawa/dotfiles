@@ -31,8 +31,13 @@ deploylink(){
     return 1
   fi
   if remove_file_or_check_link $2/$(basename $1);then
-    ln -s $pathto/$1 $2/$(basename $1)
-    echo "$(basename $1) was deployed to $2/"
+    if [ "$3" != "" ]; then
+      ln -s $pathto/$1 $2/$3
+      echo "$3 was deployed to $2/"
+    else
+      ln -s $pathto/$1 $2/$(basename $1)
+      echo "$(basename $1) was deployed to $2/"
+    fi
     return 0
   else
     return 1
@@ -51,9 +56,11 @@ q_deploylink(){
 # check tmux version
 if which tmux > /dev/null 2>&1; then
   if [[ $(echo "$(tmux -V | awk '{print $2}' | sed -e 's|[a-z]||g') >= 2.4" | bc) -eq 1 ]]; then
-    deploylink tmux-2.4/.tmux.conf $HOME
+    deploylink .tmux/2.4/.tmux.conf $HOME
+    deploylink .tmux/2.4 $HOME .tmux
   else
-    deploylink tmux-before2.4/.tmux.conf $HOME
+    deploylink .tmux/before2.4/.tmux.conf $HOME
+    deploylink .tmux/before2.4 $HOME .tmux
   fi
 fi
 
@@ -61,7 +68,6 @@ fi
 deploylink .inputrc $HOME
 deploylink .gitconfig $HOME
 deploylink .gitignore $HOME
-deploylink .tmux.conf $HOME
 deploylink .vim $HOME
 deploylink .shell $HOME
 deploylink .gdbinit $HOME
