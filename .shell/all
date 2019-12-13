@@ -19,8 +19,8 @@ function parse_yaml () {
 
 # env
 export EDITOR=vim
-export PATH=$HOME/bin:$PATH
 export GOPATH=$HOME/go
+export PATH=$HOME/bin:$GOPATH/bin:$PATH
 
 # alias
 alias rm="rm -i"
