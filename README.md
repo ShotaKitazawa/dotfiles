@@ -7,25 +7,34 @@ Managed dotfiles & Install some softwares on multi-environments.
 * download
 
 ```bash
-git clone https://github.com/ShotaKitazawa/dotfiles $HOME/dotfiles
+git clone https://github.com/ShotaKitazawa/dotfiles
+cd dotfiles
 ```
 
 * deploy dotfiles
 
 ```bash
-./dotfiles/put_profile
+./put_profile
 ```
 
-* source bashrc
+* install softwares
 
 ```bash
-. ~/.bashrc_self
+./install_softwares
 ```
 
-* install applications
+# Configure
 
-```bash
-./dotfiles/install_packages
-```
+If you execute `./install_softwares` to install something, edit `requirements/xxx.yml`.
 
-# Usage
+### download.yml
+
+download from specified URL & more
+
+### asdf.yml
+
+install some language & packages using asdf
+
+### package.yml
+
+install some packages using package manager
