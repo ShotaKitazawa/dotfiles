@@ -1,5 +1,5 @@
 - name: python
-  version: 3.7.3
+  version: 3.8.0
   packages:
     command: "pip install"
     list:
@@ -11,7 +11,7 @@
       - black
       - isort
 - name: golang
-  version: 1.12.3
+  version: 1.13.3
   packages:
     command: "go get -u"
     list:
