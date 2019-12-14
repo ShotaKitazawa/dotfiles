@@ -15,18 +15,27 @@ WORDCHARS='_-|'
 # Prompt
 
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git svn
-#zstyle ':vcs_info:*' formats '<%{'${fg[red]}'%}%b%{'$reset_color'%}>'
-zstyle ':vcs_info:*' formats '%F{green}<%F{red}%b%F{green}>'
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' formats '%b'
 
 setopt prompt_subst
 precmd () {
   LANG=en_US.UTF-8 vcs_info
-  if [ $UID -eq 0 ]; then
-    PROMPT="${vcs_info_msg_0_}%F{green}[%F{red}%n%F{green}@%m: %c]%%%{$reset_color%} "
-  else
-    PROMPT="${vcs_info_msg_0_}%F{green}[%n@%m: %c]%{$reset_color%}%% "
-  fi
+  case "${vcs_info_msg_0_}" in
+    "master")
+      PROMPT_GIT="%F{green}<%F{red}${vcs_info_msg_0_}%F{green}>";;
+    "")
+      PROMPT_GIT="";;
+    *)
+      PROMPT_GIT="%F{green}<%F{yellow}${vcs_info_msg_0_}%F{green}>";;
+  esac
+  case "$UID" in
+    0)
+      PROMPT_USER="%F{green}[%F{red}%n%F{green}@%m: %c]%{$reset_color%}%% ";;
+    *)
+      PROMPT_USER="%F{green}[%n@%m: %c]%{$reset_color%}%% "
+  esac
+  PROMPT=$PROMPT_GIT$PROMPT_USER
 }
 
 ###########################################################
