@@ -1,3 +1,8 @@
+- name: asdf
+  type: clone
+  url: https://github.com/asdf-vm/asdf.git
+  version: v0.7.5
+  path: $HOME/.asdf
 - name: kubectl-get_all
   type: text
   mode: "0755"
@@ -6,11 +11,6 @@
     #!/usr/bin/env bash
     set -e -o pipefail; [[ -n "$DEBUG" ]] && set -x
     exec kubectl get "$(kubectl api-resources --namespaced=true --verbs=list --output=name | tr "\n" "," | sed -e 's/,$//')" "$@"
-- name: asdf
-  type: clone
-  url: https://github.com/asdf-vm/asdf.git
-  version: v0.7.5
-  path: $HOME/.asdf
 - name: peda
   type: clone
   url: https://github.com/longld/peda
@@ -21,7 +21,7 @@
   url: https://github.com/powerline/fonts
   version: master
   path: $HOME/.fonts
-  option: "~/.fonts/install.sh"
+  option: "$HOME/.fonts/install.sh"
 - name: git-foresta
   type: curl
   mode: "0755"
