@@ -1,18 +1,22 @@
-python:
+- name: python
   version: 3.7.3
   packages:
-    - neovim
-    - jedi
-    - flake8
-    - flake8-import-order
-    - autopep8
-    - black
-    - isort
-go:
+    command: "pip install"
+    list:
+      - neovim
+      - jedi
+      - flake8
+      - flake8-import-order
+      - autopep8
+      - black
+      - isort
+- name: golang
   version: 1.12.3
   packages:
-    - github.com/golang/dep/cmd/dep
-    - golang.org/x/tools/cmd/...
-    - github.com/go-delve/delve/cmd/dlv
-    - github.com/alecthomas/gometalinter
-    - github.com/mattn/memo
+    command: "go get -u"
+    list:
+      - github.com/golang/dep/cmd/dep
+      - golang.org/x/tools/cmd/...
+      - github.com/go-delve/delve/cmd/dlv
+      - github.com/alecthomas/gometalinter
+      - github.com/mattn/memo

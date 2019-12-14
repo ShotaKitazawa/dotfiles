@@ -58,7 +58,19 @@ done
 
 _echo '### asdf.yml ###'
 _file="./requirements/asdf.yml"
-# TODO
+_asdf="$HOME/.asdf/bin/asdf"
+_asdf_shims="$HOME/.asdf/shims"
+for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
+  _echo "-> install $(yq r $_file "[$i].name") $(yq r $_file "[$i].version")"
+  $_asdf plugin-add $(yq r $_file "[$i].name") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  $_asdf install $(yq r $_file "[$i].name") $(yq r $_file "[$i].version") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  $_asdf global $(yq r $_file "[$i].name") $(yq r $_file "[$i].version") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  for j in $(seq 0 $(( $(yq r $_file "[$i].packages.list" | wc -l) - 1 ))); do
+    _echo $_asdf_shims/$(yq r $_file "[$i].packages.command") $(yq r $_file "[$i].packages.list[$j]")
+    $_asdf_shims/$(yq r $_file "[$i].packages.command") $(yq r $_file "[$i].packages.list[$j]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  done
+done
+
 
 _echo '### package.yml ###'
 _file="./requirements/package.yml"
