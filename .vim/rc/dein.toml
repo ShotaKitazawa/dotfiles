@@ -122,6 +122,10 @@ hook_add = '''
   map <Leader>y <Plug>(operator-poweryank-osc52)
 '''
 
+# table format
+[[plugins]]
+repo = 'godlygeek/tabular'
+
 # 日本語の w, b, e 移動補助
 [[plugins]]
 repo = 'deton/jasegment.vim'

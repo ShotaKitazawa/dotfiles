@@ -47,7 +47,7 @@ build = 'make'
 on_ft = 'go'
 depends = ['deoplete.nvim']
 hook_source = '''
-    let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
+  let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
 '''
 
 # HTML
@@ -67,11 +67,14 @@ on_ft = 'javascript'
 
 # Markdown
 [[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = 'markdown'
+[[plugins]]
 repo = 'kannokanno/previm'
 on_ft = 'markdown'
-#[[plugins]]
-#repo = 'plasticboy/vim-markdown'
-#on_ft = 'markdown'
+hook_source = '''
+  let g:vim_markdown_folding_disabled = 1
+'''
 
 # LaTeX
 [[plugins]]
