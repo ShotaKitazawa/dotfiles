@@ -4,6 +4,7 @@
 export EDITOR=vim
 export GOPATH=$HOME/go
 export PATH=$HOME/bin:$GOPATH/bin:$PATH
+export GHQ_ROOT=$HOME/.ghq
 
 # alias
 alias rm="rm -i"
@@ -14,6 +15,7 @@ alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
 if [[ -x $(which colordiff) ]]; then alias diff='colordiff'; fi
 if [[ -x $(which nvim) ]]; then
+  export EDITOR=nvim
   alias vim='nvim'
   function vimide (){
     nvim -u ~/.vim/ide.vim $@
