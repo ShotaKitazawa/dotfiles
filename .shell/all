@@ -45,7 +45,7 @@ function ssh() {
 }
 
 # setting for asdf
-. $HOME/.asdf/asdf.sh
+if [ -e $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
 
 # for each Shell
 if [[ "${SHELL}" =~ "bash" ]]

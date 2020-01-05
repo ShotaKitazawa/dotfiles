@@ -27,51 +27,13 @@ _echo () {
 if [ ! -e $HOME/bin ]; then mkdir $HOME/bin; fi
 
 # install required application: yq
-YQ_VERSION=2.3.0
 _echo "### install yq ###"
+YQ_VERSION=2.3.0
 curl -s0L https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_$(switch_env linux darwin linux)_amd64 -o $HOME/bin/yq > $LOGGER_STDOUT 2> $LOGGER_STDERR
 chmod 0755 $HOME/bin/yq
 _echo "-> installed"
 
-_echo '### download.yml ###'
-_file="./requirements/download.yml"
-for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
-  _echo "-> install $(yq r $_file "[$i].name")"
-  case $(yq r $_file [$i].type) in
-    "text")
-      yq r $_file "[$i].contents" > $(eval echo $(yq r $_file [$i].path))
-      ;;
-    "clone")
-      git clone $(yq r $_file "[$i].url") -b $(yq r $_file "[$i].version") $(eval echo $(yq r $_file "[$i].path")) > $LOGGER_STDOUT 2> $LOGGER_STDERR
-      ;;
-    "curl")
-      curl -sL $(yq r $_file "[$i].url") -o $(eval echo $(yq r $_file "[$i].path"))
-      ;;
-  esac
-  if [ "$(yq r $_file "[$i].mode")" != "null" ]; then
-    chmod $(yq r $_file "[$i].mode") $(eval echo $(yq r $_file [$i].path))
-  fi
-  if [ "$(yq r $_file "[$i].option")" != "null" ]; then
-    eval $(yq r $_file "[$i].option") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-  fi
-done
-
-_echo '### asdf.yml ###'
-_file="./requirements/asdf.yml"
-_asdf="$HOME/.asdf/bin/asdf"
-_asdf_shims="$HOME/.asdf/shims"
-for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
-  _echo "-> install $(yq r $_file "[$i].name") $(yq r $_file "[$i].version")"
-  $_asdf plugin-add $(yq r $_file "[$i].name") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-  $_asdf install $(yq r $_file "[$i].name") $(yq r $_file "[$i].version") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-  $_asdf global $(yq r $_file "[$i].name") $(yq r $_file "[$i].version") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-  for j in $(seq 0 $(( $(yq r $_file "[$i].packages.list" | wc -l) - 1 ))); do
-    _echo $_asdf_shims/$(yq r $_file "[$i].packages.command") $(yq r $_file "[$i].packages.list[$j]")
-    $_asdf_shims/$(yq r $_file "[$i].packages.command") $(yq r $_file "[$i].packages.list[$j]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-  done
-done
-
-
+# install from package.yml
 _echo '### package.yml ###'
 _file="./requirements/package.yml"
 if [[ "$(switch_env linux mac wsl)" = 'mac' ]]; then
@@ -106,3 +68,44 @@ elif [[ "$(switch_env linux mac wsl)" = 'linux' ]]; then
     done
   fi
 fi
+
+# install from download.yml
+_echo '### download.yml ###'
+_file="./requirements/download.yml"
+for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
+  _echo "-> install $(yq r $_file "[$i].name")"
+  case $(yq r $_file [$i].type) in
+    "text")
+      yq r $_file "[$i].contents" > $(eval echo $(yq r $_file [$i].path))
+      ;;
+    "clone")
+      git clone $(yq r $_file "[$i].url") -b $(yq r $_file "[$i].version") $(eval echo $(yq r $_file "[$i].path")) > $LOGGER_STDOUT 2> $LOGGER_STDERR
+      ;;
+    "curl")
+      curl -sL $(yq r $_file "[$i].url") -o $(eval echo $(yq r $_file "[$i].path"))
+      ;;
+  esac
+  if [ "$(yq r $_file "[$i].mode")" != "null" ]; then
+    chmod $(yq r $_file "[$i].mode") $(eval echo $(yq r $_file [$i].path))
+  fi
+  if [ "$(yq r $_file "[$i].option")" != "null" ]; then
+    eval $(yq r $_file "[$i].option") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  fi
+done
+
+# install from asdf.yml
+_echo '### asdf.yml ###'
+_file="./requirements/asdf.yml"
+_asdf="$HOME/.asdf/bin/asdf"
+_asdf_shims="$HOME/.asdf/shims"
+for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
+  _echo "-> install $(yq r $_file "[$i].name") $(yq r $_file "[$i].version")"
+  eval $(yq r $_file "[$i].precommand") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  $_asdf plugin-add $(yq r $_file "[$i].name") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  $_asdf install $(yq r $_file "[$i].name") $(yq r $_file "[$i].version") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  $_asdf global $(yq r $_file "[$i].name") $(yq r $_file "[$i].version") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  for j in $(seq 0 $(( $(yq r $_file "[$i].packages.list" | wc -l) - 1 ))); do
+    _echo $_asdf_shims/$(yq r $_file "[$i].packages.command") $(yq r $_file "[$i].packages.list[$j]")
+    $_asdf_shims/$(yq r $_file "[$i].packages.command") $(yq r $_file "[$i].packages.list[$j]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  done
+done

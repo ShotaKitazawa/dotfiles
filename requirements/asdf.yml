@@ -20,3 +20,11 @@
       - github.com/go-delve/delve/cmd/dlv
       - github.com/alecthomas/gometalinter
       - github.com/mattn/memo
+      - github.com/motemen/ghq
+- name: nodejs
+  version: 13.5.0
+  precommand: "bash $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
+  packages:
+    command: "npm install -g"
+    list:
+      - diff-so-fancy

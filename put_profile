@@ -86,7 +86,7 @@ fi
 
 # let .bashrc read .shell/all
 if ! grep .shell/all ~/.bashrc > /dev/null 2>&1; then
-  echo "if [ -f ~/.shell/all ]; then . ~/.shell; fi" >> ~/.bashrc
+  echo "if [ -f ~/.shell/all ]; then . ~/.shell/all; fi" >> ~/.bashrc
 fi
 
 # let .zshrc read .shell/all

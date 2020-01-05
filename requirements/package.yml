@@ -9,8 +9,8 @@ mac:
     - "coreutils"
     - "ctags"
     - "fzf"
-    - "ghq"
     - "git"
+    - "gpg"
     - "htop"
     - "hub"
     - "iproute2mac"
@@ -82,3 +82,4 @@ redhat:
     - "git"
   yum-epel:
     - "neovim"
+    - "colordiff"
