@@ -71,7 +71,7 @@ fi
 
 # install from download.yml
 _echo '### download.yml ###'
-_file="./requirements/download.yml"
+_file="${PWD}/requirements/download.yml"
 for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
   _echo "-> install $(yq r $_file "[$i].name")"
   case $(yq r $_file [$i].type) in
@@ -79,7 +79,16 @@ for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
       yq r $_file "[$i].contents" > $(eval echo $(yq r $_file [$i].path))
       ;;
     "clone")
-      git clone $(yq r $_file "[$i].url") -b $(yq r $_file "[$i].version") $(eval echo $(yq r $_file "[$i].path")) > $LOGGER_STDOUT 2> $LOGGER_STDERR
+      if [ -e $(eval echo $(yq r $_file "[$i].path")) ]; then
+        _pwd=${PWD}
+        cd $(eval echo $(yq r $_file "[$i].path"))
+        git fetch > $LOGGER_STDOUT 2> $LOGGER_STDERR
+        git checkout $(yq r $_file "[$i].version") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+        cd $_pwd
+        unset _pwd
+      else
+        git clone $(yq r $_file "[$i].url") -b $(yq r $_file "[$i].version") $(eval echo $(yq r $_file "[$i].path")) > $LOGGER_STDOUT 2> $LOGGER_STDERR
+      fi
       ;;
     "curl")
       curl -sL $(yq r $_file "[$i].url") -o $(eval echo $(yq r $_file "[$i].path"))

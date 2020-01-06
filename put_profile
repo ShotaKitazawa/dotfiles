@@ -30,18 +30,22 @@ deploylink(){
     echo "$pathto/$1 not exists"
     return 1
   fi
-  if remove_file_or_check_link $2/$(basename $1);then
-    if [ "$3" != "" ]; then
+  if [ "$3" != "" ]; then
+    if remove_file_or_check_link $2/$3;then
       ln -s $pathto/$1 $2/$3
       echo "$3 was deployed to $2/"
     else
+      return 1
+    fi
+  else
+    if remove_file_or_check_link $2/$(basename $1);then
       ln -s $pathto/$1 $2/$(basename $1)
       echo "$(basename $1) was deployed to $2/"
+    else
+      return 1
     fi
-    return 0
-  else
-    return 1
   fi
+  return 0
 }
 
 q_deploylink(){
