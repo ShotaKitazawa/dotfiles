@@ -9,6 +9,7 @@ export GHQ_ROOT=$HOME/.ghq
 # alias
 alias rm="rm -i"
 alias cp="cp -i"
+alias less="less -R"
 alias g="git"
 alias ssh-keyadd="ssh-add ~/.ssh/id_rsa*"
 alias ssh-showpub="ssh-keygen -yf"
