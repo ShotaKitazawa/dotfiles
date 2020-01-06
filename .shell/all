@@ -23,6 +23,8 @@ if [[ -x $(which nvim) ]]; then
   }
 fi
 if [[ -x $(which kubectl) ]]; then alias k='kubectl';fi
+if [[ -x $(which kubectx) ]]; then alias kx='kubectx';fi
+if [[ -x $(which kubens) ]]; then alias kn='kubens';fi
 if [[ -x $(which diff-so-fancy) ]]; then
   function difff (){
     diff -u $1 $2 | diff-so-fancy |less -R
