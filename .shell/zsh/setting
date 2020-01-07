@@ -130,6 +130,7 @@ function dev() {
       tmux rename-window ${repo_name//./-}
     fi
   fi
+  unset ghq_dir
 }
 zle -N dev
 bindkey '^G' dev
