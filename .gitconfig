@@ -16,5 +16,6 @@
   status = always
   interactive = always
 [ghq]
+  user = ShotaKitazawa
   root = ~/go/src
   root = ~/.ghq
