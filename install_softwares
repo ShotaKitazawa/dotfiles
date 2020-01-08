@@ -73,6 +73,7 @@ fi
 _echo '### download.yml ###'
 _file="${PWD}/requirements/download.yml"
 for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
+  if [ "$(yq r $_file "[$i].when_os")" != "$(switch_env linux mac wsl)" ]; then continue; fi
   _echo "-> install $(yq r $_file "[$i].name")"
   case $(yq r $_file [$i].type) in
     "text")
