@@ -78,6 +78,7 @@ deploylink .gdbinit $HOME
 deploylink .config $HOME
 deploylink .vrapperrc $HOME
 deploylink .latexmkrc $HOME
+deploylink .iterm2 $HOME
 
 # link config on environment
 deploylink .config/memo/$(switch_env linux mac linux)/config.toml $pathto/.config/memo
