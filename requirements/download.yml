@@ -22,12 +22,14 @@
   version: master
   path: $HOME/.powerline_fonts
   option: "$HOME/.powerline_fonts/install.sh"
+  when_os: darwin
 - name: nerd_fonts
   type: clone
   url: https://github.com/ryanoasis/nerd-fonts
   version: master
   path: $HOME/.nerd_fonts
   option: "$HOME/.nerd_fonts/install.sh"
+  when_os: darwin
 - name: git-foresta
   type: curl
   mode: "0755"
