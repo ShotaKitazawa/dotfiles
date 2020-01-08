@@ -3,6 +3,8 @@
 completions=(
 "$HOME/.asdf/completions/asdf.bash"
 "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+"/usr/local/opt/fzf/shell/completion.bash"
+"/usr/local/opt/fzf/shell/key-bindings.bash"
 )
 for _file in ${completions[@]}; do
   if [ -e $_file ]; then
@@ -10,6 +12,7 @@ for _file in ${completions[@]}; do
   fi
 done
 
+# pip
 if pip --version >/dev/null 2>&1; then
   _pip_completion()
   {
@@ -20,6 +23,7 @@ if pip --version >/dev/null 2>&1; then
   complete -o default -F _pip_completion pip
 fi
 
+# kubectl
 if kubectl help > /dev/null 2>&1; then
   . <(kubectl completion bash)
   alias k=kubectl
