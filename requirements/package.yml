@@ -8,7 +8,6 @@ mac:
     - "clang-format"
     - "coreutils"
     - "ctags"
-    - "fzf"
     - "git"
     - "gpg"
     - "htop"

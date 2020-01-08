@@ -4,6 +4,8 @@
 completions=(
 "$HOME/.asdf/completions/asdf.bash"
 "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+"$HOME/.fzf/shell/completion.zsh"
+"$HOME/.fzf/shell/key-bindings.zsh"
 )
 for _file in ${completions[@]}; do
   if [ -e $_file ]; then
@@ -22,9 +24,3 @@ function _pip_completion {
 }
 compctl -K _pip_completion pip
 
-# fzf
-if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
-fi
-[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
-source "/usr/local/opt/fzf/shell/key-bindings.zsh"

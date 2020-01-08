@@ -4,6 +4,7 @@
 export EDITOR=vim
 export GOPATH=$HOME/go
 export PATH=$HOME/bin:$GOPATH/bin:$PATH
+if [ -e $HOME/.fzf/bin ]; then export PATH=$HOME/.fzf/bin:$PATH; fi
 
 # alias
 alias rm="rm -i"
