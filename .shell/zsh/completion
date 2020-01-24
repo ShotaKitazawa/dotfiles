@@ -4,8 +4,8 @@
 completions=(
 "$HOME/.asdf/completions/asdf.bash"
 "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-"/usr/local/opt/fzf/shell/completion.zsh"
-"/usr/local/opt/fzf/shell/key-bindings.zsh"
+"$HOME/.fzf/shell/completion.zsh"
+"$HOME/.fzf/shell/key-bindings.zsh"
 )
 for _file in ${completions[@]}; do
   if [ -e $_file ]; then
