@@ -1,30 +1,30 @@
 - name: python
   version: 3.8.0
   packages:
-    command: "pip install -U"
-    list:
-      - neovim
-      - jedi
-      - flake8
-      - flake8-import-order
-      - autopep8
-      - black
-      - isort
+    - command: "pip install -U"
+      list:
+        - neovim
+        - jedi
+        - flake8
+        - flake8-import-order
+        - autopep8
+        - black
+        - isort
 - name: golang
   version: 1.13.3
   packages:
-    command: "go get -u"
-    list:
-      - github.com/golang/dep/cmd/dep
-      - golang.org/x/tools/cmd/...
-      - github.com/go-delve/delve/cmd/dlv
-      - github.com/alecthomas/gometalinter
-      - github.com/mattn/memo
-      - github.com/motemen/ghq
+    - command: "go get -u"
+      list:
+        - github.com/golang/dep/cmd/dep
+        - golang.org/x/tools/cmd/...
+        - github.com/go-delve/delve/cmd/dlv
+        - github.com/alecthomas/gometalinter
+        - github.com/mattn/memo
+        - github.com/motemen/ghq
 - name: nodejs
   version: 13.5.0
-  precommand: "bash $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
   packages:
-    command: "npm install -g"
-    list:
-      - diff-so-fancy
+    - command: "npm install -g"
+      precommand: "bash $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
+      list:
+        - diff-so-fancy

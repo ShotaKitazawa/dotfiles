@@ -38,42 +38,31 @@ _echo '### package.yml ###'
 _file="./requirements/package.yml"
 if [[ "$(switch_env linux mac wsl)" = 'mac' ]]; then
   # for macOS
-  if brew -v > $LOGGER_STDOUT 2> $LOGGER_STDERR; then
-    for i in $(seq 0 $(( $(yq r $_file "mac.brew" | wc -l) - 1 ))); do
-      _echo "-> brew install $(yq r $_file "mac.brew[$i]")"
-      brew install $(yq r $_file "mac.brew[$i]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  for i in $(seq 0 $(( $(yq r $_file "mac[*].command" | wc -l) - 1 ))); do
+    eval $(yq r $_file "mac[$i].precommand") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+    for j in $(seq 0 $(( $(yq r $_file "mac[$i].list" | wc -l) - 1 ))); do
+      _echo $(yq r $_file "mac[$i].command") $(yq r $_file "mac[$i].list[$j]")
+      eval $(yq r $_file "mac[$i].command") $(yq r $_file "mac[$i].list[$j]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
     done
-    for i in $(seq 0 $(( $(yq r $_file "mac.cask" | wc -l) - 1 ))); do
-      _echo "-> brew cask install $(yq r $_file "mac.cask[$i]")"
-      brew cask install $(yq r $_file "mac.cask[$i]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-    done
-  fi
+  done
 elif [[ "$(switch_env linux mac wsl)" = 'linux' ]]; then
   if [ -e /etc/redhat-release ]; then
     # for CentOS & RHEL
-    for i in $(seq 0 $(( $(yq r $_file "redhat.yum" | wc -l) - 1 ))); do
-      _echo "-> yum install -y $(yq r $_file "redhat.yum[$i]")"
-      yum install -y $(yq r $_file "redhat.yum[$i]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-    done
-    yum update > /dev/null 2>&1
-    for i in $(seq 0 $(( $(yq r $_file "redhat.yum-epel" | wc -l) - 1 ))); do
-      _echo "-> yum --enablerepo=epel install -y $(yq r $_file "redhat.yum-epel[$i]")"
-      yum --enablerepo=epel install -y $(yq r $_file "redhat.yum-epel[$i]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-    done
-  elif [ -e /etc/lsb-release ]; then
-    # for Ubuntu
-    for i in $(seq 0 $(( $(yq r $_file "ubuntu.apt" | wc -l) - 1 ))); do
-      _echo "-> apt install -y $(yq r $_file "ubuntu.apt[$i]")"
-      apt install -y $(yq r $_file "ubuntu.apt[$i]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+    for i in $(seq 0 $(( $(yq r $_file "redhat[*].command" | wc -l) - 1 ))); do
+      eval $(yq r $_file "redhat[$i].precommand") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+      for j in $(seq 0 $(( $(yq r $_file "redhat[$i].list" | wc -l) - 1 ))); do
+        _echo $(yq r $_file "redhat[$i].command") $(yq r $_file "redhat[$i].list[$j]")
+        eval $(yq r $_file "redhat[$i].command") $(yq r $_file "redhat[$i].list[$j]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+      done
     done
   fi
 fi
 
 # install from download.yml
 _echo '### download.yml ###'
-_file="${PWD}/requirements/download.yml"
+_file="./requirements/download.yml"
 for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
-  if [ "$(yq r $_file "[$i].when_os")" != "$(switch_env linux mac wsl)" ]; then continue; fi
+  if [[ $(yq r $_file "[$i].when_os") != "null" && $(yq r $_file "[$i].when_os") != "$(switch_env linux darwin wsl)" ]]; then continue; fi
   _echo "-> install $(yq r $_file "[$i].name")"
   case $(yq r $_file [$i].type) in
     "text")
@@ -81,11 +70,15 @@ for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
       ;;
     "clone")
       if [ -e $(eval echo $(yq r $_file "[$i].path")) ]; then
-        _pwd=${PWD}
-        cd $(eval echo $(yq r $_file "[$i].path"))
+        _pwd=$(pwd)
+        _target_path=$(yq r $_file "[$i].path")
+        _version=$(yq r $_file "[$i].version")
+        cd $(eval echo $_target_path)
         git fetch > $LOGGER_STDOUT 2> $LOGGER_STDERR
-        git checkout $(yq r $_file "[$i].version") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+        git checkout $_version > $LOGGER_STDOUT 2> $LOGGER_STDERR
         cd $_pwd
+        unset _version
+        unset _target_path
         unset _pwd
       else
         git clone $(yq r $_file "[$i].url") -b $(yq r $_file "[$i].version") $(eval echo $(yq r $_file "[$i].path")) > $LOGGER_STDOUT 2> $LOGGER_STDERR
@@ -110,12 +103,14 @@ _asdf="$HOME/.asdf/bin/asdf"
 _asdf_shims="$HOME/.asdf/shims"
 for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
   _echo "-> install $(yq r $_file "[$i].name") $(yq r $_file "[$i].version")"
-  eval $(yq r $_file "[$i].precommand") > $LOGGER_STDOUT 2> $LOGGER_STDERR
   $_asdf plugin-add $(yq r $_file "[$i].name") > $LOGGER_STDOUT 2> $LOGGER_STDERR
   $_asdf install $(yq r $_file "[$i].name") $(yq r $_file "[$i].version") > $LOGGER_STDOUT 2> $LOGGER_STDERR
   $_asdf global $(yq r $_file "[$i].name") $(yq r $_file "[$i].version") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-  for j in $(seq 0 $(( $(yq r $_file "[$i].packages.list" | wc -l) - 1 ))); do
-    _echo $_asdf_shims/$(yq r $_file "[$i].packages.command") $(yq r $_file "[$i].packages.list[$j]")
-    $_asdf_shims/$(yq r $_file "[$i].packages.command") $(yq r $_file "[$i].packages.list[$j]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  for j in $(seq 0 $(( $(yq r $_file "[$i].packages[*].command" | wc -l) - 1 ))); do
+    eval $(yq r $_file "[$i].packages[$j].precommand") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+    for k in $(seq 0 $(( $(yq r $_file "[$i].packages[$j].list" | wc -l) - 1 ))); do
+      _echo $_asdf_shims/$(yq r $_file "[$i].packages[$j].command") $(yq r $_file "[$i].packages[$j].list[$k]")
+      $_asdf_shims/$(yq r $_file "[$i].packages[$j].command") $(yq r $_file "[$i].packages[$j].list[$k]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+    done
   done
 done
