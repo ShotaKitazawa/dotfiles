@@ -111,6 +111,7 @@ for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
   $_asdf plugin-add $(yq r $_file "[$i].name") > $LOGGER_STDOUT 2> $LOGGER_STDERR
   $_asdf install $(yq r $_file "[$i].name") $(yq r $_file "[$i].version") > $LOGGER_STDOUT 2> $LOGGER_STDERR
   $_asdf global $(yq r $_file "[$i].name") $(yq r $_file "[$i].version") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+  if [ "$(yq r $_file "[$i].packages")" == "null" ]; then continue; fi
   for j in $(seq 0 $(( $(yq r $_file "[$i].packages[*].command" | wc -l) - 1 ))); do
     eval $(yq r $_file "[$i].packages[$j].precommand") > $LOGGER_STDOUT 2> $LOGGER_STDERR
     for k in $(seq 0 $(( $(yq r $_file "[$i].packages[$j].list" | wc -l) - 1 ))); do
