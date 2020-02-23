@@ -9,14 +9,6 @@
   version: 0.20.0
   path: $HOME/.fzf
   option: "$HOME/.fzf/install --bin"
-- name: kubectl-get_all
-  type: text
-  mode: "0755"
-  path: $HOME/bin/kubectl-get_all
-  contents: |
-    #!/usr/bin/env bash
-    set -e -o pipefail; [[ -n "$DEBUG" ]] && set -x
-    exec kubectl get "$(kubectl api-resources --namespaced=true --verbs=list --output=name | tr "\n" "," | sed -e 's/,$//')" "$@"
 - name: peda
   type: clone
   url: https://github.com/longld/peda
@@ -41,3 +33,15 @@
   mode: "0755"
   url: https://github.com/takaaki-kasai/git-foresta/raw/master/git-foresta
   path: $HOME/bin/git-foresta
+- name: krew
+  type: exec
+  version: v0.3.4
+  command: |
+    (
+      set -x; cd "$(mktemp -d)" &&
+      curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/download/${_version}/krew.{tar.gz,yaml}" &&
+      tar zxvf krew.tar.gz &&
+      KREW=./krew-"$(uname | tr '[:upper:]' '[:lower:]')_amd64" &&
+      "$KREW" install --manifest=krew.yaml --archive=krew.tar.gz &&
+      "$KREW" update
+    )

@@ -23,3 +23,12 @@ function _pip_completion {
              PIP_AUTO_COMPLETE=1 $words[1] ) )
 }
 compctl -K _pip_completion pip
+
+# kubectl completion
+if kubectl help &> /dev/null; then
+  alias k=kubectl
+  if [[ ! -e $HOME/.kubectl_completion_zsh ]]; then
+    kubectl completion zsh > $HOME/.kubectl_completion_zsh
+  fi
+  . $HOME/.kubectl_completion_zsh
+fi

@@ -87,6 +87,11 @@ for i in $(seq 0 $(( $(yq r $_file "[*].name" | wc -l) - 1 ))); do
     "curl")
       curl -sL $(yq r $_file "[$i].url") -o $(eval echo $(yq r $_file "[$i].path"))
       ;;
+    "exec")
+      _version=$(yq r $_file "[$i].version")
+      eval $(yq r $_file "[$i].command") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+      unset _version
+      ;;
   esac
   if [ "$(yq r $_file "[$i].mode")" != "null" ]; then
     chmod $(yq r $_file "[$i].mode") $(eval echo $(yq r $_file [$i].path))

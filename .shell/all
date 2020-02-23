@@ -5,6 +5,7 @@ export EDITOR=vim
 export GOPATH=$HOME/go
 export PATH=$HOME/bin:$GOPATH/bin:$PATH
 if [ -e $HOME/.fzf/bin ]; then export PATH=$HOME/.fzf/bin:$PATH; fi
+if [ -e $HOME/.krew/bin ]; then export PATH=$HOME/.krew/bin:$PATH; fi
 
 # alias
 alias rm="rm -i"
@@ -23,8 +24,6 @@ if [[ -x $(which nvim) ]]; then
   }
 fi
 if [[ -x $(which kubectl) ]]; then alias k='kubectl';fi
-if [[ -x $(which kubectx) ]]; then alias kx='kubectx';fi
-if [[ -x $(which kubens) ]]; then alias kn='kubens';fi
 if [[ -x $(which diff-so-fancy) ]]; then
   function difff (){
     diff -u $1 $2 | diff-so-fancy |less -R

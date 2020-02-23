@@ -17,8 +17,6 @@ mac:
       - "iproute2mac"
       - "jq"
       - "jsonnet"
-      - "kubectx"
-      - "kubernetes-cli"
       - "libtool"
       - "libxslt"
       - "libyaml"

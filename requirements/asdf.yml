@@ -28,3 +28,17 @@
       precommand: "bash $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
       list:
         - diff-so-fancy
+- name: kubectl
+  version: 1.15.9
+  packages:
+    - command: "kubectl krew install"
+      list:
+        - ctx
+        - ns
+        - tree
+        - grep
+        - outdated
+        - debug
+        - custom-cols
+- name: kubectl-bindrole
+  version: v1.2.0
