@@ -34,11 +34,10 @@
     - command: "kubectl krew install"
       list:
         - ctx
-        - ns
-        - tree
-        - grep
-        - outdated
-        - debug
         - custom-cols
-- name: kubectl-bindrole
-  version: v1.2.0
+        - debug
+        - grep
+        - ingress-nginx
+        - ns
+        - outdated
+        - tree
