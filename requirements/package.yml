@@ -25,6 +25,7 @@ mac:
       - "mysql-client"
       - "neovim"
       - "nkf"
+      - "octant"
       - "openssl"
       - "pv"
       - "readline"
