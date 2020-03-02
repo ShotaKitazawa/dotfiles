@@ -81,8 +81,15 @@ redhat:
     precommand: "yum update -y"
     list:
       - "@base"
+      - "@development"
       - "epel-release"
       - "git"
+      - "libffi-devel"
+      - "bzip2-devel"
+      - "readline-devel"
+      - "sqlite-devel"
+      - "openssl-devel"
+      - "zlib-devel"
   - command: "yum --enablerepo=epel install -y"
     list:
       - "neovim"
