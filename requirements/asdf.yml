@@ -11,7 +11,7 @@
         - black
         - isort
 - name: golang
-  version: 1.14
+  version: 1.14.1
   packages:
     - command: "go get -u"
       list:
