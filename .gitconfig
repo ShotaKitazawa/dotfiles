@@ -6,6 +6,7 @@
 [core]
   excludesfile = ~/.gitignore
   autoCRLF = false
+  ignorecase = false
 [http]
   sslVerify = true
 [alias]

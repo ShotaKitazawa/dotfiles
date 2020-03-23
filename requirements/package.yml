@@ -59,6 +59,7 @@ mac:
       - "kindle"
       - "nextcloud"
       - "osxfuse"
+      - "postman"
       - "skim"
       - "skitch"
       - "slack"
