@@ -228,5 +228,3 @@ augroup EchoFilePath
   autocmd WinEnter * execute "normal! 1\<C-g>"
 augroup END
 
-" Jinja2
-autocmd BufNewFile,BufRead *.jinja2,*.jinja setf jinja

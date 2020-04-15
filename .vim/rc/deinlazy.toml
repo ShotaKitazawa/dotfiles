@@ -92,20 +92,23 @@ repo = 'ekalinin/Dockerfile.vim'
 on_ft = ['dockerfile']
 
 # Jinja2
+[[plugins]]
 repo = 'Glench/Vim-Jinja2-Syntax'
-hook_source = '''
-  au BufNewFile,BufRead *.jinja,*.jinja2 setf jinja
-'''
 on_ft = ['jinja']
+hook_source = '''
+  autocmd BufNewFile,BufRead *.jinja2,*.jinja setf jinja
+'''
 
 # Jsonnet
+[[plugins]]
 repo = 'google/vim-jsonnet'
-hook_source = '''
-  au BufNewFile,BufRead *.jsonnet setf jsonnet
-'''
 on_ft = ['jsonnet']
+hook_source = '''
+  autocmd BufNewFile,BufRead *.jsonnet setf jsonnet
+'''
 
 # Rego
+[[plugins]]
 repo = 'tsandall/vim-rego'
 hook_source = '''
   au BufNewFile,BufRead *.rego setf rego
