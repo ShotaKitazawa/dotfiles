@@ -28,6 +28,7 @@
       precommand: "bash $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
       list:
         - diff-so-fancy
+        - redoc-cli
 - name: kubectl
   version: 1.15.9
   packages:
