@@ -3,9 +3,11 @@
 # source some files
 completions=(
 "$HOME/.asdf/completions/asdf.bash"
-"/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 "$HOME/.fzf/shell/completion.zsh"
 "$HOME/.fzf/shell/key-bindings.zsh"
+"/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" # for macOS
+"/Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion"           # for macOS
+"/Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion"   # for macOS
 )
 for _file in ${completions[@]}; do
   if [ -e $_file ]; then

@@ -42,3 +42,5 @@
         - ns
         - outdated
         - tree
+- name: terraform
+  version: 0.12.9

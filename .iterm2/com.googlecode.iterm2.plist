@@ -295,13 +295,13 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>1468 273 918 512 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>696 409 1834 891 0 0 2560 1417 </string>
+	<string>32 64 1770 981 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>389 279 1714 945 0 0 2560 1417 </string>
+	<string>145 662 1026 729 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>302 81 1250 765 0 0 2560 1417 </string>
+	<string>1350 645 650 477 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>660 621 650 477 0 0 2560 1417 </string>
+	<string>149 539 770 531 0 0 2560 1417 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -2204,7 +2204,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>593183932.62214398</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>32</integer>
+	<integer>40</integer>
 	<key>NoSyncNewTabFromTmuxOpensTmux</key>
 	<true/>
 	<key>NoSyncNewTabFromTmuxOpensTmux_selection</key>
@@ -2923,6 +2923,8 @@
 	</dict>
 	<key>NoSyncSearchHistory</key>
 	<array>
+		<string>jungle</string>
+		<string>death</string>
 		<string>replace</string>
 		<string>curl: (35) NSS: client certificate not found (nickname not specified)</string>
 		<string>&lt;app</string>
@@ -2931,8 +2933,6 @@
 		<string>nginx</string>
 		<string>exec</string>
 		<string>gcloud deployment-manager types list </string>
-		<string>fuga</string>
-		<string>hoge</string>
 	</array>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>530258982.93202299</real>
@@ -3074,7 +3074,7 @@
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
