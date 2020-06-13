@@ -12,6 +12,7 @@ mac:
       - "ctags"
       - "git"
       - "gpg"
+      - "grpcurl"
       - "htop"
       - "hub"
       - "iproute2mac"
