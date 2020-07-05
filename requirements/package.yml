@@ -11,6 +11,7 @@ mac:
       - "coreutils"
       - "ctags"
       - "git"
+      - "gmailctl"
       - "gpg"
       - "grpcurl"
       - "htop"
