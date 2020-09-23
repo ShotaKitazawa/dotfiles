@@ -8,3 +8,5 @@ core.*
 peda-*
 
 __pycache__/
+
+.vscode
