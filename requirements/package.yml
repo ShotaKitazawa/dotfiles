@@ -10,6 +10,7 @@ mac:
       - "clang-format"
       - "coreutils"
       - "ctags"
+      - "gh"
       - "git"
       - "gmailctl"
       - "gpg"
