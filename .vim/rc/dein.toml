@@ -169,6 +169,10 @@ hook_add = '''
   endif
 '''
 
+# f/F 拡張
+[[plugins]]
+repo = 'rhysd/clever-f.vim'
+
 # neovim
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
