@@ -22,7 +22,7 @@ setopt prompt_subst
 precmd () {
   LANG=en_US.UTF-8 vcs_info
   case "${vcs_info_msg_0_}" in
-    "master")
+    "master" | "main")
       PROMPT_GIT="%F{green}<%F{red}${vcs_info_msg_0_}%F{green}>";;
     "")
       PROMPT_GIT="";;
