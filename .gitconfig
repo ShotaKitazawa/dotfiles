@@ -10,7 +10,7 @@
 [http]
   sslVerify = true
 [alias]
-  #graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+  graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
   lol = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --date=short
   lola = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --all --date=short
 [color]
