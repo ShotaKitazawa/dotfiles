@@ -38,10 +38,12 @@
         - ctx
         - custom-cols
         - debug
+        - example
         - grep
         - ingress-nginx
         - ns
         - outdated
+        - trace
         - tree
 - name: terraform
   version: 0.12.9
