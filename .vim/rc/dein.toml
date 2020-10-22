@@ -12,16 +12,12 @@ repo = 'tomasr/molokai'
 [[plugins]]
 repo = 'vim-scripts/Wombat'
 
-# snippet
-[[plugins]]
-repo = 'Shougo/neosnippet'
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-# コンテキストによって filetype 自動切り替え
-[[plugins]]
-repo = 'Shougo/context_filetype.vim'
-
+# TODO
+## snippet
+#[[plugins]]
+#repo = 'Shougo/neosnippet'
+#[[plugins]]
+#repo = 'Shougo/neosnippet-snippets'
 # template 呼び出し
 [[plugins]]
 repo = 'mattn/sonictemplate-vim'
@@ -31,12 +27,27 @@ hook_add = '''
       \]
 '''
 
+# コンテキストによって filetype 自動切り替え
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
 # 窓移動系
 [[plugins]]
 repo = 'kana/vim-operator-user'
 [[plugins]]
 repo = 'kana/vim-submode'
+hook_add = '''
+  call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+  call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+  call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+  call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+  call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+  call submode#map('bufmove', 'n', '', '<', '<C-w><')
+  call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+  call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+'''
 
+# TODO
 # ファイル探索
 [[plugins]]
 repo = 'scrooloose/nerdtree'
@@ -53,30 +64,14 @@ repo = 'jistr/vim-nerdtree-tabs'
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
 
-# Syntax Check
-[[plugins]]
-repo = 'w0rp/ale'
-hook_add = '''
-  let g:ale_lint_on_text_changed = 0
-  let g:ale_lint_on_insert_leave = 0
-  let g:ale_lint_on_enter = 0
-  let g:ale_lint_on_save = 1
-  let g:ale_lint_on_filetype_changed = 0
-  let g:ale_set_loclist = 0
-  let g:ale_set_quickfix = 1
-  let g:ale_sign_column_always = 1
-  let g:ale_open_list = 1
-  let g:ale_keep_list_window_open = 0
-'''
-
 # vim-surround
 [[plugins]]
 repo = 'tpope/vim-surround'
 
+# TODO: 動いて無さそう
 # インクリメント/デクリメント を構文解析していい感じにしてくれる
 [[plugins]]
 repo = 'tpope/vim-speeddating'
-
 # vim-surround 等の操作を . で繰り返す
 [[plugins]]
 repo = 'tpope/vim-repeat'
@@ -89,6 +84,24 @@ repo = 'nathanaelkane/vim-indent-guides'
 # 画面下部 line 表示
 [[plugins]]
 repo = 'itchyny/lightline.vim'
+hook_add = '''
+  let g:lightline = {
+        \ 'colorscheme': 'jellybeans',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'readonly', 'filename', 'fugitive' ] ]
+        \ },
+        \ 'component': {
+        \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
+        \   'fugitive': '%{fugitive#statusline()}',
+        \ },
+        \ 'component_visible_condition': {
+        \   'readonly': '(&filetype!="help"&& &readonly)',
+        \ },
+        \ 'separator': { 'left': '⮀', 'right': '⮂' },
+        \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+        \ }
+'''
 
 # 文末空白の可視化
 [[plugins]]
@@ -107,6 +120,7 @@ hook_add = '''
   nnoremap :gc :Gcommit
   nnoremap :gb :Gblame
   nnoremap :gd :Gdiff
+  set statusline+=%{fugitive#statusline()}
 '''
 [[plugins]]
 repo = 'hotwatermorning/auto-git-diff'
@@ -152,6 +166,23 @@ hook_add = '''
 # QuickRun
 [[plugins]]
 repo = 'thinca/vim-quickrun'
+hook_add = '''
+  "set splitbelow
+  call quickrun#module#register(shabadou#make_quickrun_hook_anim(
+  \	"executing",
+  \	['|','/','-','\'],
+  \	12,
+  \), 1)
+  let g:quickrun_config = {
+  \   "_" : {
+  \       "hook/executing/enable" : 1,
+  \       "hook/executing/wait" : 20,
+  \       "outputter/buffer/split" : ":botright 8",
+  \       "runner" : "vimproc",
+  \       "runner/vimproc/updatetime" : 40,
+  \   }
+  \}
+'''
 [[plugins]]
 repo = 'osyo-manga/shabadou.vim'
 
@@ -173,30 +204,49 @@ hook_add = '''
 [[plugins]]
 repo = 'rhysd/clever-f.vim'
 
-# neovim
+# Language Server
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-if = 'has("nvim")'
+repo = 'prabirshrestha/vim-lsp'
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
 hook_add = '''
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#auto_complete_delay = 0
-  let g:deoplete#auto_complete_start_length = 1
-  let g:deoplete#enable_camel_case = 0
-  let g:deoplete#enable_ignore_case = 0
-  let g:deoplete#enable_refresh_always = 0
-  let g:deoplete#enable_smart_case = 1
-  let g:deoplete#file#enable_buffer_path = 1
-  let g:deoplete#max_list = 10000
+  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+  imap <c-space> <Plug>(asyncomplete_force_refresh)
+  autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 '''
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-if = 'has("nvim")'
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
 [[plugins]]
-repo = 'Shougo/neoyank.vim'
-depends = ['Shougo/denite.nvim']
+repo = 'Shougo/neco-syntax'
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-buffer.vim'
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-necosyntax.vim'
+hook_add = '''
+  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_options({
+      \ 'name': 'necosyntax',
+      \ 'allowlist': ['*'],
+      \ 'completor': function('asyncomplete#sources#necosyntax#completor'),
+      \ }))
+'''
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-file.vim'
+hook_add = '''
+  au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+      \ 'name': 'file',
+      \ 'allowlist': ['*'],
+      \ 'priority': 10,
+      \ 'completor': function('asyncomplete#sources#file#completor')
+      \ }))
+'''
 
-#[[plugins]]
-#repo = 'glacambre/firenvim'
-#hook_add = '''
-#  call firenvim#install(0)
-#'''
+[[plugins]]
+repo = 'mattn/vim-lsp-icons'
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'

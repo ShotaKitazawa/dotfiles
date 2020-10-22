@@ -1,4 +1,4 @@
-# C++
+# C++ (TODO: lsp に移行)
 [[plugins]]
 repo = 'rhysd/vim-clang-format'
 on_ft = ['c', 'cpp']
@@ -13,7 +13,7 @@ on_ft = ['c', 'cpp']
 #  autocmd FileType c,cpp let b:clang2_orig_maps = {}
 #'''
 
-# Python
+# Python (TODO: lsp に移行)
 [[plugins]]
 repo = 'davidhalter/jedi-vim'
 on_ft = 'python'
@@ -23,32 +23,11 @@ on_ft = 'python'
 [[plugins]]
 repo = 'Vimjas/vim-python-pep8-indent'
 on_ft = 'python'
-[[plugins]]
-repo = 'zchee/deoplete-jedi'
-if = 'has("nvim")'
-on_ft = 'python3'
-hook_add = '''
-  let g:deoplete#sources#jedi#python_path = $HOME . '/.pyenv/shims/python3'
-'''
 
 # Go
 [[plugins]]
-repo = 'fatih/vim-go'
+repo = 'mattn/vim-goimports'
 on_ft = 'go'
-hook_add = '''
-  let g:go_fmt_command = "goimports"
-  let g:go_def_mapping_enabled = 1
-  let g:go_doc_keywordprg_enabled = 1
-  let g:go_metalinter_autosave = 0
-'''
-[[plugins]]
-repo = 'zchee/deoplete-go'
-build = 'make'
-on_ft = 'go'
-depends = ['deoplete.nvim']
-hook_source = '''
-  let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
-'''
 
 # HTML
 [[plugins]]
@@ -73,13 +52,20 @@ on_ft = 'markdown'
 repo = 'kannokanno/previm'
 on_ft = 'markdown'
 hook_source = '''
+  au BufRead,BufNewFile *.md set filetype=markdown
+'''
+hook_add = '''
   let g:vim_markdown_folding_disabled = 1
+  let g:previm_open_cmd = ''
+  let g:previm_disable_default_css = 1
+  let g:previm_custom_css_path = '~/.config/previm/markdown.css'
+  nnoremap sm :PrevimOpen<CR>
 '''
 
-# LaTeX
-[[plugins]]
-repo = 'lervag/vimtex'
-on_ft = ['tex', 'latex']
+## LaTeX
+#[[plugins]]
+#repo = 'lervag/vimtex'
+#on_ft = ['tex', 'latex']
 
 # HCL
 [[plugins]]

@@ -228,3 +228,9 @@ augroup EchoFilePath
   autocmd WinEnter * execute "normal! 1\<C-g>"
 augroup END
 
+" Quickfix 以外ウィンドウがない場合は Quickfix も閉じる
+augroup QfAutoCommands
+	autocmd!
+	" Auto-close quickfix window
+	autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
+augroup END
