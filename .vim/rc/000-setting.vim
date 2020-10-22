@@ -15,7 +15,6 @@ if has('syntax')
     call ZenkakuSpace()
 endif
 """"""""""""""""""""""""""""""
-
 " http://d.hatena.ne.jp/rdera/20081022/1224682665
 """"""""""""""""""""""""""""""
 " バイナリ編集(xxd)モード（vim -b での起動、もしくは *.bin ファイルを開くと発動します）
@@ -31,7 +30,6 @@ augroup BinaryXXD
   autocmd BufWritePost * set nomod | endif
 augroup END
 """"""""""""""""""""""""""""""
-
 " Status Line
 """""""""""""""""""""""""""""
 " ファイル名表示
@@ -53,8 +51,6 @@ set statusline+=[LOW=%l/%L]
 " ステータスラインを常に表示(0:表示しない、1:2つ以上ウィンドウがある時だけ表示)
 set laststatus=2
 """""""""""""""""""""""""""""
-
-
 " 窓関係
 """""""""""""""""""""""""""""
 " http://nanasi.jp/articles/howto/file/expand.html
@@ -97,8 +93,7 @@ nnoremap sv :<C-u>vs<CR>
 nnoremap sq :<C-u>q<CR>
 " 全窓終了
 nnoremap sQ :<C-u>bd<CR>
-
-
+"""""""""""""""""""""""""""""
 " Other setting
 """""""""""""""""""""""""""""
 " :source $VIMRUNTIME/syntax/syntax.vim
@@ -208,26 +203,23 @@ set list
 set listchars=tab:>-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 " 入力中のコマンドを表示する
 set showcmd
-"" number,mouse=a -> nonumber,mouse=
-"nnoremap tn :set nonumber<CR>:set mouse=<CR>:set listchars=<CR>
-"" number,mouse=a <- nonumber,mouse=
-"nnoremap ty :set number<CR>:set mouse=a<CR>:set listchars=tab:>-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲<CR>
+" number,mouse=a -> nonumber,mouse=
+nnoremap tn :set nonumber<CR>:set mouse=<CR>:set listchars=<CR>
+" number,mouse=a <- nonumber,mouse=
+nnoremap ty :set number<CR>:set mouse=a<CR>:set listchars=tab:>-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲<CR>
 " ファイルパス表示
 nnoremap <C-g> 1<C-g>
 " :tmp > :Template
 nnoremap :tmp :Template
-
 " 前回のカーソル位置の復元
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif
 " Syntax Highlight
 autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
 autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
-
 " ウィンドウ移動時ファイルパス表示
 augroup EchoFilePath
   autocmd WinEnter * execute "normal! 1\<C-g>"
 augroup END
-
 " Quickfix 以外ウィンドウがない場合は Quickfix も閉じる
 augroup QfAutoCommands
 	autocmd!

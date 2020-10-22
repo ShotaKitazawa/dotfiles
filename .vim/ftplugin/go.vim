@@ -14,10 +14,3 @@ let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:asyncomplete_popup_delay = 200
 let g:lsp_text_edit_enabled = 0
-"""""""""""""""""""""""""""""
-
-" ale
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_linters = {
-\   'go': ['govet'],
-\}
