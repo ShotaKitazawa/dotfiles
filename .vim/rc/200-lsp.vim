@@ -1,6 +1,7 @@
-if empty(globpath(&rtp, 'autoload/lsp.vim'))
-  finish
-endif
+" TODO: 動作しない
+"if empty(globpath(&rtp, 'autoload/lsp.vim'))
+"  finish
+"endif
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete

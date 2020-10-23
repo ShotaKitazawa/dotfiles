@@ -9,6 +9,10 @@ Plug 'tpope/vim-surround'
 Plug 'Shougo/vimproc'
 " status line
 Plug 'itchyny/lightline.vim'
+" filer
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'ryanoasis/vim-devicons'
 " コンテキストによって filetype 自動切り替え
 Plug 'Shougo/context_filetype.vim'
 " 窓移動系
@@ -68,63 +72,9 @@ Plug 'tsandall/vim-rego', { 'for': 'rego' }
 call plug#end()
 
 """"""""""""""""""""""""""""""
-" itchyny/lightline.vim
-""""""""""""""""""""""""""""""
-let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'fugitive' ] ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
-      \   'fugitive': '%{fugitive#statusline()}',
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-      \ }
-""""""""""""""""""""""""""""""
-" kana/vim-submode
-""""""""""""""""""""""""""""""
-call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
-call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
-call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-call submode#map('bufmove', 'n', '', '<', '<C-w><')
-call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-call submode#map('bufmove', 'n', '', '-', '<C-w>-')
-""""""""""""""""""""""""""""""
-" bronson/vim-trailing-whitespace
-""""""""""""""""""""""""""""""
-noremap tw :FixWhitespace<CR>:%s/\t/    /g<CR>
-""""""""""""""""""""""""""""""
-" tpope/vim-fugitive
-""""""""""""""""""""""""""""""
-nnoremap :gs :Gstatus
-nnoremap :ga :Gwrite
-nnoremap :gr :Gread
-nnoremap :gc :Gcommit
-nnoremap :gb :Gblame
-nnoremap :gd :Gdiff
-set statusline+=%{fugitive#statusline()}
-""""""""""""""""""""""""""""""
-" hotwatermorning/auto-git-diff
-""""""""""""""""""""""""""""""
-let g:auto_git_diff_disable_auto_update = 1
-nmap <Leader>gd <Plug>(auto_git_diff_manual_update)
-""""""""""""""""""""""""""""""
 " haya14busa/vim-poweryank
 """"""""""""""""""""""""""""""
   map <Leader>y <Plug>(operator-poweryank-osc52)
-""""""""""""""""""""""""""""""
-" vim-scripts/vim-auto-save
-""""""""""""""""""""""""""""""
-  let g:auto_save = 1
-  let g:auto_save_in_insert_mode = 0
 """"""""""""""""""""""""""""""
 " tyru/open-browser.vim
 """"""""""""""""""""""""""""""
@@ -133,24 +83,6 @@ nnoremap <Leader>o <Plug>(openbrowser-open)
 vnoremap <Leader>o <Plug>(openbrowser-open)
 " Search on Google
 nnoremap <Leader>g :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
-""""""""""""""""""""""""""""""
-" thinca/vim-quickrun
-""""""""""""""""""""""""""""""
-"set splitbelow
-call quickrun#module#register(shabadou#make_quickrun_hook_anim(
-\	"executing",
-\	['|','/','-','\'],
-\	12,
-\), 1)
-let g:quickrun_config = {
-\   "_" : {
-\       "hook/executing/enable" : 1,
-\       "hook/executing/wait" : 20,
-\       "outputter/buffer/split" : ":botright 8",
-\       "runner" : "vimproc",
-\       "runner/vimproc/updatetime" : 40,
-\   }
-\}
 """"""""""""""""""""""""""""""
 " glidenote/memolist.vim
 """"""""""""""""""""""""""""""
