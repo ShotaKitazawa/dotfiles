@@ -75,6 +75,7 @@ mac:
       - "vlc"
       - "vnc-viewer"
       - "wireshark"
+      - "zoomus"
   - command: "mas install"
     list:
       # Line
