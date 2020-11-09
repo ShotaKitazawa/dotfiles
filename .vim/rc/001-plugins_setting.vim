@@ -43,18 +43,20 @@ Plug 'rhysd/clever-f.vim'
 " Language Server
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+" Completion
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
 Plug 'Shougo/neco-syntax'
 Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
-Plug 'prabirshrestha/asyncomplete-file.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
 " Golang
 Plug 'mattn/vim-goimports', { 'for': 'go' }
 " HTML
 Plug 'mattn/emmet-vim', { 'for': 'html' }
 " Markdown
+Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'kannokanno/previm', { 'for': 'markdown' }
 " Tex
@@ -71,6 +73,10 @@ Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 Plug 'tsandall/vim-rego', { 'for': 'rego' }
 call plug#end()
 
+""""""""""""""""""""""""""""""
+" plasticboy/vim-markdown
+""""""""""""""""""""""""""""""
+let g:vim_markdown_folding_disabled = 1
 """"""""""""""""""""""""""""""
 " haya14busa/vim-poweryank
 """"""""""""""""""""""""""""""
@@ -93,12 +99,16 @@ endif
 """"""""""""""""""""""""""""""
 " prabirshrestha/asyncomplete.vim
 """"""""""""""""""""""""""""""
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+"inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+"inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() . "\<cr>" : "\<cr>"
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
+""""""""""""""""""""""""""""""
+" prabirshrestha/asyncomplete-buffer.vim
+""""""""""""""""""""""""""""""
 call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
     \ 'name': 'buffer',
     \ 'allowlist': ['*'],
