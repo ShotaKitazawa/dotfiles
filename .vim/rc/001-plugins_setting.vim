@@ -13,6 +13,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'ryanoasis/vim-devicons'
+" Fuzzy finder
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'rking/ag.vim'
 " コンテキストによって filetype 自動切り替え
 Plug 'Shougo/context_filetype.vim'
 " 窓移動系
