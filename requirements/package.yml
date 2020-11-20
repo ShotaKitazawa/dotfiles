@@ -69,6 +69,7 @@ mac:
       - "skim"
       - "skitch"
       - "slack"
+      - "sourcetrail"
       - "the-unarchiver"
       - "thunderbird"
       - "visual-studio-code"
