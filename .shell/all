@@ -2,10 +2,14 @@
 
 # env
 export EDITOR=vim
-export GOPATH=$HOME/go
-export PATH=$HOME/bin:$GOPATH/bin:$PATH
 if [ -e $HOME/.fzf/bin ]; then export PATH=$HOME/.fzf/bin:$PATH; fi
 if [ -e $HOME/.krew/bin ]; then export PATH=$HOME/.krew/bin:$PATH; fi
+# env (Golang)
+export GOPATH=$HOME/go
+export PATH=$HOME/bin:$GOPATH/bin:$PATH
+# env (Java)
+export MAVEN_HOME=/usr/local/opt/maven@3.6
+export PATH=$MAVEN_HOME/bin:$PATH
 
 # alias
 alias rm="rm -i"
