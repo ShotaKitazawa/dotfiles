@@ -86,6 +86,8 @@ mac:
       - 417375580
       # Helium
       - 1018899653
+      # MeetingBar (macOS 1.15)
+      #- 1532419400
 redhat:
   - command: "yum install -y"
     precommand: "yum update -y"

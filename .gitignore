@@ -10,3 +10,7 @@ peda-*
 __pycache__/
 
 .vscode
+
+
+.terraform
+terraform.tfstate*
