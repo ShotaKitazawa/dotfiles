@@ -1,16 +1,23 @@
+# common
 .git/
 .DS_Store
 *.swp
 
+# C/C++
 *.out
 core.*
 .gdb_history
 peda-*
 
+# Python
 __pycache__/
 
+# VS Code
 .vscode
 
-
+# Terraform
 .terraform
 terraform.tfstate*
+
+# asdf
+.tool-versions
