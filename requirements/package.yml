@@ -49,6 +49,7 @@ mac:
   - command: "brew cask install"
     list:
       - "alfred"
+      - "altair-graphql-client"
       - "bettertouchtool"
       - "coccinellida"
       - "discord"
@@ -58,7 +59,6 @@ mac:
       - "google-chrome"
       - "google-cloud-sdk"
       - "google-japanese-ime"
-      - "graphiql"
       - "homebrew/cask-drivers/fitbit-connect"
       - "homebrew/cask-versions/microsoft-remote-desktop-beta"
       - "iterm2-beta"
