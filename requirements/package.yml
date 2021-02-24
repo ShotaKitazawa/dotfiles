@@ -49,7 +49,6 @@ mac:
   - command: "brew cask install"
     list:
       - "alfred"
-      - "altair-graphql-client"
       - "bettertouchtool"
       - "coccinellida"
       - "discord"
