@@ -294,14 +294,16 @@
 	<string>1495 310 597 401 0 0 2560 1417 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>1468 273 918 512 0 0 2560 1417 </string>
+	<key>NSWindow Frame UKCrashReporter</key>
+	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>32 64 1770 981 0 0 2560 1417 </string>
+	<string>316 232 1962 981 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>145 662 1026 729 0 0 2560 1417 </string>
+	<string>700 140 1786 999 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>1350 645 650 477 0 0 2560 1417 </string>
+	<string>358 207 1554 999 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>149 539 770 531 0 0 2560 1417 </string>
+	<string>334 86 1042 675 0 0 2560 1417 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -2195,7 +2197,7 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {2560, 1440}}</string>
 		<key>topLeft</key>
-		<string>{1522, 685}</string>
+		<string>{1501, 694}</string>
 	</dict>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
@@ -2204,7 +2206,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>593183932.62214398</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>40</integer>
+	<integer>92</integer>
 	<key>NoSyncNewTabFromTmuxOpensTmux</key>
 	<true/>
 	<key>NoSyncNewTabFromTmuxOpensTmux_selection</key>
@@ -2443,6 +2445,14 @@
 				<true/>
 				<key>name</key>
 				<string>tmuxStatusLeft</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>tab</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -2701,6 +2711,14 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>currentTab.currentSession.tab</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>currentTab.currentSession.tmuxStatusRight</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -2923,16 +2941,16 @@
 	</dict>
 	<key>NoSyncSearchHistory</key>
 	<array>
-		<string>jungle</string>
-		<string>death</string>
-		<string>replace</string>
-		<string>curl: (35) NSS: client certificate not found (nickname not specified)</string>
-		<string>&lt;app</string>
-		<string>export DRONE_SERVER</string>
-		<string>jjjjjjjjkk</string>
-		<string>nginx</string>
-		<string>exec</string>
-		<string>gcloud deployment-manager types list </string>
+		<string>4.85.72.205</string>
+		<string>35.194.123.14</string>
+		<string>35.243.114.212</string>
+		<string>34.85.72.205</string>
+		<string>networkConfig</string>
+		<string>networkPolicy</string>
+		<string>/labe</string>
+		<string>LocalObjectReference/</string>
+		<string>Hearts</string>
+		<string>root_block_device</string>
 	</array>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>530258982.93202299</real>
@@ -3074,7 +3092,7 @@
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>

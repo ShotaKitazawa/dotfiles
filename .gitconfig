@@ -21,3 +21,5 @@
 [ghq]
   user = ShotaKitazawa
   root = ~/.ghq
+[credential]
+	helper = cache

@@ -51,24 +51,24 @@ let g:ale_fixers = {
     \ }
 
 " 各ツールの実行オプションを変更してPythonパスを固定
-let g:ale_python_flake8_executable = g:python3_host_prog
-let g:ale_python_flake8_options = '-m flake8'
-let g:ale_python_autopep8_executable = g:python3_host_prog
-let g:ale_python_autopep8_options = '-m autopep8'
-let g:ale_python_isort_executable = g:python3_host_prog
-let g:ale_python_isort_options = '-m isort'
-let g:ale_python_black_executable = g:python3_host_prog
-let g:ale_python_black_options = '-m black'
+" let g:ale_python_flake8_executable = g:python3_host_prog
+" let g:ale_python_flake8_options = '-m flake8'
+" let g:ale_python_autopep8_executable = g:python3_host_prog
+" let g:ale_python_autopep8_options = '-m autopep8'
+" let g:ale_python_isort_executable = g:python3_host_prog
+" let g:ale_python_isort_options = '-m isort'
+" let g:ale_python_black_executable = g:python3_host_prog
+" let g:ale_python_black_options = '-m black'
 
 " ついでにFixを実行するマッピングしとく
 nmap <silent> <Leader>x <Plug>(ale_fix)
 nmap tt <Plug>(ale_fix)
 " ファイル保存時に自動的にFixするオプションもあるのでお好みで
-let g:ale_fix_on_save = 0
+"let g:ale_fix_on_save = 0
 " TODO: E501の自動改行が効かないので無視する
-let g:ale_python_flake8_args = '--ignore=E501'
-let g:ale_python_flake8_executable = 'flake8'
-let g:ale_python_flake8_options = '--ignore=E501'
+"let g:ale_python_flake8_args = '--ignore=E501'
+"let g:ale_python_flake8_executable = 'flake8'
+"let g:ale_python_flake8_options = '--ignore=E501'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " indent guides
