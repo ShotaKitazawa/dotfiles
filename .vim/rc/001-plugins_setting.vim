@@ -74,6 +74,8 @@ Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 " Rego
 Plug 'tsandall/vim-rego', { 'for': 'rego' }
+" GraphQL
+Plug 'jparise/vim-graphql'
 call plug#end()
 
 """"""""""""""""""""""""""""""
