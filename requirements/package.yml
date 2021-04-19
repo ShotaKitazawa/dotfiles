@@ -80,7 +80,7 @@ mac:
       - "vlc"
       - "vnc-viewer"
       - "wireshark"
-      - "zoomus"
+      - "zoom"
   - command: "mas install"
     list:
       # Line
