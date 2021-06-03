@@ -51,9 +51,11 @@ mac:
       - "zsh"
   - command: "brew cask install"
     list:
+      - "1password"
       - "alfred"
       - "bettertouchtool"
       - "coccinellida"
+      - "clipy"
       - "discord"
       - "disk-inventory-x"
       - "firefox"
