@@ -58,6 +58,7 @@ mac:
       - "clipy"
       - "discord"
       - "disk-inventory-x"
+      - "figma"
       - "firefox"
       - "google-backup-and-sync"
       - "google-chrome"
