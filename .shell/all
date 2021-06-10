@@ -5,16 +5,6 @@ export EDITOR=vim
 if [ -e $HOME/.fzf/bin ]; then export PATH=$HOME/.fzf/bin:$PATH; fi
 if [ -e $HOME/.krew/bin ]; then export PATH=$HOME/.krew/bin:$PATH; fi
 export PATH=$HOME/bin:$PATH
-# env (Golang)
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
-# env (Java)
-export MAVEN_HOME=/usr/local/opt/maven@3.6
-export PATH=$MAVEN_HOME/bin:$PATH
-# env (Python)
-export PATH=$(asdf where python)/bin:$PATH
-# env (Ruby)
-export PATH=$(asdf where ruby)/bin:$PATH
 
 # alias
 alias rm="rm -i"
@@ -60,6 +50,16 @@ function ssh() {
 
 # setting for asdf
 if [ -e $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
+# env (Golang)
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+# env (Java)
+export MAVEN_HOME=/usr/local/opt/maven@3.6
+export PATH=$MAVEN_HOME/bin:$PATH
+# env (Python)
+export PATH=$(asdf where python)/bin:$PATH
+# env (Ruby)
+export PATH=$(asdf where ruby)/bin:$PATH
 
 # for each Shell
 if [[ "${SHELL}" =~ "bash" ]]
