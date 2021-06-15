@@ -60,6 +60,8 @@ export PATH=$MAVEN_HOME/bin:$PATH
 export PATH=$(asdf where python)/bin:$PATH
 # env (Ruby)
 export PATH=$(asdf where ruby)/bin:$PATH
+# env (Node.js)
+export PATH=$(asdf where nodejs)/bin:$(yarn global bin):$PATH
 
 # for each Shell
 if [[ "${SHELL}" =~ "bash" ]]
