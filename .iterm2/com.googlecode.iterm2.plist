@@ -242,8 +242,12 @@
 	<key>NSFontPanelAttributes</key>
 	<string>1, 0</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/go</string>
+	<string>~</string>
+	<key>NSNavLastUserSetHideExtensionButtonState</key>
+	<false/>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
+	<string>{712, 448}</string>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
 	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
@@ -287,7 +291,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSColorPanel</key>
-	<string>0 141 224 275 0 0 2560 1417 </string>
+	<string>0 147 224 275 0 0 2560 1417 </string>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>917 239 691 231 0 0 2560 1417 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
@@ -297,13 +301,13 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>316 232 1962 981 0 0 2560 1417 </string>
+	<string>32 214 1626 1053 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>700 140 1786 999 0 0 2560 1417 </string>
+	<string>151 542 650 477 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>358 207 1554 999 0 0 2560 1417 </string>
+	<string>1104 65 1122 675 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>334 86 1042 675 0 0 2560 1417 </string>
+	<string>908 156 1546 945 0 0 2560 1417 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1081,7 +1085,7 @@
 			<key>Blur</key>
 			<true/>
 			<key>Blur Radius</key>
-			<real>7.398915371192893</real>
+			<real>7.4190732074873091</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -2197,7 +2201,7 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {2560, 1440}}</string>
 		<key>topLeft</key>
-		<string>{1501, 694}</string>
+		<string>{1500, 694}</string>
 	</dict>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
@@ -2206,7 +2210,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>593183932.62214398</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>92</integer>
+	<integer>115</integer>
 	<key>NoSyncNewTabFromTmuxOpensTmux</key>
 	<true/>
 	<key>NoSyncNewTabFromTmuxOpensTmux_selection</key>
@@ -2941,16 +2945,16 @@
 	</dict>
 	<key>NoSyncSearchHistory</key>
 	<array>
+		<string>git</string>
+		<string>tamac-io.github.io. </string>
+		<string>minecr</string>
+		<string>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</string>
+		<string>gke-lab1-jp-sre-gke--lab1-sre-nodepoo-28844cc0-n1rn</string>
+		<string>gke-lab1-jp-sre-gke--lab1-sre-nodepoo-28844cc0-h6gm</string>
+		<string>hoge</string>
+		<string>auto</string>
+		<string>GITHUB_SHAgi</string>
 		<string>4.85.72.205</string>
-		<string>35.194.123.14</string>
-		<string>35.243.114.212</string>
-		<string>34.85.72.205</string>
-		<string>networkConfig</string>
-		<string>networkPolicy</string>
-		<string>/labe</string>
-		<string>LocalObjectReference/</string>
-		<string>Hearts</string>
-		<string>root_block_device</string>
 	</array>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>530258982.93202299</real>
@@ -3092,7 +3096,7 @@
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
