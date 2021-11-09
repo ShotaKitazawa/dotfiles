@@ -1,10 +1,14 @@
 #!/usr/bin/env zsh
 
+# variables
+fzf_path=$(asdf where fzf)
+
 # source some files
 completions=(
 "$HOME/.asdf/completions/asdf.bash"
-"$HOME/.fzf/shell/completion.zsh"
-"$HOME/.fzf/shell/key-bindings.zsh"
+
+"${fzf_path}/shell/completion.zsh"
+"${fzf_path}/shell/key-bindings.zsh"
 "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" # for macOS
 "/Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion"           # for macOS
 "/Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion"   # for macOS

@@ -2,7 +2,6 @@
 
 # env
 export EDITOR=vim
-if [ -e $HOME/.fzf/bin ]; then export PATH=$HOME/.fzf/bin:$PATH; fi
 if [ -e $HOME/.krew/bin ]; then export PATH=$HOME/.krew/bin:$PATH; fi
 export PATH=$HOME/bin:$PATH
 

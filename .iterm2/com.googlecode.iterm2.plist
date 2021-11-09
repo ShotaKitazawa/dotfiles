@@ -291,7 +291,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSColorPanel</key>
-	<string>0 147 224 275 0 0 2560 1417 </string>
+	<string>0 155 224 275 0 0 2560 1417 </string>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>917 239 691 231 0 0 2560 1417 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
@@ -301,13 +301,13 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>32 214 1626 1053 0 0 2560 1417 </string>
+	<string>73 109 1522 783 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>151 542 650 477 0 0 2560 1417 </string>
+	<string>965 196 1378 891 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>1104 65 1122 675 0 0 2560 1417 </string>
+	<string>171 177 2082 1089 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>908 156 1546 945 0 0 2560 1417 </string>
+	<string>2868 530 1060 709 2560 360 1920 1057 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -2199,9 +2199,9 @@
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {2560, 1440}}</string>
+		<string>{{2560, 360}, {1920, 1080}}</string>
 		<key>topLeft</key>
-		<string>{1500, 694}</string>
+		<string>{2689, 1100}</string>
 	</dict>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
@@ -2210,7 +2210,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>593183932.62214398</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>115</integer>
+	<integer>133</integer>
 	<key>NoSyncNewTabFromTmuxOpensTmux</key>
 	<true/>
 	<key>NoSyncNewTabFromTmuxOpensTmux_selection</key>
@@ -2945,6 +2945,9 @@
 	</dict>
 	<key>NoSyncSearchHistory</key>
 	<array>
+		<string>cloudnativedays.jp</string>
+		<string>/inser</string>
+		<string>/toki</string>
 		<string>git</string>
 		<string>tamac-io.github.io. </string>
 		<string>minecr</string>
@@ -2952,9 +2955,6 @@
 		<string>gke-lab1-jp-sre-gke--lab1-sre-nodepoo-28844cc0-n1rn</string>
 		<string>gke-lab1-jp-sre-gke--lab1-sre-nodepoo-28844cc0-h6gm</string>
 		<string>hoge</string>
-		<string>auto</string>
-		<string>GITHUB_SHAgi</string>
-		<string>4.85.72.205</string>
 	</array>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>530258982.93202299</real>

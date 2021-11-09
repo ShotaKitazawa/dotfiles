@@ -41,8 +41,6 @@ Plug 'thinca/vim-quickrun'
 Plug 'osyo-manga/shabadou.vim'
 " memolist
 Plug 'glidenote/memolist.vim'
-" f/F 拡張
-Plug 'rhysd/clever-f.vim'
 " Language Server
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
@@ -62,6 +60,8 @@ Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'kannokanno/previm', { 'for': 'markdown' }
+" Toml
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 " Tex
 Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
 " Terraform
@@ -73,6 +73,8 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
 " Jsonnet
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
+" Cue
+Plug 'jjo/vim-cue', { 'for': 'cue' }
 " Rego
 Plug 'tsandall/vim-rego', { 'for': 'rego' }
 " GraphQL
