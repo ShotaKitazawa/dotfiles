@@ -72,7 +72,7 @@ elif [[ "${SHELL}" =~ "zsh" ]]
 then  # zsh
   . ~/.shell/zsh/setting
   . ~/.shell/zsh/completion
-  . ~/.shell/zsh/zplugin
+  . ~/.shell/zsh/zinit
 fi
 
 # for each OS
