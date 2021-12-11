@@ -11,7 +11,7 @@
         - black
         - isort
 - name: golang
-  version: 1.14.6
+  version: 1.17.5
   packages:
     - command: "go get -u"
       list:
@@ -47,3 +47,5 @@
         - tree
 - name: terraform
   version: 0.12.9
+- name: fzf
+  version: 0.27.2

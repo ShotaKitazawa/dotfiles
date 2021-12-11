@@ -33,30 +33,30 @@ curl -s0L https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_$(s
 chmod 0755 $HOME/bin/yq
 _echo "-> installed"
 
-# install from package.yml
-_echo '### package.yml ###'
-_file="./requirements/package.yml"
-if [[ "$(switch_env linux mac wsl)" = 'mac' ]]; then
-  # for macOS
-  for i in $(seq 0 $(( $(yq r $_file "mac[*].command" | wc -l) - 1 ))); do
-    eval $(yq r $_file "mac[$i].precommand") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-    for j in $(seq 0 $(( $(yq r $_file "mac[$i].list" | wc -l) - 1 ))); do
-      _echo $(yq r $_file "mac[$i].command") $(yq r $_file "mac[$i].list[$j]")
-      eval $(yq r $_file "mac[$i].command") $(yq r $_file "mac[$i].list[$j]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-    done
-  done
-elif [[ "$(switch_env linux mac wsl)" = 'linux' ]]; then
-  if [ -e /etc/redhat-release ]; then
-    # for CentOS & RHEL
-    for i in $(seq 0 $(( $(yq r $_file "redhat[*].command" | wc -l) - 1 ))); do
-      eval $(yq r $_file "redhat[$i].precommand") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-      for j in $(seq 0 $(( $(yq r $_file "redhat[$i].list" | wc -l) - 1 ))); do
-        _echo $(yq r $_file "redhat[$i].command") $(yq r $_file "redhat[$i].list[$j]")
-        eval $(yq r $_file "redhat[$i].command") $(yq r $_file "redhat[$i].list[$j]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
-      done
-    done
-  fi
-fi
+## install from package.yml
+#_echo '### package.yml ###'
+#_file="./requirements/package.yml"
+#if [[ "$(switch_env linux mac wsl)" = 'mac' ]]; then
+#  # for macOS
+#  for i in $(seq 0 $(( $(yq r $_file "mac[*].command" | wc -l) - 1 ))); do
+#    eval $(yq r $_file "mac[$i].precommand") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+#    for j in $(seq 0 $(( $(yq r $_file "mac[$i].list" | wc -l) - 1 ))); do
+#      _echo $(yq r $_file "mac[$i].command") $(yq r $_file "mac[$i].list[$j]")
+#      eval $(yq r $_file "mac[$i].command") $(yq r $_file "mac[$i].list[$j]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+#    done
+#  done
+#elif [[ "$(switch_env linux mac wsl)" = 'linux' ]]; then
+#  if [ -e /etc/redhat-release ]; then
+#    # for CentOS & RHEL
+#    for i in $(seq 0 $(( $(yq r $_file "redhat[*].command" | wc -l) - 1 ))); do
+#      eval $(yq r $_file "redhat[$i].precommand") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+#      for j in $(seq 0 $(( $(yq r $_file "redhat[$i].list" | wc -l) - 1 ))); do
+#        _echo $(yq r $_file "redhat[$i].command") $(yq r $_file "redhat[$i].list[$j]")
+#        eval $(yq r $_file "redhat[$i].command") $(yq r $_file "redhat[$i].list[$j]") > $LOGGER_STDOUT 2> $LOGGER_STDERR
+#      done
+#    done
+#  fi
+#fi
 
 # install from download.yml
 _echo '### download.yml ###'

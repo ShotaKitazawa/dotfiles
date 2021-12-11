@@ -26,21 +26,25 @@ remove_file_or_check_link(){
 }
 
 deploylink(){
-  if [ ! -e $pathto/$1 ];then
-    echo "$pathto/$1 not exists"
+  local src=$1
+  local dst_dirname=$2
+  local dst_filename=$3
+
+  if [ ! -e $pathto/$src ];then
+    echo "$pathto/$src not exists"
     return 1
   fi
-  if [ "$3" != "" ]; then
-    if remove_file_or_check_link $2/$3;then
-      ln -s $pathto/$1 $2/$3
-      echo "$3 was deployed to $2/"
+  if [ "$dst_filename" != "" ]; then
+    if remove_file_or_check_link $dst_dirname/$dst_filename;then
+      ln -s $pathto/$src $dst_dirname/$dst_filename
+      echo "$dst_filename was deployed to $dst_dirname/"
     else
       return 1
     fi
   else
-    if remove_file_or_check_link $2/$(basename $1);then
-      ln -s $pathto/$1 $2/$(basename $1)
-      echo "$(basename $1) was deployed to $2/"
+    if remove_file_or_check_link $dst_dirname/$(basename $src);then
+      ln -s $pathto/$src $dst_dirname/$(basename $src)
+      echo "$(basename $src) was deployed to $dst_dirname/"
     else
       return 1
     fi
@@ -69,6 +73,8 @@ if which tmux > /dev/null 2>&1; then
 fi
 
 # deploy dotfiles' symbolic link to $HOME
+deploylink .tmux/.tmux.conf $HOME
+deploylink .tmux $HOME
 deploylink .inputrc $HOME
 deploylink .gitconfig $HOME
 deploylink .gitignore $HOME

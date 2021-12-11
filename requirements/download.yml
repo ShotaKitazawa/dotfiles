@@ -3,36 +3,11 @@
   url: https://github.com/asdf-vm/asdf.git
   version: v0.7.6
   path: $HOME/.asdf
-- name: fzf
-  type: clone
-  url: https://github.com/junegunn/fzf.git ~/.fzf
-  version: 0.20.0
-  path: $HOME/.fzf
-  option: "$HOME/.fzf/install --bin"
 - name: peda
   type: clone
   url: https://github.com/longld/peda
   version: master
   path: $HOME/.peda
-- name: powerline_font
-  type: clone
-  url: https://github.com/powerline/fonts
-  version: master
-  path: $HOME/.powerline_fonts
-  option: "$HOME/.powerline_fonts/install.sh"
-  when_os: darwin
-- name: nerd_fonts
-  type: clone
-  url: https://github.com/ryanoasis/nerd-fonts
-  version: master
-  path: $HOME/.nerd_fonts
-  option: "$HOME/.nerd_fonts/install.sh"
-  when_os: darwin
-- name: git-foresta
-  type: curl
-  mode: "0755"
-  url: https://github.com/takaaki-kasai/git-foresta/raw/master/git-foresta
-  path: $HOME/bin/git-foresta
 - name: krew
   type: exec
   version: v0.3.4
@@ -45,3 +20,17 @@
       "$KREW" install --manifest=krew.yaml --archive=krew.tar.gz &&
       "$KREW" update
     )
+#- name: powerline_font
+#  type: clone
+#  url: https://github.com/powerline/fonts
+#  version: master
+#  path: $HOME/.powerline_fonts
+#  option: "$HOME/.powerline_fonts/install.sh"
+#  when_os: darwin
+#- name: nerd_fonts
+#  type: clone
+#  url: https://github.com/ryanoasis/nerd-fonts
+#  version: master
+#  path: $HOME/.nerd_fonts
+#  option: "$HOME/.nerd_fonts/install.sh"
+#  when_os: darwin
