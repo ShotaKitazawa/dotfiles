@@ -33,7 +33,6 @@
   packages:
     - command: "kubectl krew install"
       list:
-        - ctx
         - custom-cols
         - example
         - grep
@@ -41,13 +40,14 @@
         - images
         - ingress-nginx
         - neat
-        - ns
         - outdated
         - trace
         - tree
         - resource-capacity
         - sniff
         - view-allocations
+- name: kubie
+  version: 1.16.0
 - name: ruby
   version: 3.0.3
 - name: terraform
