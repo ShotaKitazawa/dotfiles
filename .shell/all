@@ -1,9 +1,28 @@
 #!/bin/bash
 
+#===================================
+# setting for asdf
+#===================================
+if [ -e $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
+# env (Golang)
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+# env (Java)
+export MAVEN_HOME=/usr/local/opt/maven@3.6
+export PATH=$MAVEN_HOME/bin:$PATH
+# env (Python)
+if asdf which python &> /dev/null; then export PATH=$(asdf where python)/bin:$PATH; fi
+# env (Ruby)
+if asdf which ruby &> /dev/null; then export PATH=$(asdf where ruby)/bin:$PATH; fi
+# env (Node.js)
+if yarn global bin &> /dev/null; then export PATH=$(yarn global bin):$PATH; fi
+if asdf which nodejs &> /dev/null; then export PATH=$(asdf where nodejs)/bin:$PATH; fi
+
 # env
 export EDITOR=vim
-if [ -e $HOME/.krew/bin ]; then export PATH=$HOME/.krew/bin:$PATH; fi
-export PATH=$HOME/bin:$PATH
+if [ -d $HOME/.krew/bin ]; then export PATH=$HOME/.krew/bin:$PATH; fi
+if [ -d $HOME/.local/bin ]; then export PATH=$HOME/.local/bin:$PATH; fi
+if [ -d $HOME/bin ]; then export PATH=$HOME/bin:$PATH; fi
 
 # alias
 alias rm="rm -i"
@@ -46,21 +65,6 @@ function ssh() {
     command ssh $@
   fi
 }
-
-# setting for asdf
-if [ -e $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
-# env (Golang)
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
-# env (Java)
-export MAVEN_HOME=/usr/local/opt/maven@3.6
-export PATH=$MAVEN_HOME/bin:$PATH
-# env (Python)
-export PATH=$(asdf where python)/bin:$PATH
-# env (Ruby)
-export PATH=$(asdf where ruby)/bin:$PATH
-# env (Node.js)
-export PATH=$(asdf where nodejs)/bin:$(yarn global bin):$PATH
 
 # for each Shell
 if [[ "${SHELL}" =~ "bash" ]]
