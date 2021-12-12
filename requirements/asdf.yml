@@ -35,14 +35,19 @@
       list:
         - ctx
         - custom-cols
-        - debug
         - example
         - grep
+        - iexec
+        - images
         - ingress-nginx
+        - neat
         - ns
         - outdated
         - trace
         - tree
+        - resource-capacity
+        - sniff
+        - view-allocations
 - name: ruby
   version: 3.0.3
 - name: terraform

@@ -1,30 +1,34 @@
 #!/bin/bash
 
 #===================================
-# setting for asdf
+# setting for envvars
 #===================================
+### PATH ###
 if [ -e $HOME/.asdf/asdf.sh ]; then . $HOME/.asdf/asdf.sh; fi
-# env (Golang)
+# Golang
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
-# env (Java)
+# Java
 export MAVEN_HOME=/usr/local/opt/maven@3.6
 export PATH=$MAVEN_HOME/bin:$PATH
-# env (Python)
+# Python (by asdf)
 if asdf which python &> /dev/null; then export PATH=$(asdf where python)/bin:$PATH; fi
-# env (Ruby)
+# Ruby (by adsf)
 if asdf which ruby &> /dev/null; then export PATH=$(asdf where ruby)/bin:$PATH; fi
-# env (Node.js)
+# Node.js (by asdf)
 if yarn global bin &> /dev/null; then export PATH=$(yarn global bin):$PATH; fi
 if asdf which nodejs &> /dev/null; then export PATH=$(asdf where nodejs)/bin:$PATH; fi
-
-# env
-export EDITOR=vim
+# Homebrew
+if [ -d /opt/homebrew/bin ]; then export PATH=/opt/homebrew/bin:$PATH; fi
+# Common
 if [ -d $HOME/.krew/bin ]; then export PATH=$HOME/.krew/bin:$PATH; fi
 if [ -d $HOME/.local/bin ]; then export PATH=$HOME/.local/bin:$PATH; fi
 if [ -d $HOME/bin ]; then export PATH=$HOME/bin:$PATH; fi
 
-# alias
+### EDITOR ###
+export EDITOR=vim
+
+### alias ###
 alias rm="rm -i"
 alias cp="cp -i"
 alias less="less -R"
@@ -51,8 +55,11 @@ if [[ -x $(which diff-so-fancy) ]]; then
   }
 fi
 
-# for tmux
-## when execute ssh, reflect tmux window_name in connection name
+
+#===================================
+# setting for tmux
+#===================================
+# when execute ssh, reflect tmux window_name in connection name
 function ssh() {
   if [[ -n $(printenv TMUX) ]]
   then
@@ -66,7 +73,10 @@ function ssh() {
   fi
 }
 
-# for each Shell
+
+#===================================
+# setting for each shell
+#===================================
 if [[ "${SHELL}" =~ "bash" ]]
 then  # bash
   . ~/.shell/bash/setting
@@ -79,7 +89,10 @@ then  # zsh
   . ~/.shell/zsh/zinit
 fi
 
-# for each OS
+
+#===================================
+# setting for each OS
+#===================================
 if [[ "$(uname)" = 'Darwin' ]]
 then  # macOS
   export OS='Mac'
