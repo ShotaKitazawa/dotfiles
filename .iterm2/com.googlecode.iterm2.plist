@@ -243,6 +243,10 @@
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>NeverWarnAboutShortLivedSessions_79AFE15B-3FFB-4F74-B7A9-765B5CA99F4F</key>
+	<true/>
+	<key>NeverWarnAboutShortLivedSessions_79AFE15B-3FFB-4F74-B7A9-765B5CA99F4F_selection</key>
+	<integer>0</integer>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1032,6 +1036,8 @@
 			</dict>
 			<key>Bound Hosts</key>
 			<array/>
+			<key>Brighten Bold Text</key>
+			<true/>
 			<key>Character Encoding</key>
 			<integer>4</integer>
 			<key>Close Sessions On End</key>
@@ -1071,6 +1077,8 @@
 				<key>Red Component</key>
 				<real>1</real>
 			</dict>
+			<key>Cursor Type</key>
+			<integer>2</integer>
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
@@ -1449,6 +1457,8 @@
 			<string></string>
 			<key>Silence Bell</key>
 			<false/>
+			<key>Smart Cursor Color</key>
+			<false/>
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
@@ -1460,9 +1470,11 @@
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
-			<true/>
+			<false/>
 			<key>Use Bright Bold</key>
 			<true/>
+			<key>Use Cursor Guide</key>
+			<false/>
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
