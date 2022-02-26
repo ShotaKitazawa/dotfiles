@@ -101,8 +101,8 @@ nnoremap <Leader>g :<C-u>OpenBrowserSearch<Space><C-r><C-w><Enter>
 " glidenote/memolist.vim
 """"""""""""""""""""""""""""""
 let g:memolist_memo_suffix = "md"
-if isdirectory($HOME . "/GoogleDrive")
-  let g:memolist_path = $HOME . "/GoogleDrive/Memo"
+if isdirectory($HOME . "/Google Drive/マイドライブ")
+  let g:memolist_path = $HOME . "/Google Drive/マイドライブ/Memo"
 endif
 """"""""""""""""""""""""""""""
 " prabirshrestha/asyncomplete.vim
