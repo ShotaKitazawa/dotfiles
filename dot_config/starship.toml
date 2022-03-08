@@ -1,0 +1,68 @@
+add_newline = true
+scan_timeout = 10
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$docker_context\
+$package\
+$container\
+$golang\
+$helm\
+$nodejs\
+$pulumi\
+$python\
+$rust\
+$terraform\
+$vagrant\
+$kubernetes\
+$memory_usage\
+$env_var\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$shell\
+$character\
+"""
+
+
+[character]
+success_symbol = "[▶](bold green)"
+error_symbol = "[▶](bold red)"
+
+[time]
+disabled = false
+format = '[\[$time\]]($style) '
+
+[username]
+disabled = false
+show_always = true
+style_root = "bold red"
+style_user = "green"
+format = "[$user]($style)[@](green)"
+
+[hostname]
+disabled = false
+ssh_only = false
+format = "[$hostname](green): "
+trim_at = "."
+
+[kubernetes]
+format = 'on [⛵ $context \($namespace\)](red) '
+disabled = false
+[kubernetes.context_aliases]
+"arn:aws:eks:.*:cluster/(?P<cluster>[\\w-]+)" = "EKS_$cluster"
+"gke_.*_(?P<cluster>[\\w-]+)" = "GKE_$cluster"
+

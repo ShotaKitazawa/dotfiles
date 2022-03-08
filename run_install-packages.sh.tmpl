@@ -4,7 +4,6 @@
 sudo echo -n
 
 # install peda
-
 if [ ! -e $HOME/.peda ]; then
   git clone https://github.com/longld/peda -b master $HOME/.peda
 fi
@@ -29,10 +28,10 @@ EOF
 
 {{- end -}}
 
-### install tools by aqua
-~/bin/asdf-install-all.sh ~/.config/asdf.yaml
+: install tools by aqua
+~/bin/asdf-install-all.sh ~/asdf.yaml
 
-### install language-runtimes by asdf
+: install language-runtimes by asdf
 (
   cd ~/.config
   aqua i

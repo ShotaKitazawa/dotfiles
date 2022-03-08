@@ -1,5 +1,5 @@
 - name: python
-  version: 3.8.0
+  version: 3.10.1
   packages:
     - command: "pip install -U"
       list:

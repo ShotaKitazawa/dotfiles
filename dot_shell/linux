@@ -5,9 +5,3 @@ alias ll='ls -l --color'
 alias lll='ls -al --color'
 alias gcc32='gcc -m32 -fno-stack-protector'
 alias swapsearch='grep VmSwap /proc/*/status | sort -k 2 -r | head'
-
-if [ -f $HOME/.kubectx ]; then
-  export PATH=$HOME/.kubectx:$PATH
-  . /.kubectx/completion/kubectx.bash
-  . /.kubectx/completion/kubens.bash
-fi

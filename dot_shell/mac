@@ -17,21 +17,3 @@ fi
 if [ -f /Applications/MacVim.app/Contents/Resources/vim/vimrc ];then
   mv -f /Applications/MacVim.app/Contents/Resources/vim/vimrc{,.default}
 fi
-
-# for bash
-if [ "${current_shell}" = "bash" ];then
-  if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
-    . /usr/local/etc/bash_completion.d/git-prompt.sh
-  fi
-  if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ];then
-    . /usr/local/etc/bash_completion.d/git-completion.bash
-  fi
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-  fi
-
-# for zsh
-#elif [ "${current_shell}" = "zsh" ];then
-#  fpath=($(brew --prefix)/share/zsh-completions $fpath)
-#  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
-fi
