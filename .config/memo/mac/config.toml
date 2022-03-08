@@ -1,6 +1,0 @@
-memodir = "$HOME/Google Drive/マイドライブ/Memo"
-editor = "nvim"
-column = 20
-selectcmd = "peco"
-grepcmd = "grep -nH ${PATTERN} ${FILES}"
-assetsdir = "."

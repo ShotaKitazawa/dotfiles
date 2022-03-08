@@ -1,0 +1,10 @@
+{{ if eq .chezmoi.os "linux" -}}
+memodir = "/root/GoogleDrive/Memo/"
+{{ else if eq .chezmoi.os "darwin" -}}
+memodir = "$HOME/Google Drive/マイドライブ/Memo"
+{{- end -}}
+editor = "nvim"
+column = 20
+selectcmd = "fzf"
+grepcmd = "grep -nH ${PATTERN} ${FILES}"
+assetsdir = "."

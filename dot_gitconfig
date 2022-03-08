@@ -1,0 +1,39 @@
+[core]
+    excludesfile = ~/.gitignore
+    autoCRLF = false
+    ignorecase = false
+    pager = delta
+[user]
+    name = ShotaKitazawa
+    email = skitazawa1121@gmail.com
+[credential]
+    helper = cache
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[push]
+    default = tracking
+[http]
+    sslVerify = true
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    interactive = auto
+[interactive]
+    diffFilter = delta --color-only
+[ghq]
+    user = ShotaKitazawa
+    root = ~/.ghq
+[delta]
+    navigate = true
+    side-by-side = true
+    line-numbers = true
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+[alias]
+    graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+    lol = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --date=short
+    lola = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --all --date=short
+

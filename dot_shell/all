@@ -1,0 +1,125 @@
+#!/bin/bash
+
+#===================================
+# setting for envvars
+#===================================
+### PATH ###
+if [ -e $HOME/.asdf/asdf.sh ]; then
+  . $HOME/.asdf/asdf.sh
+fi
+if [ -d $HOME/.local/share/aquaproj-aqua ]; then
+  export PATH=$HOME/.local/share/aquaproj-aqua/bin:$PATH
+  export AQUA_GLOBAL_CONFIG=$HOME/aqua.yaml
+fi
+# Golang
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+# Java
+export MAVEN_HOME=/usr/local/opt/maven@3.6
+export PATH=$MAVEN_HOME/bin:$PATH
+# Python (by asdf)
+if asdf which python &> /dev/null; then export PATH=$(asdf where python)/bin:$PATH; fi
+# Ruby (by adsf)
+if asdf which ruby &> /dev/null; then export PATH=$(asdf where ruby)/bin:$PATH; fi
+# Node.js (by asdf)
+if yarn global bin &> /dev/null; then export PATH=$(yarn global bin):$PATH; fi
+if asdf which nodejs &> /dev/null; then export PATH=$(asdf where nodejs)/bin:$PATH; fi
+# Homebrew
+if [ -d /opt/homebrew/bin ]; then export PATH=/opt/homebrew/bin:$PATH; fi
+# Common
+if [ -d $HOME/.krew/bin ]; then export PATH=$HOME/.krew/bin:$PATH; fi
+if [ -d $HOME/.local/bin ]; then export PATH=$HOME/.local/bin:$PATH; fi
+if [ -d $HOME/bin ]; then export PATH=$HOME/bin:$PATH; fi
+
+### EDITOR ###
+export EDITOR=vim
+
+### alias ###
+alias rm="rm -i"
+alias cp="cp -i"
+alias less="less -R"
+alias g="git"
+alias git-clean-branch="git branch --no-color --merged | egrep -v '(master|main)' | xargs git branch -d"
+alias ssh-keyadd="ssh-add ~/.ssh/id_*"
+alias ssh-showpub="ssh-keygen -yf"
+alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
+if [[ -x $(which colordiff) ]]; then alias diff='colordiff'; fi
+if [[ -x $(which nvim) ]]; then
+  export EDITOR=nvim
+  alias vim='nvim'
+  function vimide (){
+    nvim -u ~/.vim/ide.vim $@
+  }
+fi
+if [[ -x $(which kubectl) ]]; then alias k='kubectl';fi
+if [[ -x $(which diff-so-fancy) ]]; then
+  function difff (){
+    diff -u $1 $2 | diff-so-fancy |less -R
+  }
+  function git-difff (){
+    git diff --histogram $@ | diff-so-fancy | less -R
+  }
+fi
+
+
+#===================================
+# setting for tmux
+#===================================
+# when execute ssh, reflect tmux window_name in connection name
+function ssh() {
+  if [[ -n $(printenv TMUX) ]]
+  then
+    local window_name=$(tmux display -p '#{window_name}')
+    tmux rename-window -- "$@[-1]" # zsh specified
+    # tmux rename-window -- "${!#}" # for bash
+    command ssh $@
+    tmux rename-window $window_name
+  else
+    command ssh $@
+  fi
+}
+
+
+#===================================
+# setting for each shell
+#===================================
+if [[ "${SHELL}" =~ "bash" ]]
+then  # bash
+  . ~/.shell/bash/setting
+  . ~/.shell/bash/completion
+
+elif [[ "${SHELL}" =~ "zsh" ]]
+then  # zsh
+  . ~/.shell/zsh/setting
+  . ~/.shell/zsh/completion
+  . ~/.shell/zsh/zinit
+fi
+
+
+#===================================
+# setting for each OS
+#===================================
+if [[ "$(uname)" = 'Darwin' ]]
+then  # macOS
+  export OS='Mac'
+  . $HOME/.shell/mac
+
+elif [[ "$(uname -r)" =~ ^.*-Microsoft$ ]]
+then  # Windows Subsystem for Linux
+  export OS='WSL'
+  . $HOME/.shell/wsl
+
+elif [[ "$(uname)" = 'Linux' ]]
+then  # Linux
+  export OS='Linux'
+  . $HOME/.shell/linux
+
+elif [[ "$(uname)" = 'FreeBSD' ]]
+then  # FreeBSD
+  export OS='FreeBSD'
+  alias l='ls'
+  alias ll='ls -lG'
+  alias lll='ls -alG'
+  alias updatedb='/usr/libexec/locate.updatedb'
+fi
+

@@ -1,40 +1,50 @@
-# About
+# dotfiles
 
-Managed dotfiles & Install some softwares on multi-environments.
+* using [chezmoi](https://github.com/twpayne/chezmoi) for managing dotfiles
+    * using [aqua](https://github.com/aquaproj/aqua) for managing tools
+    * using [asdf](https://github.com/asdf-vm/asdf) for managing language-runtimes
 
-# Execute
+### requirements
 
-* download
+* git
+* 1password Account (required in `deploy dotfiles by chezmoi`)
 
-```bash
-git clone https://github.com/ShotaKitazawa/dotfiles
-cd dotfiles
-```
+### setup
 
-* deploy dotfiles
-
-```bash
-./put_profile
-```
-
-* install softwares
+* setup envvars
 
 ```bash
-./install_softwares
+export DOTFILES_DIR="$HOME/.ghq/github.com/ShotaKitazawa/dotfiles"
 ```
 
-# Configure
+* clone dotfiles
 
-If you execute `./install_softwares` to install something, edit `requirements/xxx.yml`.
+```bash
+git clone git@github.com:ShotaKitazawa/dotfiles $DOTFILES_DIR
+```
 
-### download.yml
+* install initial softwares
 
-download from specified URL & more
+```bash
+# for macOS (install only Homebrew & chezmoi)
+bash $DOTFILES_DIR/setup-mac.sh
+```
 
-### asdf.yml
+* setup chezmoi
 
-install some language & packages using asdf
+```bash
+cat << _EOF_ >> ~/.zshrc
 
-### package.yml
+# chezmoi
+alias chezmoi="chezmoi -S ${DOTFILES_DIR}"
+_EOF_
+```
 
-install some packages using package manager
+### apply
+
+* deploy dotfiles by [chezmoi](https://github.com/twpayne/chezmoi)
+
+```bash
+chezmoi apply
+```
+

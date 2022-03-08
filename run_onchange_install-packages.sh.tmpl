@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# input sudoer password
+sudo echo -n
+
+# install peda
+
+if [ ! -e $HOME/.peda ]; then
+  git clone https://github.com/longld/peda -b master $HOME/.peda
+fi
+
+### install packages in each OS
+
+{{ if eq .chezmoi.os "linux" -}}
+: TODO
+
+{{ else if eq .chezmoi.os "darwin" -}}
+
+### install packages
+brew bundle --no-lock --file=/dev/stdin << EOF
+{{ template "Brewfile" -}}
+EOF
+
+{{ if eq .chezmoi.arch "amd64" -}}
+brew bundle --no-lock --file=/dev/stdin << EOF
+{{ template "Brewfile-amd64" -}}
+EOF
+{{- end -}}
+
+{{- end -}}
+
+### install tools by aqua
+~/bin/asdf-install-all.sh ~/.config/asdf.yaml
+
+### install language-runtimes by asdf
+(
+  cd ~/.config
+  aqua i
+)

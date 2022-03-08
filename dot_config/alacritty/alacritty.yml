@@ -1,0 +1,7 @@
+window:
+  opacity: 0.95
+
+font:
+  normal:
+    family: "agave Nerd Font Mono"
+  size: 18.0

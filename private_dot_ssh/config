@@ -1,0 +1,64 @@
+Include *.conf
+
+###############################
+# Home (external)
+
+Host jump
+  Hostname  kanatakita.com
+  Port 9922
+  IdentityFile  ~/.ssh/id_ecdsa.home
+  User    jump
+  ForwardAgent yes
+host ext01
+  hostname 132.145.115.150
+  identityfile  ~/.ssh/id_rsa.mycloud
+  user    kanata
+  ForwardAgent yes
+  kexalgorithms +diffie-hellman-group1-sha1
+  serveraliveinterval 300
+  tcpkeepalive yes
+
+
+###############################
+# Home (internal)
+
+Host sw01
+  Hostname  192.168.0.10
+  User admin
+  KexAlgorithms +diffie-hellman-group1-sha1
+  Ciphers aes128-cbc
+Host dev
+  Hostname  192.168.0.11
+  IdentityFile  ~/.ssh/id_ecdsa.home
+  User    development
+  ForwardAgent yes
+Host home01
+  Hostname  192.168.0.11
+  IdentityFile  ~/.ssh/id_rsa.home
+  User    root
+  ForwardAgent yes
+Host storage
+  Hostname  192.168.0.12
+  IdentityFile  ~/.ssh/id_ecdsa.home
+  User    kanata
+  ForwardAgent yes
+Host uc-controller
+  Hostname  192.168.0.17
+  IdentityFile  ~/.ssh/id_rsa.home
+  User    kanata
+  ForwardAgent yes
+Host compute01
+  Hostname  192.168.0.25
+  IdentityFile  ~/.ssh/id_rsa.home
+  User    root
+  ForwardAgent yes
+Host compute02
+  Hostname  192.168.0.26
+  IdentityFile  ~/.ssh/id_rsa.home
+  User    kanata
+  ForwardAgent yes
+Host compute03
+  Hostname  192.168.0.27
+  IdentityFile  ~/.ssh/id_rsa.home
+  User    root
+  ForwardAgent yes

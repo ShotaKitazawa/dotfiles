@@ -1,0 +1,39 @@
+#!/usr/bin/env zsh
+
+# variables
+fzf_path=$(asdf where fzf)
+
+# source some files
+completions=(
+"$HOME/.asdf/completions/asdf.bash"
+"${fzf_path}/shell/completion.zsh"
+"${fzf_path}/shell/key-bindings.zsh"
+"/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+"/Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion"
+"/Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion"
+)
+for _file in ${completions[@]}; do
+  if [ -e $_file ]; then
+    . $_file
+  fi
+done
+
+# pip
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+
+# kubectl completion
+if kubectl help &> /dev/null; then
+  alias k=kubectl
+  if [[ ! -e $HOME/.kubectl_completion_zsh ]]; then
+    kubectl completion zsh > $HOME/.kubectl_completion_zsh
+  fi
+  . $HOME/.kubectl_completion_zsh
+fi
