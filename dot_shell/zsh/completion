@@ -30,7 +30,7 @@ function _pip_completion {
 compctl -K _pip_completion pip
 
 # kubectl completion
-if kubectl help &> /dev/null; then
+if which kubectl &> /dev/null; then
   alias k=kubectl
   if [[ ! -e $HOME/.kubectl_completion_zsh ]]; then
     kubectl completion zsh > $HOME/.kubectl_completion_zsh

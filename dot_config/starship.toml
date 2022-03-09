@@ -37,15 +37,6 @@ $shell\
 $character\
 """
 
-
-[character]
-success_symbol = "[▶](bold green)"
-error_symbol = "[▶](bold red)"
-
-[time]
-disabled = false
-format = '[\[$time\]]($style) '
-
 [username]
 disabled = false
 show_always = true
@@ -59,6 +50,10 @@ ssh_only = false
 format = "[$hostname](green): "
 trim_at = "."
 
+[git_branch]
+disabled = false
+format = '[\[ $symbol$branch\]]($style) '
+
 [kubernetes]
 format = 'on [⛵ $context \($namespace\)](red) '
 disabled = false
@@ -66,3 +61,10 @@ disabled = false
 "arn:aws:eks:.*:cluster/(?P<cluster>[\\w-]+)" = "EKS_$cluster"
 "gke_.*_(?P<cluster>[\\w-]+)" = "GKE_$cluster"
 
+[time]
+disabled = false
+format = '[\[$time\]]($style) '
+
+[character]
+success_symbol = "[▶](bold green)"
+error_symbol = "[▶](bold red)"

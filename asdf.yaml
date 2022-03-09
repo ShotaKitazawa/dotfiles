@@ -33,6 +33,8 @@
   version: 1.23.0
   packages:
     - command: "kubectl krew update"
+      list:
+        - ""
     - command: "kubectl krew install"
       list:
         - custom-cols
