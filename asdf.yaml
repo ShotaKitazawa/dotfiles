@@ -39,6 +39,7 @@
       list:
         - custom-cols
         - example
+        - explore
         - grep
         - iexec
         - images
