@@ -5,3 +5,29 @@ font:
   normal:
     family: "agave Nerd Font Mono"
   size: 18.0
+
+colors:
+  primary:
+    #background: '#0D0D0D'
+    foreground: '#00EE00'
+  cursor:
+   text: '#FF0018'
+   cursor: '#23FF18'
+  normal:
+    black:   '#0d0d0d'
+    red:     '#FF301B'
+    green:   '#A0E521'
+    yellow:  '#FFC620'
+    blue:    '#1BA6FA'
+    magenta: '#8763B8'
+    cyan:    '#21DEEF'
+    white:   '#EBEBEB'
+  bright:
+    black:   '#6D7070'
+    red:     '#FF4352'
+    green:   '#B8E466'
+    yellow:  '#FFD750'
+    blue:    '#1BA6FA'
+    magenta: '#A578EA'
+    cyan:    '#73FBF1'
+    white:   '#FEFEF8'
