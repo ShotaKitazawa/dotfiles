@@ -3,10 +3,10 @@
 # https://aquaproj.github.io/
 registries:
 - type: standard
-  ref: v1.6.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v1.8.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
-- name: starship/starship@v1.3.0
+- name: starship/starship@v1.4.2
 - name: sbstp/kubie@v0.16.0
 - name: kubernetes-sigs/krew@v0.4.3
 - name: stern/stern@v1.21.0
@@ -15,12 +15,12 @@ packages:
 - name: cli/cli@v2.5.2
 - name: x-motemen/ghq@v1.2.1
 - name: muesli/duf@v0.8.1
-- name: goreleaser/goreleaser@v1.6.1
+- name: goreleaser/goreleaser@v1.6.3
 - name: fullstorydev/grpcurl@v1.8.6
 - name: stedolan/jq@jq-1.6
 - name: google/jsonnet@v0.18.0
 - name: neovim/neovim@v0.6.1
-- name: pulumi/pulumi@v3.25.1
+- name: pulumi/pulumi@v3.26.1
 - name: BurntSushi/ripgrep@13.0.0
 - name: dandavison/delta@0.12.1
 - name: kubernetes-sigs/kustomize@kustomize/v4.5.2
