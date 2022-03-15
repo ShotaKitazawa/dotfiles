@@ -1,3 +1,5 @@
+# ref. https://github.com/alacritty/alacritty/blob/master/alacritty.yml
+
 window:
   opacity: 0.95
 
@@ -31,3 +33,14 @@ colors:
     magenta: '#A578EA'
     cyan:    '#73FBF1'
     white:   '#FEFEF8'
+
+key_bindings:
+  - key: V
+    mods: Command
+    action: Paste
+  - key: N
+    mods: Command
+    action: SpawnNewInstance
+  - key: "LBracket"
+    mods: Control
+    chars: "\x1b"

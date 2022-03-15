@@ -24,3 +24,4 @@ packages:
 - name: BurntSushi/ripgrep@13.0.0
 - name: dandavison/delta@0.12.1
 - name: kubernetes-sigs/kustomize@kustomize/v4.5.2
+- name: kubernetes-sigs/cluster-api@v1.1.3
