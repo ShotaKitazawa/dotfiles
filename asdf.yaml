@@ -40,6 +40,7 @@
         - custom-cols
         - example
         - explore
+        - get-all
         - grep
         - iexec
         - images
@@ -51,6 +52,7 @@
         - resource-capacity
         - sniff
         - view-allocations
+        - view-serviceaccount-kubeconfig
 - name: ruby
   version: 3.0.3
 - name: fzf
