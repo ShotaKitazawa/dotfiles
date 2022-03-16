@@ -25,3 +25,4 @@ packages:
 - name: dandavison/delta@0.12.1
 - name: kubernetes-sigs/kustomize@kustomize/v4.5.2
 - name: kubernetes-sigs/cluster-api@v1.1.3
+- name: helm/helm@v3.8.1

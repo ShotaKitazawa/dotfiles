@@ -50,15 +50,10 @@ Host uc-controller
 Host compute01
   Hostname  192.168.0.25
   IdentityFile  ~/.ssh/id_rsa.home
-  User    root
-  ForwardAgent yes
-Host compute02
-  Hostname  192.168.0.26
-  IdentityFile  ~/.ssh/id_rsa.home
   User    kanata
   ForwardAgent yes
-Host compute03
-  Hostname  192.168.0.27
+Host compute02
+  Hostname  compute02.local.kanatakita.com
   IdentityFile  ~/.ssh/id_rsa.home
-  User    root
+  User    kanata
   ForwardAgent yes
