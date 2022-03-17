@@ -48,3 +48,20 @@ _EOF_
 chezmoi apply
 ```
 
+### change login shell
+
+* `sudo vim /etc/shells`
+
+```diff
+  ...
++ /usr/local/bin/zsh
+```
+
+* reboot
+
+* change login shell
+
+```bash
+chsh -s /opt/homebrew/bin/zsh
+```
+
