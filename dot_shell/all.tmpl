@@ -63,6 +63,10 @@ fi
 #===================================
 # setting for tmux
 #===================================
+# if tmp is not installed, installing
+if [ ! -d ${HOME}/.local/share/tpm ]; then
+  git clone https://github.com/tmux-plugins/tpm
+fi
 # when execute ssh, reflect tmux window_name in connection name
 function ssh() {
   if [[ -n $(printenv TMUX) ]]
