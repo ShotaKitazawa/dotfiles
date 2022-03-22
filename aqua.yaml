@@ -27,3 +27,4 @@ packages:
 - name: kubernetes-sigs/cluster-api@v1.1.3
 - name: helm/helm@v3.8.1
 - name: grafana/tanka@v0.20.0
+- name: argoproj/argo-cd@v2.3.1
