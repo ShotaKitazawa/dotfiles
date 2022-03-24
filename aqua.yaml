@@ -6,7 +6,7 @@ registries:
   ref: v1.10.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
-- name: starship/starship@v1.4.2
+- name: starship/starship@v1.5.4
 - name: sbstp/kubie@v0.16.0
 - name: kubernetes-sigs/krew@v0.4.3
 - name: stern/stern@v1.21.0
