@@ -42,7 +42,7 @@ fi
 
 # load completion files
 completions=(
-"$HOME/.asdf/completions/asdf.zsh"
+"$HOME/.asdf/completions/asdf.bash"
 "${fzf_path}/shell/completion.zsh"
 "${fzf_path}/shell/key-bindings.zsh"
 "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
