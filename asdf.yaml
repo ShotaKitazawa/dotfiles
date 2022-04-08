@@ -13,11 +13,9 @@
 - name: golang
   version: 1.17.5
   packages:
-    - command: "go get -u"
-      list:
-        - golang.org/x/tools/cmd/...
     - command: "go install"
       list:
+        - golang.org/x/tools/cmd/...@latest
         - github.com/golang/mock/mockgen@latest
         - github.com/go-delve/delve/cmd/dlv@latest
         - github.com/mattn/memo@latest
