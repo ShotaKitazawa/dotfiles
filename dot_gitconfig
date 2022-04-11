@@ -1,39 +1,45 @@
+# base setting
 [core]
-    excludesfile = ~/.gitignore
-    autoCRLF = false
-    ignorecase = false
-    pager = delta
+  excludesfile = ~/.gitignore
+  autoCRLF = false
+  ignorecase = false
+  pager = delta
 [user]
-    name = ShotaKitazawa
-    email = skitazawa1121@gmail.com
+  name = ShotaKitazawa
+  email = skitazawa1121@gmail.com
 [credential]
-    helper = cache
-[url "git@github.com:"]
-    insteadOf = https://github.com/
-[push]
-    default = tracking
+  helper = cache
 [http]
-    sslVerify = true
+  sslVerify = true
+[url "git@github.com:"]
+  insteadOf = https://github.com/
 [color]
-    branch = auto
-    diff = auto
-    status = auto
-    interactive = auto
+  branch = auto
+  diff = auto
+  status = auto
+  interactive = auto
 [interactive]
-    diffFilter = delta --color-only
-[ghq]
-    user = ShotaKitazawa
-    root = ~/.ghq
-[delta]
-    navigate = true
-    side-by-side = true
-    line-numbers = true
+  diffFilter = delta --color-only
+[push]
+  default = tracking
 [merge]
-    conflictstyle = diff3
+  conflictstyle = diff3
 [diff]
-    colorMoved = default
+  colorMoved = default
 [alias]
-    graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
-    lol = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --date=short
-    lola = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --all --date=short
+  graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+  lol = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --date=short
+  lola = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --all --date=short
 
+# setting for external tools
+[ghq]
+  user = ShotaKitazawa
+  root = ~/.ghq
+[delta]
+  navigate = true
+  side-by-side = true
+  line-numbers = true
+
+# others
+[include]
+  path = ~/.gitconfig.local
