@@ -8,51 +8,57 @@ fzf_path=$(asdf where fzf)
 if [ ! -f $HOME/.completions ]; then
   mkdir -p $HOME/.completions
 fi
+(
+filename="$HOME/.completions/_kubectl"
 if [ -n "$(which kubectl)" ]; then
-  if [ ! -f "$HOME/.completions/kubectl_completion_zsh" ]; then
-    kubectl completion zsh > $HOME/.completions/kubectl_completion_zsh
+  if [ ! -f $filename ]; then
+    kubectl completion zsh > $filename
   fi
 fi
+)
+(
+filename="$HOME/.completions/_pip"
 if [ -n "$(which pip)" ]; then
-  if [ ! -f "$HOME/.completions/pip_completion_zsh" ]; then
-    cat << '_EOF_' > $HOME/.completions/pip_completion_zsh
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] ) )
-}
-compctl -K _pip_completion pip
-_EOF_
+  if [ ! -f $filename ]; then
+    pip completion --zsh > $filename
   fi
 fi
+)
+(
+filename="$HOME/.completions/_helm"
 if [ -n "$(which helm)" ]; then
-  if [ ! -f "$HOME/.completions/helm_completion_zsh" ]; then
-    helm completion zsh > $HOME/.completions/helm_completion_zsh
+  if [ ! -f $filename ]; then
+    helm completion zsh > $filename
   fi
 fi
+)
+(
+filename="$HOME/.completions/_chezmoi"
 if [ -n "$(which chezmoi)" ]; then
-  if [ ! -f "$HOME/.completions/chezmoi_completion_zsh" ]; then
-    chezmoi completion zsh > $HOME/.completions/chezmoi_completion_zsh
+  if [ ! -f $filename ]; then
+    chezmoi completion zsh > $filename
   fi
 fi
+)
 
 
 # load completion files
 completions=(
-"$HOME/.asdf/completions/asdf.bash"
+"$HOME/.completions/_pip"
 "${fzf_path}/shell/completion.zsh"
 "${fzf_path}/shell/key-bindings.zsh"
 "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-"$HOME/.completions/kubectl_completion_zsh"
-"$HOME/.completions/pip_completion_zsh"
-"$HOME/.completions/helm_completion_zsh"
-"$HOME/.completions/chezmoi_completion_zsh"
 )
 for _file in ${completions[@]}; do
   if [ -e $_file ]; then
     . $_file
   fi
 done
+
+# load completion files by fpath
+fpath=(
+"$HOME/.asdf/completions"
+"$HOME/.completions"
+"${fpath[@]}"
+)
+autoload -Uz compinit && compinit
