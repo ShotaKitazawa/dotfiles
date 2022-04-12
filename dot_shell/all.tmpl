@@ -14,16 +14,6 @@ fi
 # Golang
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
-# Java
-export MAVEN_HOME=/usr/local/opt/maven@3.6
-export PATH=$MAVEN_HOME/bin:$PATH
-# Python (by asdf)
-if asdf which python &> /dev/null; then export PATH=$(asdf where python)/bin:$PATH; fi
-# Ruby (by adsf)
-if asdf which ruby &> /dev/null; then export PATH=$(asdf where ruby)/bin:$PATH; fi
-# Node.js (by asdf)
-if yarn global bin &> /dev/null; then export PATH=$(yarn global bin):$PATH; fi
-if asdf which nodejs &> /dev/null; then export PATH=$(asdf where nodejs)/bin:$PATH; fi
 # Homebrew
 if [ -d /opt/homebrew/bin ]; then export PATH=/opt/homebrew/bin:$PATH; fi
 # Common
