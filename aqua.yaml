@@ -29,4 +29,4 @@ packages:
 - name: grafana/tanka@v0.20.0
 - name: argoproj/argo-cd@v2.3.3
 - name: hashicorp/packer@v1.8.0
-- name: mikefarah/yq@v4.24.4
+- name: mikefarah/yq@v4.24.5
