@@ -7,7 +7,7 @@ registries:
 
 packages:
 - name: starship/starship@v1.7.1
-- name: sbstp/kubie@v0.16.0
+- name: sbstp/kubie@v0.17.0
 - name: kubernetes-sigs/krew@v0.4.3
 - name: stern/stern@v1.21.0
 - name: hashicorp/terraform@v1.2.2
