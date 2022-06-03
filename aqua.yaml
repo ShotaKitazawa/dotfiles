@@ -26,6 +26,6 @@ packages:
 - name: helm/helm@v3.9.0
 - name: argoproj/argo-cd@v2.3.4
 - name: slok/sloth@v0.10.0
-- name: kubernetes-sigs/kubebuilder@v3.2.0
+- name: kubernetes-sigs/kubebuilder@v3.4.1
 - name: direnv/direnv@v2.31.0
 - name: mikefarah/yq@v4.25.2
