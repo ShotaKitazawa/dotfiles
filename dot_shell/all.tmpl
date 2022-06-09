@@ -4,18 +4,20 @@
 # setting for envvars
 #===================================
 ### PATH ###
-if [ -e $HOME/.asdf/asdf.sh ]; then
-  . $HOME/.asdf/asdf.sh
-fi
-if [ -d $HOME/.local/share/aquaproj-aqua ]; then
-  export PATH=$HOME/.local/share/aquaproj-aqua/bin:$PATH
-  export AQUA_GLOBAL_CONFIG=$HOME/aqua.yaml
-fi
 # Golang
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 # Homebrew
 if [ -d /opt/homebrew/bin ]; then export PATH=/opt/homebrew/bin:$PATH; fi
+# asdf
+if [ -e $HOME/.asdf/asdf.sh ]; then
+  . $HOME/.asdf/asdf.sh
+fi
+# aqua
+if [ -d $HOME/.local/share/aquaproj-aqua ]; then
+  export PATH=$HOME/.local/share/aquaproj-aqua/bin:$PATH
+  export AQUA_GLOBAL_CONFIG=$HOME/aqua.yaml
+fi
 # Common
 if [ -d $HOME/.krew/bin ]; then export PATH=$HOME/.krew/bin:$PATH; fi
 if [ -d $HOME/.local/bin ]; then export PATH=$HOME/.local/bin:$PATH; fi
