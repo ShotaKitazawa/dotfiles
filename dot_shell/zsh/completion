@@ -40,6 +40,14 @@ if [ -n "$(which chezmoi)" ]; then
   fi
 fi
 )
+(
+filename="$HOME/.completions/_gh"
+if [ -n "$(which gh)" ]; then
+  if [ ! -f $filename ]; then
+    gh completion -s zsh > $filename
+  fi
+fi
+)
 
 
 # load completion files
