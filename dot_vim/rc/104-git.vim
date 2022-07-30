@@ -3,12 +3,12 @@
 "  finish
 "endif
 
-nnoremap :gs :Gstatus
-nnoremap :ga :Gwrite
-nnoremap :gr :Gread
-nnoremap :gc :Gcommit
-nnoremap :gb :Gblame
-nnoremap :gd :Gdiff
+nnoremap :gs :Git status
+nnoremap :ga :Git write
+nnoremap :gr :Git read
+nnoremap :gc :Git commit
+nnoremap :gb :Git blame
+nnoremap :gd :Git diff
 set statusline+=%{fugitive#statusline()}
 
 
