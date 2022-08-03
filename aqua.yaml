@@ -27,5 +27,5 @@ packages:
 - name: argoproj/argo-cd@v2.4.8
 - name: slok/sloth@v0.10.0
 - name: kubernetes-sigs/kubebuilder@v3.4.1
-- name: direnv/direnv@v2.32.0
+- name: direnv/direnv@v2.32.1
 - name: mikefarah/yq@v4.25.2
