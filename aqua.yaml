@@ -28,4 +28,4 @@ packages:
 - name: slok/sloth@v0.10.0
 - name: kubernetes-sigs/kubebuilder@v3.4.1
 - name: direnv/direnv@v2.32.1
-- name: mikefarah/yq@v4.25.2
+- name: mikefarah/yq@v4.27.2
