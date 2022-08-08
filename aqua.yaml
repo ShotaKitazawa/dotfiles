@@ -16,7 +16,7 @@ packages:
 - name: x-motemen/ghq@v1.3.0
 - name: muesli/duf@v0.8.1
 - name: goreleaser/goreleaser@v1.10.3
-- name: fullstorydev/grpcurl@v1.8.6
+- name: fullstorydev/grpcurl@v1.8.7
 - name: stedolan/jq@jq-1.6
 - name: neovim/neovim@v0.7.2
 - name: BurntSushi/ripgrep@13.0.0
