@@ -96,9 +96,6 @@ setw -g mouse on
 # 番号基準値を変更
 set -g base-index 1
 
-# 標準のクリップボードを無効化
-set -s set-clipboard off
-
 # 256色端末を使用する
 set -g default-terminal "screen-256color"
 
@@ -147,13 +144,17 @@ setw -g window-status-current-format "#[fg=colour255,bg=colour27,bold] #I: #W #[
 # setting for each OS
 #===================================
 # 各OSにおける設定ファイル読み込み
-{{ if eq .chezmoi.os "darwin" -}}
+
+# Clipboard
+{{- if eq .chezmoi.os "darwin" -}}
+set -s set-clipboard off
 bind -T copy-mode-vi y send -X copy-pipe-and-cancel "pbcopy"
 bind -T copy-mode-vi Enter send -X copy-pipe-and-cancel "pbcopy"
 bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "pbcopy"
 set -g status-right "#(tmux-functions load_average)#(tmux-functions volume)#(tmux-functions battery)#(tmux-functions ssid)#[fg=colour014] %H:%M:%S | %m/%d #[default]"
-{{ else if eq .chezmoi.os "linux" -}}
-{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+set -s set-clipboard off
 if-shell "which win32yank.exe" '\
   bind -T copy-mode-vi y send -X copy-pipe-and-cancel "win32yank.exe -i";\
   unbind -T copy-mode-vi Enter;\
@@ -161,15 +162,11 @@ if-shell "which win32yank.exe" '\
   bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "win32yank.exe -i";\
 '
 set -g status-right "#[fg=colour255,bg=colour241] #h | LA: #(cut -d' ' -f-3 /proc/loadavg) | %m/%d %H:%M:%S#[default]"
-{{   else  }}
-if-shell "which xsel" '\
-  bind -T copy-mode-vi y send -X copy-pipe-and-cancel "xsel -ib"; \
-  bind -T copy-mode-vi Enter send -X copy-pipe-and-cancel "xsel -ib"; \
-'
+{{-   else  -}}
+set -s set-clipboard on
 set -g status-right "#[fg=colour255,bg=colour241] #h | LA: #(cut -d' ' -f-3 /proc/loadavg) | %m/%d %H:%M:%S#[default]"
-{{   end }}
-{{ end }}
-
+{{-   end -}}
+{{- end }}
 
 #===================================
 # load other tmux.conf
