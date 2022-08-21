@@ -28,8 +28,8 @@ Plug 'bronson/vim-trailing-whitespace'
 " Git 操作
 Plug 'tpope/vim-fugitive'
 Plug 'hotwatermorning/auto-git-diff'
-" ssh 先も p でクリップボード共有
-Plug 'haya14busa/vim-poweryank'
+" OSC52
+Plug 'greymd/oscyank.vim'
 " 日本語の w, b, e 移動補助
 Plug 'deton/jasegment.vim'
 " オートセーブ
@@ -86,9 +86,9 @@ call plug#end()
 """"""""""""""""""""""""""""""
 let g:vim_markdown_folding_disabled = 1
 """"""""""""""""""""""""""""""
-" haya14busa/vim-poweryank
+" greymd/oscyank.vim
 """"""""""""""""""""""""""""""
-  map <Leader>y <Plug>(operator-poweryank-osc52)
+noremap <leader>y :Oscyank<cr>
 """"""""""""""""""""""""""""""
 " tyru/open-browser.vim
 """"""""""""""""""""""""""""""
