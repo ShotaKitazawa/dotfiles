@@ -22,6 +22,11 @@ host ext01
 ###############################
 # Home (internal)
 
+Host router01
+  Hostname  192.168.0.1
+  User admin
+  KexAlgorithms +diffie-hellman-group1-sha1
+  Ciphers aes128-cbc
 Host sw01
   Hostname  192.168.0.10
   User admin
