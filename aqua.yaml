@@ -20,7 +20,7 @@ packages:
 - name: stedolan/jq@jq-1.6
 - name: neovim/neovim@v0.7.2
 - name: BurntSushi/ripgrep@13.0.0
-- name: dandavison/delta@0.13.0
+- name: dandavison/delta@0.14.0
 - name: kubernetes-sigs/kustomize@kustomize/v4.5.2
 - name: kubernetes-sigs/cluster-api@v1.2.0
 - name: helm/helm@v3.9.3
