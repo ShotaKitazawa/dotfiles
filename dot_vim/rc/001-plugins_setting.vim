@@ -52,6 +52,8 @@ Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'prabirshrestha/asyncomplete-file.vim'
 Plug 'Shougo/neco-syntax'
 Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
+" Common syntax hilight
+Plug 'sheerun/vim-polyglot'
 " Golang
 Plug 'mattn/vim-goimports', { 'for': 'go' }
 " HTML
