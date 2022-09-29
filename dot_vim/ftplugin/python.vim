@@ -1,27 +1,3 @@
-"" http://hachibeechan.hateblo.jp/entry/vim-customize-for-python
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"if version < 600
-"  syntax clear
-"elseif exists('b:current_after_syntax')
-"  finish
-"endif
-"
-"let s:cpo_save = &cpo
-"set cpo&vim
-"
-"syn match pythonOperator "\(+\|=\|-\|\^\|\*\)"
-"syn match pythonDelimiter "\(,\|\.\|:\)"
-"syn keyword pythonSpecialWord self
-"
-"hi link pythonSpecialWord    Special
-"hi link pythonDelimiter      Special
-"
-"let b:current_after_syntax = 'python'
-"
-"let &cpo = s:cpo_save
-"unlet s:cpo_save
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " indent guides
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "IndentGuidesEnable
@@ -34,6 +10,8 @@ hi IndentGuidesEven ctermbg=black
 
 " Lsp Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap tt :LspDocumentFormat<CR>
+nmap <silent> <f2> :LspRename<CR>
 nmap <silent> <Leader>d :LspDefinition<CR>
 nmap <silent> <Leader>r :LspReferences<CR>
 nmap <silent> <Leader>i :LspImplementation<CR>
