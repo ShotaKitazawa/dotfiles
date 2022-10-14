@@ -3,7 +3,7 @@
 # https://aquaproj.github.io/
 registries:
 - type: standard
-  ref: v3.71.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v3.74.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
 - name: starship/starship@v1.10.3
@@ -22,12 +22,12 @@ packages:
 - name: BurntSushi/ripgrep@13.0.0
 - name: dandavison/delta@0.14.0
 - name: kubernetes-sigs/kustomize@kustomize/v4.5.7
-- name: kubernetes-sigs/cluster-api@v1.2.2
-- name: helm/helm@v3.10.0
+- name: kubernetes-sigs/cluster-api@v1.2.3
+- name: helm/helm@v3.10.1
 - name: argoproj/argo-cd@v2.4.14
 - name: slok/sloth@v0.10.0
 - name: kubernetes-sigs/kubebuilder@v3.7.0
 - name: direnv/direnv@v2.32.1
 - name: mikefarah/yq@v4.28.1
-- name: twpayne/chezmoi@v2.24.0
+- name: twpayne/chezmoi@v2.25.0
 - name: derailed/k9s@v0.26.6
