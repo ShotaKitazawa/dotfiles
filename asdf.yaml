@@ -1,5 +1,5 @@
 - name: python
-  version: 3.10.1
+  version: 3.11.0
   packages:
     - command: "pip install -U"
       list:
@@ -11,7 +11,7 @@
         - black
         - isort
 - name: golang
-  version: 1.17.5
+  version: 1.19.3
   packages:
     - command: "go install"
       list:
@@ -28,7 +28,7 @@
         - diff-so-fancy
         - redoc-cli
 - name: kubectl
-  version: 1.23.0
+  version: 1.25.4
   packages:
     - command: "kubectl krew update"
       list:
@@ -51,7 +51,7 @@
         - sniff
         - view-allocations
         - view-serviceaccount-kubeconfig
-- name: ruby
-  version: 3.0.3
+#- name: ruby
+#  version: 3.0.3
 - name: fzf
   version: 0.27.2
