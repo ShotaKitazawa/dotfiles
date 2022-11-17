@@ -4,10 +4,10 @@
 *.swp
 
 # C/C++
-*.out
-core.*
-.gdb_history
-peda-*
+#*.out
+#core.*
+#.gdb_history
+#peda-*
 
 # Python
 __pycache__/
