@@ -29,5 +29,5 @@ packages:
 - name: kubernetes-sigs/kubebuilder@v3.8.0
 - name: direnv/direnv@v2.32.2
 - name: mikefarah/yq@v4.30.6
-- name: twpayne/chezmoi@v2.27.3
+- name: twpayne/chezmoi@v2.28.0
 - name: derailed/k9s@v0.26.7
