@@ -32,3 +32,4 @@ packages:
 - name: twpayne/chezmoi@v2.28.0
 - name: derailed/k9s@v0.26.7
 - name: planetscale/cli@v0.126.0
+- name: golang-migrate/migrate@v4.15.2
