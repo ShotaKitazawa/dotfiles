@@ -31,3 +31,4 @@ packages:
 - name: mikefarah/yq@v4.30.6
 - name: twpayne/chezmoi@v2.28.0
 - name: derailed/k9s@v0.26.7
+- name: planetscale/cli@v0.126.0
