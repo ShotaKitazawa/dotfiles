@@ -33,3 +33,4 @@ packages:
 - name: derailed/k9s@v0.27.3
 - name: planetscale/cli@v0.129.0
 - name: golang-migrate/migrate@v4.15.2
+- name: hashicorp/terraform-plugin-docs@v0.14.1
