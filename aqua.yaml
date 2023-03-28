@@ -34,3 +34,4 @@ packages:
 - name: planetscale/cli@v0.131.0
 - name: golang-migrate/migrate@v4.15.2
 - name: hashicorp/terraform-plugin-docs@v0.14.1
+- name: wagoodman/dive@v0.10.0
