@@ -3,7 +3,7 @@
 # https://aquaproj.github.io/
 registries:
 - type: standard
-  ref: v3.147.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v3.149.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
 - name: starship/starship@v1.13.1
@@ -12,7 +12,7 @@ packages:
 - name: stern/stern@v1.24.0
 - name: hashicorp/terraform@v1.4.2
 - name: bats-core/bats-core@v1.9.0
-- name: cli/cli@v2.25.0
+- name: cli/cli@v2.25.1
 - name: x-motemen/ghq@v1.4.1
 - name: muesli/duf@v0.8.1
 - name: goreleaser/goreleaser@v1.16.2
@@ -22,16 +22,16 @@ packages:
 - name: BurntSushi/ripgrep@13.0.0
 - name: dandavison/delta@0.15.1
 - name: kubernetes-sigs/kustomize@kustomize/v5.0.1
-- name: kubernetes-sigs/cluster-api@v1.3.5
+- name: kubernetes-sigs/cluster-api@v1.4.0
 - name: helm/helm@v3.11.2
-- name: argoproj/argo-cd@v2.6.6
+- name: argoproj/argo-cd@v2.6.7
 - name: slok/sloth@v0.11.0
 - name: kubernetes-sigs/kubebuilder@v3.9.1
 - name: direnv/direnv@v2.32.2
-- name: mikefarah/yq@v4.32.2
-- name: twpayne/chezmoi@v2.32.0
+- name: mikefarah/yq@v4.33.1
+- name: twpayne/chezmoi@v2.33.0
 - name: derailed/k9s@v0.27.3
-- name: planetscale/cli@v0.131.0
+- name: planetscale/cli@v0.133.0
 - name: golang-migrate/migrate@v4.15.2
 - name: hashicorp/terraform-plugin-docs@v0.14.1
 - name: wagoodman/dive@v0.10.0
