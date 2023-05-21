@@ -3,7 +3,7 @@
 # https://aquaproj.github.io/
 registries:
 - type: standard
-  ref: v4.5.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.7.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
 - name: starship/starship@v1.14.2
@@ -27,11 +27,11 @@ packages:
 - name: argoproj/argo-cd@v2.7.2
 - name: slok/sloth@v0.11.0
 - name: kubernetes-sigs/kubebuilder@v3.10.0
-- name: direnv/direnv@v2.32.2
+- name: direnv/direnv@v2.32.3
 - name: mikefarah/yq@v4.33.3
 - name: twpayne/chezmoi@v2.33.6
 - name: derailed/k9s@v0.27.4
-- name: planetscale/cli@v0.143.0
+- name: planetscale/cli@v0.144.0
 - name: golang-migrate/migrate@v4.15.2
 - name: hashicorp/terraform-plugin-docs@v0.14.1
 - name: wagoodman/dive@v0.10.0
