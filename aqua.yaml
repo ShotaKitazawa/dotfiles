@@ -29,9 +29,9 @@ packages:
 - name: kubernetes-sigs/kubebuilder@v3.10.0
 - name: direnv/direnv@v2.32.3
 - name: mikefarah/yq@v4.34.1
-- name: twpayne/chezmoi@v2.33.6
+- name: twpayne/chezmoi@v2.34.0
 - name: derailed/k9s@v0.27.4
 - name: planetscale/cli@v0.145.0
-- name: golang-migrate/migrate@v4.16.0
+- name: golang-migrate/migrate@v4.16.1
 - name: hashicorp/terraform-plugin-docs@v0.14.1
 - name: wagoodman/dive@v0.10.0
