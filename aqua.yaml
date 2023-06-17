@@ -3,35 +3,35 @@
 # https://aquaproj.github.io/
 registries:
 - type: standard
-  ref: v4.5.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.19.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
-- name: starship/starship@v1.14.2
+- name: starship/starship@v1.15.0
 - name: sbstp/kubie@v0.19.3
 - name: kubernetes-sigs/krew@v0.4.3
 - name: stern/stern@v1.25.0
-- name: hashicorp/terraform@v1.4.6
+- name: hashicorp/terraform@v1.5.0
 - name: bats-core/bats-core@v1.9.0
-- name: cli/cli@v2.29.0
+- name: cli/cli@v2.30.0
 - name: x-motemen/ghq@v1.4.2
 - name: muesli/duf@v0.8.1
 - name: goreleaser/goreleaser@v1.18.2
 - name: fullstorydev/grpcurl@v1.8.7
 - name: stedolan/jq@jq-1.6
-- name: neovim/neovim@v0.9.0
+- name: neovim/neovim@v0.9.1
 - name: BurntSushi/ripgrep@13.0.0
-- name: dandavison/delta@0.15.1
+- name: dandavison/delta@0.16.5
 - name: kubernetes-sigs/kustomize@kustomize/v5.0.3
-- name: kubernetes-sigs/cluster-api@v1.4.2
-- name: helm/helm@v3.12.0
-- name: argoproj/argo-cd@v2.7.2
+- name: kubernetes-sigs/cluster-api@v1.4.3
+- name: helm/helm@v3.12.1
+- name: argoproj/argo-cd@v2.7.5
 - name: slok/sloth@v0.11.0
 - name: kubernetes-sigs/kubebuilder@v3.10.0
-- name: direnv/direnv@v2.32.2
-- name: mikefarah/yq@v4.33.3
-- name: twpayne/chezmoi@v2.33.6
+- name: direnv/direnv@v2.32.3
+- name: mikefarah/yq@v4.34.1
+- name: twpayne/chezmoi@v2.34.2
 - name: derailed/k9s@v0.27.4
-- name: planetscale/cli@v0.143.0
-- name: golang-migrate/migrate@v4.15.2
-- name: hashicorp/terraform-plugin-docs@v0.14.1
+- name: planetscale/cli@v0.147.0
+- name: golang-migrate/migrate@v4.16.2
+- name: hashicorp/terraform-plugin-docs@v0.15.0
 - name: wagoodman/dive@v0.10.0
