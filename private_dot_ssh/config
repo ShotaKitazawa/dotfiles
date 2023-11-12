@@ -9,14 +9,14 @@ Host jump
   IdentityFile  ~/.ssh/id_ecdsa.home
   User    jump
   ForwardAgent yes
-host ext01
-  hostname 132.145.115.150
-  identityfile  ~/.ssh/id_rsa.mycloud
-  user    kanata
-  ForwardAgent yes
-  kexalgorithms +diffie-hellman-group1-sha1
-  serveraliveinterval 300
-  tcpkeepalive yes
+#host ext01
+#  hostname 132.145.115.150
+#  identityfile  ~/.ssh/id_rsa.mycloud
+#  user    kanata
+#  ForwardAgent yes
+#  kexalgorithms +diffie-hellman-group1-sha1
+#  serveraliveinterval 300
+#  tcpkeepalive yes
 
 
 ###############################
@@ -26,6 +26,8 @@ Host router01
   Hostname  192.168.0.1
   User admin
   KexAlgorithms +diffie-hellman-group1-sha1
+  HostkeyAlgorithms +ssh-rsa
+  PubkeyAcceptedAlgorithms +ssh-rsa
   Ciphers aes128-cbc
 Host sw01
   Hostname  192.168.0.10
@@ -47,18 +49,43 @@ Host storage
   IdentityFile  ~/.ssh/id_ecdsa.home
   User    kanata
   ForwardAgent yes
-Host uc-controller
+Host game01
+  Hostname  game01.local.kanatakita.com
+  IdentityFile  ~/.ssh/id_rsa.home
+  User    kanata
+  ForwardAgent yes
+Host uc-controlplane
   Hostname  192.168.0.17
   IdentityFile  ~/.ssh/id_rsa.home
   User    kanata
   ForwardAgent yes
-Host compute01
-  Hostname  192.168.0.25
+Host worker01
+  Hostname  192.168.0.18
   IdentityFile  ~/.ssh/id_rsa.home
   User    kanata
   ForwardAgent yes
-Host compute02
-  Hostname  compute02.local.kanatakita.com
+Host worker02
+  Hostname  192.168.0.19
   IdentityFile  ~/.ssh/id_rsa.home
   User    kanata
+  ForwardAgent yes
+Host oc-controlplane
+  Hostname  192.168.0.33
+  IdentityFile  ~/.ssh/id_rsa.home
+  User    ubuntu
+  ForwardAgent yes
+Host oc-worker01
+  Hostname  192.168.0.41
+  IdentityFile  ~/.ssh/id_rsa.home
+  User    ubuntu
+  ForwardAgent yes
+Host oc-worker02
+  Hostname  192.168.0.42
+  IdentityFile  ~/.ssh/id_rsa.home
+  User    ubuntu
+  ForwardAgent yes
+Host oc-worker03
+  Hostname  192.168.0.43
+  IdentityFile  ~/.ssh/id_rsa.home
+  User    ubuntu
   ForwardAgent yes
