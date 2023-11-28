@@ -19,7 +19,7 @@ packages:
 - name: fullstorydev/grpcurl@v1.8.9
 - name: stedolan/jq@jq-1.6
 - name: neovim/neovim@v0.9.4
-- name: BurntSushi/ripgrep@13.0.0
+- name: BurntSushi/ripgrep@14.0.3
 - name: dandavison/delta@0.16.5
 - name: kubernetes-sigs/kustomize@kustomize/v5.2.1
 - name: kubernetes-sigs/cluster-api@v1.5.3
