@@ -24,12 +24,12 @@ Plug 'kana/vim-submode'
 " インデント表示
 Plug 'nathanaelkane/vim-indent-guides'
 " 文末空白の可視化
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 " Git 操作
 Plug 'tpope/vim-fugitive'
 Plug 'hotwatermorning/auto-git-diff'
 " OSC52
-Plug 'greymd/oscyank.vim'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " 日本語の w, b, e 移動補助
 Plug 'deton/jasegment.vim'
 " オートセーブ
@@ -88,9 +88,9 @@ call plug#end()
 """"""""""""""""""""""""""""""
 let g:vim_markdown_folding_disabled = 1
 """"""""""""""""""""""""""""""
-" greymd/oscyank.vim
+" ojroques/vim-oscyank
 """"""""""""""""""""""""""""""
-noremap <leader>y :Oscyank<cr>
+noremap <leader>y :OSCYankVisual<cr>
 """"""""""""""""""""""""""""""
 " tyru/open-browser.vim
 """"""""""""""""""""""""""""""
