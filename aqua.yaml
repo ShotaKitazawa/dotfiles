@@ -36,3 +36,5 @@ packages:
 - name: hashicorp/terraform-plugin-docs@v0.19.4
 - name: wagoodman/dive@v0.12.0
 - name: argoproj/argo-workflows@v3.5.8
+- name: greymd/teip@v2.3.2
+- name: junegunn/fzf@v0.57.0

@@ -17,14 +17,14 @@ fi
 
 ### install packages
 brew bundle --no-lock --file=/dev/stdin << EOF
-{{ template "Brewfile" -}}
+{{ template "Brewfile" }}
 EOF
 
-{{ if eq .chezmoi.arch "amd64" -}}
-brew bundle --no-lock --file=/dev/stdin << EOF
-{{ template "Brewfile-amd64" -}}
-EOF
-{{- end -}}
+# {{ if eq .chezmoi.arch "amd64" -}}
+# brew bundle --no-lock --file=/dev/stdin << EOF
+# {{ template "Brewfile-amd64" -}}
+# EOF
+# {{- end -}}
 
 {{- end -}}
 
