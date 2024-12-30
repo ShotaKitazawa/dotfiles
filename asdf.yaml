@@ -3,7 +3,6 @@
   packages:
     - command: "pip install -U"
       list:
-        - neovim
         - jedi
         - flake8
         - flake8-import-order

@@ -35,13 +35,6 @@ alias git-clean-branch="git branch --no-color --merged | egrep -v '(master|main)
 alias ssh-keyadd="ssh-add ~/.ssh/id_*"
 alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
-if [[ -x $(which nvim) ]]; then
-  export EDITOR=nvim
-  alias vim='nvim'
-  function vimide (){
-    nvim -u ~/.vim/ide.vim $@
-  }
-fi
 if [[ -x $(which kubectl) ]]; then alias k='kubectl';fi
 
 

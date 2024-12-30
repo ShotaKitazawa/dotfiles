@@ -18,7 +18,6 @@ packages:
 - name: goreleaser/goreleaser@v2.5.0
 - name: fullstorydev/grpcurl@v1.9.2
 - name: stedolan/jq@jq-1.6
-- name: neovim/neovim@v0.10.3
 - name: BurntSushi/ripgrep@14.1.1
 - name: dandavison/delta@0.18.2
 - name: kubernetes-sigs/kustomize@kustomize/v5.5.0
