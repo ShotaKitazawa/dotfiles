@@ -1,13 +1,13 @@
 # dotfiles
 
-* using [chezmoi](https://github.com/twpayne/chezmoi) for managing dotfiles
-    * using [aqua](https://github.com/aquaproj/aqua) for managing tools
-    * using [asdf](https://github.com/asdf-vm/asdf) for managing language-runtimes
+* using [chezmoi](https://github.com/twpayne/chezmoi) to manage dotfiles
+* using [aqua](https://github.com/aquaproj/aqua) to manage some softwares
+* using [asdf](https://github.com/asdf-vm/asdf) to manage softwares for which multiple versions are desired (e.g. language-runtime)
 
-### requirements
+### pre-requirements
 
-* git
-* 1password Account (required in `deploy dotfiles by chezmoi`)
+* `git` command
+* 1Password account (required in executing `chezmoi apply` command)
 
 ### setup
 
@@ -27,7 +27,7 @@ git clone git@github.com:ShotaKitazawa/dotfiles $DOTFILES_DIR
 
 ```bash
 # for macOS (install only Homebrew & chezmoi)
-bash $DOTFILES_DIR/setup-mac.sh
+bash $DOTFILES_DIR/.scripts/setup-mac.sh
 ```
 
 * setup chezmoi
