@@ -29,10 +29,10 @@ EOF
 {{- end -}}
 
 : install tools by aqua
-~/bin/asdf-install-all.sh ~/asdf.yaml
-
-: install language-runtimes by asdf
 (
-  cd ~/.config
+  cd $HOME
   aqua i
 )
+
+: install packages for some language runtimes
+~/bin/asdf-install-all.sh ~/asdf.yaml
