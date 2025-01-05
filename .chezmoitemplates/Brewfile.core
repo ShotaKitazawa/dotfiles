@@ -1,0 +1,12 @@
+brew "gcc"
+brew "libtool"
+brew "libyaml"
+brew "openssl"
+brew "readline"
+brew "unixodbc"
+{{ if eq .chezmoi.arch "arm64" -}}
+brew "clang-format"
+brew "git"
+brew "gpg"
+brew "libxslt"
+{{- end -}}

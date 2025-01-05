@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+echo "### run_after_002_homebrew-core.sh.tmpl ###"
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+# install packages
+brew bundle --no-lock --file=/dev/stdin << EOF
+{{ template "Brewfile.core" . }}
+EOF
+
+{{- end -}}

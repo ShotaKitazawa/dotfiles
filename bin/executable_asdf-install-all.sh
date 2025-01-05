@@ -8,7 +8,6 @@ _echo () {
 }
 
 _file=$1
-ASDF_VERSION="v0.9.0"
 
 # create $HOME/bin
 if [ ! -e $HOME/bin ]; then mkdir $HOME/bin; fi
