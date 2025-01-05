@@ -3,12 +3,12 @@
 # https://aquaproj.github.io/
 registries:
 - type: standard
-  ref: v4.288.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.291.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
-- name: argoproj/argo-cd@v2.13.2
+- name: argoproj/argo-cd@v2.13.3
 - name: argoproj/argo-workflows@v3.6.2
-- name: aws/aws-cli@2.22.27
+- name: aws/aws-cli@2.22.28
 - name: bats-core/bats-core@v1.11.1
 - name: brumhard/krewfile@v0.6.0
 - name: BurntSushi/ripgrep@14.1.1
@@ -20,7 +20,7 @@ packages:
 - name: golang/mock@v1.6.0
 - name: golang-migrate/migrate@v4.18.1
 - name: google/go-jsonnet@v0.20.0
-- name: goreleaser/goreleaser@v2.5.0
+- name: goreleaser/goreleaser@v2.5.1
 - name: go-delve/delve@v1.24.0
 - name: greymd/teip@v2.3.2
 - name: hashicorp/terraform@v1.10.3
