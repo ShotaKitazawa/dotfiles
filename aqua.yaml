@@ -3,12 +3,12 @@
 # https://aquaproj.github.io/
 registries:
 - type: standard
-  ref: v4.295.1 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.298.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
 - name: argoproj/argo-cd@v2.13.3
 - name: argoproj/argo-workflows@v3.6.2
-- name: aws/aws-cli@2.22.33
+- name: aws/aws-cli@2.23.2
 - name: bats-core/bats-core@v1.11.1
 - name: brumhard/krewfile@v0.6.0
 - name: BurntSushi/ripgrep@14.1.1
@@ -25,16 +25,16 @@ packages:
 - name: greymd/teip@v2.3.2
 - name: hashicorp/terraform@v1.10.4
 - name: hashicorp/terraform-plugin-docs@v0.20.1
-- name: helm/helm@v3.16.4
+- name: helm/helm@v3.17.0
 - name: kubernetes-sigs/cluster-api@v1.9.3
 - name: kubernetes-sigs/krew@v0.4.4
 - name: kubernetes-sigs/kubebuilder@v3.15.1
-- name: kubernetes/kubectl@v1.32.0
-- name: kubernetes-sigs/kustomize@kustomize/v5.5.0
+- name: kubernetes/kubectl@v1.32.1
+- name: kubernetes-sigs/kustomize@kustomize/v5.6.0
 - name: mattn/memo@v0.0.17
 - name: mikefarah/yq@v4.45.1
 - name: muesli/duf@v0.8.1
-- name: planetscale/cli@v0.219.0
+- name: planetscale/cli@v0.220.0
 - name: sbstp/kubie@v0.24.1
 - name: slok/sloth@v0.11.0
 - name: starship/starship@v1.22.1
