@@ -28,7 +28,7 @@ packages:
 - name: helm/helm@v3.17.0
 - name: kubernetes-sigs/cluster-api@v1.9.4
 - name: kubernetes-sigs/krew@v0.4.4
-- name: kubernetes-sigs/kubebuilder@v3.15.1
+- name: kubernetes-sigs/kubebuilder@v4.5.0
 - name: kubernetes/kubectl@v1.32.1
 - name: kubernetes-sigs/kustomize@kustomize/v5.6.0
 - name: mattn/memo@v0.0.17
