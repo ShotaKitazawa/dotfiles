@@ -35,11 +35,14 @@ packages:
 - name: mikefarah/yq@v4.45.1
 - name: muesli/duf@v0.8.1
 - name: planetscale/cli@v0.235.0
+- name: rhysd/actionlint@v1.7.7
 - name: sbstp/kubie@v0.25.1
 - name: slok/sloth@v0.12.0
 - name: starship/starship@v1.22.1
 - name: stedolan/jq@jq-1.6
 - name: stern/stern@v1.32.0
+- name: suzuki-shunsuke/ghalint@v1.3.0
+- name: suzuki-shunsuke/pinact@v3.0.1
 - name: twpayne/chezmoi@v2.61.0
 - name: wagoodman/dive@v0.13.1
 - name: x-motemen/ghq@v1.8.0
