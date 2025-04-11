@@ -3,29 +3,29 @@
 # https://aquaproj.github.io/
 registries:
 - type: standard
-  ref: v4.333.1 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.344.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
-- name: argoproj/argo-cd@v2.14.8
+- name: argoproj/argo-cd@v2.14.9
 - name: argoproj/argo-workflows@v3.6.5
-- name: aws/aws-cli@2.25.6
+- name: aws/aws-cli@2.26.0
 - name: bats-core/bats-core@v1.11.1
 - name: brumhard/krewfile@v0.6.3
 - name: BurntSushi/ripgrep@14.1.1
 - name: cli/cli@v2.69.0
 - name: dandavison/delta@0.18.2
-- name: derailed/k9s@v0.40.10
+- name: derailed/k9s@v0.50.2
 - name: direnv/direnv@v2.35.0
 - name: fullstorydev/grpcurl@v1.9.3
 - name: golang/mock@v1.6.0
 - name: golang-migrate/migrate@v4.18.2
 - name: google/go-jsonnet@v0.20.0
-- name: goreleaser/goreleaser@v2.8.1
-- name: go-delve/delve@v1.24.1
+- name: goreleaser/goreleaser@v2.8.2
+- name: go-delve/delve@v1.24.2
 - name: greymd/teip@v2.3.2
-- name: hashicorp/terraform@v1.11.3
+- name: hashicorp/terraform@v1.11.4
 - name: hashicorp/terraform-plugin-docs@v0.21.0
-- name: helm/helm@v3.17.2
+- name: helm/helm@v3.17.3
 - name: kubernetes-sigs/cluster-api@v1.9.6
 - name: kubernetes-sigs/krew@v0.4.5
 - name: kubernetes-sigs/kubebuilder@v4.5.2
@@ -34,16 +34,16 @@ packages:
 - name: mattn/memo@v0.0.17
 - name: mikefarah/yq@v4.45.1
 - name: muesli/duf@v0.8.1
-- name: planetscale/cli@v0.235.0
+- name: planetscale/cli@v0.237.0
 - name: rhysd/actionlint@v1.7.7
-- name: sbstp/kubie@v0.25.1
+- name: sbstp/kubie@v0.25.2
 - name: slok/sloth@v0.12.0
 - name: starship/starship@v1.22.1
 - name: stedolan/jq@jq-1.6
 - name: stern/stern@v1.32.0
 - name: suzuki-shunsuke/ghalint@v1.3.0
-- name: suzuki-shunsuke/pinact@v3.0.1
-- name: twpayne/chezmoi@v2.61.0
+- name: suzuki-shunsuke/pinact@v3.0.3
+- name: twpayne/chezmoi@v2.62.0
 - name: wagoodman/dive@v0.13.1
 - name: x-motemen/ghq@v1.8.0
 
