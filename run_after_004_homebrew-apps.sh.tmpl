@@ -5,7 +5,7 @@ echo "### run_after_004_homebrew-apps.sh.tmpl ###"
 {{ if eq .chezmoi.os "darwin" -}}
 
 # install packages
-brew bundle --no-lock --file=/dev/stdin << EOF
+brew bundle --file=/dev/stdin << EOF
 {{ template "Brewfile.apps" . }}
 EOF
 
