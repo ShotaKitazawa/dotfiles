@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "### run_after_001_aqua.sh ###"
+echo "### run_after_004_aqua.sh ###"
 
 cd $HOME
 aqua i

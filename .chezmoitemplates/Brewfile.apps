@@ -1,4 +1,3 @@
-#tap "homebrew/cask-fonts"
 tap "homebrew/autoupdate"
 
 brew "aquaproj/aqua/aqua"
@@ -45,7 +44,6 @@ cask "meetingbar"
 cask "mysqlworkbench"
 cask "postman"
 cask "skim"
-#cask "skitch"
 cask "slack"
 cask "the-unarchiver"
 cask "thunderbird"

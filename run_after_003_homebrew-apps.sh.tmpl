@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
-echo "### run_after_002_homebrew-core.sh.tmpl ###"
+echo "### run_after_003_homebrew-apps.sh.tmpl ###"
 
 {{ if eq .chezmoi.os "darwin" -}}
 
 # install packages
 brew bundle --file=/dev/stdin << EOF
-{{ template "Brewfile.core" . }}
+{{ template "Brewfile.apps" . }}
 EOF
 
+brew autoupdate start --upgrade
+
 {{- end -}}
+
