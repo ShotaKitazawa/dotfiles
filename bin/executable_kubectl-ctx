@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-kubie ctx -f $KUBECONFIG $@
+if [ -n "$KUBECONFIG" ]; then
+  kubie ctx -f $KUBECONFIG $@
+else
+  kubie ctx $@
+fi
