@@ -9,7 +9,9 @@ brew bundle --file=/dev/stdin << EOF
 {{ template "Brewfile.apps" . }}
 EOF
 
-brew autoupdate start --upgrade
+if brew autoupdate status | grep -q 'not configured'; then
+  brew autoupdate start --upgrade
+fi
 
 {{- end -}}
 

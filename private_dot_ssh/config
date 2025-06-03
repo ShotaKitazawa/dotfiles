@@ -4,7 +4,7 @@ Include *.conf
 # Home (external)
 
 Host jump
-  Hostname  kanatakita.com
+  Hostname  jump.kanatakita.com
   Port 9922
   IdentityFile  ~/.ssh/id_ecdsa.home
   User    jump
