@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-if [ -n "$KUBECONFIG" ]; then
+if [ -n "$BASE_KUBECONFIG" ]; then
+  kubie ctx -f $BASE_KUBECONFIG $@
+elif [ -n "$KUBECONFIG" ]; then
+  export BASE_KUBECONFIG=$KUBECONFIG
   kubie ctx -f $KUBECONFIG $@
 else
   kubie ctx $@
