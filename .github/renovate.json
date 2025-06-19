@@ -1,6 +1,6 @@
 {
   "extends": [
-    "github>aquaproj/aqua-renovate-config#2.8.1"
+    "github>aquaproj/aqua-renovate-config#2.8.2"
   ],
   "packageRules": [
     {
