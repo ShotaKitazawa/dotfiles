@@ -8,7 +8,7 @@ registries:
 packages:
 - name: argoproj/argo-cd@v2.14.15
 - name: argoproj/argo-workflows@v3.6.10
-- name: aws/aws-cli@2.27.39
+- name: aws/aws-cli@2.27.40
 - name: bats-core/bats-core@v1.12.0
 - name: brumhard/krewfile@v0.6.3
 - name: BurntSushi/ripgrep@14.1.1
