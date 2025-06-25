@@ -6,7 +6,7 @@ registries:
   ref: v4.380.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
-- name: argoproj/argo-cd@v2.14.15
+- name: argoproj/argo-cd@v3.0.6
 - name: argoproj/argo-workflows@v3.6.10
 - name: aws/aws-cli@2.27.42
 - name: bats-core/bats-core@v1.12.0
