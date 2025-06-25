@@ -3,12 +3,12 @@
 # https://aquaproj.github.io/
 registries:
 - type: standard
-  ref: v4.379.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.380.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
 - name: argoproj/argo-cd@v2.14.15
 - name: argoproj/argo-workflows@v3.6.10
-- name: aws/aws-cli@2.27.39
+- name: aws/aws-cli@2.27.42
 - name: bats-core/bats-core@v1.12.0
 - name: brumhard/krewfile@v0.6.3
 - name: BurntSushi/ripgrep@14.1.1
@@ -34,7 +34,7 @@ packages:
 - name: mattn/memo@v0.0.17
 - name: mikefarah/yq@v4.45.4
 - name: muesli/duf@v0.8.1
-- name: planetscale/cli@v0.245.0
+- name: planetscale/cli@v0.246.0
 - name: rhysd/actionlint@v1.7.7
 - name: sbstp/kubie@v0.25.2
 - name: slok/sloth@v0.12.0
@@ -43,7 +43,7 @@ packages:
 - name: stern/stern@v1.32.0
 - name: suzuki-shunsuke/ghalint@v1.5.1
 - name: suzuki-shunsuke/pinact@v3.3.0
-- name: twpayne/chezmoi@v2.62.6
+- name: twpayne/chezmoi@v2.62.7
 - name: wagoodman/dive@v0.13.1
 - name: x-motemen/ghq@v1.8.0
 
