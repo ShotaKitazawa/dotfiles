@@ -3,12 +3,12 @@
 # https://aquaproj.github.io/
 registries:
 - type: standard
-  ref: v4.380.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.381.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
 - name: argoproj/argo-cd@v3.0.6
 - name: argoproj/argo-workflows@v3.6.10
-- name: aws/aws-cli@2.27.43
+- name: aws/aws-cli@2.27.44
 - name: bats-core/bats-core@v1.12.0
 - name: brumhard/krewfile@v0.6.3
 - name: BurntSushi/ripgrep@14.1.1
