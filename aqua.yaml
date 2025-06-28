@@ -30,7 +30,7 @@ packages:
 - name: kubernetes-sigs/krew@v0.4.5
 - name: kubernetes-sigs/kubebuilder@v4.6.0
 - name: kubernetes/kubectl@v1.33.2
-- name: kubernetes-sigs/kustomize@kustomize/v5.6.0
+- name: kubernetes-sigs/kustomize@kustomize/v5.7.0
 - name: mattn/memo@v0.0.17
 - name: mikefarah/yq@v4.45.4
 - name: muesli/duf@v0.8.1
