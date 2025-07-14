@@ -22,6 +22,10 @@ __pycache__/
 pyvenv.cfg
 .venv
 pip-selfcheck.json
+*.egg-info
+.ruff_cache
+.pytest_cache
+.mypy_cache
 
 # VS Code
 .vscode
