@@ -11,8 +11,6 @@
   helper = cache
 [http]
   sslVerify = true
-[url "git@github.com:"]
-  insteadOf = https://github.com/
 [color]
   branch = auto
   diff = auto
