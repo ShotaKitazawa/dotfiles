@@ -3,14 +3,14 @@
 # https://aquaproj.github.io/
 registries:
 - type: standard
-  ref: v4.398.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.403.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
-- name: argoproj/argo-cd@v3.0.12
-- name: argoproj/argo-workflows@v3.7.0
-- name: aws/aws-cli@2.28.6
+- name: argoproj/argo-cd@v3.1.0
+- name: argoproj/argo-workflows@v3.7.1
+- name: aws/aws-cli@2.28.14
 - name: bats-core/bats-core@v1.12.0
-- name: bitnami-labs/sealed-secrets@v0.30.0
+- name: bitnami-labs/sealed-secrets@v0.31.0
 - name: brumhard/krewfile@v0.6.3
 - name: BurntSushi/ripgrep@14.1.1
 - name: cli/cli@v2.76.2
@@ -24,18 +24,18 @@ packages:
 - name: goreleaser/goreleaser@v2.11.2
 - name: go-delve/delve@v1.25.1
 - name: greymd/teip@v2.3.2
-- name: hashicorp/terraform@v1.12.2
+- name: hashicorp/terraform@v1.13.0
 - name: hashicorp/terraform-plugin-docs@v0.22.0
-- name: helm/helm@v3.18.4
-- name: kubernetes-sigs/cluster-api@v1.10.4
+- name: helm/helm@v3.18.6
+- name: kubernetes-sigs/cluster-api@v1.11.0
 - name: kubernetes-sigs/krew@v0.4.5
 - name: kubernetes-sigs/kubebuilder@v4.7.1
-- name: kubernetes/kubectl@v1.33.3
+- name: kubernetes/kubectl@v1.33.4
 - name: kubernetes-sigs/kustomize@kustomize/v5.7.1
 - name: mattn/memo@v0.0.17
 - name: mikefarah/yq@v4.47.1
 - name: muesli/duf@v0.8.1
-- name: planetscale/cli@v0.250.0
+- name: planetscale/cli@v0.252.0
 - name: prometheus/prometheus@v3.5.0
 - name: rhysd/actionlint@v1.7.7
 - name: sbstp/kubie@v0.26.0
@@ -44,7 +44,7 @@ packages:
 - name: stedolan/jq@jq-1.6
 - name: stern/stern@v1.32.0
 - name: suzuki-shunsuke/ghalint@v1.5.3
-- name: suzuki-shunsuke/pinact@v3.3.2
+- name: suzuki-shunsuke/pinact@v3.4.2
 - name: twpayne/chezmoi@v2.64.0
 - name: wagoodman/dive@v0.13.1
 - name: x-motemen/ghq@v1.8.0
