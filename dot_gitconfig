@@ -29,6 +29,7 @@
   lol = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --date=short
   lola = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --all --date=short
   rebase-from = !sh -c 'git rebase -i $(git merge-base $1 HEAD)' -
+  diffbase = "!f() { git diff $(git merge-base HEAD \"$1\") HEAD; }; f"
 
 # setting for external tools
 [ghq]
