@@ -13,7 +13,7 @@ packages:
 - name: bats-core/bats-core@v1.12.0
 - name: bitnami-labs/sealed-secrets@v0.32.2
 - name: brumhard/krewfile@v0.6.3
-- name: BurntSushi/ripgrep@14.1.1
+- name: BurntSushi/ripgrep@15.1.0
 - name: cli/cli@v2.82.1
 - name: dandavison/delta@0.18.2
 - name: derailed/k9s@v0.50.16
