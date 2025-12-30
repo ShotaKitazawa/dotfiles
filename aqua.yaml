@@ -27,7 +27,7 @@ packages:
 - name: greymd/teip@v2.3.2
 - name: hashicorp/terraform@v1.13.4
 - name: hashicorp/terraform-plugin-docs@v0.24.0
-- name: helm/helm@v3.19.0
+- name: helm/helm@v4.0.4
 - name: kubernetes-sigs/cluster-api@v1.11.2
 - name: kubernetes-sigs/krew@v0.4.5
 - name: kubernetes-sigs/kubebuilder@v4.9.0
