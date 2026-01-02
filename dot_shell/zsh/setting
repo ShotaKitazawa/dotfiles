@@ -108,3 +108,11 @@ function dev() {
 }
 zle -N dev
 bindkey '^G' dev
+
+###########################################################
+# starship
+[ -x $(which starship) ] && eval "$(starship init zsh)"
+
+###########################################################
+# mise
+[ -f $HOME/.local/bin/mise ] && eval "$($HOME/.local/bin/mise activate zsh)"

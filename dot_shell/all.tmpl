@@ -9,8 +9,6 @@ export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 # Homebrew
 if [ -d /opt/homebrew/bin ]; then export PATH=/opt/homebrew/bin:$PATH; fi
-# mise
-[ -f $HOME/.local/bin/mise ] && eval "$($HOME/.local/bin/mise activate zsh)"
 # aqua
 if [ -d $HOME/.local/share/aquaproj-aqua ]; then
   export PATH=$HOME/.local/share/aquaproj-aqua/bin:$PATH
@@ -37,13 +35,6 @@ alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
 if [[ -x $(which kubectl) ]]; then alias k='kubectl';fi
 
-
-#===================================
-# setting for starship
-#===================================
-if [[ -x $(which starship) ]]; then
-  eval "$(starship init zsh)"
-fi
 
 #===================================
 # setting for tmux
