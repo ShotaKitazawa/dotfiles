@@ -1,0 +1,17 @@
+[tools]
+aqua = "latest"
+fzf = "latest"
+# Python
+python = "3.14.2"
+"pipx:ruff" = "latest"
+# Go
+go = "1.25.5"
+"go:golang.org/x/tools/cmd/..." = "latest"
+# Rust
+rust = "stable"
+# Node.js
+nodejs = "24.1.0"
+"npm:diff-so-fancy" = "latest"
+"npm:redoc-cli" = "latest"
+# Bun
+bun = "1.2.19"
