@@ -1,12 +1,12 @@
 # --- Shell / 起動時コマンド ---
-command = "/opt/homebrew/bin/zsh"
-
-# iTerm2: Working Directory = /Users/kitazawa
-working-directory = "/Users/kitazawa"
+#command = "/opt/homebrew/bin/zsh"
+#initial-command = direct:/opt/homebrew/bin/tmux new-session -A -s main
+command = direct:/opt/homebrew/bin/tmux new-session -A -s main
+working-directory = home
 
 # --- Window size ---
-window-width = 80
-window-height = 25
+window-width = 120
+window-height = 40
 
 # --- Scrollback ---
 scrollback-limit = 100
@@ -52,6 +52,7 @@ palette = 15=#E5E5E5
 # --- Transparency / Blur ---
 background-opacity = 0.78
 background-blur = true
+background-opacity-cells = true
 
 # --- Cursor shape ---
 cursor-style = "block"
@@ -62,3 +63,4 @@ macos-titlebar-proxy-icon = "visible"
 macos-option-as-alt = false
 macos-non-native-fullscreen = true
 macos-non-native-fullscreen = visible-menu
+quit-after-last-window-closed = true
