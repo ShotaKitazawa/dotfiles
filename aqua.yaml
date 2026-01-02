@@ -49,6 +49,7 @@ packages:
 - name: suzuki-shunsuke/pinact@v3.8.0
 - name: twpayne/chezmoi@v2.68.1
 - name: wagoodman/dive@v0.13.1
+- name: watchexec/watchexec@v2.3.2
 - name: x-motemen/ghq@v1.8.0
 
 # MEMO: fzf is managed by asdf because completion.zsh & key-bindings.zsh is required
