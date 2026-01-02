@@ -27,12 +27,6 @@ pip-selfcheck.json
 .pytest_cache
 .mypy_cache
 
-# VS Code
-.vscode
-
 # Terraform
 .terraform
 terraform.tfstate*
-
-# asdf
-.tool-versions

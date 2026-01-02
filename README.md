@@ -1,12 +1,13 @@
 # dotfiles
 
 * using [chezmoi](https://github.com/twpayne/chezmoi) to manage dotfiles
-* using [aqua](https://github.com/aquaproj/aqua) to manage some softwares
-* using [asdf](https://github.com/asdf-vm/asdf) to manage softwares for which multiple versions are desired (e.g. language-runtime)
+* using [mise](https://github.com/jdx/mise) to manage softwares for which multiple versions are desired (e.g. language-runtime)
+* using [aqua](https://github.com/aquaproj/aqua) to manage some binaries
 
 ### pre-requirements
 
 * `git` command
+* `op` command
 * 1Password account (required in executing `chezmoi apply` command)
 
 ### setup

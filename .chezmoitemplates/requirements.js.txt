@@ -1,2 +1,0 @@
-diff-so-fancy
-redoc-cli

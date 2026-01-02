@@ -1,7 +1,0 @@
-ansible
-autopep8
-black
-flake8
-flake8-import-order
-isort
-jedi

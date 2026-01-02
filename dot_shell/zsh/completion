@@ -1,71 +1,24 @@
 #!/usr/bin/env zsh
 
-# variables
-fzf_path=$(asdf where fzf)
-
-
-# create completion files
-if [ ! -f $HOME/.completions ]; then
-  mkdir -p $HOME/.completions
-fi
-(
-filename="$HOME/.completions/_kubectl"
-if [ -n "$(which kubectl)" ]; then
-  if [ ! -f $filename ]; then
-    kubectl completion zsh > $filename
-  fi
-fi
-)
-(
-filename="$HOME/.completions/_pip"
-if [ -n "$(which pip)" ]; then
-  if [ ! -f $filename ]; then
-    pip completion --zsh > $filename
-  fi
-fi
-)
-(
-filename="$HOME/.completions/_helm"
-if [ -n "$(which helm)" ]; then
-  if [ ! -f $filename ]; then
-    helm completion zsh > $filename
-  fi
-fi
-)
-(
-filename="$HOME/.completions/_chezmoi"
-if [ -n "$(which chezmoi)" ]; then
-  if [ ! -f $filename ]; then
-    chezmoi completion zsh > $filename
-  fi
-fi
-)
-(
-filename="$HOME/.completions/_gh"
-if [ -n "$(which gh)" ]; then
-  if [ ! -f $filename ]; then
-    gh completion -s zsh > $filename
-  fi
-fi
+rows=(
+  #"COMMAND,OPTS"
+  "kubectl,completion zsh"
+  "pip,completion --zsh"
+  "helm,completion zsh"
+  "chezmoi,completion zsh"
+  "gh,completion -s zsh"
+  "mise,completion zsh"
+  "fzf,--zsh"
 )
 
-
-# load completion files
-completions=(
-"$HOME/.completions/_pip"
-"${fzf_path}/shell/completion.zsh"
-"${fzf_path}/shell/key-bindings.zsh"
-"/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-)
-for _file in ${completions[@]}; do
-  if [ -e $_file ]; then
-    . $_file
-  fi
+for r in "${rows[@]}"; do
+  IFS=',' read -r COMMAND OPTS <<< "$r"
+  FILE=$HOME/.completions/_$COMMAND
+  command -v $COMMAND >/dev/null && [[ ! -f $FILE || ! -s $FILE ]] && ( eval $COMMAND $OPTS > $FILE )
 done
 
 # load completion files by fpath
 fpath=(
-"$HOME/.asdf/completions"
 "$HOME/.completions"
 "${fpath[@]}"
 )
