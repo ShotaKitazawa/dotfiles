@@ -23,3 +23,6 @@ fpath=(
 "${fpath[@]}"
 )
 autoload -Uz compinit && compinit
+
+# explicitly source key-bingings.zsh to call bindkey.
+source $HOME/.completions/_fzf
