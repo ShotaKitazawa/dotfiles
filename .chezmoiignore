@@ -1,1 +1,13 @@
 README.md
+
+{{ if stat (joinPath .chezmoi.homeDir ".ssh/id_ecdsa.home") }}
+.ssh/id_ecdsa.home
+{{ end }}
+
+{{ if stat (joinPath .chezmoi.homeDir ".ssh/id_rsa.home") }}
+.ssh/id_rsa.home
+{{ end }}
+
+{{ if stat (joinPath .chezmoi.homeDir ".ssh/id_rsa.mycloud") }}
+.ssh/id_rsa.mycloud
+{{ end }}
