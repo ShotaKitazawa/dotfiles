@@ -1,7 +1,7 @@
 tap "homebrew/autoupdate"
 
-brew 1password-cli
-brew "aquaproj/aqua/aqua"
+brew "1password-cli"
+brew "aqua"
 brew "autoconf"
 brew "automake"
 brew "cask"

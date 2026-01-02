@@ -20,6 +20,10 @@ clipboard-read = allow
 clipboard-write = allow
 clipboard-paste-bracketed-safe = true
 
+
+link-url = true
+mouse-shift-capture = false
+
 # --- Colors (iTerm2 “Homebrew” profile values) ---
 background = "#000000"
 foreground = "#00FF00"
