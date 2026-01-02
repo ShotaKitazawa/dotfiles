@@ -3,20 +3,18 @@
 # ! You need to enter C-I to install plugins
 #===================================
 # Plugins
-set -g @tpm_plugins " \
-    tmux-plugins/tpm \
-    tmux-plugins/tmux-sidebar \
-    tmux-plugins/tmux-copycat \
-    tmux-plugins/tmux-open \
-    tmux-plugins/tmux-resurrect \
-    tmux-plugins/tmux-continuum \
-    tmux-plugins/tmux-online-status \
-"
+setenv -g TMUX_PLUGIN_MANAGER_PATH '$HOME/.tmux/plugins/'
+set-environment -g PATH "/opt/homebrew/bin:$HOME/.asdf/shims:/usr/local/bin:/bin:/usr/bin"
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sidebar'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'tmux-plugins/tmux-open'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'tmux-plugins/tmux-online-status'
+set -g @plugin 'ShotaKitazawa/tmux-session-fzf'
 
-# Initialize TMUX plugin manager
-# (keep this line at the very bottom of tmux.conf)
-run '~/.local/share/tpm/tpm'
-
+set -g @custom_session_fzf_key 'f'
 
 #===================================
 # save & restore of tmux session
@@ -106,6 +104,9 @@ set -g default-terminal "screen-256color"
 # screen のスクロール
 set -g history-limit 100000
 
+# tmuxメッセージの表示時間
+set -g display-time 4000
+
 # escapeの効きを良くする
 set -s escape-time 0
 
@@ -114,7 +115,6 @@ set -g renumber-windows on
 
 # 新ウインドウに環境変数引き継ぎ
 set -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION"
-
 
 
 #===================================
@@ -182,3 +182,7 @@ set -g status-right "#[fg=colour255,bg=colour241] #h | LA: #(cut -d' ' -f-3 /pro
 # ローカル設定ファイルの読み込み
 if "test -e ~/.tmux.local.conf" "source-file ~/.tmux.local.conf"
 
+#===================================
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+#===================================
+run '~/.tmux/plugins/tpm/tpm'

@@ -1,3 +1,4 @@
+brew "cask"
 brew "gcc"
 brew "libtool"
 brew "libyaml"
