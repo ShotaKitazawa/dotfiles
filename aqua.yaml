@@ -29,6 +29,7 @@ packages:
 - name: hashicorp/terraform-plugin-docs@v0.24.0
 - name: helm/helm@v4.0.4
 - name: junegunn/fzf@v0.67.0
+- name: junegunn/fzf/fzf-tmux@v0.67.0
 - name: kubernetes-sigs/cluster-api@v1.12.1
 - name: kubernetes-sigs/krew@v0.4.5
 - name: kubernetes-sigs/kubebuilder@v4.10.1
