@@ -1,0 +1,64 @@
+# --- Shell / 起動時コマンド ---
+command = "/opt/homebrew/bin/zsh"
+
+# iTerm2: Working Directory = /Users/kitazawa
+working-directory = "/Users/kitazawa"
+
+# --- Window size ---
+window-width = 80
+window-height = 25
+
+# --- Scrollback ---
+scrollback-limit = 100
+
+# --- Font ---
+font-family = "Monaco"
+font-size = 13
+
+# --- Clipboard / Paste ---
+clipboard-read = allow
+clipboard-write = allow
+clipboard-paste-bracketed-safe = true
+
+# --- Colors (iTerm2 “Homebrew” profile values) ---
+background = "#000000"
+foreground = "#00FF00"
+bold-color = "#00FF00"
+
+cursor-color = "#23FF18"
+cursor-text  = "#FF0018"
+
+selection-background = "#083905"
+selection-foreground = "#FFFFFF"
+
+# --- ANSI palette ---
+palette = 0=#000000
+palette = 1=#990000
+palette = 2=#00A600
+palette = 3=#999900
+palette = 4=#74A2F1
+palette = 5=#B200B2
+palette = 6=#00A6B2
+palette = 7=#BFBFBF
+palette = 8=#666666
+palette = 9=#E50000
+palette = 10=#00D900
+palette = 11=#E5E500
+palette = 12=#0000FF
+palette = 13=#E500E5
+palette = 14=#00E5E5
+palette = 15=#E5E5E5
+
+# --- Transparency / Blur ---
+background-opacity = 0.78
+background-blur = true
+
+# --- Cursor shape ---
+cursor-style = "block"
+cursor-style-blink = false
+
+# --- macOS ---
+macos-titlebar-proxy-icon = "visible"
+macos-option-as-alt = false
+macos-non-native-fullscreen = true
+macos-non-native-fullscreen = visible-menu

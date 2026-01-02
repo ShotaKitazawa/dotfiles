@@ -147,7 +147,8 @@ setw -g window-status-current-format "#[fg=colour255,bg=colour27,bold] #I: #W #[
 
 # Clipboard
 {{- if eq .chezmoi.os "darwin" }}
-set -s set-clipboard off
+set -s set-clipboard on
+set -g allow-passthrough on
 bind -T copy-mode-vi y send -X copy-pipe-and-cancel "pbcopy"
 bind -T copy-mode-vi Enter send -X copy-pipe-and-cancel "pbcopy"
 bind -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "pbcopy"
