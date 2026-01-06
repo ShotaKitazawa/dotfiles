@@ -9,3 +9,6 @@ command -v mise >/dev/null || sh -c "curl https://mise.run | sh"
 
 # install plugins
 mise i
+
+# cleanup unused plugins
+mise prune -y
