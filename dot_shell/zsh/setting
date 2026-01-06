@@ -96,11 +96,10 @@ function dev() {
     moveto=$(ghq root)/$ghq_dir
     cd $moveto
 
-    # rename session if in tmux
+    # rename window if in tmux
     if [[ ! -z ${TMUX} ]]
     then
       repo_name=${moveto##*/}
-      tmux rename-session ${repo_name//./-}
       tmux rename-window ${repo_name//./-}
     fi
   fi
@@ -108,6 +107,20 @@ function dev() {
 }
 zle -N dev
 bindkey '^G' dev
+
+###########################################################
+# ssh on tmux
+function ssh() {
+  if [[ -n $(printenv TMUX) ]]
+  then
+    local window_name=$(tmux display -p '#{window_name}')
+    tmux rename-window -- "$@[-1]"
+    command ssh $@
+    tmux rename-window $window_name
+  else
+    command ssh $@
+  fi
+}
 
 ###########################################################
 # starship
