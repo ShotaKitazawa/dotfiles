@@ -3,13 +3,13 @@
 # https://aquaproj.github.io/
 registries:
 - type: standard
-  ref: v4.451.1 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.454.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
-- name: astral-sh/uv@0.9.22
+- name: astral-sh/uv@0.9.24
 - name: argoproj/argo-cd@v3.2.3
-- name: argoproj/argo-workflows@v3.7.6
-- name: aws/aws-cli@2.32.31
+- name: argoproj/argo-workflows@v3.7.7
+- name: aws/aws-cli@2.32.32
 - name: bats-core/bats-core@v1.13.0
 - name: bitnami-labs/sealed-secrets@v0.34.0
 - name: brumhard/krewfile@v0.7.0
@@ -22,7 +22,7 @@ packages:
 - name: golang/mock@v1.6.0
 - name: golang-migrate/migrate@v4.19.1
 - name: google/go-jsonnet@v0.21.0
-- name: goreleaser/goreleaser@v2.13.2
+- name: goreleaser/goreleaser@v2.13.3
 - name: go-delve/delve@v1.26.0
 - name: greymd/teip@v2.3.2
 - name: hashicorp/terraform@v1.14.3
@@ -38,18 +38,18 @@ packages:
 - name: mattn/memo@v0.0.17
 - name: mikefarah/yq@v4.50.1
 - name: muesli/duf@v0.9.1
-- name: planetscale/cli@v0.268.0
+- name: planetscale/cli@v0.269.0
 - name: prometheus/prometheus@v3.9.1
 - name: rhysd/actionlint@v1.7.10
 - name: sbstp/kubie@v0.26.1
 - name: slok/sloth@v0.15.0
-- name: sqldef/sqldef/sqlite3def@v3.9.3
+- name: sqldef/sqldef/sqlite3def@v3.9.4
 - name: starship/starship@v1.24.2
 - name: stedolan/jq@jq-1.6
 - name: stern/stern@v1.33.1
 - name: suzuki-shunsuke/ghalint@v1.5.4
 - name: suzuki-shunsuke/pinact@v3.8.0
-- name: twpayne/chezmoi@v2.69.0
+- name: twpayne/chezmoi@v2.69.1
 - name: wagoodman/dive@v0.13.1
 - name: watchexec/watchexec@v2.3.2
 - name: Wilfred/difftastic@0.67.0
