@@ -29,9 +29,9 @@
 [pager]
   difftool = true
 [alias]
-  graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
-  lol = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --date=short
-  lola = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --all --date=short
+  graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=iso-local
+  lol = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --date=iso-local
+  lola = log --graph --pretty='format:%C(auto)%h %d %s %C(green)%an%C(bold blue) %ad' --all --date=iso-local
   rebase-from = !sh -c 'git rebase -i $(git merge-base $1 HEAD)' -
   diffbase = "!f() { ! git show-ref --verify --quiet \"refs/heads/$1\" && { echo branch \"$1\" is not found; exit 1; }; git diff $(git merge-base HEAD \"$1\") HEAD; }; f"
 
