@@ -1,94 +1,13 @@
 #!/bin/bash
 
-#===================================
-# setting for envvars
-#===================================
-### PATH ###
-# Golang
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
-# Homebrew
-if [ -d /opt/homebrew/bin ]; then export PATH=/opt/homebrew/bin:$PATH; fi
-# aqua
-if [ -d $HOME/.local/share/aquaproj-aqua ]; then
-  export PATH=$HOME/.local/share/aquaproj-aqua/bin:$PATH
-  export AQUA_GLOBAL_CONFIG=$HOME/aqua.yaml
-fi
-# 1password
-export OP_BIOMETRIC_UNLOCK_ENABLED=true
-# Common
-if [ -d $HOME/.krew/bin ]; then export PATH=$HOME/.krew/bin:$PATH; fi
-if [ -d $HOME/.local/bin ]; then export PATH=$HOME/.local/bin:$PATH; fi
-if [ -d $HOME/bin ]; then export PATH=$HOME/bin:$PATH; fi
+. ~/.shell/base
 
-### EDITOR ###
-export EDITOR=vim
-
-### alias ###
-alias rm="rm -i"
-alias cp="cp -i"
-alias less="less -R"
-alias g="git"
-alias git-clean-branch="git branch --no-color --merged | egrep -Ev '(^\*|master|main)' | xargs git branch -d"
-alias ssh-keyadd="ssh-add ~/.ssh/id_*"
-alias ssh-showpub="ssh-keygen -yf"
-alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
-if [[ -x $(which kubectl) ]]; then alias k='kubectl';fi
-
-
-#===================================
-# setting for each shell
-#===================================
-if [[ "${SHELL}" =~ "bash" ]]
-then  # bash
-  . ~/.shell/bash/setting
-  . ~/.shell/bash/completion
-
-elif [[ "${SHELL}" =~ "zsh" ]]
-then  # zsh
-  . ~/.shell/zsh/setting
-  . ~/.shell/zsh/zinit
-  . ~/.shell/zsh/completion
-fi
-
-
-#===================================
-# setting for each OS
-#===================================
-{{ if eq .chezmoi.os "darwin" }}
-    export OS='Mac'
-    alias l='ls'
-    alias ll='ls -lG'
-    alias lll='ls -alG'
-    alias updatedb='sudo /usr/libexec/locate.updatedb'
-    # Slideshare can't display Japanese font. (created from Keynote)
-    alias pdfconv="LANG=C LC_ALL=C sed -i '' s'|/Registry (Adobe) /Ordering (Japan1) /Supplement [0-9]|/Registry(Adobe) /Ordering(Identity) /Supplement 0|g'"
-    alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
-    alias wma2mp3='if [ ! -d mp3 ];then mkdir mp3; fi; for i in *; do vlc -I dummy --sout "#transcode{acodec=mp3,ab=128,channels=2,samplerate=44100}:std{access=file,mux=raw,dst=\"mp3/${i}.mp3\"}" "${i}" vlc://quit; done'
-    export LANG=ja_JP.UTF-8
-    export LESSCHARSET=utf-8
-{{ else if eq .chezmoi.os "linux" -}}
-{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
-      export OS='WSL'
-      alias l='ls'
-      alias ll='ls -l --color'
-      alias lll='ls -al --color'
-      alias swapsearch='grep VmSwap /proc/*/status | sort -k 2 -r | head'
-      alias open="cmd.exe /c start"
-      SSH_AGENT_FILE=$HOME/.ssh-agent
-      test -f $SSH_AGENT_FILE && source $SSH_AGENT_FILE > /dev/null
-      if [ $(ssh-add -l > /dev/null 2>&1; echo $?) = 2 ]; then
-        ssh-agent > $SSH_AGENT_FILE
-        source $SSH_AGENT_FILE > /dev/null
-      fi
-      export DISPLAY=localhost:0.0
-{{   else  }}
-      export OS='Linux'
-      alias l='ls'
-      alias ll='ls -l --color'
-      alias lll='ls -al --color'
-      alias gcc32='gcc -m32 -fno-stack-protector'
-      alias swapsearch='grep VmSwap /proc/*/status | sort -k 2 -r | head'
-{{   end }}
-{{ end }}
-
+{{- if eq .chezmoi.os "darwin" }}
+. ~/.shell/macos
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+. ~/.shell/wsl
+{{-   else  }}
+. ~/.shell/linux
+{{-   end }}
+{{- end }}

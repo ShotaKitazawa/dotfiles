@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export OS='Linux'
+alias l='ls'
+alias ll='ls -l --color'
+alias lll='ls -al --color'
+alias gcc32='gcc -m32 -fno-stack-protector'
+alias swapsearch='grep VmSwap /proc/*/status | sort -k 2 -r | head'

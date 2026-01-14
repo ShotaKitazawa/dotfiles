@@ -1,0 +1,52 @@
+#!/bin/bash
+
+#===================================
+# setting for envvars
+#===================================
+### PATH ###
+# Golang
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+# Homebrew
+if [ -d /opt/homebrew/bin ]; then export PATH=/opt/homebrew/bin:$PATH; fi
+# aqua
+if [ -d $HOME/.local/share/aquaproj-aqua ]; then
+  export PATH=$HOME/.local/share/aquaproj-aqua/bin:$PATH
+  export AQUA_GLOBAL_CONFIG=$HOME/aqua.yaml
+fi
+# 1password
+export OP_BIOMETRIC_UNLOCK_ENABLED=true
+# Common
+if [ -d $HOME/.krew/bin ]; then export PATH=$HOME/.krew/bin:$PATH; fi
+if [ -d $HOME/.local/bin ]; then export PATH=$HOME/.local/bin:$PATH; fi
+if [ -d $HOME/bin ]; then export PATH=$HOME/bin:$PATH; fi
+
+### EDITOR ###
+export EDITOR=vim
+
+### alias ###
+alias rm="rm -i"
+alias cp="cp -i"
+alias less="less -R"
+alias g="git"
+alias git-clean-branch="git branch --no-color --merged | egrep -Ev '(^\*|master|main)' | xargs git branch -d"
+alias ssh-keyadd="ssh-add ~/.ssh/id_*"
+alias ssh-showpub="ssh-keygen -yf"
+alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
+if [[ -x $(which kubectl) ]]; then alias k='kubectl';fi
+
+
+#===================================
+# setting for each shell
+#===================================
+if [[ "${SHELL}" =~ "bash" ]]
+then  # bash
+  . ~/.shell/bash/setting
+  . ~/.shell/bash/completion
+
+elif [[ "${SHELL}" =~ "zsh" ]]
+then  # zsh
+  . ~/.shell/zsh/setting
+  . ~/.shell/zsh/zinit
+  . ~/.shell/zsh/completion
+fi
