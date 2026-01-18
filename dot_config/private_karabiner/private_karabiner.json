@@ -1,0 +1,77 @@
+{
+    "global": { "enable_notification_window": false },
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Transform Space behavior in IME ON (ja) mode",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "input_sources": [{ "language": "ja" }],
+                                        "type": "input_source_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": { "mandatory": [] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "spacebar",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "input_sources": [{ "language": "ja" }],
+                                        "type": "input_source_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": { "mandatory": ["shift"] }
+                                },
+                                "to": [{ "key_code": "spacebar" }],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "devices": [
+                {
+                    "disable_built_in_keyboard_if_exists": true,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 13,
+                        "vendor_id": 1278
+                    },
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "japanese_pc_nfer" },
+                            "to": [{ "key_code": "japanese_eisuu" }]
+                        },
+                        {
+                            "from": { "key_code": "japanese_pc_xfer" },
+                            "to": [{ "key_code": "japanese_kana" }]
+                        },
+                        {
+                            "from": { "key_code": "right_option" },
+                            "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
+                        }
+                    ]
+                }
+            ],
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": { "keyboard_type_v2": "jis" }
+        }
+    ]
+}
