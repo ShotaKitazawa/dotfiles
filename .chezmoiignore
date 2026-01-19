@@ -1,19 +1,13 @@
 README.md
 
-{{ if lookPath "op" }}
-{{ if stat (joinPath .chezmoi.homeDir ".ssh/id_ecdsa.home") }}
+{{ if or (not (lookPath "op")) (stat (joinPath .chezmoi.homeDir ".ssh/id_ecdsa.home")) }}
 .ssh/id_ecdsa.home
 {{ end }}
-{{ end }}
 
-{{ if lookPath "op" }}
-{{ if stat (joinPath .chezmoi.homeDir ".ssh/id_rsa.home") }}
+{{ if or (not (lookPath "op")) (stat (joinPath .chezmoi.homeDir ".ssh/id_rsa.home")) }}
 .ssh/id_rsa.home
 {{ end }}
-{{ end }}
 
-{{ if lookPath "op" }}
-{{ if stat (joinPath .chezmoi.homeDir ".ssh/id_rsa.mycloud") }}
+{{ if or (not (lookPath "op")) (stat (joinPath .chezmoi.homeDir ".ssh/id_rsa.mycloud")) }}
 .ssh/id_rsa.mycloud
-{{ end }}
 {{ end }}
