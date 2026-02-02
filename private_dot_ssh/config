@@ -56,17 +56,17 @@ Host game01
   ForwardAgent yes
 Host uc-controlplane
   Hostname  192.168.0.17
-  IdentityFile  ~/.ssh/id_rsa.home
+  IdentityFile  ~/.ssh/id_rsa.mycloud
   User    kanata
   ForwardAgent yes
 Host worker01
   Hostname  192.168.0.18
-  IdentityFile  ~/.ssh/id_rsa.home
+  IdentityFile  ~/.ssh/id_rsa.mycloud
   User    kanata
   ForwardAgent yes
 Host worker02
   Hostname  192.168.0.19
-  IdentityFile  ~/.ssh/id_rsa.home
+  IdentityFile  ~/.ssh/id_rsa.mycloud
   User    kanata
   ForwardAgent yes
 Host oc-controlplane
