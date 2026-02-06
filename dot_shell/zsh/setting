@@ -123,6 +123,19 @@ function ssh() {
 }
 
 ###########################################################
+# set -p for Coding Agents (to enable Shift-Enter in CLI)
+claude() {
+  tmux set -p @coding_agent_active 1 2>/dev/null
+  command claude "$@"
+  tmux set -p -u @coding_agent_active 2>/dev/null
+}
+codex() {
+  tmux set -p @coding_agent_active 1 2>/dev/null
+  command codex "$@"
+  tmux set -p -u @coding_agent_active 2>/dev/null
+}
+
+###########################################################
 # starship
 [ -x $(which starship) ] && eval "$(starship init zsh)"
 
