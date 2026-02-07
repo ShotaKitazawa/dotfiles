@@ -1,11 +1,11 @@
 [tools]
 aqua = "latest"
 # Python
-python = "3.14.2"
+python = "3.14.3"
 "pipx:ansible" = "latest"
 "pipx:python-openstackclient" = "latest"
 # Go
-go = "1.25.6"
+go = "1.25.7"
 "go:golang.org/x/tools/cmd/..." = "latest"
 # Rust
 rust = "stable"
