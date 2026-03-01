@@ -8,7 +8,7 @@ registries:
 packages:
 - name: astral-sh/uv@0.10.7
 - name: argoproj/argo-cd@v3.3.2
-- name: argoproj/argo-workflows@v3.7.10
+- name: argoproj/argo-workflows@v4.0.1
 - name: aws/aws-cli@2.34.0
 - name: bats-core/bats-core@v1.13.0
 - name: bitnami-labs/sealed-secrets@v0.36.0
