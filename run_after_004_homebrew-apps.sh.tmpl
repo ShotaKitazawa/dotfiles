@@ -12,6 +12,7 @@ EOF
 if brew autoupdate status | grep -q 'not configured'; then
   brew autoupdate start --upgrade
 fi
+brew cu pin google-japanese-ime
 
 {{- end -}}
 

@@ -1,4 +1,5 @@
 tap "homebrew/autoupdate"
+tap "buo/cask-upgrade"
 
 brew "aqua"
 brew "autoconf"
