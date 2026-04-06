@@ -33,7 +33,7 @@ packages:
 - name: junegunn/fzf@v0.70.0
 - name: junegunn/fzf/fzf-tmux@v0.70.0
 - name: k1LoW/deck@v1.23.0
-- name: k1LoW/mo@v0.15.2
+- name: k1LoW/mo@v1.0.0
 - name: kubernetes-sigs/cluster-api@v1.12.3
 - name: kubernetes-sigs/krew@v0.5.0
 - name: kubernetes-sigs/kubebuilder@v4.13.0
