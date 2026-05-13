@@ -29,7 +29,7 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias less="less -R"
 alias g="git"
-alias git-clean-branch="git branch --no-color --merged | egrep -Ev '(^\*|master|main)' | xargs git branch -d"
+alias git-clean-branch='git branch --no-color --merged | egrep -Ev "(^\*|master|main)" | while read -r f r; do b=${r:-$f}; if [ "${r:+$f}" = "+" ]; then wt=$(git worktree list --porcelain | awk -v br="refs/heads/$b" "/^worktree /{wt=\$2} \$0==\"branch \" br {print wt}"); git worktree remove "$wt" && git branch -d "$b"; else git branch -d "$b"; fi; done'
 alias ssh-keyadd="ssh-add ~/.ssh/id_*"
 alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
