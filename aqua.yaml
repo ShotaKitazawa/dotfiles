@@ -42,7 +42,7 @@ packages:
 - name: mattn/memo@v0.0.20
 - name: mikefarah/yq@v4.52.5
 - name: muesli/duf@v0.9.1
-- name: openai/codex@rust-v0.118.0
+- name: openai/codex@rust-v0.130.0
 - name: planetscale/cli@v0.281.0
 - name: prometheus/prometheus@v3.11.1
 - name: rhysd/actionlint@v1.7.12
