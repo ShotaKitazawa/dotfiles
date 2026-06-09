@@ -30,3 +30,12 @@ pip-selfcheck.json
 # Terraform
 .terraform
 terraform.tfstate*
+
+# direnv
+.envrc
+
+# mise-en-place
+mise.local.toml
+
+# Claude Code
+**/.claude/settings.local.json
