@@ -16,5 +16,6 @@ nodejs = "24.18"
 "npm:diff-so-fancy" = "latest"
 "npm:redoc-cli" = "latest"
 "npm:@redocly/cli" = "latest"
+"npm:@google/clasp" = "latest"
 # Bun
 bun = "1.3"
