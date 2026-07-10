@@ -46,7 +46,11 @@ then  # bash
 
 elif [[ "${SHELL}" =~ "zsh" ]]
 then  # zsh
-  . ~/.shell/zsh/setting
+  . ~/.shell/zsh/opts
   . ~/.shell/zsh/zinit
+  . ~/.shell/zsh/history
+  . ~/.shell/zsh/fzf
+  . ~/.shell/zsh/tmux
+  . ~/.shell/zsh/hooks
   . ~/.shell/zsh/completion
 fi

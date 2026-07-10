@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+
+###########################################################
+# ssh on tmux
+function ssh() {
+  if [[ -n $(printenv TMUX) ]]
+  then
+    local window_name=$(tmux display -p '#{window_name}')
+    tmux rename-window -- "$@[-1]"
+    command ssh $@
+    tmux rename-window $window_name
+  else
+    command ssh $@
+  fi
+}
+
+###########################################################
+# set -p for Coding Agents (to enable Shift-Enter in CLI)
+claude() {
+  tmux set -p @coding_agent_active 1 2>/dev/null
+  command claude "$@"
+  tmux set -p -u @coding_agent_active 2>/dev/null
+}
+codex() {
+  tmux set -p @coding_agent_active 1 2>/dev/null
+  command codex "$@"
+  tmux set -p -u @coding_agent_active 2>/dev/null
+}
