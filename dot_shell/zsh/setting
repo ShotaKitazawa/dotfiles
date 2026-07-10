@@ -15,9 +15,7 @@ WORDCHARS='_-|'
 ###########################################################
 # Completion
 
-## 補完機能有効にする
-autoload -U compinit
-compinit -u
+## 補完機能有効にする (compinit本体は ~/.shell/zsh/completion で実行する。ここで二重に呼ぶと起動が倍近く遅くなる)
 zstyle ':completion:*' list-colors "${LS_COLORS}"
 # 単語の入力途中でもTab補完を有効化
 setopt complete_in_word
