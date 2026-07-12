@@ -19,7 +19,7 @@
   status = auto
   interactive = auto
 [push]
-  default = tracking
+  default = current
 [merge]
   conflictstyle = zdiff3
 [diff]
