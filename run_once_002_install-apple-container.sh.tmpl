@@ -11,6 +11,30 @@ curl -fsSL "https://github.com/apple/container/releases/download/${VERSION}/cont
 sudo installer -pkg "$PKG" -target /
 rm -f "$PKG"
 
+mkdir -p ~/Library/LaunchAgents
+cat > ~/Library/LaunchAgents/com.apple.container.autostart.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.apple.container.autostart</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/container</string>
+        <string>system</string>
+        <string>start</string>
+        <string>--disable-kernel-install</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/tmp/container-autostart.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/container-autostart.log</string>
+</dict>
+</plist>
+EOF
 launchctl load ~/Library/LaunchAgents/com.apple.container.autostart.plist
 
 MOCKER_VERSION="v0.7.2"
