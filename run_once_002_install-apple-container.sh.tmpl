@@ -2,7 +2,8 @@
 
 echo "### run_once_002_install-apple-container.sh.tmpl ###"
 
-{{ if eq .chezmoi.os "darwin" -}}
+{{/* apple/container requires macOS 26 or later */}}
+{{ if and (eq .chezmoi.os "darwin") (ge (atoi (index (splitList "." (output "sw_vers" "-productVersion" | trim)) 0)) 26) -}}
 
 VERSION="1.1.0"
 PKG="/tmp/container-${VERSION}-installer-signed.pkg"
