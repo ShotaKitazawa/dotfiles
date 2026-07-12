@@ -1,0 +1,27 @@
+#!/bin/sh
+# Broadcast input pane: lines typed here run in every other pane of the
+# current tab. Emulates tmux synchronize-panes until herdr grows native
+# input sync (https://github.com/ogulcancelik/herdr/discussions/949).
+# Line-based, not per-keystroke: interactive TUIs in target panes only
+# receive whole lines plus Enter.
+export PATH="$HOME/.local/share/aquaproj-aqua/bin:$HOME/.local/share/mise/shims:/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+tab=${HERDR_TAB_ID:?run inside a herdr pane}
+self=${HERDR_PANE_ID:?}
+
+targets() {
+  herdr pane list 2>/dev/null |
+    jq -r --arg t "$tab" --arg s "$self" \
+      '.result.panes[] | select(.tab_id==$t and .pane_id!=$s) | .pane_id'
+}
+
+printf 'herdr-sync-input: lines typed here run in every other pane of this tab.\n'
+printf 'targets: %s\n' "$(targets | tr '\n' ' ')"
+printf 'exit with Ctrl-D (pane closes itself).\n\n'
+
+while IFS= read -r line; do
+  for p in $(targets); do
+    [ -n "$line" ] && herdr pane send-text "$p" "$line" >/dev/null 2>&1
+    herdr pane send-keys "$p" enter >/dev/null 2>&1
+  done
+done

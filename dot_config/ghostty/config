@@ -1,7 +1,10 @@
 # --- Shell / 起動時コマンド ---
 #command = "/opt/homebrew/bin/zsh"
-#initial-command = direct:/opt/homebrew/bin/tmux new-session -A -s main
-command = direct:/opt/homebrew/bin/tmux new-session -A -s main
+#command = direct:/opt/homebrew/bin/tmux new-session -A -s main
+# herdr (aqua-proxy) はシェル環境なしでは解決できないため、
+# 必要な env を整えて exec するラッパー (bin/executable_herdr-ghostty) を経由する。
+# shell: プレフィックスは /bin/sh -c 経由の実行で、$HOME を展開できる
+command = shell:$HOME/bin/herdr-ghostty
 working-directory = home
 
 # --- Window size ---

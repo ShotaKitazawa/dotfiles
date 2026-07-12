@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 ###########################################################
-# ssh on tmux
+# ssh on tmux / herdr
 function ssh() {
   if [[ -n $(printenv TMUX) ]]
   then
@@ -9,6 +9,17 @@ function ssh() {
     tmux rename-window -- "$@[-1]"
     command ssh $@
     tmux rename-window $window_name
+  elif [[ ${HERDR_ENV} == 1 && -n ${HERDR_PANE_ID} ]] && (( $+commands[jq] ))
+  then
+    local pane_label=$(herdr pane get "${HERDR_PANE_ID}" 2>/dev/null | jq -r '.result.pane.label // empty')
+    herdr pane rename "${HERDR_PANE_ID}" "$@[-1]" >/dev/null 2>&1
+    command ssh $@
+    if [[ -n ${pane_label} ]]
+    then
+      herdr pane rename "${HERDR_PANE_ID}" "${pane_label}" >/dev/null 2>&1
+    else
+      herdr pane rename "${HERDR_PANE_ID}" --clear >/dev/null 2>&1
+    fi
   else
     command ssh $@
   fi
@@ -16,6 +27,9 @@ function ssh() {
 
 ###########################################################
 # set -p for Coding Agents (to enable Shift-Enter in CLI)
+# tmux-only: herdr forwards modified Enter natively (kitty keyboard
+# protocol) and detects agents itself, so under herdr these are no-ops
+# (guarded by 2>/dev/null). Delete together with the tmux config.
 claude() {
   tmux set -p @coding_agent_active 1 2>/dev/null
   command claude "$@"

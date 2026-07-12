@@ -1,0 +1,16 @@
+#!/bin/sh
+# Ghostty launch target (dot_config/ghostty/config: command = direct:...).
+# Ghostty's `direct:` exec has no shell env, but herdr's ~/.local/share/
+# aquaproj-aqua/bin shim is aqua-proxy, which needs `aqua` in PATH (mise
+# shims) and AQUA_GLOBAL_CONFIG to resolve the pinned version.
+export AQUA_GLOBAL_CONFIG="${AQUA_GLOBAL_CONFIG:-$HOME/aqua.yaml}"
+export PATH="$HOME/.local/share/aquaproj-aqua/bin:$HOME/.local/share/mise/shims:/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+# Launch or attach the persistent default session (tmux `new-session -A`).
+if command -v herdr >/dev/null 2>&1; then
+  exec herdr "$@"
+fi
+
+# herdr missing (fresh machine before `chezmoi apply` hooks ran, etc.);
+# keep the window usable instead of closing immediately.
+exec /bin/zsh -l

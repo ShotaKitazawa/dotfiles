@@ -45,11 +45,14 @@ function dev() {
     moveto=$(ghq root)/$ghq_dir
     cd $moveto
 
-    # rename window if in tmux
+    # rename window if in tmux, pane if in herdr
+    repo_name=${moveto##*/}
     if [[ ! -z ${TMUX} ]]
     then
-      repo_name=${moveto##*/}
       tmux rename-window ${repo_name//./-}
+    elif [[ ${HERDR_ENV} == 1 && -n ${HERDR_PANE_ID} ]]
+    then
+      herdr pane rename "${HERDR_PANE_ID}" "${repo_name//./-}" >/dev/null 2>&1
     fi
   fi
   unset ghq_dir

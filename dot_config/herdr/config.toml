@@ -1,0 +1,105 @@
+onboarding = false
+
+# Key choices mirror the previous tmux setup; see docs/herdr-migration.md
+# in the dotfiles repo for the mapping table and unresolved items.
+
+[keys]
+prefix = "ctrl+s"
+
+# Disabled in favor of the unzoom-then-focus custom commands below (tmux
+# unzooms on pane move; herdr's native focus keeps zoom on the new pane).
+# Costs ~0.1s per move; revert to these once herdr has an unzoom-on-focus
+# option (https://github.com/ogulcancelik/herdr/discussions/1353).
+focus_pane_left = ""
+focus_pane_down = ""
+focus_pane_up = ""
+focus_pane_right = ""
+
+# "prefix+ctrl+s" is reserved (prefix twice = send literal prefix key)
+split_horizontal = "prefix+s"
+split_vertical = ["prefix+v", "prefix+ctrl+v"]
+
+new_tab = ["prefix+t", "prefix+ctrl+t"]
+new_workspace = "prefix+m"
+next_tab = ["prefix+n", "prefix+ctrl+n"]
+previous_tab = ["prefix+p", "prefix+ctrl+p"]
+goto = ["prefix+w", "prefix+ctrl+w"]
+workspace_picker = "prefix+f"
+copy_mode = "prefix+["
+
+detach = "prefix+d"
+rename_tab = ["prefix+r", "prefix+ctrl+r"]
+rename_pane = ""                  # via ssh()/dev() or `herdr pane rename`;
+                                  # default prefix+shift+p belongs to previous_workspace
+rename_workspace = "prefix+shift+r"
+next_workspace = "prefix+shift+n"
+previous_workspace = "prefix+shift+p"
+resize_mode = "prefix+c"
+
+reload_config = ""                # disabled; use `herdr server reload-config`
+settings = "prefix+shift+s"       # default prefix+s is taken by split_horizontal
+
+# Pane focus with unzoom-first (see focus_pane_* comment above).
+[[keys.command]]
+key = ["prefix+h", "prefix+ctrl+h"]
+type = "shell"
+command = "herdr pane zoom --off --current; herdr pane focus --direction left --current"
+
+[[keys.command]]
+key = ["prefix+j", "prefix+ctrl+j"]
+type = "shell"
+command = "herdr pane zoom --off --current; herdr pane focus --direction down --current"
+
+[[keys.command]]
+key = ["prefix+k", "prefix+ctrl+k"]
+type = "shell"
+command = "herdr pane zoom --off --current; herdr pane focus --direction up --current"
+
+[[keys.command]]
+key = ["prefix+l", "prefix+ctrl+l"]
+type = "shell"
+command = "herdr pane zoom --off --current; herdr pane focus --direction right --current"
+
+# Single-step pane resize. No key repeat (custom commands always leave
+# prefix mode); hold h/j/k/l in resize_mode for continuous resizing.
+[[keys.command]]
+key = "prefix+<"
+type = "shell"
+command = "herdr pane resize --direction left --current"
+
+[[keys.command]]
+key = "prefix+plus"
+type = "shell"
+command = "herdr pane resize --direction down --current"
+
+[[keys.command]]
+key = "prefix+minus"
+type = "shell"
+command = "herdr pane resize --direction up --current"
+
+[[keys.command]]
+key = "prefix+>"
+type = "shell"
+command = "herdr pane resize --direction right --current"
+
+# tmux synchronize-panes emulation (line-based; see the script header)
+[[keys.command]]
+key = "prefix+shift+e"
+type = "pane"
+command = "$HOME/bin/herdr-sync-input"
+
+[ui]
+mouse_capture = true
+
+[session]
+resume_agents_on_restore = true
+
+[experimental]
+# macOS only (no-op elsewhere): keep prefix commands and the IME candidate
+# window usable while a CJK IME is active.
+switch_ascii_input_source_in_prefix = true
+reveal_hidden_cursor_for_cjk_ime = true
+cjk_ime_agents = ["claude"]
+
+[advanced]
+scrollback_limit_bytes = 20000000
