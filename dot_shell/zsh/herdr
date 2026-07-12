@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+###########################################################
+# herdr (and plain Ghostty) key handling
+# Ghostty/herdr deliver modified Enter as xterm modifyOtherKeys
+# (CSI 27;m;13~) or kitty CSI-u (CSI 13;mu); zle would otherwise insert
+# junk like ";2;13~". Treat shift+enter / ctrl+enter as plain accept-line
+# at the shell prompt. Agents (Claude Code etc.) parse these sequences
+# natively, so this only affects the shell.
+bindkey '\e[27;2;13~' accept-line
+bindkey '\e[27;5;13~' accept-line
+bindkey '\e[13;2u' accept-line
+bindkey '\e[13;5u' accept-line

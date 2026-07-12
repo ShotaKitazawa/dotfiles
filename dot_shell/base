@@ -51,6 +51,7 @@ then  # zsh
   . ~/.shell/zsh/history
   . ~/.shell/zsh/fzf
   . ~/.shell/zsh/tmux
+  . ~/.shell/zsh/herdr
   . ~/.shell/zsh/hooks
   . ~/.shell/zsh/completion
 fi
