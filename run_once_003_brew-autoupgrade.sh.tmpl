@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+echo "### run_once_003_brew-autoupgrade.sh.tmpl ###"
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+mkdir -p ~/Library/LaunchAgents
+cat > ~/Library/LaunchAgents/local.brew-autoupgrade.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>local.brew-autoupgrade</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-c</string>
+        <string>/opt/homebrew/bin/brew update &amp;&amp; /opt/homebrew/bin/brew upgrade</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>86400</integer>
+    <key>RunAtLoad</key>
+    <false/>
+    <key>StandardOutPath</key>
+    <string>/tmp/brew-autoupgrade.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/brew-autoupgrade.log</string>
+</dict>
+</plist>
+EOF
+launchctl load ~/Library/LaunchAgents/local.brew-autoupgrade.plist
+
+{{- end }}
