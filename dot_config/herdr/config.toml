@@ -1,7 +1,7 @@
 onboarding = false
 
-# Key choices mirror the previous tmux setup; see docs/herdr-migration.md
-# in the dotfiles repo for the mapping table and unresolved items.
+# Key choices mirror the previous tmux setup (C-s prefix, s/v splits,
+# vi-style pane motion).
 
 [keys]
 prefix = "ctrl+s"
