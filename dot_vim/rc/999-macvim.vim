@@ -1,3 +1,6 @@
+" NOTE: rc/*.vim はファイル名の辞書順(000,001,...,100,...,999)で読み込まれるため、
+" このファイルは常に最後に読み込まれる。ここでの設定は他の rc ファイル(例: 100-color.vim の
+" colorscheme hybrid)を意図的に上書きするためのものであり、事故ではない。
 if has('macvim') || has('gui_macvim')
   "au GUIEnter * set fullscreen
   silent! colorscheme jellybeans

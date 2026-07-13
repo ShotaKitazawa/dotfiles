@@ -1,7 +1,6 @@
-" TODO: 動作しない
-"if empty(globpath(&rtp, 'thinca/vim-quickrun'))
-"  finish
-"endif
+if empty(globpath(&rtp, 'plugin/quickrun.vim'))
+  finish
+endif
 
 "set splitbelow
 call quickrun#module#register(shabadou#make_quickrun_hook_anim(

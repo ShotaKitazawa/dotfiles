@@ -1,7 +1,6 @@
-" TODO: 動作しない
-"if empty(globpath(&rtp, 'kana/vim-submode'))
-"  finish
-"endif
+if empty(globpath(&rtp, 'autoload/submode.vim'))
+  finish
+endif
 
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')

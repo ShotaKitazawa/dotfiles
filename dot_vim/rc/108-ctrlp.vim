@@ -1,7 +1,6 @@
-" TODO: 動作しない
-"if empty(globpath(&rtp, 'ctrlpvim/ctrlp.vim'))
-"  finish
-"endif
+if empty(globpath(&rtp, 'plugin/ctrlp.vim'))
+  finish
+endif
 
 if executable('ag')
   let g:ctrlp_use_caching=0

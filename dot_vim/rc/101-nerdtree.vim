@@ -1,7 +1,6 @@
-" TODO: 動作しない
-"if empty(globpath(&rtp, "strooloose/nerdtree"))
-"  finish
-"endif
+if empty(globpath(&rtp, 'plugin/NERD_tree.vim'))
+  finish
+endif
 
 nnoremap tr :<C-u>NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1

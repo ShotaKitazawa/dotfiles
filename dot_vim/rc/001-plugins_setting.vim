@@ -67,7 +67,6 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 " Tex
 Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
 " Terraform
-Plug 'hashicorp/terraform', { 'for': 'tf' }
 Plug 'hashivim/vim-terraform', { 'for': 'tf' }
 " Dockerfile
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
