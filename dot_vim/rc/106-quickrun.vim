@@ -13,7 +13,6 @@ let g:quickrun_config = {
 \       "hook/executing/enable" : 1,
 \       "hook/executing/wait" : 20,
 \       "outputter/buffer/split" : ":botright 8",
-\       "runner" : "vimproc",
-\       "runner/vimproc/updatetime" : 40,
+\       "runner" : "job",
 \   }
 \}
