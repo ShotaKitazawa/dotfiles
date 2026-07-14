@@ -53,6 +53,13 @@ trim_at = "."
 disabled = false
 format = '[\[ $symbol$branch\]]($style) '
 
+# Repos with many/large submodules (e.g. lycloud-vpc-manifests) recurse into
+# each submodule's working tree on every prompt render, adding hundreds of ms
+# to seconds of latency per command. Submodule dirty state isn't needed for
+# the prompt, so skip it.
+[git_status]
+ignore_submodules = true
+
 [kubernetes]
 format = 'on [⛵ $context \($namespace\)](red) '
 disabled = false
