@@ -1,4 +1,5 @@
 README.md
+skills
 
 {{ if or (not (lookPath "op")) (stat (joinPath .chezmoi.homeDir ".ssh/id_ecdsa.home")) }}
 .ssh/id_ecdsa.home

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Re-run only when a file under skills/ changes.
+# skills hash: {{ output "sh" "-c" "find \"$1\" -type f | sort | xargs shasum -a 256 | shasum -a 256" "--" (joinPath .chezmoi.sourceDir "skills") | trim }}
+
+"{{ .chezmoi.sourceDir }}/.scripts/install-skills.sh"
