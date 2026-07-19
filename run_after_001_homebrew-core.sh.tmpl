@@ -5,7 +5,8 @@ echo "### run_after_001_homebrew-core.sh.tmpl ###"
 {{ if eq .chezmoi.os "darwin" -}}
 
 # install packages
-brew bundle --file=/dev/stdin << EOF
+# --no-upgrade: don't let `chezmoi apply` fight with casks that self-update (e.g. google-chrome)
+brew bundle --no-upgrade --file=/dev/stdin << EOF
 {{ template "Brewfile.core" . }}
 EOF
 
