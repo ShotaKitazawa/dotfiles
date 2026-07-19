@@ -4,5 +4,7 @@
 " 事故ではない。
 if !has('nvim')
   set clipboard=unnamed,autoselect
-  set ttymouse=xterm2
+  " 未指定だと自動判定は xterm2(legacy)止まり(sgr への自動昇格は
+  " Terminal.app/iTerm2/mintty 限定で、ghostty 等は対象外)なので明示する。
+  set ttymouse=sgr
 endif
