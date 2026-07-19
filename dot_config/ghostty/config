@@ -15,8 +15,8 @@ window-height = 40
 scrollback-limit = 100
 
 # --- Mouse ---
-# ホイール1ノッチ = 1行 (デフォルトは discrete:3)
 mouse-scroll-multiplier = discrete:1
+mouse-shift-capture = false
 
 # --- Font ---
 font-family = "Monaco"
@@ -27,9 +27,9 @@ clipboard-read = allow
 clipboard-write = allow
 clipboard-paste-bracketed-safe = true
 
-
+# --- Link / Notifications ---
 link-url = true
-mouse-shift-capture = false
+desktop-notifications = true
 
 # --- Colors (iTerm2 “Homebrew” profile values) ---
 background = "#000000"
