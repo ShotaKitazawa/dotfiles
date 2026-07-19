@@ -6,14 +6,14 @@ onboarding = false
 [keys]
 prefix = "ctrl+s"
 
-# Disabled in favor of the unzoom-then-focus custom commands below (tmux
-# unzooms on pane move; herdr's native focus keeps zoom on the new pane).
-# Costs ~0.1s per move; revert to these once herdr has an unzoom-on-focus
-# option (https://github.com/ogulcancelik/herdr/discussions/1353).
-focus_pane_left = ""
-focus_pane_down = ""
-focus_pane_up = ""
-focus_pane_right = ""
+# Native focus keeps zoom when moving panes (tmux unzoomed); the
+# unzoom-then-focus custom-command workaround was dropped because its ~0.1s
+# lag per move was worse. Waiting on an unzoom-on-focus option upstream
+# (https://github.com/ogulcancelik/herdr/discussions/1353).
+focus_pane_left = ["prefix+h", "prefix+ctrl+h"]
+focus_pane_down = ["prefix+j", "prefix+ctrl+j"]
+focus_pane_up = ["prefix+k", "prefix+ctrl+k"]
+focus_pane_right = ["prefix+l", "prefix+ctrl+l"]
 
 # "prefix+ctrl+s" is reserved (prefix twice = send literal prefix key)
 split_horizontal = "prefix+s"
@@ -38,27 +38,6 @@ resize_mode = "prefix+c"
 
 reload_config = ""                # disabled; use `herdr server reload-config`
 settings = "prefix+shift+s"       # default prefix+s is taken by split_horizontal
-
-# Pane focus with unzoom-first (see focus_pane_* comment above).
-[[keys.command]]
-key = ["prefix+h", "prefix+ctrl+h"]
-type = "shell"
-command = "herdr pane zoom --off --current; herdr pane focus --direction left --current"
-
-[[keys.command]]
-key = ["prefix+j", "prefix+ctrl+j"]
-type = "shell"
-command = "herdr pane zoom --off --current; herdr pane focus --direction down --current"
-
-[[keys.command]]
-key = ["prefix+k", "prefix+ctrl+k"]
-type = "shell"
-command = "herdr pane zoom --off --current; herdr pane focus --direction up --current"
-
-[[keys.command]]
-key = ["prefix+l", "prefix+ctrl+l"]
-type = "shell"
-command = "herdr pane zoom --off --current; herdr pane focus --direction right --current"
 
 # Single-step pane resize. No key repeat (custom commands always leave
 # prefix mode); hold h/j/k/l in resize_mode for continuous resizing.
