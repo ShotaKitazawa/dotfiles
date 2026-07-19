@@ -14,6 +14,10 @@ window-height = 40
 # --- Scrollback ---
 scrollback-limit = 100
 
+# --- Mouse ---
+# ホイール1ノッチ = 1行 (デフォルトは discrete:3)
+mouse-scroll-multiplier = discrete:1
+
 # --- Font ---
 font-family = "Monaco"
 font-size = 13
