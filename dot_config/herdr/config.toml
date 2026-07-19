@@ -20,7 +20,7 @@ split_horizontal = "prefix+s"
 split_vertical = ["prefix+v", "prefix+ctrl+v"]
 
 new_tab = ["prefix+t", "prefix+ctrl+t"]
-new_workspace = "prefix+m"
+new_workspace = ["prefix+m", "prefix+ctrl+m"]
 next_tab = ["prefix+n", "prefix+ctrl+n"]
 previous_tab = ["prefix+p", "prefix+ctrl+p"]
 goto = ["prefix+w", "prefix+ctrl+w"]

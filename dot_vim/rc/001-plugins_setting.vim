@@ -5,17 +5,14 @@ Plug 'w0ng/vim-hybrid'
 Plug 'nanotech/jellybeans.vim'
 " vim-surround
 Plug 'tpope/vim-surround'
-" vimproc
-Plug 'Shougo/vimproc'
 " status line
 Plug 'itchyny/lightline.vim'
 " filer
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
+Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-" Fuzzy finder
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'rking/ag.vim'
+" Fuzzy finder (fzf/rg 本体は aqua で導入済みのため、do フックは付けずシステムのバイナリを使う)
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 " コンテキストによって filetype 自動切り替え
 Plug 'Shougo/context_filetype.vim'
 " 窓移動系
@@ -33,7 +30,7 @@ Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " 日本語の w, b, e 移動補助
 Plug 'deton/jasegment.vim'
 " オートセーブ
-Plug 'vim-scripts/vim-auto-save'
+Plug '907th/vim-auto-save'
 " vim からブラウザを開く
 Plug 'tyru/open-browser.vim'
 " QuickRun
@@ -67,7 +64,6 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 " Tex
 Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
 " Terraform
-Plug 'hashicorp/terraform', { 'for': 'tf' }
 Plug 'hashivim/vim-terraform', { 'for': 'tf' }
 " Dockerfile
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }

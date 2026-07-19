@@ -31,7 +31,9 @@ let g:lsp_settings = {
 
 " Other Setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let $PATH = "~/.pyenv/shims:".$PATH
+if isdirectory($HOME . '/.local/share/mise/shims')
+  let $PATH = $HOME . '/.local/share/mise/shims:' . $PATH
+endif
 nnoremap <F5> :!python3 %<CR>
 let g:auto_save = 0
 set tabstop=4

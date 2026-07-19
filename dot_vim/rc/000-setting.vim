@@ -128,7 +128,7 @@ set title
 set incsearch
 " コマンドラインモードにてTab保管を有効にする
 set wildmenu
-set wildmode=full:list
+set wildmode=full
 " マウスを使用できるようにする
 set mouse=a
 " C言語用自動インデント

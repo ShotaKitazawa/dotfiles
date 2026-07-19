@@ -1,7 +1,6 @@
-" TODO: 動作しない
-"if empty(globpath(&rtp, 'thinca/vim-quickrun'))
-"  finish
-"endif
+if empty(globpath(&rtp, 'plugin/quickrun.vim'))
+  finish
+endif
 
 "set splitbelow
 call quickrun#module#register(shabadou#make_quickrun_hook_anim(
@@ -14,7 +13,6 @@ let g:quickrun_config = {
 \       "hook/executing/enable" : 1,
 \       "hook/executing/wait" : 20,
 \       "outputter/buffer/split" : ":botright 8",
-\       "runner" : "vimproc",
-\       "runner/vimproc/updatetime" : 40,
+\       "runner" : "job",
 \   }
 \}

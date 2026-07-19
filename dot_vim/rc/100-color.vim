@@ -2,7 +2,11 @@
 """""""""""""""""""""""""""""
 " 行番号の色
 autocmd ColorScheme * highlight LineNr ctermfg=30
-colorscheme hybrid
+" MacVim GUI では rc/999-macvim.vim が colorscheme を jellybeans に上書きするため、
+" 二重読み込みを避けるためにここでは読み込まない
+if !(has('macvim') || has('gui_macvim'))
+  colorscheme hybrid
+endif
 """""""""""""""""""""""""""""
 
 " Terminal Color (neovim)

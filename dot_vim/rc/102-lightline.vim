@@ -1,7 +1,6 @@
-" TODO: 動作しない
-"if empty(globpath(&rtp, 'itchyny/lightline.vim'))
-"  finish
-"endif
+if empty(globpath(&rtp, 'plugin/lightline.vim'))
+  finish
+endif
 
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',

@@ -2,6 +2,11 @@
 
 ###########################################################
 # starship
+if [ -f $HOME/.config/starship-work.toml ]; then
+  mkdir -p $HOME/.cache
+  cat $HOME/.config/starship.toml $HOME/.config/starship-work.toml > $HOME/.cache/starship.toml
+  export STARSHIP_CONFIG=$HOME/.cache/starship.toml
+fi
 [ -x $(which starship) ] && eval "$(starship init zsh)"
 
 ###########################################################

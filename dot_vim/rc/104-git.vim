@@ -1,7 +1,6 @@
-" TODO: 動作しない
-"if empty(globpath(&rtp, 'tpope/vim-fugitive'))
-"  finish
-"endif
+if empty(globpath(&rtp, 'plugin/fugitive.vim'))
+  finish
+endif
 
 nnoremap :gs :Git status
 nnoremap :ga :Git write
@@ -11,8 +10,7 @@ nnoremap :gb :Git blame
 nnoremap :gd :Git diff
 set statusline+=%{fugitive#statusline()}
 
-
-if empty(globpath(&rtp, 'hotwatermorning/auto-git-diff'))
+if empty(globpath(&rtp, 'plugin/auto-git-diff.vim'))
   finish
 endif
 
