@@ -54,7 +54,7 @@ packages:
 - name: stedolan/jq@jq-1.6
 - name: stern/stern@v1.34.0
 - name: suzuki-shunsuke/ghalint@v1.5.6
-- name: suzuki-shunsuke/pinact@v3.10.1
+- name: suzuki-shunsuke/pinact@v4.1.0
 - name: twpayne/chezmoi@v2.71.0
 - name: wagoodman/dive@v0.13.1
 - name: watchexec/watchexec@v2.5.1
