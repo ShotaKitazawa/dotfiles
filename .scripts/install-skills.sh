@@ -40,12 +40,10 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 codex_root="$base/.codex/skills"
 claude_root="$base/.claude/skills"
-claude_commands_root="$base/.claude/commands"
 
 echo "Installing skills into:"
 echo "  $codex_root"
 echo "  $claude_root"
-echo "  $claude_commands_root"
 
 for dest_root in "$codex_root" "$claude_root"; do
   mkdir -p "$dest_root"
@@ -64,14 +62,4 @@ for dest_root in "$codex_root" "$claude_root"; do
       ln -s "$d" "$dest"
     fi
   done
-done
-
-# Also create Claude slash-command wrappers from SKILL.md so they appear in suggestions.
-mkdir -p "$claude_commands_root"
-for d in "$script_dir"/skills/*; do
-  [ -d "$d" ] || continue
-  skill_name="$(basename "$d")"
-  skill_md="$d/SKILL.md"
-  [ -f "$skill_md" ] || continue
-  cp -f "$skill_md" "$claude_commands_root/${skill_name}.md"
 done
