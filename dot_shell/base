@@ -29,11 +29,40 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias less="less -R"
 alias g="git"
-alias git-clean-branch='git branch --no-color --merged | egrep -Ev "(^\*|master|main)" | while read -r f r; do b=${r:-$f}; if [ "${r:+$f}" = "+" ]; then wt=$(git worktree list --porcelain | awk -v br="refs/heads/$b" "/^worktree /{wt=\$2} \$0==\"branch \" br {print wt}"); git worktree remove "$wt" && git branch -d "$b"; else git branch -d "$b"; fi; done'
 alias ssh-keyadd="ssh-add ~/.ssh/id_*"
 alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
 if [[ -x $(which kubectl) ]]; then alias k='kubectl';fi
+
+### function ###
+# deletes local branches already merged into HEAD, including branches merged via
+# GitHub "squash and merge" (which git branch --merged can't detect, since the
+# squashed commit is never an ancestor of the branch tip)
+git-clean-branch() {
+  local current_branch
+  current_branch=$(git symbolic-ref --quiet --short HEAD)
+  git for-each-ref refs/heads/ --format='%(refname:short)' | while read -r branch; do
+    case "$branch" in
+      "$current_branch"|master|main) continue ;;
+    esac
+
+    if ! git merge-base --is-ancestor "$branch" HEAD 2>/dev/null; then
+      merge_base=$(git merge-base HEAD "$branch" 2>/dev/null) || continue
+      tree_commit=$(git commit-tree "$branch^{tree}" -p "$merge_base" -m _ 2>/dev/null) || continue
+      case "$(git cherry HEAD "$tree_commit" 2>/dev/null)" in
+        -*) ;;
+        *) continue ;;
+      esac
+    fi
+
+    worktree=$(git worktree list --porcelain | awk -v br="refs/heads/$branch" '/^worktree /{wt=$2} $0=="branch " br {print wt}')
+    if [ -n "$worktree" ]; then
+      git worktree remove "$worktree" && git branch -D "$branch"
+    else
+      git branch -D "$branch"
+    fi
+  done
+}
 
 
 #===================================
