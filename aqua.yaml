@@ -44,6 +44,7 @@ packages:
 - name: muesli/duf@v0.9.1
 - name: ogulcancelik/herdr@v0.7.4
 - name: openai/codex@rust-v0.144.6
+- name: opentofu/opentofu@v1.12.4
 - name: planetscale/cli@v0.303.0
 - name: prometheus/prometheus@v3.13.1
 - name: rhysd/actionlint@v1.7.12
