@@ -96,10 +96,21 @@ skill を1本だけ追加したい場合も、正当な適用対象である。*
        dest="$dest_root/$(basename "$d")"
 
        if [ "$dest_root" = "$claude_root" ]; then
-         # Claude skill loader doesn't treat symlinks as directories.
+         # Claude Code's skill loader doesn't treat a symlinked *directory* as
+         # a valid skill directory, so keep $dest a real directory tree and
+         # symlink each file individually back to the source instead. A
+         # tool-mediated edit that resolves symlinks (Claude Code's
+         # Edit/Write) then errors instead of silently diverging from the
+         # source; a shell-level write still transparently updates it.
          [ ! -L "$dest" ] || rm "$dest"
          [ ! -e "$dest" ] || rm -rf "$dest"
-         cp -R "$d" "$dest"
+         mkdir -p "$dest"
+         find "$d" -mindepth 1 -type d -print0 | while IFS= read -r -d '' sub; do
+           mkdir -p "$dest/${sub#"$d"/}"
+         done
+         find "$d" -type f -print0 | while IFS= read -r -d '' file; do
+           ln -s "$file" "$dest/${file#"$d"/}"
+         done
        else
          [ ! -L "$dest" ] || rm "$dest"
          [ ! -e "$dest" ] || rm -rf "$dest"
@@ -119,13 +130,16 @@ skill を1本だけ追加したい場合も、正当な適用対象である。*
    #!/usr/bin/env bash
    set -euo pipefail
 
-   # Re-run only when a file under skills/ changes.
+   # Re-run only when a file under skills/ changes, or when the deployed
+   # .claude/skills tree drifts from what install-skills.sh would produce.
    # skills hash: {{ output "sh" "-c" "find \"$1\" -type f | sort | xargs shasum -a 256 | shasum -a 256" "--" (joinPath .chezmoi.sourceDir "skills") | trim }}
+   # installed hash (.claude/skills): {{ output "sh" "-c" "find -L \"$1\" -type f 2>/dev/null | sort | xargs shasum -a 256 2>/dev/null | shasum -a 256" "--" (joinPath .chezmoi.homeDir ".claude/skills") | trim }}
 
    "{{ .chezmoi.sourceDir }}/.scripts/install-skills.sh"
    ```
 
    - `run_onchange_` prefix + テンプレート内のハッシュコメントが、`skills/` 配下のファイルが変わったときだけ `chezmoi apply` 時に再実行させる仕組み。
+   - 2本目の「installed hash」行は、`.claude/skills` 側がファイル単位シンボリックリンク(手順3のデフォルト)で配布されているため、デプロイ先の内容が(何らかの原因でシンボリックリンクが実ファイルに置き換わるなど)ソースからズレた場合にも再実行・自己修復させるためのもの。
    - パスの `.scripts/install-skills.sh` は手順1で決めた実際の配置パスに置き換える。
 
 5. **後片付けと報告**

@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Re-run only when a file under skills/ changes.
+# Re-run only when a file under skills/ changes, or when the deployed
+# .claude/skills tree drifts from what install-skills.sh would produce
+# (e.g. a per-file symlink got silently replaced by an independent real
+# file via some atomic temp-file+rename write).
 # skills hash: {{ output "sh" "-c" "find \"$1\" -type f | sort | xargs shasum -a 256 | shasum -a 256" "--" (joinPath .chezmoi.sourceDir "skills") | trim }}
+# installed hash (.claude/skills): {{ output "sh" "-c" "find -L \"$1\" -type f 2>/dev/null | sort | xargs shasum -a 256 2>/dev/null | shasum -a 256" "--" (joinPath .chezmoi.homeDir ".claude/skills") | trim }}
 
 "{{ .chezmoi.sourceDir }}/.scripts/install-skills.sh"

@@ -52,10 +52,22 @@ for dest_root in "$codex_root" "$claude_root"; do
     dest="$dest_root/$(basename "$d")"
 
     if [ "$dest_root" = "$claude_root" ]; then
-      # Claude skill loader doesn't treat symlinks as directories.
+      # Claude Code's skill loader doesn't treat a symlinked *directory* as
+      # a valid skill directory, so keep $dest a real directory tree and
+      # symlink each file individually back to the dotfiles source instead.
+      # A tool-mediated edit that resolves symlinks (Claude Code's
+      # Edit/Write) then errors instead of silently diverging from
+      # dotfiles; a shell-level write (redirection, sed without -i) still
+      # transparently updates the real source file through the symlink.
       [ ! -L "$dest" ] || rm "$dest"
       [ ! -e "$dest" ] || rm -rf "$dest"
-      cp -R "$d" "$dest"
+      mkdir -p "$dest"
+      find "$d" -mindepth 1 -type d -print0 | while IFS= read -r -d '' sub; do
+        mkdir -p "$dest/${sub#"$d"/}"
+      done
+      find "$d" -type f -print0 | while IFS= read -r -d '' file; do
+        ln -s "$file" "$dest/${file#"$d"/}"
+      done
     else
       [ ! -L "$dest" ] || rm "$dest"
       [ ! -e "$dest" ] || rm -rf "$dest"
