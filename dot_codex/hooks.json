@@ -1,0 +1,17 @@
+{
+  "description": "Run user-level Codex lifecycle hooks.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.config/codex/hooks/session-start",
+            "statusMessage": "Running session-start hooks"
+          }
+        ]
+      }
+    ]
+  }
+}

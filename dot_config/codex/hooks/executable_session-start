@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Run user-defined Codex SessionStart hooks without making public dotfiles
+# depend on private hook names or implementations.
+set -u
+
+readonly HOOKS_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/codex/session-start.d"
+
+[[ -d "${HOOKS_DIR}" ]] || exit 0
+
+for hook in "${HOOKS_DIR}"/*; do
+  [[ -f "${hook}" && -x "${hook}" ]] || continue
+  if ! "${hook}"; then
+    printf 'Codex SessionStart hook failed: %s\n' "${hook}" >&2
+  fi
+done
