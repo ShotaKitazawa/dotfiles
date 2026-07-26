@@ -16,7 +16,7 @@ cat > ~/Library/LaunchAgents/local.brew-autoupgrade.plist <<'EOF'
     <array>
         <string>/bin/bash</string>
         <string>-c</string>
-        <string>/opt/homebrew/bin/brew update &amp;&amp; /opt/homebrew/bin/brew upgrade</string>
+        <string>/opt/homebrew/bin/brew update &amp;&amp; HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS=1 /opt/homebrew/bin/brew upgrade</string>
     </array>
     <key>StartInterval</key>
     <integer>86400</integer>
