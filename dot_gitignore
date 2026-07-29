@@ -37,5 +37,6 @@ terraform.tfstate*
 # mise-en-place
 mise.local.toml
 
-# Claude Code
+# LLM ecosystems
 **/.claude/settings.local.json
+.playwright-mcp
