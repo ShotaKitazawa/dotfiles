@@ -29,6 +29,7 @@ cat > ~/Library/LaunchAgents/local.brew-autoupgrade.plist <<'EOF'
 </dict>
 </plist>
 EOF
-launchctl load ~/Library/LaunchAgents/local.brew-autoupgrade.plist
+launchctl bootout "gui/$(id -u)/local.brew-autoupgrade" 2>/dev/null || true
+launchctl bootstrap "gui/$(id -u)" ~/Library/LaunchAgents/local.brew-autoupgrade.plist
 
 {{- end }}
