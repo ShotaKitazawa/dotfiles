@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+"""Attempt OAuth login for every HTTP MCP server in ~/.mcp.json.
+
+Which servers exist is intentionally not this script's concern: it just reads
+whatever `mcpServers` entries have a `url` (i.e. are HTTP, not stdio) from
+~/.mcp.json and logs in to each. That file may be managed by a private/second
+chezmoi source; this script only needs it to already be on disk.
+
+Login is deliberately best-effort: an unavailable server, a missing
+~/.mcp.json, or an MCP server without Codex OAuth support must not prevent
+starting Codex. Logins run in parallel since each is an independent, slow
+(browser-driven) OAuth flow.
+
+On macOS, the "Authentication complete. You may close this window." tab that
+each login leaves behind in Chrome is closed automatically (best-effort, via
+AppleScript) as soon as that login's flow finishes. This requires one-time
+Automation permission for whatever app runs this script to control Google
+Chrome (macOS will prompt for it on first run).
+"""
+import json
+import os
+import platform
+import subprocess
+import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
+
+CODEX_BIN = os.environ.get("CODEX_BIN", "codex")
+MCP_JSON_PATH = Path(os.environ.get("MCP_JSON_PATH", Path.home() / ".mcp.json"))
+
+# Codex's MCP OAuth callback server always redirects the browser to
+# http://127.0.0.1:<port>/callback/<id> and serves a plain
+# "you may close this window" page there. Matching on that shape lets us
+# close exactly those stale tabs without touching unrelated localhost tabs
+# (e.g. a dev server at http://localhost:3000).
+_CLOSE_OAUTH_CALLBACK_TABS_APPLESCRIPT = '''
+tell application "System Events"
+    set chromeRunning to (name of processes) contains "Google Chrome"
+end tell
+if chromeRunning then
+    tell application "Google Chrome"
+        repeat with w in windows
+            set tabCount to count of tabs of w
+            repeat with i from tabCount to 1 by -1
+                set t to tab i of w
+                try
+                    set tURL to URL of t
+                on error
+                    set tURL to ""
+                end try
+                if tURL starts with "http://127.0.0.1:" and tURL contains "/callback" then
+                    close t
+                end if
+            end repeat
+        end repeat
+    end tell
+end if
+'''
+
+
+def close_oauth_callback_tabs() -> None:
+    if platform.system() != "Darwin":
+        return
+    try:
+        subprocess.run(
+            ["osascript", "-e", _CLOSE_OAUTH_CALLBACK_TABS_APPLESCRIPT],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        pass
+
+
+def http_mcp_server_names() -> list[str]:
+    try:
+        document = json.loads(MCP_JSON_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+
+    servers = document.get("mcpServers", {})
+    if not isinstance(servers, dict):
+        return []
+
+    return [
+        name
+        for name, server in servers.items()
+        if isinstance(server, dict) and isinstance(server.get("url"), str)
+    ]
+
+
+def login(mcp_server: str) -> tuple[str, bool, str]:
+    try:
+        result = subprocess.run(
+            [CODEX_BIN, "mcp", "login", mcp_server],
+            capture_output=True,
+            text=True,
+        )
+    except OSError as exc:
+        return mcp_server, False, str(exc)
+
+    output = (result.stdout + result.stderr).strip()
+    return mcp_server, result.returncode == 0, output
+
+
+def main() -> int:
+    mcp_servers = http_mcp_server_names()
+    if not mcp_servers:
+        return 0
+
+    print(f"Logging in to MCP servers: {', '.join(mcp_servers)}", file=sys.stderr)
+
+    with ThreadPoolExecutor(max_workers=len(mcp_servers)) as pool:
+        futures = {pool.submit(login, mcp_server): mcp_server for mcp_server in mcp_servers}
+        for future in as_completed(futures):
+            mcp_server, ok, output = future.result()
+            if output:
+                print(output, file=sys.stderr)
+            if ok:
+                print(f"MCP login succeeded: {mcp_server}", file=sys.stderr)
+            else:
+                print(f"MCP login skipped or failed: {mcp_server}", file=sys.stderr)
+            close_oauth_callback_tabs()
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
