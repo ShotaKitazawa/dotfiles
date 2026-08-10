@@ -11,6 +11,20 @@ Login is deliberately best-effort: an unavailable server, a missing
 starting Codex. Logins run in parallel since each is an independent, slow
 (browser-driven) OAuth flow.
 
+A successful login for a server is cached in CACHE_PATH and skipped on the
+next session start until TOKEN_TTL_SECONDS has passed, so back-to-back
+session starts don't pop open a browser tab again. TOKEN_TTL_SECONDS (2h) is
+a fixed, deliberately conservative value -- well under the ~12h expires_in
+Codex's own OAuth token response was observed to use for one of these
+servers -- rather than the real per-token expiry.
+Reading the real expiry would require decrypting Codex's OAuth credential
+out of the macOS Keychain (the only place it's stored; `codex mcp login`
+doesn't surface it any other way), which adds real complexity and
+uncertainty (undocumented, version-dependent storage format; unclear
+whether an unattended read triggers its own Keychain access prompt) for
+little benefit over a short fixed TTL. Only a successful login is cached --
+a failed/skipped login is retried on every subsequent session start.
+
 On macOS, the "Authentication complete. You may close this window." tab that
 each login leaves behind in Chrome is closed automatically (best-effort, via
 AppleScript) as soon as that login's flow finishes. This requires one-time
@@ -22,11 +36,16 @@ import os
 import platform
 import subprocess
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 CODEX_BIN = os.environ.get("CODEX_BIN", "codex")
 MCP_JSON_PATH = Path(os.environ.get("MCP_JSON_PATH", Path.home() / ".mcp.json"))
+CACHE_PATH = Path(
+    os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")
+) / "codex" / "login-mcps-cache.json"
+TOKEN_TTL_SECONDS = 2 * 60 * 60
 
 # Codex's MCP OAuth callback server always redirects the browser to
 # http://127.0.0.1:<port>/callback/<id> and serves a plain
@@ -89,6 +108,21 @@ def http_mcp_server_names() -> list[str]:
     ]
 
 
+def load_cache() -> dict[str, float]:
+    try:
+        raw = json.loads(CACHE_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    if not isinstance(raw, dict):
+        return {}
+    return {name: ts for name, ts in raw.items() if isinstance(name, str) and isinstance(ts, (int, float))}
+
+
+def save_cache(cache: dict[str, float]) -> None:
+    CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    CACHE_PATH.write_text(json.dumps(cache), encoding="utf-8")
+
+
 def login(mcp_server: str) -> tuple[str, bool, str]:
     try:
         result = subprocess.run(
@@ -108,20 +142,37 @@ def main() -> int:
     if not mcp_servers:
         return 0
 
-    print(f"Logging in to MCP servers: {', '.join(mcp_servers)}", file=sys.stderr)
+    cache = load_cache()
+    cache = {name: ts for name, ts in cache.items() if name in mcp_servers}  # drop removed servers
+    now = time.time()
 
-    with ThreadPoolExecutor(max_workers=len(mcp_servers)) as pool:
-        futures = {pool.submit(login, mcp_server): mcp_server for mcp_server in mcp_servers}
+    to_login = []
+    for name in mcp_servers:
+        last_success = cache.get(name)
+        if last_success is not None and now - last_success < TOKEN_TTL_SECONDS:
+            print(f"MCP login skipped (cached login within TTL): {name}", file=sys.stderr)
+        else:
+            to_login.append(name)
+
+    if not to_login:
+        return 0
+
+    print(f"Logging in to MCP servers: {', '.join(to_login)}", file=sys.stderr)
+
+    with ThreadPoolExecutor(max_workers=len(to_login)) as pool:
+        futures = {pool.submit(login, mcp_server): mcp_server for mcp_server in to_login}
         for future in as_completed(futures):
             mcp_server, ok, output = future.result()
             if output:
                 print(output, file=sys.stderr)
             if ok:
                 print(f"MCP login succeeded: {mcp_server}", file=sys.stderr)
+                cache[mcp_server] = now
             else:
                 print(f"MCP login skipped or failed: {mcp_server}", file=sys.stderr)
             close_oauth_callback_tabs()
 
+    save_cache(cache)
     return 0
 
 
