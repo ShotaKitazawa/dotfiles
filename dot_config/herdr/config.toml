@@ -69,6 +69,7 @@ command = "$HOME/bin/herdr-sync-input"
 
 [ui]
 mouse_capture = true
+agent_panel_sort = "spaces"
 
 [session]
 resume_agents_on_restore = true
