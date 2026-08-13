@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Keep the helper's contents in the rendered script so run_onchange is also
+# invalidated when the helper changes.
+# update-zshrc.sh sha256: {{ include ".scripts/update-zshrc.sh" | sha256sum }}
+# Base64 keeps arbitrary managed text from being interpreted as shell syntax or
+# prematurely terminating a fixed heredoc delimiter.
+printf '%s' '{{ .zshrcManagedBlock | b64enc }}' | base64 --decode | \
+  "{{ .chezmoi.sourceDir }}/.scripts/update-zshrc.sh" "{{ .chezmoi.homeDir }}/.zshrc"
