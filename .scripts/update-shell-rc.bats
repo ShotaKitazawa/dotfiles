@@ -1,7 +1,7 @@
 #!/usr/bin/env bats
 
 setup() {
-  update_script="$BATS_TEST_DIRNAME/update-zshrc.sh"
+  update_script="$BATS_TEST_DIRNAME/update-shell-rc.sh"
   target="$BATS_TEST_TMPDIR/zshrc"
   begin_marker='# >>> github.com/ShotaKitazawa/dotfiles managed block (do not edit by hand) >>>'
   end_marker='# <<< github.com/ShotaKitazawa/dotfiles managed block <<<'
@@ -43,6 +43,16 @@ EOF
   grep -qxF 'keep-after' "$target"
   grep -qxF 'export NEW=1' "$target"
   ! grep -qF 'export OLD=1' "$target"
+
+  expected=$(cat <<EOF
+keep-before
+$begin_marker
+export NEW=1
+$end_marker
+keep-after
+EOF
+)
+  [ "$(cat "$target")" = "$expected" ]
 }
 
 @test "rejects an unterminated block without modifying the target" {

@@ -9,14 +9,14 @@ set -euo pipefail
 # reflected in the block on the next run; everything else in the target
 # file is left untouched.
 #
-# Usage: update-zshrc.sh <target-file> <<'EOF'
+# Usage: update-shell-rc.sh <target-file> <<'EOF'
 # export FOO=bar
 # EOF
 
 begin_marker='# >>> github.com/ShotaKitazawa/dotfiles managed block (do not edit by hand) >>>'
 end_marker='# <<< github.com/ShotaKitazawa/dotfiles managed block <<<'
 
-target_file="${1:?usage: update-zshrc.sh <target-file>}"
+target_file="${1:?usage: update-shell-rc.sh <target-file>}"
 
 touch "$target_file"
 
@@ -24,7 +24,6 @@ tmp_dir=$(mktemp -d "${target_file}.tmp.XXXXXX")
 trap 'rm -rf "$tmp_dir"' EXIT
 
 payload_file="$tmp_dir/payload"
-stripped_file="$tmp_dir/stripped"
 new_file="$tmp_dir/new"
 replacement_file="$tmp_dir/replacement"
 
@@ -33,11 +32,11 @@ cat > "$payload_file"
 # Marker-looking lines in the payload would make the next update ambiguous.
 if grep -qxF "$begin_marker" "$payload_file" ||
    grep -qxF "$end_marker" "$payload_file"; then
-  echo "update-zshrc.sh: managed-block marker found in stdin" >&2
+  echo "update-shell-rc.sh: managed-block marker found in stdin" >&2
   exit 1
 fi
 
-# Remove exactly zero or one well-formed managed block. Refuse to modify the
+# Accept exactly zero or one well-formed managed block. Refuse to modify the
 # target if a marker is missing, out of order, or duplicated: silently trying
 # to recover could discard unrelated shell configuration.
 if ! awk -v begin="$begin_marker" -v end="$end_marker" '
@@ -53,21 +52,41 @@ if ! awk -v begin="$begin_marker" -v end="$end_marker" '
     in_block = 0
     next
   }
-  !in_block { print }
   END { if (in_block) exit 4 }
-' "$target_file" > "$stripped_file"; then
-  echo "update-zshrc.sh: malformed managed block in $target_file" >&2
+' "$target_file"; then
+  echo "update-shell-rc.sh: malformed managed block in $target_file" >&2
   exit 1
 fi
 
-# awk also supplies a missing final newline in the existing text. Do the same
-# for stdin so the end marker is always a standalone line.
-{
-  cat "$stripped_file"
-  echo "$begin_marker"
-  awk '{ print }' "$payload_file"
-  echo "$end_marker"
-} > "$new_file"
+# Replace an existing block in place so the evaluation order of the surrounding
+# shell configuration does not change. Only append when no block exists yet.
+# awk also supplies a missing final newline in both existing text and stdin.
+awk -v begin="$begin_marker" -v end="$end_marker" -v payload="$payload_file" '
+  function print_payload(  line) {
+    while ((getline line < payload) > 0) print line
+    close(payload)
+  }
+  $0 == begin {
+    found = 1
+    in_block = 1
+    print
+    print_payload()
+    next
+  }
+  $0 == end {
+    in_block = 0
+    print
+    next
+  }
+  !in_block { print }
+  END {
+    if (!found) {
+      print begin
+      print_payload()
+      print end
+    }
+  }
+' "$target_file" > "$new_file"
 
 # Avoid needless inode and mtime changes when the desired contents already
 # match the target.

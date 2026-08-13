@@ -3,7 +3,11 @@ zshrcManagedBlock: |-
   if [ -f ~/.shell/all ]; then . ~/.shell/all; fi
 
   # chezmoi (CHEZMOI_SOURCE_DIR is set by direnv's .envrc inside an overriding dotfiles repo)
-  alias chezmoi='chezmoi -S "${CHEZMOI_SOURCE_DIR:-/Users/shota.kitazawa/.ghq/github.com/ShotaKitazawa/dotfiles}"'
+  alias chezmoi='chezmoi -S "${CHEZMOI_SOURCE_DIR:-$HOME/.ghq/github.com/ShotaKitazawa/dotfiles}"'
 
   # direnv
   eval "$(direnv hook zsh)"
+
+bashrcManagedBlock: |-
+  # Load shell settings managed by github.com/ShotaKitazawa/dotfiles
+  if [ -f ~/.shell/all ]; then . ~/.shell/all; fi

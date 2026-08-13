@@ -6,5 +6,5 @@ set -euo pipefail
 # update-shell-rc.sh sha256: {{ include ".scripts/update-shell-rc.sh" | sha256sum }}
 # Base64 keeps arbitrary managed text from being interpreted as shell syntax or
 # prematurely terminating a fixed heredoc delimiter.
-printf '%s' '{{ .zshrcManagedBlock | b64enc }}' | base64 --decode | \
-  "{{ .chezmoi.sourceDir }}/.scripts/update-shell-rc.sh" "{{ .chezmoi.homeDir }}/.zshrc"
+printf '%s' '{{ .bashrcManagedBlock | b64enc }}' | base64 --decode | \
+  "{{ .chezmoi.sourceDir }}/.scripts/update-shell-rc.sh" "{{ .chezmoi.homeDir }}/.bashrc"
