@@ -27,7 +27,7 @@ a failed/skipped login is retried on every subsequent session start.
 
 On macOS, the "Authentication complete. You may close this window." tab that
 each login leaves behind in Chrome is closed automatically (best-effort, via
-AppleScript) as soon as that login's flow finishes. This requires one-time
+JavaScript for Automation) after all login flows finish. This requires one-time
 Automation permission for whatever app runs this script to control Google
 Chrome (macOS will prompt for it on first run).
 """
@@ -47,48 +47,68 @@ CACHE_PATH = Path(
 ) / "codex" / "login-mcps-cache.json"
 TOKEN_TTL_SECONDS = 2 * 60 * 60
 
-# Codex's MCP OAuth callback server always redirects the browser to
-# http://127.0.0.1:<port>/callback/<id> and serves a plain
-# "you may close this window" page there. Matching on that shape lets us
-# close exactly those stale tabs without touching unrelated localhost tabs
-# (e.g. a dev server at http://localhost:3000).
-_CLOSE_OAUTH_CALLBACK_TABS_APPLESCRIPT = '''
-tell application "System Events"
-    set chromeRunning to (name of processes) contains "Google Chrome"
-end tell
-if chromeRunning then
-    tell application "Google Chrome"
-        repeat with w in windows
-            set tabCount to count of tabs of w
-            repeat with i from tabCount to 1 by -1
-                set t to tab i of w
-                try
-                    set tURL to URL of t
-                on error
-                    set tURL to ""
-                end try
-                if tURL starts with "http://127.0.0.1:" and tURL contains "/callback" then
-                    close t
-                end if
-            end repeat
-        end repeat
-    end tell
-end if
+# Codex's MCP OAuth callback server redirects the browser to a loopback URL
+# with the shape http://localhost:<port>/callback/<id> (some versions may use
+# 127.0.0.1 instead). Wait until Chrome reports that callback page as fully
+# loaded before closing it; arriving at the callback URL alone does not mean
+# that authentication has completed. Requiring the OAuth code/state query
+# avoids sweeping up ordinary localhost development tabs.
+_CLOSE_OAUTH_CALLBACK_TABS_JXA = '''
+function isOAuthCallback(url) {
+    const isLoopback = url.startsWith("http://localhost:") ||
+        url.startsWith("http://127.0.0.1:");
+    return isLoopback && url.includes("/callback/") &&
+        url.includes("code=") && url.includes("state=");
+}
+
+function closeOAuthCallbackTabs(chrome) {
+    let closedCount = 0;
+    for (const window of chrome.windows()) {
+        const tabs = window.tabs();
+        for (let i = tabs.length - 1; i >= 0; i--) {
+            const tab = tabs[i];
+            if (isOAuthCallback(tab.url()) && !tab.loading()) {
+                tab.close();
+                closedCount++;
+            }
+        }
+    }
+    return closedCount;
+}
+
+const chrome = Application("Google Chrome");
+let closedCount = 0;
+if (chrome.running()) {
+    closedCount = closeOAuthCallbackTabs(chrome);
+}
+closedCount;
 '''
 
 
 def close_oauth_callback_tabs() -> None:
     if platform.system() != "Darwin":
         return
+
     try:
-        subprocess.run(
-            ["osascript", "-e", _CLOSE_OAUTH_CALLBACK_TABS_APPLESCRIPT],
+        # codex exits successfully only after handling the OAuth callback. Give
+        # Chrome a moment to finish painting the completion response, then
+        # inspect all tabs once; this must not add a per-login polling delay.
+        time.sleep(0.5)
+        result = subprocess.run(
+            ["osascript", "-l", "JavaScript", "-e", _CLOSE_OAUTH_CALLBACK_TABS_JXA],
             capture_output=True,
             text=True,
-            timeout=10,
+            timeout=3,
         )
-    except (OSError, subprocess.TimeoutExpired):
-        pass
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        print(f"Failed to close MCP OAuth callback tabs: {exc}", file=sys.stderr)
+        return
+
+    if result.returncode != 0:
+        detail = result.stderr.strip() or f"osascript exited with status {result.returncode}"
+        print(f"Failed to close MCP OAuth callback tabs: {detail}", file=sys.stderr)
+    else:
+        print(f"Closed MCP OAuth callback tabs: {result.stdout.strip() or '0'}", file=sys.stderr)
 
 
 def http_mcp_server_names() -> list[str]:
@@ -159,6 +179,7 @@ def main() -> int:
 
     print(f"Logging in to MCP servers: {', '.join(to_login)}", file=sys.stderr)
 
+    any_login_succeeded = False
     with ThreadPoolExecutor(max_workers=len(to_login)) as pool:
         futures = {pool.submit(login, mcp_server): mcp_server for mcp_server in to_login}
         for future in as_completed(futures):
@@ -168,9 +189,12 @@ def main() -> int:
             if ok:
                 print(f"MCP login succeeded: {mcp_server}", file=sys.stderr)
                 cache[mcp_server] = now
+                any_login_succeeded = True
             else:
                 print(f"MCP login skipped or failed: {mcp_server}", file=sys.stderr)
-            close_oauth_callback_tabs()
+
+    if any_login_succeeded:
+        close_oauth_callback_tabs()
 
     save_cache(cache)
     return 0
