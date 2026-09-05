@@ -5,12 +5,12 @@ python = "3.14"
 "pipx:ansible" = "latest"
 "pipx:python-openstackclient" = "latest"
 # Go
-go = "1.26"
+go = "1.27.1"
 "go:golang.org/x/tools/cmd/..." = "latest"
 # Rust
 rust = "stable"
 # Node.js
-nodejs = "24.18"
+nodejs = "24.20"
 "npm:@antfu/ni" = "latest"
 "npm:swagger2openapi" = "latest"
 "npm:diff-so-fancy" = "latest"
@@ -18,4 +18,4 @@ nodejs = "24.18"
 "npm:@redocly/cli" = "latest"
 "npm:@google/clasp" = "latest"
 # Bun
-bun = "1.3"
+bun = "1.4.2"
