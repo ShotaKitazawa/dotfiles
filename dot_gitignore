@@ -39,4 +39,5 @@ mise.local.toml
 
 # LLM ecosystems
 **/.claude/settings.local.json
-.playwright-mcp
+**/.claude/.cc-writes/
+**/.playwright-mcp

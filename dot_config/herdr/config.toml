@@ -28,9 +28,8 @@ workspace_picker = "prefix+f"
 copy_mode = "prefix+["
 
 detach = "prefix+d"
-rename_tab = ["prefix+r", "prefix+ctrl+r"]
-rename_pane = ""                  # via ssh()/dev() or `herdr pane rename`;
-                                  # default prefix+shift+p belongs to previous_workspace
+rename_tab = "prefix+r"
+rename_pane = "prefix+ctrl+r"     # or updated by ssh()/dev()
 rename_workspace = "prefix+shift+r"
 next_workspace = "prefix+shift+n"
 previous_workspace = "prefix+shift+p"
