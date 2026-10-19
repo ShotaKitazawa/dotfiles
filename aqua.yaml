@@ -42,8 +42,8 @@ packages:
 - name: mattn/memo@v0.0.22
 - name: mikefarah/yq@v4.53.3
 - name: muesli/duf@v0.9.1
-- name: ogulcancelik/herdr@v0.8.2
-- name: openai/codex@rust-v0.144.6
+- name: ogulcancelik/herdr@v0.9.5
+- name: openai/codex@rust-v0.163.0
 - name: opentofu/opentofu@v1.12.4
 - name: planetscale/cli@v0.303.0
 - name: prometheus/prometheus@v3.13.1
