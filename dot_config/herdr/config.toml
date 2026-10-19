@@ -38,6 +38,16 @@ resize_mode = "prefix+c"
 reload_config = ""                # disabled; use `herdr server reload-config`
 settings = "prefix+shift+s"       # default prefix+s is taken by split_horizontal
 
+# Replace the built-in immediate close with a confirmation popup.
+close_pane = ""
+
+[[keys.command]]
+key = "prefix+x"
+type = "popup"
+command = "printf 'Close pane? [Y/n] '; read answer; case \"$answer\" in ''|y|Y) \"$HERDR_BIN_PATH\" pane close \"$HERDR_ACTIVE_PANE_ID\" ;; esac"
+width = 40
+height = 5
+
 # Single-step pane resize. No key repeat (custom commands always leave
 # prefix mode); hold h/j/k/l in resize_mode for continuous resizing.
 [[keys.command]]
