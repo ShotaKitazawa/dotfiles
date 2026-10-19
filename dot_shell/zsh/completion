@@ -33,18 +33,35 @@ rows=(
   "fzf,--zsh"
 )
 
+_completion_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions"
+[[ -d "$_completion_dir" ]] || mkdir -p "$_completion_dir"
+
 for r in "${rows[@]}"; do
   IFS=',' read -r COMMAND OPTS <<< "$r"
-  FILE=$HOME/.completions/_$COMMAND
-  command -v $COMMAND >/dev/null && [[ ! -f $FILE || ! -s $FILE ]] && ( eval $COMMAND $OPTS > $FILE )
+  FILE="${_completion_dir}/_${COMMAND}"
+  command -v $COMMAND >/dev/null && [[ ! -f $FILE || ! -s $FILE ]] && ( eval $COMMAND $OPTS >| $FILE )
 done
 
 # load completion files by fpath
 fpath=(
-"$HOME/.completions"
+"$_completion_dir"
 "${fpath[@]}"
 )
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+
+# Reuse compinit's dump on normal startups. Refresh it once a day so newly
+# installed or updated completions are picked up without paying compaudit and
+# compdump costs in every shell.
+_zcompdump_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+_zcompdump="${_zcompdump_dir}/zcompdump-${ZSH_VERSION}"
+[[ -d "$_zcompdump_dir" ]] || mkdir -p "$_zcompdump_dir"
+if [[ ! -s "$_zcompdump" || -n ${_zcompdump}(#qN.mh+24) ]]; then
+  compinit -d "$_zcompdump"
+else
+  compinit -C -d "$_zcompdump"
+fi
+unset _zcompdump_dir _zcompdump
 
 # explicitly source key-bingings.zsh to call bindkey.
-source $HOME/.completions/_fzf
+source "${_completion_dir}/_fzf"
+unset _completion_dir

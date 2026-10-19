@@ -3,11 +3,15 @@
 ###########################################################
 # starship
 if [ -f $HOME/.config/starship-work.toml ]; then
-  mkdir -p $HOME/.cache
-  cat $HOME/.config/starship.toml $HOME/.config/starship-work.toml > $HOME/.cache/starship.toml
+  _starship_config=$HOME/.cache/starship.toml
+  if [[ ! -s $_starship_config || $HOME/.config/starship.toml -nt $_starship_config || $HOME/.config/starship-work.toml -nt $_starship_config ]]; then
+    mkdir -p $HOME/.cache
+    cat $HOME/.config/starship.toml $HOME/.config/starship-work.toml >| $_starship_config
+  fi
   export STARSHIP_CONFIG=$HOME/.cache/starship.toml
+  unset _starship_config
 fi
-[ -x $(which starship) ] && eval "$(starship init zsh)"
+(( $+commands[starship] )) && eval "$(starship init zsh)"
 
 ###########################################################
 # mise

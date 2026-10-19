@@ -32,7 +32,7 @@ alias g="git"
 alias ssh-keyadd="ssh-add ~/.ssh/id_*"
 alias ssh-showpub="ssh-keygen -yf"
 alias vimtmp='vim `date +%Y%m%d-%H%M%S`.txt'
-if [[ -x $(which kubectl) ]]; then alias k='kubectl';fi
+if command -v kubectl >/dev/null 2>&1; then alias k='kubectl'; fi
 
 ### function ###
 # deletes local branches already merged into HEAD, including branches merged via
