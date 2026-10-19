@@ -60,6 +60,15 @@ format = '[\[ $symbol$branch\]]($style) '
 [git_status]
 ignore_submodules = true
 
+# Version lookup is noticeably slower than module detection for these tools.
+# Keep the project-type indicator without running the version commands on
+# every prompt render.
+[rust]
+format = "via [$symbol]($style)"
+
+[helm]
+format = "via [$symbol]($style)"
+
 [kubernetes]
 format = 'on [⛵ $context \($namespace\)](red) '
 disabled = false
