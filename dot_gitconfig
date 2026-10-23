@@ -5,7 +5,7 @@
   ignorecase = false
   pager = delta
   untrackedCache = true
-  fsmonitor = true
+  #fsmonitor = true
 [user]
   name = ShotaKitazawa
   email = skitazawa1121@gmail.com
