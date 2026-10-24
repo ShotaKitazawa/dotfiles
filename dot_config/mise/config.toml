@@ -6,6 +6,7 @@ python = "3.14"
 "pipx:python-openstackclient" = "latest"
 # Go
 go = "1.26"
+"go:golang.org/x/tools/gopls" = "latest"
 "go:golang.org/x/tools/cmd/..." = "latest"
 # Rust
 rust = "stable"
