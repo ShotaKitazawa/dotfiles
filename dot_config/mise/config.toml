@@ -11,7 +11,7 @@ go = "1.26"
 # Rust
 rust = "stable"
 # Node.js
-nodejs = "24.18"
+nodejs = "26.13"
 "npm:@antfu/ni" = "latest"
 "npm:swagger2openapi" = "latest"
 "npm:diff-so-fancy" = "latest"
