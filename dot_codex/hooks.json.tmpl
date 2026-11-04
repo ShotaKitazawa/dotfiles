@@ -11,6 +11,15 @@
             "statusMessage": "Running session-start hooks"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '{{ .chezmoi.homeDir }}/.codex/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
       }
     ]
   }
