@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+"""Copy the active pane's full label; also open it when it is an HTTP(S) URL."""
+
+import json
+import os
+import subprocess
+import sys
+from urllib.parse import urlsplit
+
+
+def is_http_url(value):
+    # urlsplit tolerates/removes some whitespace and controls; require a whole URL.
+    if any(c.isspace() or ord(c) < 32 or ord(c) == 127 for c in value):
+        return False
+    try:
+        url = urlsplit(value)
+        # Accessing port also validates malformed or out-of-range ports.
+        _ = url.port
+        return url.scheme in ("http", "https") and bool(url.hostname)
+    except ValueError:
+        return False
+
+
+def main():
+    pane_id = os.environ.get("HERDR_ACTIVE_PANE_ID")
+    if not pane_id:
+        print("herdr-yank-pane-name: no active pane", file=sys.stderr)
+        return 1
+
+    try:
+        response = subprocess.run(
+            [os.environ.get("HERDR_BIN_PATH") or "herdr", "pane", "get", pane_id],
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+        name = json.loads(response.stdout)["result"]["pane"].get("label")
+        if not isinstance(name, str) or not name:
+            raise ValueError("pane has no name")
+        # Pass the exact name as data, never as a shell command or format string.
+        subprocess.run(["/usr/bin/pbcopy"], input=name.encode("utf-8"), check=True)
+    except (OSError, subprocess.CalledProcessError, KeyError, TypeError, ValueError):
+        print("herdr-yank-pane-name: could not copy pane name", file=sys.stderr)
+        return 1
+
+    if is_http_url(name):
+        try:
+            subprocess.run(["/usr/bin/open", name], check=True)
+        except (OSError, subprocess.CalledProcessError):
+            print("herdr-yank-pane-name: copied, but could not open URL", file=sys.stderr)
+            return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
